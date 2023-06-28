@@ -9,6 +9,10 @@ namespace INOLAB_OC.Controlador
 {
     public class C_ServiciosAsignados
     {
-        
+        public static DataRow InformacionDeFolioParaReporteServicios(string folio)
+        {
+            string query = "select * from  v_fsr where Folio = " + folio;
+            return Conexion.getDataRow(query);
+        }
     }
 }

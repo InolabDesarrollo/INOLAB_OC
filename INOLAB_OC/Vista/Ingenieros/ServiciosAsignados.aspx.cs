@@ -15,6 +15,7 @@ using System.Windows;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using INOLAB_OC;
 using INOLAB_OC.Modelo;
+using INOLAB_OC.Controlador;
 
 public partial class ServiciosAsignados : System.Web.UI.Page
 {
@@ -245,8 +246,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         }
 
         List<string> valoresParaReporteServicio = new List<string>();
-        string query = "select * from  v_fsr where Folio = " + Session["folio_p"];
-        DataRow informacionServicios = Conexion.getDataRow(query);
+        DataRow informacionServicios = C_ServiciosAsignados.InformacionDeFolioParaReporteServicios(Session["folio_p"].ToString());
 
 
         for (int i = 0; i == 67; i++)
