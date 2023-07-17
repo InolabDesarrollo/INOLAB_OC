@@ -21,7 +21,7 @@ namespace INOLAB_OC
         {
             if (Session["idUsuario"] == null)
             {
-                Response.Redirect("./Sesion.aspx");
+                Response.Redirect("http://localhost:50445/Sesion.aspx");
             }
 
             lbluser.Text = Session["nameUsuario"].ToString();
@@ -121,7 +121,7 @@ namespace INOLAB_OC
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("../Sesion.aspx");
+            Response.Redirect("http://localhost:50445/Sesion.aspx");
         }
     }
 }

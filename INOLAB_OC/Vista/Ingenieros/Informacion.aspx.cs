@@ -13,19 +13,24 @@ using System.Collections.Generic;
 using SpreadsheetLight;
 using System.Windows;
 using INOLAB_OC.Modelo;
+using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Controlador;
+using INOLAB_OC.Entidades;
 
 namespace INOLAB_OC
 {
    
     public partial class Informacion : System.Web.UI.Page
     {
-
-        const string estatusDeFolioAsignado = "Asignado";
-        const string estatusDeFolioEnProceso = "En Proceso";
-        const string estatusDeFolioFinalizado = "Finalizado";
         const string todosLosFolios = "Todos";
+
+        static  V_FSR_Repository repositorioVFSR = new V_FSR_Repository();
+        C_V_FSR controladorVFSR;
+        string idUsuario;
         protected void Page_Load(object sender, EventArgs e)
         {
+            controladorVFSR = new C_V_FSR(repositorioVFSR);
+            idUsuario = Session["idUsuario"].ToString();
             if (Session["idUsuario"] == null)
             {
                 Response.Redirect("./Sesion.aspx");
@@ -85,38 +90,23 @@ namespace INOLAB_OC
            
         }
 
-      
-        string consulta = "";
-
         protected void ddlfiltro_SelectedIndexChanged1(object sender, EventArgs e)
         {
             
-            if (ddlfiltro.Text.Equals(estatusDeFolioAsignado))
-            {
-                consulta = "select *from V_FSR where Estatus='Asignado' and IdIngeniero=" + Session["idusuario"] + " order by folio desc";
-                consultarFoliosDeServicio(consulta);
-            }
-            if (ddlfiltro.Text.Equals(estatusDeFolioEnProceso))
-            {
-                consulta = "select *from V_FSR where Estatus='En Proceso' and IdIngeniero=" + Session["idusuario"] + " order by folio desc";
-                consultarFoliosDeServicio(consulta);
-            }
-            if (ddlfiltro.Text.Equals(estatusDeFolioFinalizado))
-            {
-                consulta = "select *from v_fsr where estatus='Finalizado' and idingeniero=" + Session["idusuario"] + " order by folio desc";
-                consultarFoliosDeServicio(consulta);
-            }
             if (ddlfiltro.Text.Equals(todosLosFolios))
             {
-                consulta = "select * from v_fsr where  idingeniero = " + Session["idusuario"] + "order by folio desc;";
-                consultarFoliosDeServicio(consulta);
+                GridView1.DataSource = controladorVFSR.consultarTodosLosFoliosDeIngeniero(idUsuario);
             }
-        }
-        public void consultarFoliosDeServicio(string consulta)
-        {
-            GridView1.DataSource = Conexion.getDataSet(consulta);
+            else
+            {
+                E_V_FSR entidad_VistaFsr = new E_V_FSR();
+                entidad_VistaFsr.Estatus = ddlfiltro.Text;
+                GridView1.DataSource = controladorVFSR.consultarFolioServicioPorEstatus(entidad_VistaFsr, idUsuario);
+            }
+
             GridView1.DataBind();
             contador.Text = GridView1.Rows.Count.ToString();
         }
+        
     }
 }

@@ -11,6 +11,7 @@ namespace INOLAB_OC.Entidades
 
         public int Folio { get; set;}    
 
+        public string Estatus { get; set;}
         public string idCliente { get; set;}
 
         public string Inicio_Servicio { get; set;}
@@ -54,5 +55,7 @@ namespace INOLAB_OC.Entidades
         public string FechaInicio { get; set;}
 
         public string FechaFin { get; set; }
+
+        public string FechaDeAgendaDeServicio { get; set;}
     }
 }

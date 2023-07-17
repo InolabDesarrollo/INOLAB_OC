@@ -30,10 +30,7 @@ namespace INOLAB_OC
                 ReportViewer1.Visible = true;
             }
         }
-        //Conexion a base de datos (Para la base de datos de pruebas cambiar a BrowserPruebas)
         
-        SqlConnection con = new SqlConnection(@"Data Source=INOLABSERVER03;Initial Catalog=Browser;Persist Security Info=True;User ID=ventas;Password=V3ntas_17");
-
         protected void Page_Init(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

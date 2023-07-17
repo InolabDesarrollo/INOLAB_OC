@@ -13,11 +13,15 @@ using System.Text.RegularExpressions;
 using System.Net.Mail;
 using System.IO;
 using INOLAB_OC.Modelo;
+using INOLAB_OC.Controlador;
+using INOLAB_OC.Modelo.Browser;
 
 namespace INOLAB_OC
 {
     public partial class FirmarFolio : System.Web.UI.Page
     {
+        static FSR_Repository repositorioFSR = new FSR_Repository();
+        C_FSR controladorFSR;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["idUsuario"] == null)
@@ -28,10 +32,9 @@ namespace INOLAB_OC
             {
                 lbluser.Text = Session["nameUsuario"].ToString();
             }
+
+            controladorFSR = new C_FSR(repositorioFSR, Session["idUsuario"].ToString());
         }
-
-       
-
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -156,7 +159,7 @@ namespace INOLAB_OC
 
                 if (idFirmaIngeniero != 0)
                 {
-                    Conexion.executeQuery("update FSR set IDFirmaIng=" + idFirmaIngeniero + " where Folio=" + Session["folio_p"] + ";");
+                    controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "IDFirmaIng", Convert.ToString(idFirmaIngeniero));
                     return true;
                 }
                 else
@@ -172,17 +175,6 @@ namespace INOLAB_OC
             }
         }
 
-       
-
-        protected void updateFSR(string nombre)
-        {//Actualiza el nombre del cliente y la fecha en la que el cliente realiza la firma    
-        Conexion.executeQuery(" UPDATE FSR SET NombreCliente='" + nombre + "', FechaFirmaCliente=" +
-                    "CAST('" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AS DATETIME) where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-             
-        }
-
-        
-
         protected void finalizarbtn_Click(object sender, EventArgs e)
         {//Realiza el update de los datos en FSR y sollicita la creación del PDF para mandarlo por correo electrónico 
             try
@@ -195,10 +187,7 @@ namespace INOLAB_OC
                     Conexion.cerrarConexion();
                     Conexion.updateHorasDeServicio(Session["folio_p"], Session["idUsuario"]);
 
-                 
-                    string queryUpdateStatus = "UPDATE FSR SET IdStatus = 3 WHERE Folio = " + Session["folio_p"].ToString() + " and IdStatus = 2;";
-                    Conexion.executeQuery(queryUpdateStatus);
-                 
+                    controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "IdStatus", "3");
 
                     ReportViewer1.ServerReport.Refresh();
                     enviarEmailConInformacionDelFSR(CreatePDF(Session["folio_p"].ToString()), mail);

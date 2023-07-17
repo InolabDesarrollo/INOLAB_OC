@@ -27,7 +27,7 @@
         {            
             if (clicked == "salir")
             {
-                window.location.href = "/Vista/Sesion.aspx";
+                window.location.href = "http://localhost:50445/Sesion.aspx";
             return false;
             }   
             if (clicked == "atras") {

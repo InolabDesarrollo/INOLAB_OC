@@ -8,13 +8,19 @@ using System.Security.Principal;
 using System.Configuration;
 using System.Web.UI;
 using INOLAB_OC.Modelo;
+using INOLAB_OC.Modelo.Browser.Interfaces;
+using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Controlador;
 
 namespace INOLAB_OC
 {
     public partial class DescargaFolio : System.Web.UI.Page
     {
+        static V_FSR_Repository repositorioVFSR = new V_FSR_Repository();
+        C_V_FSR controladorVFSR = new C_V_FSR(repositorioVFSR);
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["idUsuario"] == null)
             {
                 Response.Redirect("./Sesion.aspx");
@@ -118,8 +124,7 @@ namespace INOLAB_OC
 
         private void cargarDatosDeFoliosConEstatusFinalizado()
         {      
-            string query = "Select *from  v_fsr where idingeniero=" + Session["Idusuario"] + " and estatusid=3 order by folio desc";
-            GridViewServicios_Finalizados.DataSource = Conexion.getDataSet(query);
+            GridViewServicios_Finalizados.DataSource =  controladorVFSR.consultarFoliosConEstatusFinalizado(Session["Idusuario"].ToString());
             GridViewServicios_Finalizados.DataBind(); 
         }
 

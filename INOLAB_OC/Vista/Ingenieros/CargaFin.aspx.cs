@@ -15,13 +15,33 @@ using System.Diagnostics;
 using System.EnterpriseServices;
 using INOLAB_OC.Controlador;
 using INOLAB_OC.Entidades;
+using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Modelo.Inolab;
+using INOLAB_OC.Controlador.Ingenieros;
 
 namespace INOLAB_OC
 {
     public partial class CargaFin : Page
     {
+        static FSR_Repository repositorioFSR = new FSR_Repository();
+        C_FSR controladorFSR;
+
+        static V_FSR_Repository repositorioV_FSR = new V_FSR_Repository();
+        C_V_FSR controladorV_FSR;
+       
+        static SCL5Repository repositorioSCL5 = new SCL5Repository();
+        C_SCL5 controladorSCL5;
+
+        static OSCL_Repository repositorioOSCL = new OSCL_Repository();
+        C_OSCL controladorOSCL;
+
+        C_OCLG controladorOCLG = new C_OCLG();
         protected void Page_Load(object sender, EventArgs e)
         {
+            controladorFSR = new C_FSR(repositorioFSR, Session["folio_p"].ToString());
+            controladorV_FSR = new C_V_FSR(repositorioV_FSR);
+            controladorSCL5 = new C_SCL5(repositorioSCL5);
+
             if (Session["idUsuario"] == null)
             {
                 Response.Redirect("./Sesion.aspx");
@@ -121,65 +141,30 @@ namespace INOLAB_OC
             }
         }
 
-        protected void updateFSR(string nombre)
-        {//Actualiza el nombre del cliente y la fecha en la que el cliente realiza la firma 
-              Conexion.executeQuery(" UPDATE FSR SET NombreCliente='" + nombre + "', FechaFirmaCliente=" +
-                    "CAST('" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AS DATETIME) where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-            Trace.Write(nombre);
-        }
-
         private void actualizarEstatusDeCierreDeActividadEnSap()
         {
+            string folioFSR = Session["folio_p"].ToString();
             try
             {
-                
-                string actualizarEstatusOCLG = "Update OCLG set OCLG.status = -3, OCLG.Closed = 'Y', OCLG.CloseDate =CAST('" +
-                    DateTime.Now.ToString("yyyy-MM-dd") + "' AS DATETIME) from OCLG INNER JOIN SCL5 ON OCLG.ClgCode=SCL5.ClgID where SCL5.U_FSR ='" + Session["folio_p"].ToString() + "'";           
-                ConexionInolab.executeQuery(actualizarEstatusOCLG);
-                            
-                string actualizarEstatusSCL5 = "Update SCL5 set U_ESTATUS = 'Finalizado' where U_FSR ='" + Session["folio_p"].ToString() + "'";
-                ConexionInolab.executeQuery(actualizarEstatusSCL5);               
-   
-                string consultaCallId = "Select SrvcCallId FROM SCL5 where U_FSR ='" + Session["folio_p"].ToString() + "'";               
-                string callId = ConexionInolab.getText(consultaCallId);
+                controladorOCLG.actualizarEstatusFolio(folioFSR);
+
+                controladorSCL5.actualizarValorDeCampo("U_ESTATUS", "Finalizado", folioFSR);                
+                string callId = controladorSCL5.seleccionarValorDeCampo("SrvcCallId", folioFSR);
                                           
-                string numeroDeValoresEnEstatus = ConexionInolab.getText("Select count (DISTINCT U_ESTATUS) FROM SCL5 where SrvcCallId = " + callId.ToString());
-                //(Para que se cierre la llamada debe de ser "-1")
+                string numeroDeValoresEnEstatus =  controladorSCL5.consultarNumeroDeFoliosPorCallId(callId.ToString());
+                int numeroDeValoresEnSLC5 = controladorSCL5.contarFilasDeTablaPorCallId(callId.ToString());
+
+                bool HayFoliosConEstatusDiferenteDeFinalizado = controladorSCL5.verificarSiHayFoliosConEstatusDiferenteDeFinalizado(numeroDeValoresEnSLC5, callId.ToString());
                 
-                //Hacer un ciclo while para identificar nulos? (usar visorder para pasar por todos)                               
-                string numeroDeValoresEnSLC5 = ConexionInolab.getText("Select count(*) FROM SCL5 where SrvcCallId = " + callId.ToString());
+                controladorOSCL = new C_OSCL(repositorioOSCL, int.Parse(callId));
+                controladorOSCL.verificarSiSeCierraLaLLamada(numeroDeValoresEnEstatus, HayFoliosConEstatusDiferenteDeFinalizado);
                 
-                bool nulo = false;
-
-                //Proceso de chequeo de todos los estatus asignados a los folios dentro de la llamada para poder cerrarla o dejarla abierta
-                for (int i = 1; i <= Convert.ToInt32(numeroDeValoresEnSLC5); i++)
-                {
-                    string query = "Select U_ESTATUS FROM SCL5 where SrvcCallId = " + callId.ToString() +
-                        "and VisOrder = " + i.ToString();                   
-                    string estatusEnSCL5 = ConexionInolab.getText(query);
-
-                    if (estatusEnSCL5 != "Finalizado")
-                    {
-                        nulo = true;
-                    }
-                }
-
-                //Despues del chequeo, si nulo == false, se cerrara la llamada debido a que todos los folios estan finalizados
-                if (numeroDeValoresEnEstatus == "1" && nulo == false)
-                {
-                    ConexionInolab.executeQuery("Update OSCL set status = -1 where callID=" + callId.ToString());
-                    
-                }
             }
             catch (Exception er)
             {
                 Response.Write("<script>alert('Fallo en subir a sap ');</script>");
             }
         }
-
-
-
-       
 
         private string cuerpoDelCorreoElectronico(string folioDeServicio, string cliente)
         {
@@ -271,34 +256,35 @@ namespace INOLAB_OC
         private string generarCuerpoDelCorreoVentas(string folio)
         {//Realiza el replace en HTML para la creación del correo
             string cuerpoDelCorreo = string.Empty;
-
+            string folioFSR = Session["folio_p"].ToString();
             using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index_not_ase.html")))
             {
                 cuerpoDelCorreo = reader.ReadToEnd();
                 reader.Dispose();
             }
       
-            string query = "Select top (1) Observaciones FROM FSR where Folio=" + Session["folio_p"].ToString();
-            string observacionesDelFolio = Conexion.getText(query);
-          
+            string observacionesDelFolio = controladorFSR.consultarValorDeCampoTop(folioFSR,
+                "Observaciones");
+
+
             string llamada = "Interna";
             try
             {
-                string query2 = "Select top (1) SrvcCallId FROM SCL5 where U_FSR=" + Session["folio_p"].ToString();
-                llamada = ConexionInolab.getText(query2);
+                llamada = controladorSCL5.seleccionarValorDeCampoTop("SrvcCallId", folioFSR);
             }
             catch (Exception es)
             {
                 Console.Write(es.ToString());
             }
         
-            string cliente = Conexion.getText("Select top (1) Cliente FROM FSR where Folio=" + Session["folio_p"].ToString());      
-            string equipo = Conexion.getText("Select top (1) Equipo FROM FSR where Folio=" + Session["folio_p"].ToString());
-            string tipoDeServicio = Conexion.getText("Select top (1) TipoServicio FROM V_FSR where Folio=" + Session["folio_p"].ToString());       
+            string cliente = controladorFSR.consultarValorDeCampoTop(folioFSR, "Cliente");
+            string equipo =  controladorFSR.consultarValorDeCampoTop(folioFSR, "Equipo");
             
-            string ingeniero = Conexion.getText("Select top (1) Ingeniero FROM V_FSR where Folio=" + Session["folio_p"].ToString());          
-            string actividad = Conexion.getText("Select top (1) Actividad FROM V_FSR where Folio=" + Session["folio_p"].ToString());      
-            string OrdenVenta = Conexion.getText("Select top (1) OC FROM V_FSR where Folio=" + Session["folio_p"].ToString());
+            string tipoDeServicio =  controladorV_FSR.consultarValorDeCampoTop("TipoServicio", folioFSR);
+            string ingeniero = controladorV_FSR.consultarValorDeCampoTop("Ingeniero", folioFSR);
+
+            string actividad =  controladorV_FSR.consultarValorDeCampoTop("Actividad", folioFSR);
+            string OrdenVenta =  controladorV_FSR.consultarValorDeCampoTop("OC", folioFSR);
 
 
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folio);
@@ -354,7 +340,7 @@ namespace INOLAB_OC
         private string cuerpoDelCorreoElectronicoParaFacturacion(string folio)
         {
             string cuerpoDelCorreo = string.Empty;
-
+            string folioFSR = Session["folio_p"].ToString();
             using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index_not_fact.html")))
             {
                 cuerpoDelCorreo = reader.ReadToEnd();
@@ -365,9 +351,7 @@ namespace INOLAB_OC
             string tipoDeLLamada = "Interna";
             try
             {
-                string queryTipoDeLLamada = "Select top (1) SrvcCallId FROM SCL5 where U_FSR=" + Session["folio_p"].ToString();
-                tipoDeLLamada = ConexionInolab.getText(queryTipoDeLLamada);
-             
+                tipoDeLLamada = controladorSCL5.seleccionarValorDeCampoTop("SrvcCallId", Session["folio_p"].ToString());
             }
             catch (Exception es)
             {
@@ -375,9 +359,9 @@ namespace INOLAB_OC
             }
             
             //Obtencion de datos para el correo
-            string cliente = Conexion.getText("Select top (1) Cliente FROM FSR where Folio=" + Session["folio_p"].ToString());
-            string actividad = Conexion.getText("Select top (1) Actividad FROM V_FSR where Folio=" + Session["folio_p"].ToString());
-            string OrdenVenta = Conexion.getText("Select top (1) OC FROM V_FSR where Folio=" + Session["folio_p"].ToString());
+            string cliente = controladorFSR.consultarValorDeCampoTop("Cliente", folioFSR);
+            string actividad =  controladorFSR.consultarValorDeCampoTop("Actividad", folioFSR);
+            string OrdenVenta = controladorV_FSR.consultarValorDeCampoTop("OC", folioFSR);
 
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folio);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("./Imagenes/slogan.png")));
@@ -391,19 +375,21 @@ namespace INOLAB_OC
         
         protected void Timer1_Tick(object sender, EventArgs e)
         {
+            string folioFSR = Session["folio_p"].ToString();
+            string idUsuario = Session["idUsuario"].ToString();
             Timer1.Enabled = false;
-            //Realiza el update de los datos en FSR y sollicita la creación del PDF para mandarlo por correo electrónico 
-          
-                string correoDeCliente = Conexion.getText("select Mail from FSR where Folio = " + Session["folio_p"].ToString() + " and IdFirmaImg is not null;");
+            //Realiza el update de los datos en FSR y sollicita la creación del PDF para mandarlo por correo electrónico    
+                string correoDeCliente =  controladorFSR.consultarMailDeFolioServicio(folioFSR);
+                
                 if (!correoDeCliente.Equals("") || correoDeCliente != null)
                 {
                     string correoElectronicoCliente = correoDeCliente;
-                     
-                    //Actualizacion de estatus de el FSR con los datos correspondientes
-                    Conexion.updateHorasDeServicio(Session["folio_p"], Session["idUsuario"]);
-                    actualizarDatosEnSap();
-                    
-                    C_CargaFin.cambiarEstatusDeFolioAFinalizado(Session["folio_p"].ToString());
+
+                   //Actualizacion de estatus de el FSR con los datos correspondientes
+                   controladorFSR.actualizarHorasDeServicio(folioFSR, idUsuario);
+                   actualizarDatosEnSap();
+                  
+                    C_CargaFin.cambiarEstatusDeFolioAFinalizado(folioFSR);
                     actualizarEstatusDeCierreDeActividadEnSap();
                      
                     ReportViewer1.ServerReport.Refresh();
@@ -422,24 +408,15 @@ namespace INOLAB_OC
         }
 
         private void actualizarDatosEnSap()
-        {
-            try
-            {                   
-                string clgId = ConexionInolab.getText("Select ClgID FROM SCL5 where U_FSR = " + Session["folio_p"]);
-                string folio = Session["folio_p"].ToString();
-
-                //Se hace el update de la concatenacion de Folio y Estatus
-                ConexionInolab.executeQuery(" UPDATE OCLG SET tel = '" + Session["folio_p"] + " Finalizado' where ClgCode= " + clgId + ";");
-            }
-            catch (Exception es)
-            {
-                Console.Write(es.ToString());
-            }
+        {          
+            string folio = Session["folio_p"].ToString();
+            string ClgCode = controladorSCL5.seleccionarValorDeCampo("ClgID", folio);
+            controladorOCLG.concatenacionDeFolioYEstatus(folio, ClgCode);
         }
 
         private void verificarElTipoDeContrato(string path, string correoElectronicoCliente)
         {
-            string idContrato = Conexion.getText("Select top (1) IdT_Contrato FROM FSR where Folio=" + Session["folio_p"].ToString());
+            string idContrato = controladorFSR.consultarValorDeCampoTop(Session["folio_p"].ToString(), "IdT_Contrato");
             string servicioPuntual = "7";
 
             if (idContrato.Equals(servicioPuntual))
@@ -453,7 +430,7 @@ namespace INOLAB_OC
         {
             if (Session["not_ase"].ToString() == "Si")
             {
-                string correoElectronicoAsesor = Conexion.getText("Select top (1) Correoasesor1 FROM V_FSR where Folio=" + Session["folio_p"].ToString());
+                string correoElectronicoAsesor = controladorV_FSR.consultarValorDeCampoTop("Correoasesor1", Session["folio_p"].ToString());
                 envioDeCorreoElectronicoConInformacionFSR(correoElectronicoAsesor);
             }
         }

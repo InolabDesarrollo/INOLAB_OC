@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Test/1.0.0": {
         "dependencies": {
+          "INOLAB_OC": "1.0.0",
           "MSTest.TestAdapter": "2.2.10",
           "MSTest.TestFramework": "2.2.10",
           "Microsoft.NET.Test.Sdk": "17.5.0",
@@ -430,11 +431,56 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "INOLAB_OC/1.0.0": {
+        "runtime": {
+          "INOLAB_OC.dll": {}
+        }
+      },
       "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {
         "runtime": {
           "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll": {
             "assemblyVersion": "14.0.0.0",
             "fileVersion": "14.0.7126.11"
+          }
+        }
+      },
+      "Microsoft.ReportViewer.WebForms/11.0.0.0": {
+        "runtime": {
+          "Microsoft.ReportViewer.WebForms.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.3452.0"
+          }
+        }
+      },
+      "SpreadsheetLight/3.4.9.0": {
+        "runtime": {
+          "SpreadsheetLight.dll": {
+            "assemblyVersion": "3.4.9.0",
+            "fileVersion": "3.4.9.0"
+          }
+        }
+      },
+      "Microsoft.ReportViewer.Common/11.0.0.0": {
+        "runtime": {
+          "Microsoft.ReportViewer.Common.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.3452.0"
+          }
+        }
+      },
+      "DocumentFormat.OpenXml/2.5.5631.0": {
+        "runtime": {
+          "DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "2.5.5631.0",
+            "fileVersion": "2.5.5631.0"
+          }
+        }
+      },
+      "Microsoft.ReportViewer.ProcessingObjectModel/11.0.0.0": {
+        "runtime": {
+          "Microsoft.ReportViewer.ProcessingObjectModel.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.3452.0"
           }
         }
       }
@@ -635,7 +681,37 @@
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
+    "INOLAB_OC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.ReportViewer.WebForms/11.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpreadsheetLight/3.4.9.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.ReportViewer.Common/11.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DocumentFormat.OpenXml/2.5.5631.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.ReportViewer.ProcessingObjectModel/11.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

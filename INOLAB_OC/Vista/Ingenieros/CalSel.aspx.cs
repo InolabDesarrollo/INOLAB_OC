@@ -25,10 +25,6 @@ namespace INOLAB_OC
             {
                 Response.Redirect("./Sesion.aspx");
             }
-            else
-            {
-
-            }
         }
         protected void Seleccionar_el_area_SelectedIndexChanged(object sender, EventArgs e)
         {

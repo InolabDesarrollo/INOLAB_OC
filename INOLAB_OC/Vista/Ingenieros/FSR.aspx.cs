@@ -11,15 +11,22 @@ using System.Linq.Expressions;
 using DocumentFormat.OpenXml.Bibliography;
 using INOLAB_OC.Controlador;
 using INOLAB_OC.Entidades;
+using INOLAB_OC.Modelo.Browser;
+
 public partial class FSR : Page
 {
     const string FINALIZADO = "3";
     const string ASIGNADO = "1";
     const string PROCESO = "2";
-    const string SIN_SERVICIO_INICIADO ="";
     E_Servicio folioServicioFSR = new E_Servicio();
+    static FSR_Repository repositorio = new FSR_Repository();
+    static string _idUsuario;
+     
+    C_FSR controladorFSR = new C_FSR(repositorio, _idUsuario);
+
     protected void Page_Init(object sender, EventArgs e)
     {
+        _idUsuario = Session["idUsuario"].ToString();
         if (!Page.IsPostBack)
         {
             ReportViewer1.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
@@ -52,7 +59,7 @@ public partial class FSR : Page
     {
         if (Session["idUsuario"] == null)
         {
-            Response.Redirect("/Vista/Sesion.aspx");
+            Response.Redirect("http://localhost:50445/Sesion.aspx");
         }
         else
         {
@@ -65,10 +72,9 @@ public partial class FSR : Page
     
     public void consultaDatosFolioServicio()
     {
-           DataRow informacionServicio =C_FSR.consultarInformacionFolioServicio(Session["Idusuario"].ToString(), 
-               Session["folio_p"].ToString());
-            
-            //Inserta los datos de la vista coorepondientemente al campo que se le es asignado dentro del .aspx
+           DataRow informacionServicio =controladorFSR.consultarInformacionFolioServicioPorFolioYUsuario( Session["idUsuario"].ToString(),Session["folio_p"].ToString());
+
+        //Inserta los datos de la vista coorepondientemente al campo que se le es asignado dentro del .aspx
             txtfolio.Text= informacionServicio["Cliente"].ToString();
             txttelfax.Text= informacionServicio["Telefono"].ToString();
             txtdireccion.Text= informacionServicio["Direccion"].ToString();
@@ -93,22 +99,9 @@ public partial class FSR : Page
             DropDownList8.Text = informacionServicio["Estatusid"].ToString();
             Estatus_de_folio_servicio.Text= informacionServicio["Estatusid"].ToString();
 
-           verificarSiContinuaOIniciaServicio();
-
+            Btn_Estatus_Servicio.Text = controladorFSR.verificarSiIniciaOContinuaServicio(Session["folio_p"].ToString());
     }
 
-    public void verificarSiContinuaOIniciaServicio()
-    {
-        string inicioServicio = C_FSR.seleccionarInicioServicio(Session["folio_p"].ToString());
-        if (inicioServicio != SIN_SERVICIO_INICIADO)
-        {
-            Btn_Estatus_Servicio.Text = "Continuar Servicio";
-        }
-        else if (inicioServicio.Equals(SIN_SERVICIO_INICIADO) || inicioServicio == null)
-        {
-            Btn_Estatus_Servicio.Text = "Iniciar Servicio";
-        }
-    }
     public void definirVisibilidadYTextoDeBotonesPrincipales()
     {
         if (Estatus_de_folio_servicio.Text.Equals(FINALIZADO))
@@ -168,7 +161,7 @@ public partial class FSR : Page
           folioServicioFSR.N_Reportado = reportadoHF.Value;
           folioServicioFSR.Email  = emailHF.Value;
 
-          C_FSR.actualizarDatosDeServicio(folioServicioFSR, Session["idUsuario"].ToString());
+          controladorFSR.actualizarDatosDeServicio(folioServicioFSR);
           verificarEstatusDeFolio(Estatus_de_folio_servicio.Text);
        
     }
@@ -266,8 +259,8 @@ public partial class FSR : Page
         { 
             DateTime fechaYhoraDeInicioDeServicio = generarFechaYHoraDeInicioDeServicio();
             //Pendiente funcionalidad para verificar si la fecha Inicio de servicio es despues de la fecha de inicio real
-            C_FSR.iniciarFolioServicio(fechaYhoraDeInicioDeServicio, Session["folio_p"].ToString(), 
-                Session["idUsuario"].ToString());
+            controladorFSR.iniciarFolioServicio(fechaYhoraDeInicioDeServicio, 
+                Session["folio_p"].ToString());
             
             actualizarFolioActividadSap();
         }
@@ -325,7 +318,7 @@ public partial class FSR : Page
         folioServicio.FechaFin = fechaYhoraFinFolioServicio.ToString("yyyy - MM - dd HH: mm:ss.fff");
         folioServicio.Folio = int.Parse(Session["folio_p"].ToString());
 
-        C_FSR.actualizarFechayHoraFinDeServicio(folioServicio, Session["idUsuario"].ToString());
+        controladorFSR.actualizarFechayHoraFinDeServicio(folioServicio);
 
         Actfechas.Style.Add("display", "none");
         headerone.Style.Add("filter", "blur(0px)");
@@ -336,14 +329,14 @@ public partial class FSR : Page
 
     private DateTime traerFechaYHoraDeInicioDeFolio()
     { 
-       DateTime fechaYhoraDeInicioDeFolioServicio = C_FSR.traerFechaYhoraDeInicioDeFolio(Session["folio_p"].ToString(), Session["idUsuario"].ToString());
+       DateTime fechaYhoraDeInicioDeFolioServicio = controladorFSR.traerFechaYhoraDeInicioDeFolio(Session["folio_p"].ToString());
        lbl_fechaYhora_inicio_servicio.Text = fechaYhoraDeInicioDeFolioServicio.ToString();
        return fechaYhoraDeInicioDeFolioServicio;
     }
 
     private DateTime traerFechaYHoraDeCierreDeFolio()
     {
-      DateTime fechaYHoraFinDeFolioDeServicio = C_FSR.traerFechaYhoraDeFinDeFolio(Session["folio_p"].ToString(), Session["idUsuario"].ToString());
+      DateTime fechaYHoraFinDeFolioDeServicio = controladorFSR.traerFechaYhoraDeFinDeFolio(Session["folio_p"].ToString());
       Lbl_fin_de_servicio.Text = fechaYHoraFinDeFolioDeServicio.ToString();
       return fechaYHoraFinDeFolioDeServicio;
     }

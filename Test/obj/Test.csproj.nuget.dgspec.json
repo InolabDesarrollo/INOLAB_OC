@@ -4,6 +4,21 @@
     "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj",
+        "projectName": "INOLAB_OC",
+        "projectPath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
     "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -31,7 +46,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj": {
+                "projectPath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

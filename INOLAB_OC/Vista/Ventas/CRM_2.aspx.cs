@@ -24,14 +24,12 @@ namespace INOLAB_OC
         {
             if (Session["idUsuario"] == null)
             {
-                Response.Redirect("./Sesion.aspx");
+                Response.Redirect("http://localhost:50445/Sesion.aspx");
             }
 
             lbluser.Text = Session["nameUsuario"].ToString();
             lbliduser.Text = Session["idUsuario"].ToString();
             ReportViewer1.ServerReport.Refresh();
-
-
         }
 
         //REPORTEADOR
@@ -251,7 +249,6 @@ namespace INOLAB_OC
             string query = "Select * from  Llamada_vista where FechaLlamada between DATEADD(wk,DATEDIFF(wk,0,getdate()),0) and dateadd(wk,datediff(wk,0,getdate()),4) and tipo ='" + tipoDeRegistro + "' and asesor='" + lbluser.Text + "'";
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
-
         }
 
         private void mostrarTodosLosDatosDelAsesor()
