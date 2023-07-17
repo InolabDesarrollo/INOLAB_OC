@@ -78,7 +78,7 @@ namespace INOLAB_OC
                     {
                         if(Session["idUsuario"].ToString() == ceoArtemio)
                         {
-                            Response.Redirect("http://localhost:50445/Vista/Ventas/CRM_4.aspx");
+                            Response.Redirect("Vista/Ventas/CRM_4.aspx");
                         }
                         else
                         {
