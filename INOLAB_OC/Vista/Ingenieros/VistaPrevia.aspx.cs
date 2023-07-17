@@ -200,6 +200,7 @@ public partial class VistaPrevia : Page
             if (idFirmaImagen != 0)
             {
                 controladorFSR.actualizarValorDeCampoPorFolio(Session["folio_p"].ToString(), "IdFirmaImg", Convert.ToString(idFirmaImagen));
+                
                 return true;
             }
             else
