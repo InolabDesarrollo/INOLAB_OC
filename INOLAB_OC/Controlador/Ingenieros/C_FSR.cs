@@ -12,23 +12,23 @@ namespace INOLAB_OC.Controlador
 {
     public class C_FSR
     {
-        private  IFSR_Repository _browserRepository;
+        private  IFSR_Repository _fsrRepository;
         private string _idUsuario;
 
         public C_FSR(IFSR_Repository browserRepository, string idUsuario) {
-            _browserRepository = browserRepository;
+            _fsrRepository = browserRepository;
             _idUsuario = idUsuario;
         }
         public C_FSR(IFSR_Repository browserRepository)
         {
-            _browserRepository = browserRepository;
+            _fsrRepository = browserRepository;
  
         }
 
         public string verificarSiIniciaOContinuaServicio(string folioFSR)
         {
             string estatusDeServicio = null;
-            string inicioServicio = _browserRepository.consultarInicioDeServicio(folioFSR);
+            string inicioServicio = _fsrRepository.consultarInicioDeServicio(folioFSR);
 
             if (inicioServicio != "")
             {
@@ -44,12 +44,12 @@ namespace INOLAB_OC.Controlador
 
         public  void actualizarDatosDeServicio(E_Servicio folioServicioFSR)
         {
-            _browserRepository.actualizarDatosDeServicio(folioServicioFSR, _idUsuario);
+            _fsrRepository.actualizarDatosDeServicio(folioServicioFSR, _idUsuario);
         }
 
         public void iniciarFolioServicio(DateTime fechaYHoraDeInicioDeServicio, string folio)
         {
-            _browserRepository.iniciarFolioServicio(fechaYHoraDeInicioDeServicio, folio, _idUsuario);
+            _fsrRepository.iniciarFolioServicio(fechaYHoraDeInicioDeServicio, folio, _idUsuario);
         }
 
         public static void actualizarFolioSap(string folio)
@@ -62,7 +62,7 @@ namespace INOLAB_OC.Controlador
 
         public  void actualizarFechayHoraFinDeServicio(E_Servicio servicio)
         {
-            _browserRepository.actualizarFechayHoraFinDeServicio(servicio, _idUsuario);
+            _fsrRepository.actualizarFechayHoraFinDeServicio(servicio, _idUsuario);
         }
 
         public  DateTime traerFechaYhoraDeInicioDeFolio(string folio)
@@ -73,7 +73,7 @@ namespace INOLAB_OC.Controlador
             try
             {
                 campoDondeSeConsulta = "WebFechaIni";
-                fechaYHoraInicioServicio = _browserRepository.consultarFechaInicioDeFolio(folio, _idUsuario, campoDondeSeConsulta);
+                fechaYHoraInicioServicio = _fsrRepository.consultarFechaInicioDeFolio(folio, _idUsuario, campoDondeSeConsulta);
  
                 return fechaYHoraInicioServicio;
 
@@ -81,7 +81,7 @@ namespace INOLAB_OC.Controlador
             catch (Exception ex)
             {
                 campoDondeSeConsulta = "Inicio_Servicio";
-                fechaYHoraInicioServicio = _browserRepository.consultarFechaInicioDeFolio(folio, _idUsuario, campoDondeSeConsulta);
+                fechaYHoraInicioServicio = _fsrRepository.consultarFechaInicioDeFolio(folio, _idUsuario, campoDondeSeConsulta);
                 
                 return fechaYHoraInicioServicio;
             }
@@ -96,14 +96,14 @@ namespace INOLAB_OC.Controlador
             try
             {
                 campoDondeSeConsulta = "WebFechaFin";
-                fechaYHoraFinServicio = _browserRepository.consultarFechaFinDeFolio(folio, _idUsuario, campoDondeSeConsulta);
+                fechaYHoraFinServicio = _fsrRepository.consultarFechaFinDeFolio(folio, _idUsuario, campoDondeSeConsulta);
                 return fechaYHoraFinServicio;
 
             }
             catch (Exception ex)
             {
                 campoDondeSeConsulta = "Fin_Servicio";
-                fechaYHoraFinServicio = _browserRepository.consultarFechaFinDeFolio(folio, _idUsuario, campoDondeSeConsulta);
+                fechaYHoraFinServicio = _fsrRepository.consultarFechaFinDeFolio(folio, _idUsuario, campoDondeSeConsulta);
                 return fechaYHoraFinServicio;
             }
 
@@ -111,27 +111,27 @@ namespace INOLAB_OC.Controlador
 
         public  DataRow consultarInformacionFolioServicioPorFolioYUsuario( string usuario, string folio)
         {
-            DataRow informacionServicio = _browserRepository.consultarInformacionDeFolioPorFolioYUsuario(usuario, folio);
+            DataRow informacionServicio = _fsrRepository.consultarInformacionDeFolioPorFolioYUsuario(usuario, folio);
             return informacionServicio;
         }
 
         public string consultarValorDeCampoPorFolioyUsuario(string numeroDeFolioServicio, string campoQueSeConsulta)
         {
-           return _browserRepository.consultarValorDeCampo(numeroDeFolioServicio, _idUsuario, campoQueSeConsulta);
+           return _fsrRepository.consultarValorDeCampo(numeroDeFolioServicio, _idUsuario, campoQueSeConsulta);
         }
 
 
 
         public string consultarValorDeCampoPorFolio(string numeroDeFolioServicio, string campoQueSeConsulta)
         {
-            return _browserRepository.consultarValorDeCampo(numeroDeFolioServicio, campoQueSeConsulta);
+            return _fsrRepository.consultarValorDeCampo(numeroDeFolioServicio, campoQueSeConsulta);
         }
 
         public bool verificarSiSeEnviaEmailAlAsesor(string idFolioServicio, string campoDondeVerificaras)
         {      
                 bool envioDeNotificaciones; 
 
-                string notificacionAlAsesor = _browserRepository.consultarValorDeCampo(idFolioServicio, campoDondeVerificaras);
+                string notificacionAlAsesor = _fsrRepository.consultarValorDeCampo(idFolioServicio, campoDondeVerificaras);
                 if (notificacionAlAsesor.Equals("Si"))
                 {
                     envioDeNotificaciones = true;
@@ -145,7 +145,7 @@ namespace INOLAB_OC.Controlador
 
         public void actualizarValorDeCampoPorFolio(string numeroDeFolioServicio, string campoQueActualizas, string valorDelCampo)
         {
-            _browserRepository.actualizarValorDeCampo(numeroDeFolioServicio, campoQueActualizas, valorDelCampo);
+            _fsrRepository.actualizarValorDeCampo(numeroDeFolioServicio, campoQueActualizas, valorDelCampo);
         }
 
         public string verificarSiEnviaNotificacionDeObservacionesAlUsuario(bool Envio_de_notificacion_de_observacion, string idFolioServicio)
@@ -153,12 +153,12 @@ namespace INOLAB_OC.Controlador
             string envioDeNotificacion ="";
             if (Envio_de_notificacion_de_observacion == true)
             {
-                _browserRepository.actualizarValorDeCampo(idFolioServicio, "NotAsesor", "Si");
+                _fsrRepository.actualizarValorDeCampo(idFolioServicio, "NotAsesor", "Si");
                 envioDeNotificacion = "Si";
             }
             else if (Envio_de_notificacion_de_observacion == false)
             {
-                _browserRepository.actualizarValorDeCampo(idFolioServicio, "NotAsesor", "No");
+                _fsrRepository.actualizarValorDeCampo(idFolioServicio, "NotAsesor", "No");
                 envioDeNotificacion = "No";
             }
             return envioDeNotificacion;
@@ -167,7 +167,7 @@ namespace INOLAB_OC.Controlador
         public void actualizarValorDeCampoPorFolioYUsuario(string numeroDeFolioServicio, string campoQueActualizas, 
             string valorDelCampo)
         {
-            _browserRepository.actualizarValorDeCampo(numeroDeFolioServicio, campoQueActualizas, valorDelCampo, _idUsuario);
+            _fsrRepository.actualizarValorDeCampo(numeroDeFolioServicio, campoQueActualizas, valorDelCampo, _idUsuario);
         }
 
         public void verificarSiServicioFuncionaCorrectamente(string numeroDeFolioServicio, bool CHECKED_ESTA_FUNCIONANDO)
@@ -181,27 +181,27 @@ namespace INOLAB_OC.Controlador
             {
                 texto = "No";
             }
-            _browserRepository.actualizarValorDeCampo(numeroDeFolioServicio, "Funcionando", texto, _idUsuario);
+            _fsrRepository.actualizarValorDeCampo(numeroDeFolioServicio, "Funcionando", texto, _idUsuario);
         }
 
         public int consultarEstatusDeFolioServicio(string folioServicio)
         {
-            return _browserRepository.consultarEstatusDeFolioServicio(folioServicio, _idUsuario);
+            return _fsrRepository.consultarEstatusDeFolioServicio(folioServicio, _idUsuario);
         }
 
         public string consultarValorDeCampoTop(string folio, string campo)
         {
-            return _browserRepository.consultarValorDeCampoPorTop(folio, campo);
+            return _fsrRepository.consultarValorDeCampoPorTop(folio, campo);
         }
 
         public void actualizarHorasDeServicio(string folioFSR, string idUsuario)
         {
-            _browserRepository.actualizarHorasDeServicio(folioFSR,  idUsuario);
+            _fsrRepository.actualizarHorasDeServicio(folioFSR,  idUsuario);
         }
 
         public string consultarMailDeFolioServicio(string folioFSR)
         {
-            return _browserRepository.consultarMailDeFolioServicio(folioFSR);
+            return _fsrRepository.consultarMailDeFolioServicio(folioFSR);
         }
     }
 }
