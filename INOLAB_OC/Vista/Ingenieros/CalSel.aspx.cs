@@ -23,7 +23,7 @@ namespace INOLAB_OC
         {
             if (Session["idUsuario"] == null)
             {
-                Response.Redirect("./Sesion.aspx");
+                Response.Redirect("/Sesion.aspx");
             }
         }
         protected void Seleccionar_el_area_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace INOLAB_OC
 
         protected void  Volder_a_inicio_de_sesion_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Vista/Sesion.aspx");
+            Response.Redirect("/Sesion.aspx");
         }
     }
 }

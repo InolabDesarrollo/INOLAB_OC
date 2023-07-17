@@ -63,7 +63,7 @@ namespace INOLAB_OC
                 {
                     Session["idUsuario"] = dataUser["idUsuario"].ToString();
                     Session["nameUsuario"] = dataUser["Nombre"].ToString();
-                    Response.Redirect("http://localhost:50445/Vista/Ingenieros/ServiciosAsignados.aspx"); //INOLAB_OC
+                    Response.Redirect("Vista/Ingenieros/ServiciosAsignados.aspx"); //INOLAB_OC
 
                 }
                 else
@@ -73,7 +73,7 @@ namespace INOLAB_OC
 
                     if (Session["idUsuario"].ToString().Equals(usuarioElizabethHuazo))
                     {
-                        Response.Redirect("http://localhost:50445/Vista/Ingenieros/CalSel.aspx");
+                        Response.Redirect("Vista/Ingenieros/CalSel.aspx");
                     }else if (idArea == areaVentas)
                     {
                         if(Session["idUsuario"].ToString() == ceoArtemio)
@@ -82,7 +82,7 @@ namespace INOLAB_OC
                         }
                         else
                         {
-                            Response.Redirect("http://localhost:50445/Vista/Ventas/CRM_1.aspx");
+                            Response.Redirect("Vista/Ventas/CRM_1.aspx");
                         }
                     }
 

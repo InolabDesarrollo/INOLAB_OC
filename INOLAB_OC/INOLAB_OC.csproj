@@ -308,7 +308,13 @@
     </Content>
     <Content Include="Docs\Manual de Usuario SWF v3.pdf" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\WEB-INOLAB.pubxml" />
     <Content Include="scripts\uploader.fla" />
+    <Content Include="uploadify-master\.gitignore" />
+    <Content Include="uploadify-master\LICENSE" />
+    <Content Include="uploadify-master\Sample\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -318,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controlador\Ventas\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

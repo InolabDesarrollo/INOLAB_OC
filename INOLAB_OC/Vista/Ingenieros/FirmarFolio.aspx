@@ -27,7 +27,7 @@
         {            
             if (clicked == "salir")
             {
-                window.location.href = "/Vista/Sesion.aspx";
+                window.location.href = "/Sesion.aspx"; 
                 return false;
             }   
             if (clicked == "atras") {
