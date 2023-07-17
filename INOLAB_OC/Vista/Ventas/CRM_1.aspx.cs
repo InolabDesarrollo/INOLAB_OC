@@ -24,7 +24,7 @@ namespace INOLAB_OC
             
             if (Session["idUsuario"] == null)
             {
-                Response.Redirect("http://localhost:50445/Sesion.aspx");
+                Response.Redirect("/Sesion.aspx");
             }
 
             Lbl_nombre_usuario.Text = Session["nameUsuario"].ToString();
@@ -166,7 +166,7 @@ namespace INOLAB_OC
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("http://localhost:50445/Sesion.aspx");
+            Response.Redirect("/Sesion.aspx");
         }
     }
 }

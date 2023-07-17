@@ -312,9 +312,6 @@
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\WEB-INOLAB.pubxml" />
     <Content Include="scripts\uploader.fla" />
-    <Content Include="Upload.ashx" />
-    <Content Include="UploadVB.ashx" />
-    <Content Include="Upload1.ashx" />
     <Content Include="uploadify-master\.gitignore" />
     <Content Include="uploadify-master\LICENSE" />
     <Content Include="uploadify-master\Sample\.DS_Store" />

@@ -44,7 +44,7 @@ namespace INOLAB_OC
 
             if (Session["idUsuario"] == null)
             {
-                Response.Redirect("./Sesion.aspx");
+                Response.Redirect("/Sesion.aspx"); 
             }
             else
             {

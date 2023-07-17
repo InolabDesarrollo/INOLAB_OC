@@ -54,7 +54,7 @@ public partial class DetalleFSR : Page
     {
         if (Session["idUsuario"] == null)
         {
-            Response.Redirect("http://localhost:50445/Sesion.aspx");
+            Response.Redirect("/Sesion.aspx");
         }
         else
         {
