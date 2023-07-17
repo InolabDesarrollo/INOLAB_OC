@@ -34,7 +34,7 @@ namespace INOLAB_OC
             if(Lbl_id_usuario.Text.Equals(usuarioArtemio)) 
             {
                 Btn_plan_de_trabajo.Visible = false;
-                Btn_registro_funnel_ventas.Visible = false;
+                Btn_registro_funnel_ventas.Visible = true; //habilita boton Registro Funnel
                 Btn_reporte_cotizaciones.Visible = false;
                 ligaReporte = "/Comercial/Funnel-Direccion";
             }

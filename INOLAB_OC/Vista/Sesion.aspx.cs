@@ -40,7 +40,7 @@ namespace INOLAB_OC
                 
                 if ((txtUsuario.Text == dataUser["Usuario"].ToString()) || (txtPass.Text == dataUser["Password_"].ToString()))
                 {
-                    Response.Write("<script>alert('Ingreso de " + dataUser["Nombre"].ToString() + " " + dataUser["Apellidos"].ToString() + "');</script>");
+                    //Response.Write("<script>alert('Ingreso de " + dataUser["Nombre"].ToString() + " " + dataUser["Apellidos"].ToString() + "');</script>");
                 }
                 string nombreDeUsuario = dataUser["Nombre"].ToString(), idArea = dataUser["IdArea"].ToString(), idRollUser = dataUser["IdRol"].ToString(), nombreDeUsuarioAbreviado = dataUser["Usuario"].ToString();
                 
@@ -66,16 +66,10 @@ namespace INOLAB_OC
                     {
                         Response.Redirect("../Vista/Ingenieros/CalSel.aspx");
                     }
-                    if (idArea == areaVentas)
+                    if (idArea ==areaVentas)
                     {
-                        if(Session["idUsuario"].ToString() == ceoArtemio)
-                        {
-                            Response.Redirect("../Vista/Ventas/CRM_4.aspx");
-                        }
-                        else
-                        {
-                            Response.Redirect("../Vista/Ventas/CRM_1.aspx");
-                        }
+
+                        Response.Redirect("../Vista/Ventas/CRM_1.aspx");
                     }
 
                 }

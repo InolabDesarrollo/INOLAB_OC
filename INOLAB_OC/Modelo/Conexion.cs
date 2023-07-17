@@ -26,8 +26,8 @@ namespace INOLAB_OC.Modelo
         private static string user;
         private static string password;
         private static SqlConnection conexion;
-        private static bool databaseProduction = false;
-        private static bool databaseTest = true;
+        private static bool databaseProduction = true;
+        private static bool databaseTest = false;
 
         private Conexion()
         {

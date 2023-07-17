@@ -1,0 +1,314 @@
+﻿* {
+    margin: 7px 0 0px 0px;
+    padding: 0;
+}
+
+body {
+    background: #fffffa;
+}
+
+#headerone {
+    z-index: 2;
+}
+
+#contenone {
+    z-index: 0;
+}
+
+header {
+    width: 100%;
+    margin-bottom: 20px;
+    position: fixed;
+    z-index: 100;
+}
+
+.wrapper {
+    width: 95%;
+    padding-top: 30px;
+    margin: auto;
+    overflow: hidden;
+    padding-bottom: 100px;
+    height: 87px;
+}
+
+header .logo {
+    width: 152px;
+    padding-top: 3px;
+    float: left;
+    z-index: 100;
+    top: 20px;
+}
+
+header .logo1 {
+    width: 190px;
+    padding-top: 20px;
+    float: left;
+}
+
+header nav {
+    float: right;
+    line-height: 80px;
+}
+
+.boton {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    background: #252932;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    top: 0px;
+    left: -1px;
+}
+
+    .boton:hover {
+        background: #f56f3a;
+        color: #ffffff;
+        border-radius: 50px;
+    }
+
+.header2 {
+    position: fixed;
+    height: 82px;
+    z-index: 100;
+    background: #0264d6;
+    top: -20px;
+    left: 1px;
+}
+
+    .header2 .logo {
+        line-height: 115px;
+        position: center;
+        height: 53px;
+    }
+
+    .header2 .logo1 {
+        line-height: 115px;
+        width: 150px;
+        position: center;
+    }
+
+    .header2 nav {
+        line-height: 70px;
+        height: 178px;
+        width: 655px;
+    }
+
+.contenido {
+    padding-top: 10px;
+    height: 450px;
+}
+
+    .contenido p {
+        margin-bottom: 1em;
+    }
+
+@media screen and (max-width:600px) {
+    header .logo,
+    header nav {
+        text-align: center;
+        line-height: 50%;
+        font-size: 9px;
+        position: fixed;
+    }
+
+    .header2 span {
+        display: none;
+        position: fixed;
+    }
+
+    .header2 .logo {
+        line-height: 100;
+        width: 120px;
+        position: fixed;
+    }
+
+    .dropbtn,
+    .dropbtn, .dropdown, .dropdown-content {
+        position: fixed;
+    }
+
+    .dropbtn,
+    .dropbtn, .dropdown, .dropdown-content {
+        float: right;
+    }
+}
+
+.etiqueta {
+    font-size: 29px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.contenido2 {
+    padding-top: 20px;
+    
+}
+
+.contenido3 {
+    padding-top: 50px;
+}
+
+.btnactivo {
+    background: #f56f3a;
+    color: #ffffff;
+    border-radius: 50px;
+}
+
+nav {
+    float: left; /* Desplazamos el nav hacia la izquierda */
+}
+
+    nav ul {
+        list-style: none;
+        overflow: hidden;
+        height: 131px;
+        float: left;
+        width: 783px;
+    }
+
+        nav ul li {
+            float: left;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            height: 50px;
+        }
+
+            nav ul li a {
+                display: block; /* Convertimos los elementos a en elementos bloque para manipular el padding */
+                padding: 20px;
+                color: #000000;
+                text-decoration: none;
+            }
+
+            nav ul li:hover {
+                background: #3ead47;
+            }
+
+.PrimeraSeccion {
+    padding-bottom: 20px;
+}
+
+#test {
+    float: left;
+}
+
+.MenuInicial {
+    position: fixed;
+    height: 83px;
+    z-index: 100;
+    background: #0264d6;
+    top: -19px;
+    left: 3px;
+}
+
+/*Estilos para nueva propuesta de menu*/
+
+/*HEADER */
+
+header {
+    height: 100px;
+    padding: 0 50px; /*´Hasta este punto podria ser aceptable*/
+    display: flex; /*Uno al lado del otro*/
+    /*justify-content: space-between; Queden separados*/
+    align-items: center;
+}
+
+.menu {
+    text-transform: uppercase;
+    padding: 0 10px;
+    transition: 0.4s;
+}
+
+.mostrar-menu, .esconder-menu {
+    font-size: 30px;
+    cursor: pointer; /*Para indicar un vinculo*/
+    display: none; /*Escondemos para que se muestre solo en el display*/
+    transition: 0.4s;
+}
+
+.mostrar-menu {
+    order: 1; /*Para que se muestre al inicio*/
+}
+
+#check {
+    display: none;
+}
+
+/*RESPONSIVE*/
+
+/*Menor o igual*/
+
+
+
+@media only screen and (max-width: 800px) {
+    .mostrar-menu, .esconder-menu {
+        display: block;
+    }
+
+    .menu {
+        position: fixed;
+        width: 100%;
+        height: 100vh; /*Aqui ya mete todos lo botones al menu*/
+        background: #0264d6;
+        right: -100%;
+        top: 0;
+        text-align: center;
+        padding: 100px 0px;
+        z-index: 100;
+        transition: 0.8s;
+    }
+
+    .boton {
+        display: block;
+        padding: 20px;
+    }
+
+    .esconder-menu {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+    }
+
+    #check:checked ~ .menu {
+        right: 0;
+    }
+  
+
+}
+
+
+
+.lbluser {
+}
+
+header .logo {
+    width: 140px;
+    padding-top: 3px;
+    float: left;
+    z-index: 100;
+    top: 5px;
+}
+
+#logotipoServicio {
+    float: left;
+}
+
+#logoDescargaFolio {
+    float: left;
+}
+
+.boton {
+    width: auto;
+    /*text-transform: uppercase;*/
+    height: 30px;
+}
+
+

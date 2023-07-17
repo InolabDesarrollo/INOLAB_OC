@@ -148,25 +148,6 @@
     <Content Include="Vista\Sesion.aspx" />
     <Content Include="SubiendoArchivos.aspx" />
     <Content Include="upload.html" />
-    <Content Include="uploadify-master\change-log.txt" />
-    <Content Include="uploadify-master\check-exists.php" />
-    <Content Include="uploadify-master\index.php" />
-    <Content Include="uploadify-master\Instructions.txt" />
-    <Content Include="uploadify-master\jquery.uploadifive.js" />
-    <Content Include="uploadify-master\jquery.uploadifive.min.js" />
-    <Content Include="uploadify-master\Sample\check-exists.php" />
-    <Content Include="uploadify-master\Sample\index.php" />
-    <Content Include="uploadify-master\Sample\jquery.min.js" />
-    <Content Include="uploadify-master\Sample\jquery.uploadifive.js" />
-    <Content Include="uploadify-master\Sample\jquery.uploadifive.min.js" />
-    <Content Include="uploadify-master\Sample\uploadifive-cancel.png" />
-    <Content Include="uploadify-master\Sample\uploadifive-image-only.php" />
-    <Content Include="uploadify-master\Sample\uploadifive.css" />
-    <Content Include="uploadify-master\Sample\uploadifive.php" />
-    <Content Include="uploadify-master\uploadifive-cancel.png" />
-    <Content Include="uploadify-master\uploadifive-image-only.php" />
-    <Content Include="uploadify-master\uploadifive.css" />
-    <Content Include="uploadify-master\uploadifive.php" />
     <Content Include="Vista\Ingenieros\VistaPrevia.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -410,9 +391,6 @@
     <Content Include="Upload.ashx" />
     <Content Include="UploadVB.ashx" />
     <Content Include="Upload1.ashx" />
-    <Content Include="uploadify-master\.gitignore" />
-    <Content Include="uploadify-master\LICENSE" />
-    <Content Include="uploadify-master\Sample\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

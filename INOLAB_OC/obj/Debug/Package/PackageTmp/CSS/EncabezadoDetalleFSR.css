@@ -1,0 +1,471 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fffffa;
+}
+
+#headerone {
+    z-index: 2;     
+}
+
+#contenone {
+    z-index: 0;            
+}
+
+header {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    width: 95%;
+    max-width: 100%;
+    margin: auto;
+}
+
+header .logo {
+    width: 190px;
+    padding-top: 3px;
+    float: left;
+}
+
+header .logo1 {
+    width: 190px;
+    padding-top: 20px;
+    float: left;
+}
+
+header nav {
+    float: right;
+    line-height: 80px;
+}
+
+.boton {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    background: #252932;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    top: 0px;
+    left: 0px;
+}
+
+    .boton:hover {
+        background: #f56f3a;
+        color: #ffffff;
+        border-radius: 50px;
+    }
+
+.header2 {
+    position: fixed;
+    height: 75px;
+    z-index: 1;
+    background: #0264d6;
+}
+
+    .header2 .logo {
+        line-height: 115px;
+        width: 150px;
+        position: center;
+    }
+
+    .header2 .logo1 {
+        line-height: 115px;
+        width: 150px;
+        position: center;
+    }
+
+    .header2 nav {
+        line-height: 70px;
+    }
+
+.contenido {
+    padding-top: 10px;
+}
+
+    .contenido p {
+        margin-bottom: 1em;
+    }
+
+
+
+.etiqueta {
+    font-size: 29px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.contenido2 {
+    padding-top: 80px;
+}
+
+.contenido3 {
+    padding-top: 10px;
+}
+
+.btnactivo {
+    background: #f56f3a;
+    color: #ffffff;
+    border-radius: 50px;
+}
+
+.Btn_Header {
+    background-color: #5DADE2;
+    width: 60px;
+    height: 50px;
+    border: none;
+    color: white;
+    margin:5px;
+}
+
+
+
+#Btn_Atras:hover {
+    background: #5D6D7E;
+    color: #ffffff;
+    color:white;
+}
+
+#Btn_Salir:hover {
+    background: #5D6D7E;
+    color: #ffffff;
+}
+
+#Btn_ir_a_servicios_asignados {
+    background: #5DADE2;
+    width: 170px;
+    color: #ffffff;
+}
+
+
+
+#txthorasD {
+    position: absolute;
+    width: 250px;
+    left: 43%;
+}
+
+#txtacciones {
+    position: absolute;
+    width: 250px;
+    left: 43%;
+}
+#Fecha_nueva_accion_realizada {
+    position: absolute;
+    width: 250px;
+    left: 43%;
+}
+#datepicker_nuevo_servicio {
+    position: absolute;
+    width: 250px;
+    left: 43%;
+}
+
+#acciones {
+    position: absolute;
+    left: 28%;
+}
+
+#horasD {
+    position: absolute;
+    left: 30%;
+}
+
+#lbl_fecha_nuevo_servicio {
+    position: absolute;
+    left: 37%;
+}
+
+#txtobservaciones {
+    width: 75%;
+    
+}
+
+#txtfallaencontrada {
+    width: 75%;
+    
+}
+
+
+#txtbox_cantidad_refaccion {
+    position: absolute;
+    left: 45%;
+    padding-bottom: 5px;
+}
+
+#txtbox_descripcion_refaccion {
+    position: absolute;
+    width: 290px;
+    left: 45%;
+    padding-bottom: 5px;
+}
+
+#LBL_DESCRIPCION {
+    position: absolute;
+    left: 36%;
+    padding-bottom: 5px;
+}
+
+#Btn_Ir_A_Servicios {
+    width: auto;
+    height: 50px;
+    margin-right: 20px;
+    background-color: #5DADE2;
+}
+
+
+#Btn_Ir_A_Servicios:hover {
+        background: #5D6D7E;
+        color: #ffffff;
+}
+
+
+/*Agrego diseño responsive */
+header {
+    height: 100px;
+    padding: 0 10px; 
+    display: flex; 
+    align-items: center;
+}
+
+.menu {
+    text-transform: uppercase;
+    padding: 0 5px;
+    transition: 0.4s;
+}
+
+.mostrar-menu, .esconder-menu {
+    font-size: 30px;
+    cursor: pointer; /*Para indicar un vinculo*/
+    display: none; /*Escondemos para que se muestre solo en el display*/
+    transition: 0.4s;
+}
+
+.mostrar-menu {
+    order: 1; /*Para que se muestre al inicio*/
+}
+
+#check {
+    display: none;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .mostrar-menu, .esconder-menu {
+        display: block;
+    }
+
+    .menu {
+        position: fixed;
+        width: 100%;
+        height: 100vh; /*Aqui ya mete todos lo botones al menu*/
+        background: #0264d6;
+        right: -100%;
+        top: 0;
+        text-align: center;
+        padding: 100px 0px;
+        z-index: 100;
+        transition: 0.8s;
+    }
+
+    .Btn_Header {
+        display: block;
+        padding: 5px;
+        margin: 20px 10px;
+    }
+
+    .esconder-menu {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+    }
+
+    #check:checked ~ .menu {
+        right: 0;
+    }
+}
+
+/*DISEÑO RESPONSIVE PARABOTON AGREGAR REFACCION */
+
+.seccion-agregar-refaccion {
+    position: relative;
+    padding: 10px;
+    max-width: 1000px;
+    margin: auto;
+    background-color:white;
+}
+.div-agregar-refaccion {
+    position: inherit;
+    margin-right: 3%;
+    /*box-shadow:  5px 10px 8px grey;*/
+    box-shadow: 1px 1px 10px 1px #252932;
+    margin-bottom: 5%;
+    padding: 1%;
+    overflow: auto;
+    background-color: white;
+}
+
+
+#AGREGAR_REFACCION_TITULO {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.tabla-agregar-refaccion {
+    width: 100%;
+    
+}
+
+
+.tabla-agregar-refaccion-celda {
+    text-decoration: underline;
+    font-weight: bold;
+    height: 48px;
+    margin: auto;
+   
+}
+
+#LBL_DESCRIPCION_REFACCION {
+    position: absolute;
+    left: 36%;
+    padding-bottom: 5px;
+}
+
+#LBL_CANTIDAD_REFACCION {
+    position: absolute;
+    left: 38%;
+    padding-bottom: 5px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .seccion-agregar-refaccion{
+        position:absolute;
+        left:10%;
+        width:80%;
+        height:70%;
+    }
+    .tabla-agregar-refaccion {
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        height: 70%;
+    }
+
+ 
+    #LBL_NUM_PARTES_REFACCION {
+        position: absolute;
+        left: 7%;
+    }
+
+    #LBL_CANTIDAD_REFACCION {
+        position: absolute;
+        left: 10%;
+    }
+    #LBL_DESCRIPCION_REFACCION {
+        position: absolute;
+        left: 9%;
+    }
+
+    #txtbox_numero_de_partes {
+        position: absolute;
+        left: 43%;
+        width: 70px;
+        margin: 3px;
+    }
+
+    #txbox-cantidad-refaccion {
+        position: absolute;
+        left: 45%;
+        width: 70px;
+        margin: 3px;
+    }
+    #txtbox_descripcion_refaccion {
+        position: absolute;
+        left: 7%;
+        margin-right: 10px;
+        margin-left: 10px;
+        width: 230px;
+    }
+    #BTN_AGREGAR_REFACCION {
+        position: absolute;
+        bottom: -70px;
+        margin-right: 10px;
+        margin-left: 10px;
+        left:7%;
+    }
+    #txtbox_cantidad_refaccion {
+        position: absolute;
+        left: 42%;
+        width: 70px;
+        margin: 3px;
+    }
+    /*Agregar diseño responsive a nuevo servicio */
+
+
+    #lbl_fecha_nuevo_servicio {
+        position: absolute;
+        left: 6%;
+        width: 70px;
+    }
+
+    #horasD {
+        position: absolute;
+        left: 6%;
+        width: 70px;
+    }
+
+    #acciones {
+        position: absolute;
+        left: 5%;
+        width: 100px;
+    }
+
+
+    #Fecha_nueva_accion_realizada {
+        width: 80px;
+    }
+
+    #txthorasD {
+        width: 80px;
+    }
+
+    #txtacciones {
+        width: 110px;
+        height: 80px;
+        text-align: start;
+    }
+
+    #Addbutton {
+        position: absolute;
+        left: 7%;
+        width: 100px;
+    }
+
+    #tabla_nuevo_servicio {
+        background-color: whitesmoke;
+    }
+
+    /*Label para nombre de usuario*/
+    #lbluser {
+        position: absolute;
+        left: 62%;
+        padding: 2px;
+        height: 5px;
+    }
+}
+
+
+
+

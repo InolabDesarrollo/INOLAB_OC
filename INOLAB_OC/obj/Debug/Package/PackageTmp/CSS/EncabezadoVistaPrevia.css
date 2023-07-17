@@ -1,0 +1,158 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fffffa;
+}
+
+#headerone {
+    z-index: 2;
+}
+
+#contenone {
+    z-index: 0;
+}
+
+header {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    width: 95%;
+    max-width: 100%;
+    margin: auto;
+}
+
+header .logo {
+    width: 190px;
+    padding-top: 3px;
+    float: left;
+}
+
+header .logo1 {
+    width: 190px;
+    padding-top: 20px;
+    float: left;
+}
+
+header nav {
+    float: right;
+    line-height: 80px;
+}
+
+.boton {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    background: #252932;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    top: 0px;
+    left: 0px;
+}
+
+    .boton:hover {
+        background: #f56f3a;
+        color: #ffffff;
+        border-radius: 50px;
+    }
+
+.header2 {
+    position: fixed;
+    height: 75px;
+    z-index: 1;
+    background: #0264d6;
+}
+
+    .header2 .logo {
+        line-height: 115px;
+        width: 150px;
+        position: center;
+    }
+
+    .header2 .logo1 {
+        line-height: 115px;
+        width: 150px;
+        position: center;
+    }
+
+    .header2 nav {
+        line-height: 70px;
+    }
+
+.contenido {
+    padding-top: 10px;
+}
+
+    .contenido p {
+        margin-bottom: 1em;
+    }
+
+@media screen and (max-width:600px) {
+    header .logo,
+    header nav {
+        text-align: center;
+        line-height: 50%;
+        font-size: 9px;
+    }
+
+    .header2 span {
+        display: none;
+    }
+
+    .header2 .logo {
+        line-height: 100;
+        width: 120px;
+    }
+
+    .dropbtn,
+    .dropbtn, .dropdown, .dropdown-content {
+        position: fixed;
+    }
+
+    .dropbtn,
+    .dropbtn, .dropdown, .dropdown-content {
+        float: right;
+    }
+}
+
+.etiqueta {
+    font-size: 29px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.contenido2 {
+    padding-top: 80px;
+}
+
+.contenido3 {
+    padding-top: 10px;
+}
+
+.btnactivo {
+    background: #f56f3a;
+    color: #ffffff;
+    border-radius: 50px;
+}
+
+
+#Btn_Atras {
+    width: auto;
+    height: 50px;
+}
+
+#Btn_Salir {
+    width: auto;
+    height: 50px;
+}

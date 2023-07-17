@@ -14,6 +14,7 @@ using SpreadsheetLight;
 using System.Windows;
 using INOLAB_OC.Modelo;
 using System.IO.Packaging;
+using System.Drawing;
 
 namespace INOLAB_OC
 {
@@ -34,22 +35,81 @@ namespace INOLAB_OC
             lbluser.Text = Session["nameUsuario"].ToString();
             lbliduser.Text = Session["idUsuario"].ToString();
 
-
-            if( (Session["idUsuario"].ToString()=="2") || (Session["idUsuario"].ToString() == "44") || (Session["idUsuario"].ToString() == "3") || (Session["idUsuario"].ToString() == "15" || (Session["idUsuario"].ToString() == "131") || (Session["idUsuario"].ToString() == "16")))
+            //Comercial - Servicio
+            if ((Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "44") || (Session["idUsuario"].ToString() == "3") || (Session["idUsuario"].ToString() == "15" || (Session["idUsuario"].ToString() == "16")))
             {
                 gte = "Paola";
             }
-            if((Session["idUsuario"].ToString() == "1") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "123") || (Session["idUsuario"].ToString() == "124") || (Session["idUsuario"].ToString() == "84") || (Session["idUsuario"].ToString() == "98") || (Session["idUsuario"].ToString() == "126"))
+            //Comercial - Equipo
+            if ((Session["idUsuario"].ToString() == "1") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "123") || (Session["idUsuario"].ToString() == "124") || (Session["idUsuario"].ToString() == "84") || (Session["idUsuario"].ToString() == "98") || (Session["idUsuario"].ToString() == "126") || (Session["idUsuario"].ToString() == "131") || (Session["idUsuario"].ToString() == "139"))
             {
                 gte = "Karla";
             }
-
+            //Comercial - Guadalajara
             if ((Session["idUsuario"].ToString() == "119") || (Session["idUsuario"].ToString() == "122") || (Session["idUsuario"].ToString() == "6"))
             {
                 gte = "Rodolfo";
             }
+            // Direccion 
+            if ((Session["idUsuario"].ToString() == "7"))
+            {
+                gte = "Artemio";
+            }
+            // Consumibles y usuario admin
+            if ((Session["idUsuario"].ToString() == "1") || (Session["idUsuario"].ToString() == "28"))
+            {
+                gte = "";
+            }
+
+            // Vizualizacion de Botones
+            if (lbliduser.Text == "7" || lbliduser.Text == "74" ) // usuario ARTEMIO
+            {
+                btnPlan.Visible = false;
+                BtnMenuPrincipal.Visible = true;
+                Button1.Visible = false;
+                
+
+            }
+            else // Asesores
+            {
+                btnPlan.Visible = true;
+                BtnMenuPrincipal.Visible = true;
+                Button1.Visible = true;
+                
+            }
+
+            //// Boton para Asignar
+            //if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "74") || (Session["idUsuario"].ToString() == "1"))
+            //{
+            //    lblasesorA.Visible = true;
+            //    ddAsesorA.Enabled = true;
+            //}
+            //else
+            //{
+            //    //lblasesorA.Visible = false;
+            //    ddAsesorA.Enabled = false;
+            //}
+
+            ValidaGTE();
+        }
+        private void ValidaGTE()
+        {
+            if((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
+            {
+                ddAsesorA.Enabled = true;
+                ddlF_Asesor.Visible = true;
+                Lista();
+            }
+            else
+            {
+                ddlF_Asesor.Visible = false;
+                ddAsesorA.Enabled = false;
+
+            }
+            
         }
 
+        
 
         // definine la clasificacion para la consulta sql
         string clasificacionDeRegistro;
@@ -62,13 +122,31 @@ namespace INOLAB_OC
             txtfecha1.Visible = true;
             txtfecha2.Visible = true;
 
-            if(ddlClasificacion.Text != "Todo")
+            if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
             {
-                traerDatosDelFunnelDependiendoElTipoDeRegistro();
-            }else if (ddlClasificacion.Text.Equals("Todo"))
-            {
-                traerTodosLosDatosDelFunnel();
+                Gte_Datos_Asesor();
             }
+            else
+            {
+                if (ddlClasificacion.Text != "Todo")
+                {
+                    cargarDatosDelAsesor(ddlClasificacion.Text);
+                }
+                else
+                {
+                    traerTodosLosDatosDelFunnel();
+                }
+
+                    
+            }
+
+            //if(ddlClasificacion.Text != "Todo")
+            //{
+            //    traerDatosDelFunnelDependiendoElTipoDeRegistro();
+            //}else if (ddlClasificacion.Text.Equals("Todo"))
+            //{
+            //    traerTodosLosDatosDelFunnel();
+            //}
             lblcontador.Text = GridView1.Rows.Count.ToString();
    
         }
@@ -81,12 +159,27 @@ namespace INOLAB_OC
             cargarDatosDelAsesor(clasificacionDeRegistro);
         }
 
+        private void Gte_Datos_Asesor()
+        {
+            //string query = "Select* from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + ddlF_Asesor.Text + "'";
+            string query = "Select* from  funnel where asesor = '" + ddlF_Asesor.Text + "' and clasificacion='" + ddlClasificacion.Text + "'";
+            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataBind();
+        }
+
         private void cargarDatosDelAsesor(string clasificacionDeRegistro)
         {
             string query = "Select* from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + lbluser.Text + "'";
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
 
+        }
+
+        private void Gte_Funnel_Asesor()
+        {
+            string query = "Select * from  funnel where asesor='" + ddlF_Asesor.SelectedValue + "'";
+            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataBind();
         }
 
         private void traerTodosLosDatosDelFunnel()
@@ -169,9 +262,64 @@ namespace INOLAB_OC
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             numeroDeRegistro = Convert.ToInt32(GridView1.SelectedRow.Cells[1].Text);
-            traerRegistrosDelFunnel(numeroDeRegistro);
+            Gte_Registros_Asesor(numeroDeRegistro);
+            //traerRegistrosDelFunnel(numeroDeRegistro);
             btnGuardar.Visible = false;
             btnactualiza.Visible = true;
+        }
+        private void Gte_Registros_Asesor (int numeroDeRegistro)
+        {
+            string query = "select * from funnel where noregistro = " + numeroDeRegistro ;
+            DataRow datosFunel = ConexionComercial.getDataRow(query);
+
+            txtcliente.Text = datosFunel["Cliente"].ToString();
+            ddlClas_save.Text = datosFunel["Clasificacion"].ToString();
+            datepicker.Text = datosFunel["FechaCierre"].ToString();
+            txtequipo.Text = datosFunel["Equipo"].ToString();
+            txtmarca.Text = datosFunel["Marca"].ToString();
+            txtmodelo.Text = datosFunel["Modelo"].ToString();
+            txtvalor.Text = datosFunel["Valor"].ToString();
+            txtestatus.Text = datosFunel["Estatus"].ToString();
+            txtf_actualiza.Text = datosFunel["FechaActualizacion"].ToString();
+            lblresistro.Text = datosFunel["NoRegistro"].ToString();
+            TXTcONTACTO.Text = datosFunel["Contacto"].ToString();
+            ddLocalidad.Text = datosFunel["Localidad"].ToString();
+            ddOrigen.Text = datosFunel["Origen"].ToString();
+            ddTipoVenta.Text = datosFunel["TipoVenta"].ToString();
+            ddAsesorA.Text = datosFunel["Asesor"].ToString();
+
+            //En estas clasificaciones ya no se permite realizar alguna edicion
+            if (ddlClas_save.Text == "Perdido" || ddlClas_save.Text == "No Relacionado")
+            {
+                txtcliente.Enabled = false;
+                datepicker.Enabled = false;
+                txtequipo.Enabled = false;
+                txtmarca.Enabled = false;
+                txtmodelo.Enabled = false;
+                txtvalor.Enabled = false;
+                txtestatus.Enabled = false;
+                TXTcONTACTO.Enabled = false;
+                ddLocalidad.Enabled = false;
+                ddOrigen.Enabled = false;
+                ddTipoVenta.Enabled = false;
+                ddlClas_save.Enabled = false;
+            }
+
+            else
+            {
+                txtcliente.Enabled = true;
+                datepicker.Enabled = true;
+                txtequipo.Enabled = true;
+                txtmarca.Enabled = true;
+                txtmodelo.Enabled = true;
+                txtvalor.Enabled = true;
+                txtestatus.Enabled = true;
+                TXTcONTACTO.Enabled = true;
+                ddLocalidad.Enabled = true;
+                ddOrigen.Enabled = true;
+                ddTipoVenta.Enabled = true;
+                ddlClas_save.Enabled = true;
+            }
         }
 
     
@@ -301,5 +449,163 @@ namespace INOLAB_OC
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
         }
+
+        protected void ddAsesorA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Guarda el asesor para su seguimiento to esta con artemio
+            ConexionComercial.executeQuery("Update Funnel set Asesor='" + ddAsesorA.Text + "' where NoRegistro=" + Convert.ToInt32(lblresistro.Text));
+
+            Response.Write("<script language=javascript>if(confirm('Se asigno Asesor Correctamente')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            verificarQueNoHallaCeldasVacias();
+            guardarDatosDeNuevoRegistro();
+        }
+
+        protected void btnactualiza_Click(object sender, EventArgs e)
+        {
+            verificarQueNoHallaCeldasVacias();
+            actualizarNuevosValores();
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarValoresDeDatos();
+        }
+
+        protected void btnfiltrar_Click(object sender, EventArgs e)
+        {
+            if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
+            {
+                gte_Fitro_Fecha();
+            }
+            else
+            {
+                if (ddlClasificacion.Text == "Todo")
+                {
+                    filtrarPorFechaDeCierre();
+                }
+                else
+                {
+                    filtrarPorClasificacion();
+                }
+            }
+
+
+            //if (ddlClasificacion.Text == "Todo")
+            //{
+            //    filtrarPorClasificacion();
+            //}
+            //else
+            //{
+            //    filtrarPorClasificacion();
+            //}
+
+            lblcontador.Text = GridView1.Rows.Count.ToString();
+        }
+        public void gte_Fitro_Fecha()
+        {
+            string query = "Select * from  funnel where asesor='" + ddlF_Asesor.Text + "'and clasificacion='" + ddlClasificacion.Text + "' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "'";
+            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataBind();
+        }
+        protected void btnFunnelAsesor_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        // Solo gerentes de ventas filtro para sus asesores
+        protected void ddlF_Asesor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            Gte_Funnel_Asesor();
+            lblcontador.Text = GridView1.Rows.Count.ToString();
+            ddlClasificacion.Text = null;
+        }
+         
+        // Carga la lista de asesores por area comercial
+        private void Lista()
+        {
+            if((Session["idUsuario"].ToString() == "13"))
+            {
+                equipos();                
+            }
+            if ((Session["idUsuario"].ToString() == "2"))
+            {
+                servicio();
+            }
+            if ((Session["idUsuario"].ToString() == "6"))
+            {
+                gdl();
+            }
+
+        }
+        //Asesores Equipo
+        private void equipos()
+        {
+            if (!IsPostBack)
+            {
+
+                ListItem i1 = new ListItem("Abel", "Abel");
+                ListItem i2 = new ListItem("Adrian", "Adrian");
+                ListItem i3 = new ListItem("Amairani", "Amairani");
+                ListItem i4 = new ListItem("Aranzha", "Aranzha");
+                ListItem i5 = new ListItem("Artemio", "Artemio");
+                ListItem i6 = new ListItem("Karla Ivette", "Karla Ivette");
+                ListItem i7 = new ListItem("Karla Mariana", "Karla Mariana");
+                ListItem i8 = new ListItem("Gustavo", "Gustavo");
+                ListItem i9 = new ListItem("Sebastian", "Sebastian");
+
+                ddlF_Asesor.Items.Add(i1);
+                ddlF_Asesor.Items.Add(i2);
+                ddlF_Asesor.Items.Add(i3);
+                ddlF_Asesor.Items.Add(i4);
+                ddlF_Asesor.Items.Add(i5);
+                ddlF_Asesor.Items.Add(i6);
+                ddlF_Asesor.Items.Add(i7);
+                ddlF_Asesor.Items.Add(i8);
+                ddlF_Asesor.Items.Add(i9);
+            }         
+        }
+        //Asesores Servicio
+        private void servicio()
+        {
+            if (!IsPostBack)
+            {
+
+                ListItem i1 = new ListItem("Dinorath", "Dinorath");
+                ListItem i2 = new ListItem("Evelyn", "Evelyn");
+                ListItem i3 = new ListItem("Karina", "Karina");
+                ListItem i4 = new ListItem("Lidia", "Lidia");
+                ListItem i5 = new ListItem("Paola", "Paola");
+                
+                ddlF_Asesor.Items.Add(i1);
+                ddlF_Asesor.Items.Add(i2);
+                ddlF_Asesor.Items.Add(i3);
+                ddlF_Asesor.Items.Add(i4);
+                ddlF_Asesor.Items.Add(i5);
+            }
+        }
+        // Aesores Guadalajara
+        private void gdl()
+        {
+            if (!IsPostBack)
+            {
+
+                ListItem i1 = new ListItem("Daniel", "Daniel");
+                ListItem i2 = new ListItem("Perla", "Perla");
+                ListItem i3 = new ListItem("Rodolfo", "Rodolfo");
+                ListItem i4 = new ListItem("Yuliet", "Yuliet");
+                
+                ddlF_Asesor.Items.Add(i1);
+                ddlF_Asesor.Items.Add(i2);
+                ddlF_Asesor.Items.Add(i3);
+                ddlF_Asesor.Items.Add(i4);
+            }
+        }
+
     }
 }

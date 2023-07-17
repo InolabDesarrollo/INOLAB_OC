@@ -276,6 +276,15 @@ namespace INOLAB_OC
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
+        /// Control lblasesorA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblasesorA;
+
+        /// <summary>
         /// Control txtequipo.
         /// </summary>
         /// <remarks>
@@ -310,6 +319,15 @@ namespace INOLAB_OC
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtvalor;
+
+        /// <summary>
+        /// Control ddAsesorA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddAsesorA;
 
         /// <summary>
         /// Control Label11.
@@ -355,6 +373,15 @@ namespace INOLAB_OC
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLimpiar;
+
+        /// <summary>
+        /// Control ddlF_Asesor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlF_Asesor;
 
         /// <summary>
         /// Control ddlClasificacion.

@@ -6,7 +6,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Carlos\Desktop\Publicar proyecto Web</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Carlos Flores\Desktop\Public web Julio</_PublishTargetUrl>
+    <History>False|2023-07-13T22:38:58.0783597Z;False|2023-07-13T16:35:02.6341759-06:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="Adjuntar.aspx">
