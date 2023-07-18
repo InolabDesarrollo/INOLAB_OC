@@ -330,8 +330,36 @@ namespace INOLAB_OC.Modelo
             }
         }
 
+        public static int insertarFirmaIngeniero(string nombreDeImagen, string tipoDeImagen, string imagen)
+        {
+            iniciarBaseDeDatos();
+            try
+            {
+                conexion.Open();
+                SqlCommand firma = new SqlCommand("Insert into FirmaImg_ING(ImageName,MimeType,ImageBits)" +
+                    " values(@nombre,@mime,@image);" +
+                    "SELECT CAST(scope_identity() AS int)", conexion);
 
-      public static SqlDataReader getSqlDataReader(string query)
+                firma.Parameters.Add("@nombre", SqlDbType.VarChar);
+                firma.Parameters.Add("@mime", SqlDbType.VarChar);
+                firma.Parameters.Add("@image", SqlDbType.VarBinary);
+                firma.Parameters["@nombre"].Value = nombreDeImagen;
+                firma.Parameters["@mime"].Value = tipoDeImagen;
+                firma.Parameters["@image"].Value = Convert.FromBase64String(imagen);
+                int escalar = (int)firma.ExecuteScalar();
+
+                return escalar;
+            }
+            catch (SqlException ex)
+            {
+                conexion.Close();
+                Trace.WriteLine("PASS FAILED" + ex.Message);
+                return -1;
+            }
+        }
+
+
+        public static SqlDataReader getSqlDataReader(string query)
          {
             iniciarBaseDeDatos();
             try

@@ -155,7 +155,7 @@ namespace INOLAB_OC
                     tipoDeImagen = m.Value;
 
 
-                int idFirmaIngeniero = Conexion.insertarFirmaImagen(nombreDeImagenFirma, tipoDeImagen, imgenFirma);
+                int idFirmaIngeniero = Conexion.insertarFirmaIngeniero(nombreDeImagenFirma, tipoDeImagen, imgenFirma);
 
                 if (idFirmaIngeniero != 0)
                 {
