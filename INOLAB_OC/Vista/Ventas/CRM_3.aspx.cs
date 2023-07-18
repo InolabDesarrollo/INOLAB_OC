@@ -342,6 +342,7 @@ namespace INOLAB_OC
             ddLocalidad.Text = datosFunel["Localidad"].ToString();
             ddOrigen.Text = datosFunel["Origen"].ToString();
             ddTipoVenta.Text = datosFunel["TipoVenta"].ToString();
+            
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)

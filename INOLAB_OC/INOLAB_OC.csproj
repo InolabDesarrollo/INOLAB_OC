@@ -86,6 +86,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\Normalize.css" />
+    <Content Include="CSS\ServiciosAsignados.css" />
     <Content Include="Vista\Ingenieros\Calendario.aspx" />
     <Content Include="Vista\Ingenieros\Calendario_Areas.aspx" />
     <Content Include="Vista\Ingenieros\CalSel.aspx" />
