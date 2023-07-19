@@ -13,13 +13,15 @@ using System.Net.Mail;
 using System.IO;
 using System.Diagnostics;
 using INOLAB_OC.Modelo;
+using INOLAB_OC.Entidades.Ventas;
+using INOLAB_OC.Controlador.Ventas;
 
 namespace INOLAB_OC
 {
     
     public partial class CRM_2 : System.Web.UI.Page
     {
-        
+        C_Llamada_Vista controladorLlamada = new C_Llamada_Vista();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["idUsuario"] == null)
@@ -155,22 +157,22 @@ namespace INOLAB_OC
                 Response.Write("<script>alert('El Campo Fecha llamada/Visita no puede estar vacío.');</script>");
                 return;
             }
-
+           
             validarQueFechaDeRegistroNoSeaAnteriorAlDiaDeHoy();
+            E_Llamada_Vista entidadLlamada = new E_Llamada_Vista();
+            entidadLlamada.Tipo = ddlTipoRegistro.Text;
+            entidadLlamada.Cliente = txtcliente.Text;
+            entidadLlamada.FechaLlamada = Convert.ToDateTime(datepicker.Text);
+            entidadLlamada.Comentario = txtcomentario.Text;
+            entidadLlamada.Asesor= lbluser.Text;
+            entidadLlamada.Objetivo = txtobjetivo.Text;
+            entidadLlamada.Horario = ddlhora.Text;
 
-            string TipoRegistro = ddlTipoRegistro.Text;
-            string textoCliente = txtcliente.Text;
-            DateTime date = Convert.ToDateTime(datepicker.Text); //La configuracion de region de fecha y hora debe estar en español latinoamerica
-            string textoComentario = txtcomentario.Text;
-            string user = lbluser.Text;
-            string textoObjetivo = txtobjetivo.Text;
-            string hora = ddlhora.Text;
+            controladorLlamada.actualizarLLamada(entidadLlamada);
 
             Response.Write("<script language=javascript>if(confirm('Registro Guardado Exitosamente')==true){ location.href='CRM_2.aspx'} else {location.href='CRM_2.aspx'}</script>");
 
-            ConexionComercial.executeStoreProcedureStrp_Save_Plan(TipoRegistro, textoCliente, date, textoComentario,
-                user, textoObjetivo, hora);
-           
+            //llamada Vista
         }
 
         public void validarQueFechaDeRegistroNoSeaAnteriorAlDiaDeHoy()
