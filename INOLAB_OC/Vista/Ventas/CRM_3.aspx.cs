@@ -60,6 +60,10 @@ namespace INOLAB_OC
             {
                 gte = "";
             }
+            if (Session["idUsuario"].ToString().Equals("140"))
+            {
+                gte = "Artemio";
+            }
 
             // Vizualizacion de Botones
             if (lbliduser.Text == "7" || lbliduser.Text == "74" ) // usuario ARTEMIO
@@ -235,7 +239,6 @@ namespace INOLAB_OC
         
         private void guardarDatosDeNuevoRegistro()
         {
-
             string cliente = txtcliente.Text;
             string clasifiacion = ddlClas_save.Text;
             string fechaCierre = Convert.ToDateTime(datepicker.Text).ToString("dd/MM/yyyy");
