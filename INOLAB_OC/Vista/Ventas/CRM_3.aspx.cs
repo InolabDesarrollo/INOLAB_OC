@@ -15,6 +15,8 @@ using System.Windows;
 using INOLAB_OC.Modelo;
 using System.IO.Packaging;
 using System.Drawing;
+using INOLAB_OC.Controlador.Ventas;
+using INOLAB_OC.Entidades.Ventas;
 
 namespace INOLAB_OC
 {
@@ -22,7 +24,7 @@ namespace INOLAB_OC
     {
         //variable para saber quien es su gerente
         string gte;
-
+        C_Funnel controladorFunnel = new C_Funnel();
 
         //comentario test
         protected void Page_Load(object sender, EventArgs e)
@@ -166,14 +168,14 @@ namespace INOLAB_OC
         private void Gte_Datos_Asesor()
         {
             //string query = "Select* from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + ddlF_Asesor.Text + "'";
-            string query = "Select* from  funnel where asesor = '" + ddlF_Asesor.Text + "' and clasificacion='" + ddlClasificacion.Text + "'";
+            string query = "Select * from  funnel where asesor = '" + ddlF_Asesor.Text + "' and clasificacion='" + ddlClasificacion.Text + "'";
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
         }
 
         private void cargarDatosDelAsesor(string clasificacionDeRegistro)
         {
-            string query = "Select* from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + lbluser.Text + "'";
+            string query = "Select * from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + lbluser.Text + "'";
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
 
@@ -272,8 +274,8 @@ namespace INOLAB_OC
         }
         private void Gte_Registros_Asesor (int numeroDeRegistro)
         {
-            string query = "select * from funnel where noregistro = " + numeroDeRegistro ;
-            DataRow datosFunel = ConexionComercial.getDataRow(query);
+            DataRow datosFunel = controladorFunnel.consultarDatosFunnelPorNoRegistro(numeroDeRegistro);
+            string asesor= datosFunel["Asesor"].ToString();
 
             txtcliente.Text = datosFunel["Cliente"].ToString();
             ddlClas_save.Text = datosFunel["Clasificacion"].ToString();
@@ -328,8 +330,7 @@ namespace INOLAB_OC
     
         public void traerRegistrosDelFunnel(int numeroDeRegistro)
         {
-            string query = "select * from funnel where noregistro = " + numeroDeRegistro + " and asesor='" + lbluser.Text + "'";
-            DataRow datosFunel = ConexionComercial.getDataRow(query);
+            DataRow datosFunel =  controladorFunnel.consultarDatosFunnelPorNoRegistroYUsuario(numeroDeRegistro, lbluser.Text);
 
             txtcliente.Text = datosFunel["Cliente"].ToString();
             ddlClas_save.Text = datosFunel["Clasificacion"].ToString();
@@ -387,23 +388,23 @@ namespace INOLAB_OC
 
         private void actualizarNuevosValores()
         {
-            int tipoDeRegistro = Convert.ToInt32(lblresistro.Text);
-            string cliente = txtcliente.Text;
-            string clasificacion = ddlClas_save.Text;
-            DateTime date = Convert.ToDateTime(datepicker.Text);
-            string equipo = txtequipo.Text;
-            string marca = txtmarca.Text;
-            string modelo = txtmodelo.Text;
-            string valor = txtvalor.Text;
-            string status = txtestatus.Text;
-            string user = lbluser.Text;
-            string contacto = TXTcONTACTO.Text;
-            string localidad = ddLocalidad.Text;
-            string origen = ddOrigen.Text;
-            string tipoVenta = ddTipoVenta.Text;
+            E_Funnel entidadFunnel = new E_Funnel();
+            entidadFunnel.NoRegistro = Convert.ToInt32(lblresistro.Text);
+            entidadFunnel.Cliente = txtcliente.Text;
+            entidadFunnel.Clasificacion = ddlClas_save.Text;
+            entidadFunnel.FechaActualizacion= Convert.ToDateTime(datepicker.Text);
+            entidadFunnel.Equipo = txtequipo.Text;
+            entidadFunnel.Marca = txtmarca.Text;
+            entidadFunnel.Modelo = txtmodelo.Text;
+            entidadFunnel.Valor = txtvalor.Text;
+            entidadFunnel.Estatus = txtestatus.Text;
+            entidadFunnel.Asesor = lbluser.Text;
+            entidadFunnel.Contacto = TXTcONTACTO.Text;
+            entidadFunnel.Localidad = ddLocalidad.Text;
+            entidadFunnel.Origen= ddOrigen.Text;
+            entidadFunnel.TipoVenta = ddTipoVenta.Text;
 
-            ConexionComercial.executeStp_Update_Funnel(tipoDeRegistro, cliente, clasificacion, date, equipo, marca,
-                modelo, valor, status, user, contacto, localidad, origen, tipoVenta);
+            controladorFunnel.actualizarDatosFunel(entidadFunnel);
 
             Response.Write("<script language=javascript>if(confirm('Registro Actualizado Exitosamente')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
             limpiarValoresDeDatos();

@@ -218,7 +218,7 @@ namespace INOLAB_OC
         // Pendiente de modificar
         public void traerTodosLosRegistrosDeVendedor()
         {
-            DataRow datosLLamada = ConexionComercial.getDataRow("select * from llamada_vista where idllamada = " + idLlamada + " and asesor='" + lbluser.Text + "'");
+            DataRow datosLLamada =  controladorLlamada.mostrarTodosLosDatosPorIdYAsesor(idLlamada, lbluser.Text);
 
             txtcliente.Text = datosLLamada["Cliente"].ToString();
             ddlTipoRegistro.Text = datosLLamada["Tipo"].ToString();
@@ -233,30 +233,28 @@ namespace INOLAB_OC
         {
             if (ddlTipofiltro.Text == "Llamada")
             {
-                cargardatosDeAcuerdoAlTipoDeRegistro(ddlTipofiltro.Text);
+                cargardatosDeAcuerdoAlTipoDeRegistro(ddlTipofiltro.Text, lbluser.Text);
             }
             if (ddlTipofiltro.Text == "Visita")
             {
-                cargardatosDeAcuerdoAlTipoDeRegistro(ddlTipofiltro.Text);
+                cargardatosDeAcuerdoAlTipoDeRegistro(ddlTipofiltro.Text, lbluser.Text);
             }
             if (ddlTipofiltro.Text == "Todo")
             {
-                mostrarTodosLosDatosDelAsesor();
+                mostrarTodosLosDatosDelAsesor(lbluser.Text);
             }
             lblcontador.Text = GridView1.Rows.Count.ToString();
         }
 
-        private void cargardatosDeAcuerdoAlTipoDeRegistro(string tipoDeRegistro)
+        private void cargardatosDeAcuerdoAlTipoDeRegistro(string tipoDeRegistro, string usuario)
         {
-            string query = "Select * from  Llamada_vista where FechaLlamada between DATEADD(wk,DATEDIFF(wk,0,getdate()),0) and dateadd(wk,datediff(wk,0,getdate()),4) and tipo ='" + tipoDeRegistro + "' and asesor='" + lbluser.Text + "'";
-            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataSource = controladorLlamada.cargarDatosDependiendoTipoDeRegistro(tipoDeRegistro, usuario);
             GridView1.DataBind();
         }
 
-        private void mostrarTodosLosDatosDelAsesor()
+        private void mostrarTodosLosDatosDelAsesor(string asesor)
         {
-            string query = "Select * from  Llamada_Vista where asesor='" + lbluser.Text + "' and FechaLlamada between DATEADD(wk,DATEDIFF(wk,0,getdate()),0) and dateadd(wk,datediff(wk,0,getdate()),4)";
-            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataSource = controladorLlamada.mostrarTodosLosDatosDelAsesor(asesor);
             GridView1.DataBind();
         }
 
@@ -286,16 +284,16 @@ namespace INOLAB_OC
 
         private void actualizarNuevosDatosDeRegistroEnBBD()
         {
-            Int32 registro = Convert.ToInt32(lblREGISTRO.Text);
-            DateTime fechaDeRegistro = Convert.ToDateTime(datepicker.Text);
-            string nombreDelCliente = txtcliente.Text;
-            string comentarioDeRegistro = txtcomentario.Text;
-            string tipoDeRegistro = ddlTipoRegistro.Text;
-            string textoObjetivo = txtobjetivo.Text;
+            E_Llamada_Vista entidadLlamada = new E_Llamada_Vista();
 
-            ConexionComercial.executeStoreProcedureStp_Update_Plan(registro, fechaDeRegistro, nombreDelCliente,
-                comentarioDeRegistro, tipoDeRegistro, textoObjetivo);
+            entidadLlamada.Registro = Convert.ToInt32(lblREGISTRO.Text);
+            entidadLlamada.FechaLlamada= Convert.ToDateTime(datepicker.Text);
+            entidadLlamada.Cliente= txtcliente.Text;
+            entidadLlamada.Comentario = txtcomentario.Text;
+            entidadLlamada.Tipo = ddlTipoRegistro.Text;
+            entidadLlamada.Objetivo = txtobjetivo.Text;
 
+            controladorLlamada.actualizarDatosDeRegistro(entidadLlamada);
             Response.Write("<script language=javascript>if(confirm('Registro Actualizado Exitosamente')==true){ location.href='CRM_2.aspx'} else {location.href='CRM_2.aspx'}</script>");
         }
 

@@ -7,6 +7,7 @@ namespace INOLAB_OC.Entidades.Ventas
 {
     public class E_Llamada_Vista
     {
+        public Int32 Registro { get ; set; }
         public int IdLlamada { get; set; }
         public DateTime FechaLlamada { get; set; }
         public DateTime FechaCreacion { get; set; }
