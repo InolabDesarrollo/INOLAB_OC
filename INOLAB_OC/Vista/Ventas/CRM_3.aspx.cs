@@ -167,24 +167,20 @@ namespace INOLAB_OC
 
         private void Gte_Datos_Asesor()
         {
-            //string query = "Select* from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + ddlF_Asesor.Text + "'";
-            string query = "Select * from  funnel where asesor = '" + ddlF_Asesor.Text + "' and clasificacion='" + ddlClasificacion.Text + "'";
-            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            //string query = "Select* from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + ddlF_Asesor.Text + "'"; 
+            GridView1.DataSource = controladorFunnel.consultarDatosPorAsesorYClasificacion(ddlF_Asesor.Text, ddlClasificacion.Text);
             GridView1.DataBind();
         }
 
         private void cargarDatosDelAsesor(string clasificacionDeRegistro)
         {
-            string query = "Select * from  funnel where clasificacion = '" + clasificacionDeRegistro + "' and asesor='" + lbluser.Text + "'";
-            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataSource = controladorFunnel.consultarDatosPorAsesorYClasificacion(lbluser.Text, clasificacionDeRegistro);
             GridView1.DataBind();
-
         }
 
         private void Gte_Funnel_Asesor()
         {
-            string query = "Select * from  funnel where asesor='" + ddlF_Asesor.SelectedValue + "'";
-            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataSource =  controladorFunnel.consultarDatosFunnelPorAsesor(ddlF_Asesor.SelectedValue);
             GridView1.DataBind();
         }
 
@@ -275,7 +271,6 @@ namespace INOLAB_OC
         private void Gte_Registros_Asesor (int numeroDeRegistro)
         {
             DataRow datosFunel = controladorFunnel.consultarDatosFunnelPorNoRegistro(numeroDeRegistro);
-            string asesor= datosFunel["Asesor"].ToString();
 
             txtcliente.Text = datosFunel["Cliente"].ToString();
             ddlClas_save.Text = datosFunel["Clasificacion"].ToString();
@@ -392,7 +387,7 @@ namespace INOLAB_OC
             entidadFunnel.NoRegistro = Convert.ToInt32(lblresistro.Text);
             entidadFunnel.Cliente = txtcliente.Text;
             entidadFunnel.Clasificacion = ddlClas_save.Text;
-            entidadFunnel.FechaActualizacion= Convert.ToDateTime(datepicker.Text);
+            entidadFunnel.FechaActualizacion= Convert.ToDateTime(datepicker.Text); 
             entidadFunnel.Equipo = txtequipo.Text;
             entidadFunnel.Marca = txtmarca.Text;
             entidadFunnel.Modelo = txtmodelo.Text;

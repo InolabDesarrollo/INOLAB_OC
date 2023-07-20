@@ -32,5 +32,18 @@ namespace INOLAB_OC.Modelo.Comercial
                 funnel.Modelo, funnel.Valor, funnel.Estatus, funnel.Asesor, funnel.Contacto, funnel.Localidad, funnel.Origen, funnel.TipoVenta);
         }
 
+        public System.Data.DataSet consultarDatosPorAsesorYClasificacion(string asesor, string clasificacion)
+        {
+            string query = "Select * from  funnel where asesor = '" + asesor + "' and clasificacion='" + clasificacion + "'";
+            return ConexionComercial.getDataSet(query);
+        }
+
+        public System.Data.DataSet consultarDatosFunnelPorAsesor(string asesor)
+        {
+            string query = "Select * from  funnel where asesor='" + asesor + "'";
+            return ConexionComercial.getDataSet(query);
+        }
+
+
     }
 }

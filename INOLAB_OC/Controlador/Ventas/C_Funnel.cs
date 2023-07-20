@@ -25,5 +25,16 @@ namespace INOLAB_OC.Controlador.Ventas
         {
              repositorioFunnel.actualizarDatosFunnel(entidad);
         }
+
+        public DataSet consultarDatosPorAsesorYClasificacion(string asesor, string clasificacion)
+        {
+            return repositorioFunnel.consultarDatosPorAsesorYClasificacion(asesor, clasificacion);
+        }
+
+        public DataSet consultarDatosFunnelPorAsesor(string asesor)
+        {
+            return repositorioFunnel.consultarDatosFunnelPorAsesor(asesor);
+        }
+
     }
 }
