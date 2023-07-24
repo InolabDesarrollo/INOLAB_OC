@@ -210,41 +210,41 @@ namespace INOLAB_OC
             }
         }
 
-        private void enviarEmailConInformacionDelFSR(string filepath, string mail)
+        private void enviarEmailConInformacionDelFSR(string rutaReporteAdjuntoEnCorreoElectronico, string mail)
         {
             try
             {
-                string to, bcc, CorreoElectronicoEmisor, EncabezadoDelCorreoElectronico;
+                string to, correosElectronicosReceptores, CorreoElectronicoEmisor, EncabezadoDelCorreoElectronico;
                 Console.Write(mail);
                 to = "";
                 
-                SqlDataReader notificacionesDelEmail = Conexion.getSqlDataReader("select * from MailNotification;");
+                SqlDataReader correosALosQueSeNotificara = Conexion.getSqlDataReader("select * from MailNotification;");
 
-                if (notificacionesDelEmail.HasRows)
+                if (correosALosQueSeNotificara.HasRows)
                 {
-                    List<String> mails = new List<string>();
-                    while (notificacionesDelEmail.Read())
+                    List<String> correoElectronico = new List<string>();
+                    while (correosALosQueSeNotificara.Read())
                     {
-                        mails.Add(notificacionesDelEmail.GetValue(2).ToString());
+                        correoElectronico.Add(correosALosQueSeNotificara.GetValue(2).ToString());
                     }
-                    bcc = String.Join(", ", mails);
+                    correosElectronicosReceptores = String.Join(", ", correoElectronico);
                 }
                 else
                 {
-                    bcc = "carlosflores@inolab.com";
+                    correosElectronicosReceptores = "carlosflores@inolab.com";
                 }
                 Conexion.cerrarConexion();
                 CorreoElectronicoEmisor = "notificaciones@inolab.com";
                 EncabezadoDelCorreoElectronico = "FSR folio " + Session["folio_p"];
                 MailMessage message = new MailMessage();
 
-                message.Bcc.Add(bcc);
+                message.Bcc.Add(correosElectronicosReceptores);
                 message.From = new MailAddress(CorreoElectronicoEmisor);
                 message.Body = crearCuerpoDelCorreoElectronico(Session["folio_p"].ToString(), "cliente");
                 message.IsBodyHtml = true;
                 message.Subject = EncabezadoDelCorreoElectronico;
 
-                Attachment attach = new Attachment(filepath);
+                Attachment attach = new Attachment(rutaReporteAdjuntoEnCorreoElectronico);
                 message.Attachments.Add(attach);
 
                 SmtpClient configuracionesCorreoEmisor = new SmtpClient();
