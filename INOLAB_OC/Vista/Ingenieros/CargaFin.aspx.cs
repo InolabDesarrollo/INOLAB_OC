@@ -153,7 +153,6 @@ namespace INOLAB_OC
             {
                 string correoElectronicoCliente = correoDeCliente;
 
-                //Actualizacion de estatus de el FSR con los datos correspondientes
                 controladorFSR.actualizarHorasDeServicio(folioFSR, idUsuario);
                 actualizarDatosEnSap();
 
@@ -166,6 +165,7 @@ namespace INOLAB_OC
 
                 verificarElTipoDeContrato(path, correoElectronicoCliente);
                 envioDeCorreoElectronicoACliente(path, correoElectronicoCliente);
+                correoElectronicoDePrueba();
                 Response.Redirect("ServiciosAsignados.aspx");
             }
             else
@@ -175,6 +175,12 @@ namespace INOLAB_OC
 
         }
 
+        private void actualizarDatosEnSap()
+        {
+            string folio = Session["folio_p"].ToString();
+            string ClgCode = controladorSCL5.seleccionarValorDeCampo("ClgID", folio);
+            controladorOCLG.concatenacionDeFolioYEstatus(folio, ClgCode);
+        }
         private void actualizarEstatusDeCierreDeActividadEnSap()
         {
             string folioFSR = Session["folio_p"].ToString();
@@ -198,6 +204,34 @@ namespace INOLAB_OC
             {
                 Response.Write("<script>alert('Fallo en subir a sap ');</script>");
             }
+        }
+
+        private string CreatePDF(string fileName)
+        {
+            Warning[] warnings;
+            string[] streamIds;
+            string mimeType = string.Empty;
+            string encoding = string.Empty;
+            string extension = string.Empty;
+
+            //Setup the report viewer object and get the array of bytes 
+            byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+
+            // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.  
+            string filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + fileName + ".pdf";
+            //Si existe este documento en el apartado de Docs, lo sustituye con el nuevo que se esta subiendo
+            if (File.Exists(filepath))
+            {
+                File.Delete(filepath);
+            }
+            //Se crea el PDF del folio para guardarlo en esa localizacion
+            using (FileStream fs = new FileStream(filepath, FileMode.Create))
+            {
+                fs.Write(bytes, 0, bytes.Length);
+                Console.Write(fs.Name);
+                fs.Dispose();
+            }
+            return filepath;
         }
 
         private void notificarAlAsesorDeVentasDatosDeFolioServicio()
@@ -344,6 +378,41 @@ namespace INOLAB_OC
                 Console.Write(ex.ToString());
             }
         }
+
+        private void correoElectronicoDePrueba()
+        {
+            try
+            {
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.To.Add("notificaciones@inolab.com");
+
+                    mailMessage.Subject = "PRUEBA";
+
+                    mailMessage.Body = "Cuerpo de correo";
+                    mailMessage.IsBodyHtml = false; //Si es true el body debe tener las etiquetas html
+
+                    //remitente 
+                    mailMessage.From = new MailAddress("notificaciones@inolab.com", "PRUEBA");
+
+                    using (SmtpClient smtpClient = new SmtpClient())
+                    {
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential("notificaciones@inolab.com", "Notificaciones2021*");
+                        smtpClient.Port = 1025;
+                        //smtpClient.EnableSsl = ;
+
+                        smtpClient.Host = "smtp.inolab.com";
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+           
+            }catch(Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+        }
+
         private string cuerpoDelCorreoElectronicoParaCliente(string folioDeServicio, string cliente)
         {
             string cuerpoDelCorreo = string.Empty;
@@ -373,33 +442,7 @@ namespace INOLAB_OC
 
         }
 
-        private string CreatePDF(string fileName)
-        {
-            Warning[] warnings;
-            string[] streamIds;
-            string mimeType = string.Empty;
-            string encoding = string.Empty;
-            string extension = string.Empty;
-
-            //Setup the report viewer object and get the array of bytes 
-            byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-            // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.  
-            string filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + fileName + ".pdf";
-            //Si existe este documento en el apartado de Docs, lo sustituye con el nuevo que se esta subiendo
-            if (File.Exists(filepath))
-            {
-                File.Delete(filepath);
-            }
-            //Se crea el PDF del folio para guardarlo en esa localizacion
-            using (FileStream fs = new FileStream(filepath, FileMode.Create))
-            {
-                fs.Write(bytes, 0, bytes.Length);
-                Console.Write(fs.Name);
-                fs.Dispose();
-            }
-            return filepath;
-        }
+       
 
         protected static string convertirImagenAStringBase64(string imgPath)
         {
@@ -482,13 +525,7 @@ namespace INOLAB_OC
         }
 
 
-        private void actualizarDatosEnSap()
-        {          
-            string folio = Session["folio_p"].ToString();
-            string ClgCode = controladorSCL5.seleccionarValorDeCampo("ClgID", folio);
-            controladorOCLG.concatenacionDeFolioYEstatus(folio, ClgCode);
-        }
-
+       
      
 
        
