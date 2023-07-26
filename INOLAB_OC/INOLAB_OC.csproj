@@ -218,6 +218,7 @@
     <Compile Include="Vista\Ingenieros\CargaFin.aspx.designer.cs">
       <DependentUpon>CargaFin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Ingenieros\CorreoElectronico.cs" />
     <Compile Include="Vista\Ventas\CRM_1.aspx.cs">
       <DependentUpon>CRM_1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
