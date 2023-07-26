@@ -18,6 +18,7 @@ using INOLAB_OC.Entidades;
 using INOLAB_OC.Modelo.Browser;
 using INOLAB_OC.Modelo.Inolab;
 using INOLAB_OC.Controlador.Ingenieros;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace INOLAB_OC
 {
@@ -36,11 +37,15 @@ namespace INOLAB_OC
         C_OSCL controladorOSCL;
 
         C_OCLG controladorOCLG = new C_OCLG();
+
+        static MailNotification_Repository repositorioMail = new MailNotification_Repository();
+        C_MailNotification controladorMailNotification;
         protected void Page_Load(object sender, EventArgs e)
         {
             controladorFSR = new C_FSR(repositorioFSR, Session["folio_p"].ToString());
             controladorV_FSR = new C_V_FSR(repositorioV_FSR);
             controladorSCL5 = new C_SCL5(repositorioSCL5);
+            controladorMailNotification = new C_MailNotification(repositorioMail);
 
             if (Session["idUsuario"] == null)
             {
@@ -91,7 +96,6 @@ namespace INOLAB_OC
                     return null;
                 }
             }
-
             public ICredentials NetworkCredentials
             {
                 get
@@ -140,39 +144,32 @@ namespace INOLAB_OC
                 return false;
             }
         }
-
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             string folioFSR = Session["folio_p"].ToString();
             string idUsuario = Session["idUsuario"].ToString();
             Timer1.Enabled = false;
-            //Realiza el update de los datos en FSR y sollicita la creación del PDF para mandarlo por correo electrónico    
             string correoDeCliente = controladorFSR.consultarMailDeFolioServicio(folioFSR);
-
-            if (!correoDeCliente.Equals("") || correoDeCliente != null)
+            if(!correoDeCliente.Equals("") || correoDeCliente != null)
             {
                 string correoElectronicoCliente = correoDeCliente;
 
                 controladorFSR.actualizarHorasDeServicio(folioFSR, idUsuario);
                 actualizarDatosEnSap();
-
                 C_CargaFin.cambiarEstatusDeFolioAFinalizado(folioFSR);
                 actualizarEstatusDeCierreDeActividadEnSap();
 
                 ReportViewer1.ServerReport.Refresh();
                 string path = CreatePDF(Session["folio_p"].ToString());
                 notificarAlAsesorDeVentasDatosDeFolioServicio();
-
                 verificarElTipoDeContrato(path, correoElectronicoCliente);
-                envioDeCorreoElectronicoACliente(path, correoElectronicoCliente);
-                correoElectronicoDePrueba();
+                envioDeCorreoElectronicoACliente(path);
                 Response.Redirect("ServiciosAsignados.aspx");
             }
             else
             {
                 Response.Redirect("VistaPrevia.aspx");
             }
-
         }
 
         private void actualizarDatosEnSap()
@@ -244,19 +241,17 @@ namespace INOLAB_OC
         }
         private void envioDeCorreoElectronicoAlAsesorDeVentas(string mailDeAsesorDeVentas)
         {
+            string asunto = "Notificación de observaciones Folio: " + Session["folio_p"].ToString();
             try
             {
-                string asuntoDelCorreoElectronico = "Notificación de observaciones Folio: " + Session["folio_p"].ToString();
-
-                //Datos y cuerpo del correo de a quien ira dirigido y de parte de quien 
                 MailAddress correoElectronicoEmisor = new MailAddress("notificaciones@inolab.com");
                 MailAddress correoElectronicoReceptor = new MailAddress(mailDeAsesorDeVentas);
                 MailMessage mensajeDeCorreoElectronico = new MailMessage(correoElectronicoEmisor, correoElectronicoReceptor);
 
-                mensajeDeCorreoElectronico.Bcc.Add("luisrosales@inolab.com");
-                mensajeDeCorreoElectronico.Body = generarCuerpoDelCorreoVentas(Session["folio_p"].ToString());
+                mensajeDeCorreoElectronico.Bcc.Add("luisrosales@inolab.com, omarflores@inolab.com, carlosflores@inolab.com");
+                mensajeDeCorreoElectronico.Body = cuerpoDelCorreoElectronicoParaVentas(Session["folio_p"].ToString());
                 mensajeDeCorreoElectronico.IsBodyHtml = true;
-                mensajeDeCorreoElectronico.Subject = asuntoDelCorreoElectronico;
+                mensajeDeCorreoElectronico.Subject = asunto;
 
 
                 SmtpClient configuracionCorreoElectronico = new SmtpClient();
@@ -273,15 +268,15 @@ namespace INOLAB_OC
             }
             catch (Exception ex)
             {
-                Console.Write(ex.ToString());
+                Console.WriteLine(ex.ToString());
             }
+                
         }
-
-        private string generarCuerpoDelCorreoVentas(string folio)
-        {//Realiza el replace en HTML para la creación del correo
+        private string cuerpoDelCorreoElectronicoParaVentas(string folio) 
+        {
             string cuerpoDelCorreo = string.Empty;
             string folioFSR = Session["folio_p"].ToString();
-            using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index_not_ase.html")))
+            using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/index_not_ase.html")))
             {
                 cuerpoDelCorreo = reader.ReadToEnd();
                 reader.Dispose();
@@ -312,7 +307,7 @@ namespace INOLAB_OC
 
 
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folio);
-            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("./Imagenes/slogan.png")));
+            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{observaciones}", observacionesDelFolio);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{n_llamada}", llamada);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{act_iv}", actividad);
@@ -323,101 +318,44 @@ namespace INOLAB_OC
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{ingeniero}", ingeniero);
             return cuerpoDelCorreo;
         }
-
-        private void envioDeCorreoElectronicoACliente(string filepath, string mail)
+        
+        private void envioDeCorreoElectronicoACliente(string filepath)
         {
-            //Envio del correo al cliente con su folio en estatus de Finalizado (hecho por paquito-cabeza [Incomprensible para mis conocimientos de C# :c])
+            string folioDeServico = "FSR folio " + Session["folio_p"];
+            string correoElectronicoEmisor = "notificaciones@inolab.com";
+            string correosElectronicosReceptores = controladorMailNotification.consultarTodosLosCorreoReceptores();
+            string contraseña = "Notificaciones2021*";
             try
             {
-                string to, correosElectronicosReceptores, correoElectronicoEmisor, folioDeServico;
-                Console.Write(mail);
-                to = "";
-                SqlDataReader correosALosQueSeNotificara = Conexion.getSqlDataReader("select * from MailNotification;");
-
-                if (correosALosQueSeNotificara.HasRows)
-                {
-                    List<String> correos = new List<string>();
-                    while (correosALosQueSeNotificara.Read())
-                    {
-                        correos.Add(correosALosQueSeNotificara.GetValue(2).ToString());
-                    }
-                    correosElectronicosReceptores = String.Join(", ", correos);
-                }
-                else
-                {                  
-                    correosElectronicosReceptores = "omarflores@inolab.com";
-                }
-
-                Conexion.cerrarConexion();
-                correoElectronicoEmisor = "notificaciones@inolab.com";
-                folioDeServico = "FSR folio " + Session["folio_p"];
-                MailMessage message = new MailMessage();
-
-                message.Bcc.Add(correosElectronicosReceptores);
-                message.From = new MailAddress(correoElectronicoEmisor);
-                message.Body = cuerpoDelCorreoElectronicoParaCliente(Session["folio_p"].ToString(), "cliente");
-                message.IsBodyHtml = true;
-                message.Subject = folioDeServico;
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress(correoElectronicoEmisor);
+                mailMessage.Bcc.Add(correosElectronicosReceptores);
+                mailMessage.Subject = folioDeServico;
+                mailMessage.Body = cuerpoDelCorreoElectronicoParaCliente(Session["folio_p"].ToString(), "cliente");
+                mailMessage.IsBodyHtml = true;
 
                 Attachment attach = new Attachment(filepath);
-                message.Attachments.Add(attach);
+                mailMessage.Attachments.Add(attach);
 
-                SmtpClient configuracionDeCorreoEmisor = new SmtpClient();
-                configuracionDeCorreoEmisor.Port = 1025;
-                configuracionDeCorreoEmisor.Host = "smtp.inolab.com";
-                configuracionDeCorreoEmisor.EnableSsl = false;
-                configuracionDeCorreoEmisor.DeliveryMethod = SmtpDeliveryMethod.Network;
-                configuracionDeCorreoEmisor.UseDefaultCredentials = false;
-                configuracionDeCorreoEmisor.Credentials = new NetworkCredential("notificaciones@inolab.com", "Notificaciones2021*");
-                configuracionDeCorreoEmisor.Send(message);
-                message.Dispose();
-                configuracionDeCorreoEmisor.Dispose();
+                SmtpClient smtpClient = new SmtpClient("smtp.inolab.com");
+                smtpClient.EnableSsl = false;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new NetworkCredential(correoElectronicoEmisor, contraseña);
+                smtpClient.Send(mailMessage);
+                smtpClient.Dispose();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                Console.Write(ex.ToString());
-            }
-        }
-
-        private void correoElectronicoDePrueba()
-        {
-            try
-            {
-                using (MailMessage mailMessage = new MailMessage())
-                {
-                    mailMessage.To.Add("notificaciones@inolab.com");
-
-                    mailMessage.Subject = "PRUEBA";
-
-                    mailMessage.Body = "Cuerpo de correo";
-                    mailMessage.IsBodyHtml = false; //Si es true el body debe tener las etiquetas html
-
-                    //remitente 
-                    mailMessage.From = new MailAddress("notificaciones@inolab.com", "PRUEBA");
-
-                    using (SmtpClient smtpClient = new SmtpClient())
-                    {
-                        smtpClient.UseDefaultCredentials = false;
-                        smtpClient.Credentials = new NetworkCredential("notificaciones@inolab.com", "Notificaciones2021*");
-                        smtpClient.Port = 1025;
-                        //smtpClient.EnableSsl = ;
-
-                        smtpClient.Host = "smtp.inolab.com";
-                        smtpClient.Send(mailMessage);
-                    }
-                }
-           
-            }catch(Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
+                Console.WriteLine(ex.ToString());
+            }           
         }
 
         private string cuerpoDelCorreoElectronicoParaCliente(string folioDeServicio, string cliente)
         {
             string cuerpoDelCorreo = string.Empty;
-
-            using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index2.html")))
+            using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/index2.html")))
             {
                 cuerpoDelCorreo = reader.ReadToEnd();
                 reader.Dispose();
@@ -425,7 +363,7 @@ namespace INOLAB_OC
 
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folioDeServicio);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
-            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("./Imagenes/slogan.png")));
+            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
 
             return cuerpoDelCorreo;
         }
@@ -442,28 +380,22 @@ namespace INOLAB_OC
 
         }
 
-       
-
         protected static string convertirImagenAStringBase64(string imgPath)
         {
             byte[] imageBytes = System.IO.File.ReadAllBytes(imgPath);
             string base64String = Convert.ToBase64String(imageBytes);
             return base64String;
-        }
-
-       
+        }     
         private void enviarCorreoElectronicoParaFacturacion(string filepath)
         {
+            string asuntoDelCorreoElectronico = "Servicio Terminado. Folio: " + Session["folio_p"].ToString();
             try
             {
-                string asuntoDelCorreoElectronico = "Servicio Terminado. Folio: " + Session["folio_p"].ToString();
-
-                //Datos de a quein ira y de quien va dirigido el correo (me anexo como copia oculta para monitorear que se realice el proceso de forma correcta)
                 MailAddress correoElectronicoEmisor = new MailAddress("notificaciones@inolab.com");
-                MailAddress correoElectronicoReceptor = new MailAddress("facturacion@inolab.com");
+                MailAddress correoElectronicoReceptor = new MailAddress("facturacion@inolab.com"); //facturacion@inolab.com"
                 MailMessage mensajeDelCorreo = new MailMessage(correoElectronicoEmisor, correoElectronicoReceptor);
-               
-                mensajeDelCorreo.Bcc.Add("luisrosales@inolab.com");
+
+                mensajeDelCorreo.Bcc.Add("carlosflores@inolab.com");// luisrosales@inolab.com
                 mensajeDelCorreo.Body = cuerpoDelCorreoElectronicoParaFacturacion(Session["folio_p"].ToString());
                 mensajeDelCorreo.IsBodyHtml = true;
                 mensajeDelCorreo.Subject = asuntoDelCorreoElectronico;
@@ -483,17 +415,17 @@ namespace INOLAB_OC
                 mensajeDelCorreo.Dispose();
                 configuracionEmisor.Dispose();
             }
-            catch (Exception ex)
+            catch(Exception ex) 
             {
-                Console.Write(ex.ToString());
-            }
+                Console.WriteLine(ex.ToString());
+            }              
+           
         }
-
         private string cuerpoDelCorreoElectronicoParaFacturacion(string folio)
         {
             string cuerpoDelCorreo = string.Empty;
             string folioFSR = Session["folio_p"].ToString();
-            using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index_not_fact.html")))
+            using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/index_not_fact.html")))
             {
                 cuerpoDelCorreo = reader.ReadToEnd();
                 reader.Dispose();
@@ -516,20 +448,13 @@ namespace INOLAB_OC
             string OrdenVenta = controladorV_FSR.consultarValorDeCampoTop("OC", folioFSR);
 
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folio);
-            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("./Imagenes/slogan.png")));
+            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{n_llamada}", tipoDeLLamada);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{act_iv}", actividad);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{OrdenVenta}", OrdenVenta);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
             return cuerpoDelCorreo;
         }
-
-
-       
-     
-
-       
-
        
     }
 }

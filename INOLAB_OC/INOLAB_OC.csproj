@@ -150,6 +150,7 @@
       <DependentUpon>BrowserDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Controlador\Ingenieros\C_FSR_Accion.cs" />
+    <Compile Include="Controlador\Ingenieros\C_MailNotification.cs" />
     <Compile Include="Controlador\Ingenieros\C_OCLG.cs" />
     <Compile Include="Controlador\Ingenieros\C_OSCL.cs" />
     <Compile Include="Controlador\Ingenieros\C_V_FSR.cs" />
@@ -170,11 +171,13 @@
     <Compile Include="Entidades\Ventas\E_Llamada_Vista.cs" />
     <Compile Include="Modelo\Browser\FSR_AccionRepository.cs" />
     <Compile Include="Modelo\Browser\FSR_Repository.cs" />
+    <Compile Include="Modelo\Browser\Interfaces\IMailNotification_Repository.cs" />
     <Compile Include="Modelo\Browser\Interfaces\IFSR_AccionRepository.cs" />
     <Compile Include="Modelo\Browser\Interfaces\IFSR_Repository.cs" />
     <Compile Include="Modelo\Browser\Interfaces\IRefaccion.cs" />
     <Compile Include="Modelo\Browser\Interfaces\IUsuarioRepository.cs" />
     <Compile Include="Modelo\Browser\Interfaces\IV_FSR_Repository.cs" />
+    <Compile Include="Modelo\Browser\MailNotification_Repository.cs" />
     <Compile Include="Modelo\Browser\Refaccion_Repository.cs" />
     <Compile Include="Modelo\Browser\UsuarioRepository.cs" />
     <Compile Include="Modelo\Browser\V_FSR_Repository.cs" />
@@ -322,9 +325,6 @@
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\WEB-INOLAB.pubxml" />
     <Content Include="scripts\uploader.fla" />
-    <Content Include="uploadify-master\.gitignore" />
-    <Content Include="uploadify-master\LICENSE" />
-    <Content Include="uploadify-master\Sample\.DS_Store" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

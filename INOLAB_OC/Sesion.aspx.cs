@@ -11,6 +11,9 @@ using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Net.Mail;
 using System.Net;
+using System.IO;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using System.Collections.Generic;
 
 namespace INOLAB_OC
 {  
@@ -32,32 +35,8 @@ namespace INOLAB_OC
 
         protected void Inicio_De_Sesion_Click(object sender, EventArgs e)
         {
-            correoElectronicoDePrueba();
-            ingresarAlAreaCorrespondiente();
+            ingresarAlAreaCorrespondiente();         
         }
-
-        private void correoElectronicoDePrueba()
-        {
-
-                string emailOrigen = "notificaciones@inolab.com";
-                string emailDestino = "omarflores@inolab.com";
-                string contraseña = "Notificaciones2021*";
-                MailMessage mailMessage= new MailMessage(emailOrigen, emailDestino,"test","Cuerpo");
-                mailMessage.IsBodyHtml = false;
-                string correos = "omar.andreas.sotomayor@gmail.com, oscaromarfloressotomayor@gmail.com";
-                mailMessage.Bcc.Add(correos);    
-
-                SmtpClient smtpClient = new SmtpClient("smtp.inolab.com");
-                smtpClient.EnableSsl = false;
-                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential(emailOrigen, contraseña);                                        
-                smtpClient.Send(mailMessage);
-                smtpClient.Dispose();
-     
-        }
-
         public void ingresarAlAreaCorrespondiente()
         {
             try

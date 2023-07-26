@@ -96,8 +96,14 @@ public partial class FSR : Page
             datepicker.Text = informacionServicio["FechaServicio"].ToString();
             DropDownList7.SelectedValue = informacionServicio["HoraServicio"].ToString();
             string test = informacionServicio["IdIngeniero"].ToString();
-        
+
+            try{
             cmding.Text = test;
+
+            }
+            catch(Exception ex) { 
+            Console.WriteLine(ex.Message);
+            }
             DropDownList8.Text = informacionServicio["Estatusid"].ToString();
             Estatus_de_folio_servicio.Text= informacionServicio["Estatusid"].ToString();
 

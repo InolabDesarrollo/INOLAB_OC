@@ -573,3 +573,24 @@ C:\Users\Carlos Flores\Desktop\GIT 2023\INOLAB_OC\obj\Release\INOLAB_OC.csproj.C
 C:\Users\Carlos Flores\Desktop\GIT 2023\INOLAB_OC\obj\Release\INOLAB_OC.csproj.CopyComplete
 C:\Users\Carlos Flores\Desktop\GIT 2023\INOLAB_OC\obj\Release\INOLAB_OC.dll
 C:\Users\Carlos Flores\Desktop\GIT 2023\INOLAB_OC\obj\Release\INOLAB_OC.pdb
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\INOLAB_OC.dll.config
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\INOLAB_OC.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\INOLAB_OC.pdb
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\DocumentFormat.OpenXml.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ExcelDataReader.DataSet.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ExcelDataReader.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\SpreadsheetLight.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ExcelDataReader.pdb
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ExcelDataReader.xml
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ExcelDataReader.DataSet.pdb
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\ExcelDataReader.DataSet.xml
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\bin\SpreadsheetLight.xml
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\obj\Release\INOLAB_OC.csproj.AssemblyReference.cache
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\obj\Release\INOLAB_OC.csproj.CoreCompileInputs.cache
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\obj\Release\INOLAB_OC.csproj.CopyComplete
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\obj\Release\INOLAB_OC.dll
+C:\Users\Omar Sotomayor\source\repos\INOLAB_OC\INOLAB_OC\obj\Release\INOLAB_OC.pdb
