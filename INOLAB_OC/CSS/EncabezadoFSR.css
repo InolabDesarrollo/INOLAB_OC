@@ -178,6 +178,10 @@ header nav {
     bottom: 5%;
 }
 
+#Btn_Reenviar_Correo {
+    position: absolute;
+    bottom: 5%;
+}
 
 #Btn_agregar_acciones {
     position: absolute;
@@ -186,11 +190,8 @@ header nav {
 
 #btndescarga {
     position: absolute;
-    bottom: 5%;
-    
+    bottom: 5%;   
 }
-
-
 
 .Txt_Datos_Folio{
     width:300px;

@@ -105,7 +105,6 @@ public partial class DetalleFSR : Page
                     agregarDatosDeRefacciones(dataRow["numRefaccion"].ToString(), dataRow["cantidadRefaccion"].ToString());
                 }
             }
-
         }
         catch (Exception ex)
         {
@@ -113,7 +112,6 @@ public partial class DetalleFSR : Page
 
         }
     }
-
 
     protected void Agregar_nuevas_acciones_Click(object sender, EventArgs e)
     {
@@ -134,8 +132,7 @@ public partial class DetalleFSR : Page
         {
 
           if (txtacciones.Text.Equals(sinAccionRegistrada))
-            {
-               
+            {               
                 acciones.Text = "Favor de ingresar la acción realizada";
             }
             else
@@ -167,23 +164,22 @@ public partial class DetalleFSR : Page
     }
     private bool insertarNuevaAccionRealizada(String fechaNuevaAccion, String horasDedicadasEnNuevaAccion, String nuevaAccionRealizada)
     {  
-            E_FSRAccion entidadAccion = new E_FSRAccion();
-            entidadAccion.FechaAccion = fechaNuevaAccion;
-            entidadAccion.HorasAccion = horasDedicadasEnNuevaAccion;
-            entidadAccion.AccionR = nuevaAccionRealizada;
-            entidadAccion.idFolioFSR = idFolioServicio;
-            entidadAccion.idUsuario = Session["idUsuario"].ToString();
-            entidadAccion.FechaSistema = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        E_FSRAccion entidadAccion = new E_FSRAccion();
+        entidadAccion.FechaAccion = fechaNuevaAccion;
+        entidadAccion.HorasAccion = horasDedicadasEnNuevaAccion;
+        entidadAccion.AccionR = nuevaAccionRealizada;
+        entidadAccion.idFolioFSR = idFolioServicio;
+        entidadAccion.idUsuario = Session["idUsuario"].ToString();
+        entidadAccion.FechaSistema = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-            int filasAfectadasPorUpdate = controladorFSRAccion.agregarAccionFSR(entidadAccion);
-            return (filasAfectadasPorUpdate == 1) ? true: false;
+        int filasAfectadasPorUpdate = controladorFSRAccion.agregarAccionFSR(entidadAccion);
+        return (filasAfectadasPorUpdate == 1) ? true: false;
     }
 
     protected void Cerrar_ventana_agregar_nueva_accion_Click(object sender, ImageClickEventArgs e)
     {
         cerrarVentanaAgregarNuevaAccion();
     }
-
     public void cerrarVentanaAgregarNuevaAccion()
     {
         Fecha_nueva_accion_realizada.Text = "";
@@ -381,14 +377,14 @@ public partial class DetalleFSR : Page
 
     protected bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
     {    
-            E_Refaccion refaccion = new E_Refaccion();
-            refaccion.numRefaccion = numeroDePartes;
-            refaccion.cantidadRefaccion = cantidadDeRefacciones;
-            refaccion.descRefaccion = descripcionDeRefacion;
-            refaccion.idFSR = idFolioServicio;
+        E_Refaccion refaccion = new E_Refaccion();
+        refaccion.numRefaccion = numeroDePartes;
+        refaccion.cantidadRefaccion = cantidadDeRefacciones;
+        refaccion.descRefaccion = descripcionDeRefacion;
+        refaccion.idFSR = idFolioServicio;
 
-            int numeroDeFilasAfectadas = controladorRefaccion.agregarRefaccion(refaccion);
-            return numeroDeFilasAfectadas == 1?  true : false;
+        int numeroDeFilasAfectadas = controladorRefaccion.agregarRefaccion(refaccion);
+        return numeroDeFilasAfectadas == 1?  true : false;
     }
 
     protected void Mostrar_ventana_refacciones_Click(object sender, EventArgs e)
@@ -456,8 +452,7 @@ public partial class DetalleFSR : Page
                 string idFolioServicioAccion =  entidadFsrAccion.idFSRAccion;        
                 string idFolioDeServicio = entidadFsrAccion.idFolioFSR;
                 string tipoDeServicio = controlador_V_FSR.consultarValorDeCampo("TipoServicio", idFolioDeServicio);
-                
-                
+                                
                 fol.Text = idFolioDeServicio;
                 serv.Text = tipoDeServicio;
                 descacci.Text = accionEnServicio;

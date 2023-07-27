@@ -117,6 +117,7 @@ public partial class FSR : Page
             Btn_Estatus_Servicio.Text = "Guardar Cambios";
             Btn_actualizar_fechas.Visible = true;
             Btn_agregar_acciones.Visible = true;
+            Btn_Reenviar_Correo.Visible = true;
         }
         else
         {
@@ -317,7 +318,6 @@ public partial class FSR : Page
     
         string fechaYhoraInicio = datepicker2.Text.ToString() + " " + Hora_inicio_folio.SelectedValue.ToString() + ":" + Minuto_inicio_folio.SelectedValue.ToString();
         DateTime fechaYhoraInicioFolioServicio = DateTime.Parse(fechaYhoraInicio);
-
         string fechaYhoraFin = datepicker3.Text.ToString() + " " + Hora_fin_folio.SelectedValue.ToString() + ":" + Minuto_fin_folio.SelectedValue.ToString();
         DateTime fechaYhoraFinFolioServicio = DateTime.Parse(fechaYhoraFin);
 
@@ -333,7 +333,6 @@ public partial class FSR : Page
         cuerpo.Style.Add("display", "block");
         reportdiv.Style.Add("display", "block");
     }
-
 
     private DateTime traerFechaYHoraDeInicioDeFolio()
     { 

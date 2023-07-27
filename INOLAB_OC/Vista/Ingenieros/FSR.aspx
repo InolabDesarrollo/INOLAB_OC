@@ -409,6 +409,9 @@
                     <td>
                         <asp:Button runat="server" Text="Descargar Folio" BorderStyle="None" style="float:unset;" Visible="false" ID="btndescarga" OnClick="btndescarga_Click" color="b"/>
                     </td>
+                    <td>
+                        <asp:Button runat="server" Text="Reenviar Correo" BorderStyle="None" style="float:unset; background-color:teal"   Visible="false" ID="Btn_Reenviar_Correo" />
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>

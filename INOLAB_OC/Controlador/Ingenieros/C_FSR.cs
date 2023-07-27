@@ -88,7 +88,6 @@ namespace INOLAB_OC.Controlador
 
         }
 
-
         public  DateTime traerFechaYhoraDeFinDeFolio(string folio)
         {
             DateTime fechaYHoraFinServicio;
@@ -106,7 +105,6 @@ namespace INOLAB_OC.Controlador
                 fechaYHoraFinServicio = _fsrRepository.consultarFechaFinDeFolio(folio, _idUsuario, campoDondeSeConsulta);
                 return fechaYHoraFinServicio;
             }
-
         } 
 
         public  DataRow consultarInformacionFolioServicioPorFolioYUsuario( string usuario, string folio)
