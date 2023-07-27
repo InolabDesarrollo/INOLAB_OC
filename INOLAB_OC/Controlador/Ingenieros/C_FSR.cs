@@ -120,8 +120,6 @@ namespace INOLAB_OC.Controlador
            return _fsrRepository.consultarValorDeCampo(numeroDeFolioServicio, _idUsuario, campoQueSeConsulta);
         }
 
-
-
         public string consultarValorDeCampoPorFolio(string numeroDeFolioServicio, string campoQueSeConsulta)
         {
             return _fsrRepository.consultarValorDeCampo(numeroDeFolioServicio, campoQueSeConsulta);

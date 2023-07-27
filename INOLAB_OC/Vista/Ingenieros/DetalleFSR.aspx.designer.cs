@@ -634,6 +634,15 @@ public partial class DetalleFSR
     protected global::System.Web.UI.WebControls.Label funciona;
 
     /// <summary>
+    /// Control Funciona_Correctamente.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label Funciona_Correctamente;
+
+    /// <summary>
     /// Control CHECKED_ESTA_FUNCIONANDO.
     /// </summary>
     /// <remarks>

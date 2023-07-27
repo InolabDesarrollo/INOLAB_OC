@@ -48,6 +48,7 @@ public partial class DetalleFSR : Page
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
        cargarAccionesDelIngeniero();
        llenarInformacionDeRefaccionesActuales();
+       consularSiServicioFuncionaCorrectamente();
     }
 
     public void agregarEncabezadosDePanel()
@@ -65,7 +66,6 @@ public partial class DetalleFSR : Page
     }
     public void definirVisibilidadDeBotonesDependiendoEstatusFolio()
     {
-
         int estatusFolioDeServicio = controladorFSR.consultarEstatusDeFolioServicio(idFolioServicio);
         if (estatusFolioDeServicio == FINALIZADO)
         {
@@ -124,8 +124,7 @@ public partial class DetalleFSR : Page
     }
 
     protected void Agregar_nueva_actividad_al_reporte_Click(object sender, EventArgs e)
-    {
-       
+    {      
         lbl_fecha_nuevo_servicio.Text = "Fecha: ";
         if (Fecha_nueva_accion_realizada.Text.Equals(sinFechaAsignada))
         {
@@ -166,7 +165,6 @@ public partial class DetalleFSR : Page
         }
 
     }
-
     private bool insertarNuevaAccionRealizada(String fechaNuevaAccion, String horasDedicadasEnNuevaAccion, String nuevaAccionRealizada)
     {  
             E_FSRAccion entidadAccion = new E_FSRAccion();
@@ -197,7 +195,6 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
 
     protected void Buscar_observaciones_folio_servicio_Click(object sender, EventArgs e)
     {
@@ -233,8 +230,7 @@ public partial class DetalleFSR : Page
             if (fallaEncontrada != null)
             {
                 txtfallaencontrada.Text = fallaEncontrada;
-            }
-           
+            }          
         }
         catch (Exception ex)
         {
@@ -297,7 +293,7 @@ public partial class DetalleFSR : Page
             }
         }
     }
-   
+  
     protected void Actualizar_fallas_encontradas_Click(object sender, EventArgs e)
     {
         if (txtfallaencontrada.Text.Length > 0)
@@ -326,8 +322,13 @@ public partial class DetalleFSR : Page
     protected void Verificacion_de_estatus_esta_o_no_funcionando_CheckedChanged(object sender, EventArgs e)
     {
         controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, CHECKED_ESTA_FUNCIONANDO.Checked);
+        consularSiServicioFuncionaCorrectamente();
     }
 
+    private void consularSiServicioFuncionaCorrectamente()
+    {
+        Funciona_Correctamente.Text= controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "Funcionando");
+    }
    
     protected void Agregar_refaccion_a_base_de_datos_Click(object sender, EventArgs e)
     { 
@@ -378,7 +379,6 @@ public partial class DetalleFSR : Page
         }
     }
 
-
     protected bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
     {    
             E_Refaccion refaccion = new E_Refaccion();
@@ -391,7 +391,6 @@ public partial class DetalleFSR : Page
             return numeroDeFilasAfectadas == 1?  true : false;
     }
 
-
     protected void Mostrar_ventana_refacciones_Click(object sender, EventArgs e)
     {
         refacciones.Style.Add("display", "block");
@@ -399,7 +398,6 @@ public partial class DetalleFSR : Page
         contenone.Style.Add("filter", "blur(9px)");
         footerid.Style.Add("display", "none");
     }
-
 
     protected void Cerrar_Ventana_Refacciones_Click(object sender, ImageClickEventArgs e)
     {
@@ -412,12 +410,10 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Cerrar_ventana_nueva_refaccion_Click(object sender, ImageClickEventArgs e)
     {
         cerrarVentanaDeNuevaRefaccion();
     }
-
     private void cerrarVentanaDeNuevaRefaccion()
     {
         txtbox_numero_de_partes.Text = "";
@@ -433,13 +429,11 @@ public partial class DetalleFSR : Page
         refacciones.Style.Add("display", "none");
         SECCION_AGREGAR_REFACCION.Style.Add("display", "block");
     }
-
     protected void Agrendar_proximo_servicio_Click(object sender, EventArgs e)
     {
         //Guarda la fecha de proximo servicio que se haya insertado (Si se oprimio sin haber seleccionado una fecha antes aparecera como 1999-01-01)
         controladorFSR.actualizarValorDeCampoPorFolio(idFolioServicio, "Proximo_Servicio", datepicker1.Text);
     }
-
     public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
         //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
@@ -492,8 +486,6 @@ public partial class DetalleFSR : Page
         footerid.Style.Add("display", "flex");
         contenone.Style.Add("display", "block");
     }
-
-    //Enseñar a Carlos y Sandra borrarnobtn_Click
     protected void Cancelar_proceso_de_eliminar_accion_Click(object sender, EventArgs e)
     { 
         avisodel.Style.Add("display", "none");
@@ -501,7 +493,6 @@ public partial class DetalleFSR : Page
         footerid.Style.Add("display", "flex");
         contenone.Style.Add("display", "block");
     }
-
 
     protected void Verificar_si_se_envio_notificacion_a_usuario_CheckedChanged(object sender, EventArgs e)
     {

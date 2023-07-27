@@ -409,6 +409,7 @@
             </div>
             <div runat="server" id="Checked_verificar_funcionamiento" class="footerbtn">
                 <asp:Label runat="server" ID="funciona" Text="¿Funciona al 100%? "/>
+                <asp:Label runat="server" ID="Funciona_Correctamente" />
                 <label class="switch"style="color:azure">
                     <asp:CheckBox ID="CHECKED_ESTA_FUNCIONANDO" runat="server" OnCheckedChanged="Verificacion_de_estatus_esta_o_no_funcionando_CheckedChanged" AutoPostBack="true" />
                     <span class="slider round"></span>
