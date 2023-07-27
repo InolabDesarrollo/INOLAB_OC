@@ -69,28 +69,28 @@
         </section>
           
         <section class="contenido wrapper">
-            <div style="overflow-x:auto;width:100%; height:500px">
-            <asp:GridView ID="GridViewServicios_Finalizados" runat="server"  AutoGenerateColumns="False" Width="100%" Font-Size="9pt"  DataKeyNames="Folio" CellPadding="4"  ForeColor="#333333" GridLines="None" BorderStyle="Ridge" Font-Bold="False" CssClass="auto-style7" OnRowCommand="Servicios_Finalizados_OnRowComand">
+            <div id="DescargaFolio" >
+            <asp:GridView ID="GridViewServicios_Finalizados" runat="server"  AutoGenerateColumns="False" Width="97%" Font-Size="9pt"  DataKeyNames="Folio" CellPadding="2"  ForeColor="Black" GridLines="None" BorderStyle="Ridge" Font-Bold="False" CssClass="auto-style7" OnRowCommand="Servicios_Finalizados_OnRowComand" HorizontalAlign="Center" ViewStateMode="Enabled" >
             <AlternatingRowStyle BackColor="White" />
                 
             <Columns>
-                <asp:ButtonField HeaderText="Folio" DataTextField="Folio" SortExpression="Folio" Visible="true" ButtonType="Link" ItemStyle-Width="10%"  CommandName="Select">
-                    <ItemStyle  HorizontalAlign="Center"></ItemStyle></asp:ButtonField>
+                <asp:ButtonField HeaderText="Folio" DataTextField="Folio" SortExpression="Folio" Visible="true" ButtonType="Link" ItemStyle-Width="35%"  CommandName="Select">
+                <ItemStyle  HorizontalAlign="Center" Font-Size="X-Large" ></ItemStyle></asp:ButtonField>
 
                 <asp:BoundField DataField="Estatus"  HeaderText="Estatus" SortExpression="Estatus" ItemStyle-Width="10%">
                 <ItemStyle  HorizontalAlign="Center"></ItemStyle></asp:BoundField>
 
-                <asp:BoundField DataField="Cliente" HeaderText="Cliente" SortExpression="Cliente" Visible="True"  ItemStyle-Width="20%" >
+                <asp:BoundField DataField="Cliente" HeaderText="Cliente" SortExpression="Cliente" Visible="True"  ItemStyle-Width="15%" >
                 <ItemStyle HorizontalAlign="Center"  /></asp:BoundField>
 
-                <asp:BoundField DataField="TipoServicio"  HeaderText="Tipo de Servicio"  SortExpression="TipoServicio"  ItemStyle-Width="20%">
+                <asp:BoundField DataField="TipoServicio"  HeaderText="Tipo de Servicio"  SortExpression="TipoServicio"  ItemStyle-Width="15%">
                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" /></asp:BoundField>
 
                 <asp:BoundField DataField="FechaServicio" HeaderText="FechaServicio" SortExpression="FechaServicio" DataFormatString="{0:d}" ItemStyle-Width="10%">
                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemStyle  HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
 
-                <asp:BoundField DataField="Equipo"  HeaderText="Equipo" SortExpression="Equipo" ItemStyle-Width="20%">
+                <asp:BoundField DataField="Equipo"  HeaderText="Equipo" SortExpression="Equipo" ItemStyle-Width="15%">
                 <ItemStyle  HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
             </Columns>
 
