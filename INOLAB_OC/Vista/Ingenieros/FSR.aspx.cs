@@ -12,6 +12,9 @@ using DocumentFormat.OpenXml.Bibliography;
 using INOLAB_OC.Controlador;
 using INOLAB_OC.Entidades;
 using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Vista.Ingenieros;
+using System.Net.Mail;
+using INOLAB_OC.Vista;
 
 public partial class FSR : Page
 {
@@ -112,19 +115,25 @@ public partial class FSR : Page
 
     public void definirVisibilidadYTextoDeBotonesPrincipales()
     {
-        if (Estatus_de_folio_servicio.Text.Equals(FINALIZADO))
+        string status = Estatus_de_folio_servicio.Text;
+        if (status.Equals(FINALIZADO))
         {
             Btn_Estatus_Servicio.Text = "Guardar Cambios";
             Btn_actualizar_fechas.Visible = true;
             Btn_agregar_acciones.Visible = true;
             Btn_Reenviar_Correo.Visible = true;
         }
-        else
+        else if (status.Equals(PROCESO))
         {
+            Btn_Estatus_Servicio.Text = "Continuar Servicio";
             Btn_actualizar_fechas.Visible = false;
             Btn_agregar_acciones.Visible = false;
         }
-        if (idservicio.SelectedValue.ToString() == "4" || idservicio.SelectedValue.ToString() == "8" ||
+        else if(status == ASIGNADO)
+        {
+            Btn_Estatus_Servicio.Text = "Iniciar Servicio";
+        }
+        else if (idservicio.SelectedValue.ToString() == "4" || idservicio.SelectedValue.ToString() == "8" ||
             idservicio.SelectedValue.ToString() == "9")
         {
             //En ciertos tipos de servicio, no se podra hacer el cambio de su estado debido a que no deben de poder cambiarlo libremente los ingenieros
@@ -149,30 +158,34 @@ public partial class FSR : Page
     
     protected void Actualizar_Datos_Servicio_Click(object sender, EventArgs e)
     {
-          folioServicioFSR.Folio = int.Parse(Session["folio_p"].ToString());
-          folioServicioFSR.Marca = marcaHF.Value;
-          folioServicioFSR.Modelo  = modeloHF.Value;
-          folioServicioFSR.NoSerie = noserieHF.Value;
-          folioServicioFSR.DescripcionEquipo = descripcionHF.Value;
+        actualizarDatosDelFolioServicio();
+    }
+    private void actualizarDatosDelFolioServicio()
+    {
+        folioServicioFSR.Folio = int.Parse(Session["folio_p"].ToString());
+        folioServicioFSR.Marca = marcaHF.Value;
+        folioServicioFSR.Modelo = modeloHF.Value;
+        folioServicioFSR.NoSerie = noserieHF.Value;
+        folioServicioFSR.DescripcionEquipo = descripcionHF.Value;
 
-          folioServicioFSR.IdEquipo = idHF.Value;
-          folioServicioFSR.IdContrato =int.Parse(tcontratoHF.Value);
-          folioServicioFSR.IdProblema = int.Parse(tproblemaHF.Value);
-          folioServicioFSR.idServicio = int.Parse(tservicioHF.Value);
+        folioServicioFSR.IdEquipo = idHF.Value;
+        string folio = tcontratoHF.Value;
 
-          folioServicioFSR.Direccion = direccionHF.Value;
-          folioServicioFSR.Cliente = clienteHF.Value;
-          folioServicioFSR.Departamento = deptoHF.Value;
-          folioServicioFSR.Localidad = localidadHF.Value;
+        folioServicioFSR.IdContrato = int.Parse(tcontratoHF.Value);
+        folioServicioFSR.IdProblema = int.Parse(tproblemaHF.Value);
+        folioServicioFSR.idServicio = int.Parse(tservicioHF.Value);
 
-          folioServicioFSR.Telefono = TelefonoHF.Value;
-          folioServicioFSR.N_Responsable = responsableHF.Value;
-          folioServicioFSR.N_Reportado = reportadoHF.Value;
-          folioServicioFSR.Email  = emailHF.Value;
+        folioServicioFSR.Direccion = direccionHF.Value;
+        folioServicioFSR.Cliente = clienteHF.Value;
+        folioServicioFSR.Departamento = deptoHF.Value;
+        folioServicioFSR.Localidad = localidadHF.Value;
 
-          controladorFSR.actualizarDatosDeServicio(folioServicioFSR);
-          verificarEstatusDeFolio(Estatus_de_folio_servicio.Text);
-       
+        folioServicioFSR.Telefono = TelefonoHF.Value;
+        folioServicioFSR.N_Responsable = responsableHF.Value;
+        folioServicioFSR.N_Reportado = reportadoHF.Value;
+        folioServicioFSR.Email = emailHF.Value;
+        controladorFSR.actualizarDatosDeServicio(folioServicioFSR);
+        verificarEstatusDeFolio(Estatus_de_folio_servicio.Text);
     }
 
     private void verificarEstatusDeFolio(string estatusDeFolio)
@@ -351,6 +364,65 @@ public partial class FSR : Page
     protected void Actualizar_Acciones_Click(object sender, EventArgs e)
     {
         Response.Redirect("./DetalleFSR.aspx");
+    }
+
+    protected void Reenviar_Correo_Click(object sender, EventArgs e)
+    {
+        string folioFSR = Session["folio_p"].ToString();
+        string ubicacionArchivo = crearPDF(folioFSR);
+        enviarCorreoACliente(folioFSR, ubicacionArchivo);
+    }
+    private string crearPDF(string folioFSR)
+    {
+        DocumentoPDF pdf = new DocumentoPDF(folioFSR);
+        return pdf.crearReporteFinalFSR();
+    }
+    private void enviarCorreoACliente(string folioFSR,string ubicacionArchivo)
+    {
+        string asunto = "FSR folio " + folioFSR;
+        string correoElectronicoEmisor = "notificaciones@inolab.com";
+        string correosElectronicosReceptores =  txtemail.Text;
+        string contraseña = "Notificaciones2021*";
+        try
+        {
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress(correoElectronicoEmisor);
+            mensaje.Bcc.Add(correosElectronicosReceptores);
+            mensaje.Subject = asunto;
+            mensaje.Body = cuerpoDelCorreoElectronicoParaCliente(folioFSR,clienteHF.Value);
+            mensaje.IsBodyHtml = true;            
+            Attachment attach = new Attachment(ubicacionArchivo);
+            mensaje.Attachments.Add(attach);
+
+            CorreoElectronico correoElectronico = new CorreoElectronico(correoElectronicoEmisor, contraseña);
+            correoElectronico.enviar(mensaje);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
+
+    private string cuerpoDelCorreoElectronicoParaCliente(string folioDeServicio, string cliente)
+    {
+        string cuerpoDelCorreo = string.Empty;
+        using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/index2.html")))
+        {
+            cuerpoDelCorreo = reader.ReadToEnd();
+            reader.Dispose();
+        }
+
+        cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folioDeServicio);
+        cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
+        cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
+        return cuerpoDelCorreo;
+    }
+
+    protected static string convertirImagenAStringBase64(string imgPath)
+    {
+        byte[] imageBytes = System.IO.File.ReadAllBytes(imgPath);
+        string base64String = Convert.ToBase64String(imageBytes);
+        return base64String;
     }
 
     protected void Adjuntar_Archivos_Click(object sender, EventArgs e)

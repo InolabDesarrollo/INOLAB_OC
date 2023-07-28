@@ -1,12 +1,16 @@
-﻿using INOLAB_OC.Entidades;
+﻿using DocumentFormat.OpenXml.Office2013.Excel;
+using INOLAB_OC.Entidades;
 using INOLAB_OC.Modelo;
 using INOLAB_OC.Modelo.Browser;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using Microsoft.SqlServer.Server;
+using Microsoft.Reporting.WebForms;
 
 namespace INOLAB_OC.Controlador
 {
@@ -199,5 +203,6 @@ namespace INOLAB_OC.Controlador
         {
             return _fsrRepository.consultarMailDeFolioServicio(folioFSR);
         }
+
     }
 }

@@ -51,7 +51,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         
         btninformacion.Visible = false;
     }
-
    
     protected void Page_Init(object sender, EventArgs e)
     {
@@ -260,8 +259,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
 
         return reporteServicio;
     }
-
-   
+ 
     protected void Btn_Salir_Click(object sender, EventArgs e)
     {
         Session.Clear();

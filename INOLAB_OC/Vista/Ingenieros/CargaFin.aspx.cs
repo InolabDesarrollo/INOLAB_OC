@@ -80,8 +80,7 @@ namespace INOLAB_OC
         }
 
         [Serializable]
-        public sealed class MyReportServerCredentials :
-            IReportServerCredentials
+        public sealed class MyReportServerCredentials : IReportServerCredentials
         {//Inicializa el Reporteador
             public WindowsIdentity ImpersonationUser
             {
@@ -327,7 +326,7 @@ namespace INOLAB_OC
                 cuerpoDelCorreo = reader.ReadToEnd();
                 reader.Dispose();
             }
-
+            
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folioDeServicio);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
@@ -366,8 +365,7 @@ namespace INOLAB_OC
                 mensaje.Subject = asuntoDelCorreoElectronico;
 
                 Attachment folioQueSeEnviara = new Attachment(filepath);
-                mensaje.Attachments.Add(folioQueSeEnviara);
-            
+                mensaje.Attachments.Add(folioQueSeEnviara);        
                 CorreoElectronico correo = new CorreoElectronico("notificaciones@inolab.com", "Notificaciones2021*");
                 correo.enviar(mensaje);
             }

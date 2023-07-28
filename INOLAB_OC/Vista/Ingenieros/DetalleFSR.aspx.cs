@@ -260,7 +260,6 @@ public partial class DetalleFSR : Page
     {
         cerrarCompoFallasEncontradas();
     }
-
     private void cerrarCompoFallasEncontradas()
     {
         txtfallaencontrada.Text = "";
@@ -311,7 +310,6 @@ public partial class DetalleFSR : Page
 
     protected void Btn_Vista_Previa_Click(object sender, EventArgs e)
     {   
-        controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, CHECKED_ESTA_FUNCIONANDO.Checked);
         Response.Redirect("VistaPrevia.aspx");       
     }
 
