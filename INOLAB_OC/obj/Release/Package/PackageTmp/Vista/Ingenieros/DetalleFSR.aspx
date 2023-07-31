@@ -410,8 +410,13 @@
             <div runat="server" id="Checked_verificar_funcionamiento" class="footerbtn">
                 <asp:Label runat="server" ID="funciona" Text="¿Funciona al 100%? "/>
                 <label class="switch"style="color:azure">
-                    <asp:CheckBox ID="CHECKED_ESTA_FUNCIONANDO" runat="server" OnCheckedChanged="Verificacion_de_estatus_esta_o_no_funcionando_CheckedChanged" AutoPostBack="true" />
-                    <span class="slider round"></span>
+                    
+                     <asp:DropDownList ID="Funciona_Correctamente_lista" runat="server" Enabled="True" CssClass="Txt_Datos_Folio" OnSelectedIndexChanged="Verificacion_de_estatusCheckedChanged" AutoPostBack="true" Width="50px">
+                                            <asp:ListItem Value="1">Si</asp:ListItem>
+                                            <asp:ListItem Value="2">No</asp:ListItem>
+                                            <asp:ListItem Value="3">Seleccione</asp:ListItem>
+                    </asp:DropDownList>
+
                 </label>
             </div>
             <div runat="server" id="Btn_reportar_falla" class="footerbtn" >

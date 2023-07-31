@@ -166,31 +166,30 @@ header nav {
     z-index: 2;
 }
 
-#Btn_actualizar_fechas {
-    position: absolute;
-    bottom: 5%;
-}
-
-
 #Btn_Estatus_Servicio {
-    background-color: teal;
-    position: relative;
-    bottom: 5%;
+    background-color:darkcyan;
 }
 
+#Btn_actualizar_fechas {
+    position:relative;
+    right:35%;
+}
 
 #Btn_agregar_acciones {
-    position: absolute;
-    bottom: 5%;
+    position: relative;
+    right: 65%;
 }
+
+#Btn_Reenviar_Correo {
+    position: relative;
+    right: 175%;
+}
+
 
 #btndescarga {
     position: absolute;
-    bottom: 5%;
-    
+    bottom: 5%;   
 }
-
-
 
 .Txt_Datos_Folio{
     width:300px;

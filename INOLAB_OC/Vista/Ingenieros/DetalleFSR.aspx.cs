@@ -333,8 +333,7 @@ public partial class DetalleFSR : Page
         else
         {
             controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "NA");
-        }
-        
+        }       
     }
 
     private void consularSiServicioFuncionaCorrectamente()

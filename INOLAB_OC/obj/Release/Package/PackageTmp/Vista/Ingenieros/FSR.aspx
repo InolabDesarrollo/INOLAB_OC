@@ -399,7 +399,9 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
+                     <td>
+                       <asp:Button runat="server" Text="Realizar servicio" BorderStyle="None" style="float:unset;" ID="Btn_Estatus_Servicio" OnClientClick="SubirDatos();" OnClick="Actualizar_Datos_Servicio_Click"  />
+                     </td>
                     <td>
                         <asp:Button runat="server" Text="Actualizar Fechas" BorderStyle="None" style="float:unset; background-color:teal;" Visible="false" ID="Btn_actualizar_fechas" OnClick="Actualizar_fechaYhora_Servicio_Click" />
                     </td>
@@ -408,6 +410,9 @@
                     </td>
                     <td>
                         <asp:Button runat="server" Text="Descargar Folio" BorderStyle="None" style="float:unset;" Visible="false" ID="btndescarga" OnClick="btndescarga_Click" color="b"/>
+                    </td>
+                    <td>
+                        <asp:Button runat="server" Text="Reenviar Correo A Cliente" BorderStyle="None" style="float:unset; background-color:teal"   Visible="false" ID="Btn_Reenviar_Correo" OnClick="Reenviar_Correo_Click" />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -433,7 +438,6 @@
                                 <asp:HiddenField id="responsableHF" runat="server" />
                                 
                                 <div runat="server" id="Button1id" class="footerbtn" >
-                                    <asp:Button runat="server" Text="Realizar servicio" BorderStyle="None" style="float:unset;" ID="Btn_Estatus_Servicio" OnClientClick="SubirDatos();" OnClick="Actualizar_Datos_Servicio_Click"  />
                                     <asp:Button ID="btnadjuntar" runat="server" OnClick="Adjuntar_Archivos_Click" Text="Adjuntar Archivos" />
                                 </div>
                     </td>
