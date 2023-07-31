@@ -48,9 +48,19 @@ public partial class DetalleFSR : Page
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
        cargarAccionesDelIngeniero();
        llenarInformacionDeRefaccionesActuales();
-       consularSiServicioFuncionaCorrectamente();
+      
     }
 
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        idUsuario = Session["idUsuario"].ToString();
+        idFolioServicio = Session["folio_p"].ToString();
+
+        controladorFSR = new C_FSR(repositorio, idUsuario);
+        controladorFSRAccion = new C_FSR_Accion(repositorioFsrAccion);
+        consularSiServicioFuncionaCorrectamente();
+
+    }
     public void agregarEncabezadosDePanel()
     {
         if (Session["idUsuario"] == null)
@@ -312,16 +322,36 @@ public partial class DetalleFSR : Page
     {   
         Response.Redirect("VistaPrevia.aspx");       
     }
-
-    protected void Verificacion_de_estatus_esta_o_no_funcionando_CheckedChanged(object sender, EventArgs e)
+    protected void Verificacion_de_estatusCheckedChanged(object sender, EventArgs e)
     {
-        controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, CHECKED_ESTA_FUNCIONANDO.Checked);
-        consularSiServicioFuncionaCorrectamente();
+        if (Funciona_Correctamente_lista.SelectedValue.Equals("1")){
+            controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "Si");
+        }else if (Funciona_Correctamente_lista.SelectedValue.Equals("2"))
+        {
+            controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "No");
+        }
+        else
+        {
+            controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "NA");
+        }
+        
     }
 
     private void consularSiServicioFuncionaCorrectamente()
     {
-        Funciona_Correctamente.Text= controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "Funcionando");
+        var funciona = controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "Funcionando");
+        if(funciona.Equals("Si"))
+        {
+            Funciona_Correctamente_lista.SelectedValue = "1";
+        }
+        else if(funciona.Equals("No"))
+        {
+            Funciona_Correctamente_lista.SelectedValue = "2";
+        }
+        else
+        {
+            Funciona_Correctamente_lista.SelectedValue = "3";
+        }
     }
    
     protected void Agregar_refaccion_a_base_de_datos_Click(object sender, EventArgs e)

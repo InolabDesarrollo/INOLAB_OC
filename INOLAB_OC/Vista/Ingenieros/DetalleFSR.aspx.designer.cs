@@ -634,22 +634,13 @@ public partial class DetalleFSR
     protected global::System.Web.UI.WebControls.Label funciona;
 
     /// <summary>
-    /// Control Funciona_Correctamente.
+    /// Control Funciona_Correctamente_lista.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Funciona_Correctamente;
-
-    /// <summary>
-    /// Control CHECKED_ESTA_FUNCIONANDO.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.CheckBox CHECKED_ESTA_FUNCIONANDO;
+    protected global::System.Web.UI.WebControls.DropDownList Funciona_Correctamente_lista;
 
     /// <summary>
     /// Control Btn_reportar_falla.

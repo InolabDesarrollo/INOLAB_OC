@@ -170,17 +170,10 @@ namespace INOLAB_OC.Controlador
             _fsrRepository.actualizarValorDeCampo(numeroDeFolioServicio, campoQueActualizas, valorDelCampo, _idUsuario);
         }
 
-        public void verificarSiServicioFuncionaCorrectamente(string numeroDeFolioServicio, bool CHECKED_ESTA_FUNCIONANDO)
+        public void verificarSiServicioFuncionaCorrectamente(string numeroDeFolioServicio, string CHECKED_ESTA_FUNCIONANDO)
         {
-            string texto = "Si";
-            if (CHECKED_ESTA_FUNCIONANDO == true)
-            {
-                texto = "Si";
-            }
-            else
-            {
-                texto = "No";
-            }
+            string texto = CHECKED_ESTA_FUNCIONANDO;
+        
             _fsrRepository.actualizarValorDeCampo(numeroDeFolioServicio, "Funcionando", texto, _idUsuario);
         }
 
