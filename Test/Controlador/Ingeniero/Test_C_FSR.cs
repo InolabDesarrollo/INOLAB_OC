@@ -2,10 +2,12 @@
 using INOLAB_OC.Entidades;
 using INOLAB_OC.Modelo.Browser;
 using INOLAB_OC.Modelo.Browser.Interfaces;
+using INOLAB_OC.Vista.Ingenieros;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,6 +34,8 @@ namespace Test.Controlador.Ingeniero
             Assert.AreEqual(esperado, resultado);
 
         }
+
+     
 
         [TestMethod]
         public void verificarSiSeEnviaEmailAlAsesor_returnBool()

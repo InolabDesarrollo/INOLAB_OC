@@ -153,7 +153,7 @@ namespace INOLAB_OC
                 string path = crearPDF(Session["folio_p"].ToString());
                 notificarAlAsesorDeVentasDatosDeFolioServicio();
                 verificarElTipoDeContrato(path, correoElectronicoCliente);
-                envioDeCorreoElectronicoACliente(path);
+                envioDeCorreoElectronicoACliente(path, correoDeCliente);
                 Response.Redirect("ServiciosAsignados.aspx");
             }
             else
@@ -292,7 +292,7 @@ namespace INOLAB_OC
             return llamada;
         }
         
-        private void envioDeCorreoElectronicoACliente(string filepath)
+        private void envioDeCorreoElectronicoACliente(string filepath, string correoElectronicoCliente)
         {
             string folioDeServico = "FSR folio " + Session["folio_p"];
             string correoElectronicoEmisor = "notificaciones@inolab.com";
@@ -302,6 +302,7 @@ namespace INOLAB_OC
             {
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress(correoElectronicoEmisor);
+                mensaje.To.Add(correoElectronicoCliente);
                 mensaje.Bcc.Add(correosElectronicosReceptores);
                 mensaje.Subject = folioDeServico;
                 mensaje.Body = cuerpoDelCorreoElectronicoParaCliente(Session["folio_p"].ToString(), "cliente");
@@ -309,14 +310,14 @@ namespace INOLAB_OC
 
                 Attachment attach = new Attachment(filepath);
                 mensaje.Attachments.Add(attach);
-   
+
                 CorreoElectronico correoElectronico = new CorreoElectronico(correoElectronicoEmisor, contraseña);
                 correoElectronico.enviar(mensaje);
-            }
-            catch(Exception ex)
+            }catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-            }           
+            }
+                                       
         }
         private string cuerpoDelCorreoElectronicoParaCliente(string folioDeServicio, string cliente)
         {

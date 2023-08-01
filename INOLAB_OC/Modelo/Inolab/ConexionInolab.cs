@@ -22,7 +22,7 @@ namespace INOLAB_OC.Modelo
         
         private static void initDatabase()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "Inolab_Test";

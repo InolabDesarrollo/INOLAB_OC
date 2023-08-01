@@ -31,7 +31,7 @@ namespace INOLAB_OC.Modelo
 
         private Conexion()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
@@ -51,7 +51,7 @@ namespace INOLAB_OC.Modelo
 
         private static void iniciarBaseDeDatos()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
@@ -205,7 +205,7 @@ namespace INOLAB_OC.Modelo
 
             }catch (SqlException ex)
             {
-                Trace.WriteLine("PASS FAILED", ex.Message);
+                Trace.WriteLine("PASS FAILED getDataTable", ex.Message);
                 conexion.Close();
                 return null;
             }
@@ -227,7 +227,7 @@ namespace INOLAB_OC.Modelo
             catch (SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS: FAILED ( " + ex.Message + " )");
+                Trace.WriteLine("PASS: FAILED getDataRow ( " + ex.Message + " )");
                 return null;
             }
         }
@@ -325,7 +325,7 @@ namespace INOLAB_OC.Modelo
             catch(SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS FAILED"+ex.Message);
+                Trace.WriteLine("PASS FAILED insertarFirmaImagen " + ex.Message);
                 return -1;
             }
         }
@@ -353,7 +353,7 @@ namespace INOLAB_OC.Modelo
             catch (SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS FAILED" + ex.Message);
+                Trace.WriteLine("PASS FAILED insertarFirmaIngeniero" + ex.Message);
                 return -1;
             }
         }
