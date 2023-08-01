@@ -359,6 +359,7 @@ public partial class DetalleFSR : Page
         numeroDePartes = txtbox_numero_de_partes.Text;
         descripcionDeRefacion = txtbox_descripcion_refaccion.Text;
         cantidadDeRefacciones = txtbox_cantidad_refaccion.Text;
+        E_Refaccion refaccion = new E_Refaccion(idFolioServicio);
 
         if (numeroDePartes.Length > 0)
         {
@@ -366,7 +367,7 @@ public partial class DetalleFSR : Page
             {
                 if (cantidadDeRefacciones.Length > 0)
                 {
-                    if (insertarRefaccion(numeroDePartes, cantidadDeRefacciones, descripcionDeRefacion))
+                    if (refaccion.insertarRefaccion(numeroDePartes,cantidadDeRefacciones,descripcionDeRefacion))
                     {
                         agregarDatosDeRefacciones(numeroDePartes, cantidadDeRefacciones);
                         cerrarVentanaDeNuevaRefaccion();
@@ -400,18 +401,6 @@ public partial class DetalleFSR : Page
         {
             Response.Write("<script>alert('Error al agregar a la tabla de datos');</script>");
         }
-    }
-
-    protected bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
-    {    
-        E_Refaccion refaccion = new E_Refaccion();
-        refaccion.numRefaccion = numeroDePartes;
-        refaccion.cantidadRefaccion = cantidadDeRefacciones;
-        refaccion.descRefaccion = descripcionDeRefacion;
-        refaccion.idFSR = idFolioServicio;
-
-        int numeroDeFilasAfectadas = controladorRefaccion.agregarRefaccion(refaccion);
-        return numeroDeFilasAfectadas == 1?  true : false;
     }
 
     protected void Mostrar_ventana_refacciones_Click(object sender, EventArgs e)

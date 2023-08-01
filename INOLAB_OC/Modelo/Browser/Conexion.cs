@@ -31,7 +31,7 @@ namespace INOLAB_OC.Modelo
 
         private Conexion()
         {
-            if (databaseProduction)
+            if (databaseTest)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
@@ -51,7 +51,7 @@ namespace INOLAB_OC.Modelo
 
         private static void iniciarBaseDeDatos()
         {
-            if (databaseProduction)
+            if (databaseTest)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
