@@ -59,7 +59,6 @@ public partial class DetalleFSR : Page
         controladorFSR = new C_FSR(repositorio, idUsuario);
         controladorFSRAccion = new C_FSR_Accion(repositorioFsrAccion);
         consularSiServicioFuncionaCorrectamente();
-
     }
     public void agregarEncabezadosDePanel()
     {
@@ -100,14 +99,12 @@ public partial class DetalleFSR : Page
         GridView1.DataSource =  controladorFSRAccion.consultarDatosDeFSRAccion(idFolioServicio);
         GridView1.DataBind();
     }
-
     private void llenarInformacionDeRefaccionesActuales()
     {
         try
         {
             DataSet refacciones =  controladorRefaccion.consultarNumeroYCantidadDeRefaccion(idFolioServicio);           
             int numeroDeRefacciones = refacciones.Tables[0].Rows.Count;
-
             if (numeroDeRefacciones > 0)
             {
                 foreach (DataRow dataRow in refacciones.Tables[0].Rows)
@@ -130,7 +127,6 @@ public partial class DetalleFSR : Page
         contenone.Style.Add("filter", "blur(9px)");
         footerid.Style.Add("display", "none");
     }
-
     protected void Agregar_nueva_actividad_al_reporte_Click(object sender, EventArgs e)
     {      
         lbl_fecha_nuevo_servicio.Text = "Fecha: ";
@@ -251,7 +247,6 @@ public partial class DetalleFSR : Page
             footerid.Style.Add("display", "none");
         }
     }
-
     protected void Cerrar_campo_observaciones_Click(object sender, ImageClickEventArgs e)
     {
         cerrarCampoObservaciones();
@@ -278,7 +273,6 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Actualizar_observaciones_Click(object sender, EventArgs e)
     {
         if(txtobservaciones.Text.Length > 0) 
@@ -385,24 +379,16 @@ public partial class DetalleFSR : Page
 
     private void agregarDatosDeRefacciones(string numeroDePartes, string numeroDeRefacciones)
     {
+        E_Refaccion refaccion = new E_Refaccion(idFolioServicio);
         try
         {
-            TableRow row = new TableRow();
-            TableCell[] cell1 = new TableCell[2];
-            cell1[0] = new TableCell();
-            cell1[1] = new TableCell();
-            cell1[0].Text = numeroDePartes;
-            cell1[1].Text = numeroDeRefacciones + " pieza(s)";
-            row.Cells.AddRange(cell1);
-            row.Style.Add("HorizontalAlign", "Center");
-            Table1.Rows.Add(row);
+            Table1.Rows.Add(refaccion.crearFilaParaRefacciones(numeroDePartes, numeroDeRefacciones));
         }
-        catch(Exception e)
+        catch(Exception ex)
         {
             Response.Write("<script>alert('Error al agregar a la tabla de datos');</script>");
         }
     }
-
     protected void Mostrar_ventana_refacciones_Click(object sender, EventArgs e)
     {
         refacciones.Style.Add("display", "block");

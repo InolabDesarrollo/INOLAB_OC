@@ -200,12 +200,10 @@ public partial class VistaPrevia : Page
             if (idFirmaImagen != 0)
             {
                 controladorFSR.actualizarValorDeCampoPorFolio(Session["folio_p"].ToString(), "IdFirmaImg", Convert.ToString(idFirmaImagen));
-                
                 return true;
             }
             else
-            {
-               
+            {       
                 return false;
             }
         }
@@ -270,117 +268,10 @@ public partial class VistaPrevia : Page
         return firmaIngeniero;
     }
    
-    private void SendMail(string filepath, string mail)
-    {//Envía el correo electrónico con la información del FSR y adjunto el archivo
-        try
-        {
-            string to,bcc, from, subject;
-            Console.Write(mail);
-            to = "";
-            SqlDataReader sqlDataReader = Conexion.getSqlDataReader("select * from MailNotification;");
-           
-            if (sqlDataReader.HasRows)
-            {
-                List<String> mails = new List<string>();
-                while (sqlDataReader.Read())
-                {
-                    mails.Add(sqlDataReader.GetValue(2).ToString());
-                }
-                bcc = String.Join(", ", mails);
-            }
-            else
-            {
-                bcc = "notificaciones@inolab.com";
-            }
-            Conexion.cerrarConexion();
-            from = "notificaciones@inolab.com";
-            subject = "FSR folio " + Session["folio_p"];
-            MailMessage message = new MailMessage();
-            message.Bcc.Add(bcc);
-            message.From = new MailAddress(from);
-            message.Body = PopulateBody(Session["folio_p"].ToString(),"cliente");
-            message.IsBodyHtml = true;
-            message.Subject = subject;
-
-            Attachment attach = new Attachment(filepath);
-            message.Attachments.Add(attach);
-
-            SmtpClient client = new SmtpClient();
-            client.Port = 1025;
-            client.Host = "smtp.inolab.com";
-            client.EnableSsl = false;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("notificaciones@inolab.com", "Notificaciones2021*");
-            client.Send(message);
-            message.Dispose();
-            client.Dispose();
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-        }
-    }
-
-    private string CreatePDF(string fileName)
-    {
-        //Realiza la creación del PDF 
-        // Variables  
-        Warning[] warnings;
-        string[] streamIds;
-        string mimeType = string.Empty;
-        string encoding = string.Empty;
-        string extension = string.Empty;
-
-        //Setup the report viewer object and get the array of bytes 
-        byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-        // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.  
-        string filepath =  HttpRuntime.AppDomainAppPath + "Docs\\" + fileName + ".pdf";
-        if (File.Exists(filepath))
-        {
-            File.Delete(filepath);
-        }
-        using (FileStream fs = new FileStream(filepath, FileMode.Create))
-        {
-            fs.Write(bytes, 0, bytes.Length);
-            Console.Write(fs.Name);
-            fs.Dispose();
-        }
-        return filepath;
-    }
-
-    private string PopulateBody(string folio, string cliente)
-    {
-        //Realiza el replace en HTML para la creación del correo
-        string body = string.Empty;
-        
-        using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index2.html")))
-        {
-            body = reader.ReadToEnd();
-            reader.Dispose();
-        }
-        //Incrsion de datos para el HTML
-        body = body.Replace("{folio}", folio);
-        body = body.Replace("{cliente}", cliente);
-        body = body.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("./Imagenes/slogan.png")));
-       
-        return body;
-    }
-
-    protected static string convertirImagenAStringBase64(string imgPath)
-    {
-        byte[] imageBytes = File.ReadAllBytes(imgPath);
-        string base64String = Convert.ToBase64String(imageBytes);
-        return base64String;
-    }
-
     protected void firmaing_Click(object sender, EventArgs e)
     {
         Response.Redirect("FirmarFolio.aspx");
     }
-
-
 
     protected void Finalizar_folio_Click(object sender, EventArgs e)
     {
@@ -393,7 +284,6 @@ public partial class VistaPrevia : Page
             DateTime fechaYhoraFinDeFolio = getFechaYhoraDeFinDeFolio();
             DateTime fechaYhoraInicioServicio = getFechaYhoraInicioDeServicio();
             verificarQueFechaInicioDeFolioSeaMenorAfechaFinDeServicio(fechaYhoraInicioServicio, fechaYhoraFinDeFolio);
-
         }
     }
 
@@ -402,7 +292,6 @@ public partial class VistaPrevia : Page
         string fechaDeFolio = Convert.ToDateTime(datepicker.Text.ToString()).ToString("yyyy-MM-dd");
         int hora = Convert.ToInt32(horafinal.SelectedItem.ToString());
         int minuto = Convert.ToInt32(minfinal.SelectedItem.ToString());
-
         string fechaCompletaYhoraDeCierrDeFolio = fechaDeFolio + " " + hora.ToString() + ":" + minuto.ToString();  
         return  DateTime.Parse(fechaCompletaYhoraDeCierrDeFolio);
     }
@@ -442,6 +331,5 @@ public partial class VistaPrevia : Page
             Response.Redirect("CargaFin.aspx");
         }
     }
-
    
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace INOLAB_OC.Entidades
 {
@@ -40,6 +41,19 @@ namespace INOLAB_OC.Entidades
 
             int numeroDeFilasAfectadas = controladorRefaccion.agregarRefaccion(refaccion);
             return numeroDeFilasAfectadas == 1 ? true : false;
+        }
+
+        public TableRow crearFilaParaRefacciones(string numeroDePartes, string numeroDeRefacciones)
+        {
+            TableRow fila = new TableRow();
+            TableCell[] celda = new TableCell[2];
+            celda[0] = new TableCell();
+            celda[1] = new TableCell();
+            celda[0].Text = numeroDePartes;
+            celda[1].Text = numeroDeRefacciones + " pieza(s)";
+            fila.Cells.AddRange(celda);
+            fila.Style.Add("HorizontalAlign", "Center");
+            return fila;
         }
     }
 }

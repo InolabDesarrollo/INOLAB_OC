@@ -4,8 +4,220 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\Carlos Flores\Desktop\2023 public</_PublishTargetUrl>
-    <History>False|2023-07-17T18:29:35.1936950Z;False|2023-07-17T12:28:26.5852973-06:00;</History>
+    <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
+    <History>False|2023-08-02T19:54:10.2174269Z;False|2023-07-17T12:29:35.1936950-06:00;False|2023-07-17T12:28:26.5852973-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/DocumentFormat.OpenXml.dll">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.DataSet.dll">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.DataSet.pdb">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.dll">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.pdb">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/INOLAB_OC.dll">
+      <publishTime>08/02/2023 13:55:29</publishTime>
+    </File>
+    <File Include="bin/INOLAB_OC.pdb">
+      <publishTime>08/02/2023 13:55:29</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.Common.dll">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.DLL">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="bin/SpreadsheetLight.dll">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="BrowserDataSet.xsc">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="BrowserDataSet.xss">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/drop.css">
+      <publishTime>07/31/2023 11:41:45</publishTime>
+    </File>
+    <File Include="CSS/Encabezado.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCalendario.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoComun.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoConfirmacion.css">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_1.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_2.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_3.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDescargaFolio.css">
+      <publishTime>07/27/2023 10:38:44</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDetalleFSR.css">
+      <publishTime>07/31/2023 17:58:38</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFirmaFolio.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFSR.css">
+      <publishTime>07/31/2023 17:58:38</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInformacion.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoVistaPrevia.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EstiloVista.css">
+      <publishTime>07/31/2023 11:41:45</publishTime>
+    </File>
+    <File Include="CSS/EstiloVistaConfirmacion.css">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/main.css">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/Normalize.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/ServiciosAsignados.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/stilos.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/uploadify.css">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Docs/0.pdf">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Docs/Manual de Usuario SWF v3.pdf">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="FormatoFecha.js">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="HTML/index.html">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="HTML/index2.html">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="HTML/index_not_ase.html">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="HTML/index_not_fact.html">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Imagenes/closeimg.png">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Imagenes/LOGO_600x350.png">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Imagenes/LOGO_Blanco_.png">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Imagenes/LOGO_Blanco_Lineas.png">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Imagenes/slogan.png">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="images/cancel.png">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.3.2.min.js">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="scripts/jquery.uploadify.js">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="scripts/uploader.fla">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="scripts/uploader.swf">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Sesion.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="upload.html">
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Calendario.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Calendario_Areas.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/CalSel.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/CargaFin.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/DescargaFolio.aspx">
+      <publishTime>07/27/2023 10:37:09</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/DetalleFSR.aspx">
+      <publishTime>07/31/2023 17:58:39</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/FirmarFolio.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/FSR.aspx">
+      <publishTime>07/31/2023 17:58:39</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Informacion.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/ServiciosAsignados.aspx">
+      <publishTime>08/01/2023 17:21:29</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/VistaPrevia.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_1.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_2.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_3.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_4.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/02/2023 13:55:30</publishTime>
+    </File>
+  </ItemGroup>
 </Project>
