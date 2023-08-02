@@ -221,29 +221,25 @@ public partial class VistaPrevia : Page
     {
         int firmaCliente = 0;
         int firmaIngeniero = 0;
-
         firmaCliente = verificarSiSeAgregoFirmaDeCliente();
         firmaIngeniero = verificarSiSeAgregoFirmaDeIngeniero();
 
-        if (firmaCliente <= 0 || firmaIngeniero <= 0)
-        {
-            
+        if (firmaCliente <= 0 )
+        {    
             Response.Write("<script>alert('Falta firma de cliente');</script>");
-            Response.Write("<script>alert('Por favor, Agrega Firma);</script>");
-            Response.Redirect("VistaPrevia.aspx");
             
+        }else if (firmaIngeniero <= 0)
+        {
+            Response.Write("<script>alert('Falta firma de Ingeniero');</script>");
         }
         else
         {
-            //Agregar codigo de nueva ventana emergente donde se seleccionaran las fechas que iran al folio
             floatsection.Style.Add("display", "block");
             headerone.Style.Add("filter", "blur(9px)");
             sectionreport.Style.Add("display", "none");
             reportdiv.Style.Add("display", "none");
             footerid.Style.Add("display", "none");
         }
-
-
     }
 
     private int verificarSiSeAgregoFirmaDeCliente()
@@ -252,15 +248,10 @@ public partial class VistaPrevia : Page
         try
         {
             firmaCliente = Convert.ToInt32(controladorFSR.consultarValorDeCampoPorFolioyUsuario(Session["folio_p"].ToString(), "IdFirmaImg"));
-            if (firmaCliente == -1)
-            {
-                Response.Write("<script>alert('Falta firma de cliente');</script>");
-
-            }
         }
-        catch (Exception es)
+        catch (Exception ex)
         {
-            Response.Write("<script>alert('Falta firma de cliente');</script>");
+            Console.WriteLine(ex.Message);
         }
         return firmaCliente;
     }
@@ -271,16 +262,10 @@ public partial class VistaPrevia : Page
         try
         {
             firmaIngeniero = Convert.ToInt32(controladorFSR.consultarValorDeCampoPorFolioyUsuario(Session["folio_p"].ToString(), "IDFirmaIng"));
- 
-            if (firmaIngeniero == -1 )
-            {
-                Response.Write("<script>alert('Falta firma de Ingeniero');</script>");
-            }
         }
-        catch (Exception er)
+        catch (Exception ex)
         {
-            Response.Write("<script>alert('Falta firma de Ingeniero');</script>");
-            
+            Console.WriteLine(ex.Message);
         }
         return firmaIngeniero;
     }

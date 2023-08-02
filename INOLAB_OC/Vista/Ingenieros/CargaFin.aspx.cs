@@ -224,17 +224,17 @@ namespace INOLAB_OC
                 envioDeCorreoElectronicoAlAsesorDeVentas(correoElectronicoAsesorVentas);
             }
         }
-        private void envioDeCorreoElectronicoAlAsesorDeVentas(string mailDeAsesorDeVentas)
+        private void envioDeCorreoElectronicoAlAsesorDeVentas(string correoAsesorDeVentas)
         {
             string asunto = "Notificación de observaciones Folio: " + Session["folio_p"].ToString();
             try
             {
-                MailAddress correoElectronicoEmisor = new MailAddress("notificaciones@inolab.com");
-                MailAddress correoElectronicoReceptor = new MailAddress(mailDeAsesorDeVentas);
-                MailMessage mensaje = new MailMessage(correoElectronicoEmisor, correoElectronicoReceptor);
+                MailAddress correoEmisor = new MailAddress("notificaciones@inolab.com");
+                MailAddress correoReceptor = new MailAddress(correoAsesorDeVentas);
+                MailMessage mensaje = new MailMessage(correoEmisor, correoReceptor);
 
                 mensaje.Bcc.Add("luisrosales@inolab.com, omarflores@inolab.com, carlosflores@inolab.com");
-                mensaje.Body = cuerpoDelCorreoElectronicoParaVentas(Session["folio_p"].ToString());
+                mensaje.Body = cuerpoDelCorreoParaVentas(Session["folio_p"].ToString());
                 mensaje.IsBodyHtml = true;
                 mensaje.Subject = asunto;
 
@@ -246,7 +246,7 @@ namespace INOLAB_OC
                 Console.WriteLine(ex.ToString());
             }              
         }
-        private string cuerpoDelCorreoElectronicoParaVentas(string folio) 
+        private string cuerpoDelCorreoParaVentas(string folio) 
         {
             string cuerpoDelCorreo = string.Empty;
             string folioFSR = Session["folio_p"].ToString();
@@ -294,7 +294,7 @@ namespace INOLAB_OC
         
         private void envioDeCorreoElectronicoACliente(string filepath, string correoCliente)
         {
-            string folioDeServico = "FSR folio " + Session["folio_p"];
+            string folioDeServico = "Cierre de servicio FSR " + Session["folio_p"];
             string correoEmisor = "notificaciones@inolab.com";
             string correosReceptores = controladorMailNotification.consultarTodosLosCorreoReceptores();
             string contraseña = "Notificaciones2021*";
@@ -310,7 +310,6 @@ namespace INOLAB_OC
 
                 Attachment attach = new Attachment(filepath);
                 mensaje.Attachments.Add(attach);
-
                 CorreoElectronico correoElectronico = new CorreoElectronico(correoEmisor, contraseña);
                 correoElectronico.enviar(mensaje);
             }catch (Exception ex)

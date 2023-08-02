@@ -17,15 +17,15 @@ namespace Test.Controlador.Ingeniero
         {
             //Array
             string correoElectronicoEmisor = "notificaciones@inolab.com";
-            string correoCliente = "asistente.auditorias@litopolis.com";
-            string correosCopia = "omarflores@inolab.com,coordinacion-servicio@inolab.com,omar.andreas.sotomayor@gmail.com";
+            string correoCliente = "coordinacion-servicio@inolab.com";
+            string correosCopia = "omarflores@inolab.com,omar.andreas.sotomayor@gmail.com";
             string contraseña = "Notificaciones2021*";
 
             MailMessage mensaje = new MailMessage();
             mensaje.From = new MailAddress(correoElectronicoEmisor);
             mensaje.To.Add(correoCliente);
             mensaje.Bcc.Add(correosCopia);
-            mensaje.Subject = "Prueba Unitaria";
+            mensaje.Subject = "Prueba Unitaria 3";
             mensaje.Body = "test";
             mensaje.IsBodyHtml = false;
 

@@ -75,8 +75,9 @@
                     
                     
                             <asp:Button ID="btndescargafolio" runat="server" Text="Descargar Folio" class="dropbtn" UseSubmitBehavior="False" OnClick="Btn_Descarga_Folio_De_Servicio_Finalizado_Click" />
-                   
-                    
+
+                            <asp:Button ID="Btn_Buscar_Folio" runat="server" Text="Buscar Folio" class="dropbtn" UseSubmitBehavior="False" />
+                               
                             <asp:Button ID="Button1" runat="server" Text="Salir" class="dropbtn"  UseSubmitBehavior="False" OnClick="Btn_Salir_Click" />
                     
 
