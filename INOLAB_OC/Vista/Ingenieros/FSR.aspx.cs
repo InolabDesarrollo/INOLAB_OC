@@ -380,13 +380,13 @@ public partial class FSR : Page
     {
         string asunto = "FSR folio " + folioFSR;
         string correoElectronicoEmisor = "notificaciones@inolab.com";
-        string correosElectronicosReceptores =  txtemail.Text;
+        string correoCliente =  txtemail.Text;
         string contraseña = "Notificaciones2021*";
         try
         {
             MailMessage mensaje = new MailMessage();
             mensaje.From = new MailAddress(correoElectronicoEmisor);
-            mensaje.Bcc.Add(correosElectronicosReceptores);
+            mensaje.To.Add(correoCliente);
             mensaje.Subject = asunto;
             mensaje.Body = cuerpoDelCorreoElectronicoParaCliente(folioFSR,clienteHF.Value);
             mensaje.IsBodyHtml = true;            

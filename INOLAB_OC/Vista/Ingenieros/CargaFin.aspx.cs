@@ -292,18 +292,18 @@ namespace INOLAB_OC
             return llamada;
         }
         
-        private void envioDeCorreoElectronicoACliente(string filepath, string correoElectronicoCliente)
+        private void envioDeCorreoElectronicoACliente(string filepath, string correoCliente)
         {
             string folioDeServico = "FSR folio " + Session["folio_p"];
-            string correoElectronicoEmisor = "notificaciones@inolab.com";
-            string correosElectronicosReceptores = controladorMailNotification.consultarTodosLosCorreoReceptores();
+            string correoEmisor = "notificaciones@inolab.com";
+            string correosReceptores = controladorMailNotification.consultarTodosLosCorreoReceptores();
             string contraseña = "Notificaciones2021*";
             try
             {
                 MailMessage mensaje = new MailMessage();
-                mensaje.From = new MailAddress(correoElectronicoEmisor);
-                mensaje.To.Add(correoElectronicoCliente);
-                mensaje.Bcc.Add(correosElectronicosReceptores);
+                mensaje.From = new MailAddress(correoEmisor);
+                mensaje.To.Add(correoCliente);
+                mensaje.Bcc.Add(correosReceptores);
                 mensaje.Subject = folioDeServico;
                 mensaje.Body = cuerpoDelCorreoElectronicoParaCliente(Session["folio_p"].ToString(), "cliente");
                 mensaje.IsBodyHtml = true;
@@ -311,7 +311,7 @@ namespace INOLAB_OC
                 Attachment attach = new Attachment(filepath);
                 mensaje.Attachments.Add(attach);
 
-                CorreoElectronico correoElectronico = new CorreoElectronico(correoElectronicoEmisor, contraseña);
+                CorreoElectronico correoElectronico = new CorreoElectronico(correoEmisor, contraseña);
                 correoElectronico.enviar(mensaje);
             }catch (Exception ex)
             {
@@ -373,8 +373,7 @@ namespace INOLAB_OC
             catch(Exception ex) 
             {
                 Console.WriteLine(ex.ToString());
-            }              
-           
+            }                       
         }
         private string cuerpoDelCorreoElectronicoParaFacturacion(string folio)
         {
