@@ -67,7 +67,6 @@ public partial class DetalleFSR : Page
         {
             titulo.Text = "Detalle de FSR N°. " + idFolioServicio;
             lbluser.Text = Session["nameUsuario"].ToString();
-
         }
     }
     public void definirVisibilidadDeBotonesDependiendoEstatusFolio()
@@ -165,7 +164,6 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Buscar_observaciones_folio_servicio_Click(object sender, EventArgs e)
     {
         try
@@ -225,7 +223,6 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Cerrar_campo_fallas_encontradas_Click(object sender, ImageClickEventArgs e)
     {
         cerrarCompoFallasEncontradas();

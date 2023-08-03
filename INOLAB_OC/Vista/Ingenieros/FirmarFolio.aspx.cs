@@ -291,7 +291,6 @@ namespace INOLAB_OC
         private string crearCuerpoDelCorreoElectronico(string folio, string cliente)
         {
             string cuerpoDelCorreo = string.Empty;
-
             using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index2.html")))
             {
                 cuerpoDelCorreo = reader.ReadToEnd();

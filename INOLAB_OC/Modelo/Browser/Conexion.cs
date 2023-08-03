@@ -357,7 +357,6 @@ namespace INOLAB_OC.Modelo
             }
         }
 
-
         public static SqlDataReader getSqlDataReader(string query)
          {
             iniciarBaseDeDatos();
@@ -372,15 +371,15 @@ namespace INOLAB_OC.Modelo
             catch(SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS FAILED getSqlDataReader()");
+                Trace.WriteLine("PASS FAILED getSqlDataReader() "+ex.Message.ToString());
                 return null;
             }
          }
  
        public static void cerrarConexion()
-        {
-            conexion.Close();
-        }  
+       {
+           conexion.Close();
+       }  
 
       public static void updateHorasDeServicio(object folio, object idUsuario)
       {

@@ -48,7 +48,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
                 Btn_Calendario.Visible = false;
             }
         }
-        Btn_Buscar_Folio.Visible=false;
+        Btn_Buscar_Folio.Visible=true;
         btninformacion.Visible = false;
     }
    
@@ -134,7 +134,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
     protected void Gridview_datos_de_servicio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
         //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
-       
         try
         {
             int index = int.Parse(e.CommandArgument.ToString());
@@ -150,7 +149,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
                 Session["folio_p"] = numeroDeFolioDeServicio;
                 Session["not_ase"] = "";
                
-
                 if (estatusDelServicio.Equals("Asignado"))
                 {
                     verificarSiServicioTieneFechaActual(entidad_VistaFsr);
@@ -219,15 +217,13 @@ public partial class ServiciosAsignados : System.Web.UI.Page
 
         documentoReporteServicio.ImportDataTable(1, 1, reporteServicio, true);
         string rutaReporteServicio = HttpRuntime.AppDomainAppPath + "Docs\\" + Session["folio_p"].ToString() + ".xlsx";
-
         documentoReporteServicio.SaveAs(rutaReporteServicio);
     }
 
     private System.Data.DataTable generarReporteServiciosModoOffLine()
     {
         System.Data.DataTable reporteServicio = new System.Data.DataTable();
-        reporteServicio = controlador_Vista_ServiciosAsignados.definirColumnasParaReporteServicio();
-   
+        reporteServicio = controlador_Vista_ServiciosAsignados.definirColumnasParaReporteServicio(); 
         List<string> valoresParaReporteServicio = new List<string>();
         DataRow informacionServicios = controlador_Vista_ServiciosAsignados.consultarInformacionDeFolioServicio(Session["folio_p"].ToString());
 
@@ -238,12 +234,10 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             if (valorColumna.Equals("F_SolicitudServicio"))
             {
                 valoresParaReporteServicio.Insert(i, Convert.ToDateTime(informacionServicios[valorColumna].ToString()).ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
             }
             else if (valorColumna.Equals("FechaServicio"))
             {
                 valoresParaReporteServicio.Insert(i, Convert.ToDateTime(informacionServicios[valorColumna].ToString()).ToString("yyyy-MM-dd"));
-
             }
             else if (i == 28 || i == 29 || i == 40 || i == 66)
             {
@@ -254,9 +248,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
                 valoresParaReporteServicio.Insert(i, informacionServicios[valorColumna].ToString());
                 reporteServicio.Rows.Add(valoresParaReporteServicio[i]);
             }
-
         }
-
         return reporteServicio;
     }
  
@@ -293,7 +285,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
 
     protected void recrearPDFParaFolioDeServicioFinalizado(string folio)
     {
-
         ServerReport serverReport = ReportViewer1.ServerReport;
         serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
         serverReport.ReportPath = "/OC/FSR Servicio";
@@ -301,7 +292,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         ReportParameter salesOrderNumber = new ReportParameter();
         salesOrderNumber.Name = "folio";
         salesOrderNumber.Values.Add(folio);
-
 
         ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
         ReportViewer1.ShowParameterPrompts = false;
@@ -330,7 +320,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         Response.Flush(); // send it to the client to download  
     }
 
-    
     protected void Tipo_De_Estatus_De_Servicio_SelectedIndexChanged(object sender, EventArgs e)
     {
         entidad_VistaFsr.Estatus= Estatus_de_servicio.Text;
@@ -344,7 +333,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         }
     }
    
-
     public void consultarFoliosDeServicioPorEstatus(E_V_FSR entidadServicio, string idUsuario)
     {
         Gridview_datos_de_servicio.DataSource = controlador_Vista_ServiciosAsignados.consultarFolioServicioPorEstatus(entidadServicio, idUsuario);

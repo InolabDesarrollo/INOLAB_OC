@@ -57,7 +57,7 @@
 
         <section class="contenido3" id="sectionreport" runat="server" style="display:none;">
             <div id="reportdiv" runat="server" class="reportclass">
-                <asp:ScriptManager runat="server"></asp:ScriptManager>        
+                <asp:ScriptManager runat="server"></asp:ScriptManager>  
                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" ProcessingMode="Remote" Width="100%"></rsweb:ReportViewer>
             </div>
         </section>

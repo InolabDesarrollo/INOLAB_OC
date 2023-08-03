@@ -12,6 +12,10 @@ namespace INOLAB_OC.Vista
 {
     public class Reporteador
     {
+        public string nombre;
+        public string ruta;
+        public string folioServicio;
+
         ReportViewer reportViewer = new ReportViewer();
         public Reporteador()
         {
@@ -84,6 +88,24 @@ namespace INOLAB_OC.Vista
             ReportParameter reportParameters = new ReportParameter();
             reportParameters.Name = "folio";
             reportParameters.Values.Add(folioFSR);
+
+            reportViewer.ServerReport.SetParameters(new ReportParameter[] { reportParameters });
+            reportViewer.ShowParameterPrompts = false;
+            return reportViewer;
+        }
+
+        public ReportViewer crearReporteador()
+        {
+            reportViewer.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
+            reportViewer.ProcessingMode = ProcessingMode.Remote;
+            ServerReport serverReport = reportViewer.ServerReport;
+
+            serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
+            serverReport.ReportPath = ruta;
+
+            ReportParameter reportParameters = new ReportParameter();
+            reportParameters.Name = nombre;
+            reportParameters.Values.Add(folioServicio);
 
             reportViewer.ServerReport.SetParameters(new ReportParameter[] { reportParameters });
             reportViewer.ShowParameterPrompts = false;
