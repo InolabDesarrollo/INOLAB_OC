@@ -32,11 +32,9 @@ namespace INOLAB_OC
             }
             cargarDatosDeFoliosConEstatusFinalizado();
         }
-       
-       
+              
         protected void Page_Init(object sender, EventArgs e)
-        {
-            
+        {           
             if (!Page.IsPostBack)
             {       
                 ReportViewer1.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
@@ -57,7 +55,7 @@ namespace INOLAB_OC
         [Serializable]
         public sealed class MyReportServerCredentials :
             IReportServerCredentials
-        {//Inicializa el reporteador con las credenciales almacenadas en la configuración
+        {
             public WindowsIdentity ImpersonationUser
             {
                 get
@@ -129,7 +127,6 @@ namespace INOLAB_OC
                     estatusFolio = fila.Cells[1].Text; 
                 }
                 Session["folio_p"] = folio;
-
                 if (estatusFolio.Equals("Finalizado"))
                 {
                     recrearReporteDeServicioFinalizado(Session["folio_p"].ToString());

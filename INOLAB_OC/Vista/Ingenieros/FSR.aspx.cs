@@ -75,42 +75,40 @@ public partial class FSR : Page
     
     public void consultaDatosFolioServicio()
     {
-           DataRow informacionServicio =controladorFSR.consultarInformacionFolioServicioPorFolioYUsuario( Session["idUsuario"].ToString(),Session["folio_p"].ToString());
+        DataRow informacionServicio =controladorFSR.consultarInformacionFolioServicioPorFolioYUsuario( Session["idUsuario"].ToString(),Session["folio_p"].ToString());
 
-        //Inserta los datos de la vista coorepondientemente al campo que se le es asignado dentro del .aspx
-            txtfolio.Text= informacionServicio["Cliente"].ToString();
-            txttelfax.Text= informacionServicio["Telefono"].ToString();
-            txtdireccion.Text= informacionServicio["Direccion"].ToString();
-            txtlocalidad.Text= informacionServicio["Localidad"].ToString();
-            txtdepto.Text= informacionServicio["Departamento"].ToString();
-            txtnresponsable.Text= informacionServicio["N_Responsable"].ToString();
-            txtreportadopor.Text= informacionServicio["N_Reportado"].ToString();
-            txtemail.Text = informacionServicio["Mail"].ToString();
-            txtdescripcion.Text= informacionServicio["Equipo"].ToString();
-            txtmarca.Text= informacionServicio["Marca"].ToString();
-            txtmodelo.Text= informacionServicio["Modelo"].ToString();
-            txtnoserie.Text= informacionServicio["NoSerie"].ToString();
-            txtid.Text= informacionServicio["IdEquipo_C"].ToString();
+        txtfolio.Text= informacionServicio["Cliente"].ToString();
+        txttelfax.Text= informacionServicio["Telefono"].ToString();
+        txtdireccion.Text= informacionServicio["Direccion"].ToString();
+        txtlocalidad.Text= informacionServicio["Localidad"].ToString();
+        txtdepto.Text= informacionServicio["Departamento"].ToString();
+        txtnresponsable.Text= informacionServicio["N_Responsable"].ToString();
+        txtreportadopor.Text= informacionServicio["N_Reportado"].ToString();
+        txtemail.Text = informacionServicio["Mail"].ToString();
+        txtdescripcion.Text= informacionServicio["Equipo"].ToString();
+        txtmarca.Text= informacionServicio["Marca"].ToString();
+        txtmodelo.Text= informacionServicio["Modelo"].ToString();
+        txtnoserie.Text= informacionServicio["NoSerie"].ToString();
+        txtid.Text= informacionServicio["IdEquipo_C"].ToString();
             
-            idservicio.SelectedValue = informacionServicio["idservicio"].ToString();
-            idcontrato.SelectedValue = informacionServicio["idcontrato"].ToString();
-            idproblema.SelectedValue = informacionServicio["idproblema"].ToString();
+        idservicio.SelectedValue = informacionServicio["idservicio"].ToString();
+        idcontrato.SelectedValue = informacionServicio["idcontrato"].ToString();
+        idproblema.SelectedValue = informacionServicio["idproblema"].ToString();
 
-            datepicker.Text = informacionServicio["FechaServicio"].ToString();
-            DropDownList7.SelectedValue = informacionServicio["HoraServicio"].ToString();
-            string test = informacionServicio["IdIngeniero"].ToString();
+        datepicker.Text = informacionServicio["FechaServicio"].ToString();
+        DropDownList7.SelectedValue = informacionServicio["HoraServicio"].ToString();
+        string test = informacionServicio["IdIngeniero"].ToString();
 
-            try{
+        try{
             cmding.Text = test;
-
-            }
-            catch(Exception ex) { 
+           }
+        catch(Exception ex) { 
             Console.WriteLine(ex.Message);
-            }
-            DropDownList8.Text = informacionServicio["Estatusid"].ToString();
-            Estatus_de_folio_servicio.Text= informacionServicio["Estatusid"].ToString();
+        }
+        DropDownList8.Text = informacionServicio["Estatusid"].ToString();
+        Estatus_de_folio_servicio.Text= informacionServicio["Estatusid"].ToString();
 
-            Btn_Estatus_Servicio.Text = controladorFSR.verificarSiIniciaOContinuaServicio(Session["folio_p"].ToString());
+        Btn_Estatus_Servicio.Text = controladorFSR.verificarSiIniciaOContinuaServicio(Session["folio_p"].ToString());
     }
 
     public void definirVisibilidadYTextoDeBotonesPrincipales()
@@ -193,7 +191,6 @@ public partial class FSR : Page
         switch (estatusDeFolio)
         {
             case ASIGNADO:
-                //Se abre ventana emergente para colocar 
                 floatsection.Style.Add("display", "block");
                 headerone.Style.Add("filter", "blur(9px)");
                 cuerpo.Style.Add("display", "none");
@@ -201,7 +198,6 @@ public partial class FSR : Page
                 break;
 
             case PROCESO:
-                //Si esta en proceso puede ir a ver la parte de acciones realizadas (modificada)
                 recreatePdfParaServicioFinalizado(Session["folio_p"].ToString());
                 Response.Redirect("./DetalleFSR.aspx");
                 break;
@@ -209,58 +205,44 @@ public partial class FSR : Page
                 recreatePdfParaServicioFinalizado(Session["folio_p"].ToString());
                 Response.Redirect("./FSR.aspx");
                 break;
-
         }       
-    }
-    protected void btndescarga_Click(object sender, EventArgs e)
-    {
-        //recreatePDF(Session["folio_p"].ToString());
     }
 
     protected void recreatePdfParaServicioFinalizado(string folio)
     {
-
         ServerReport serverReport = ReportViewer1.ServerReport;
-        // Set the report server URL and report path
         serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
         serverReport.ReportPath = "/OC/FSR Servicio";
 
-        // Create the sales order number report parameter
         ReportParameter salesOrderNumber = new ReportParameter();
         salesOrderNumber.Name = "folio";
         salesOrderNumber.Values.Add(folio);
 
-        // Set the report parameters for the report
         ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
         ReportViewer1.ShowParameterPrompts = false;
 
         string month = DateTime.Now.Month.ToString();
         string year = DateTime.Now.Year.ToString();
         string nombre = "Folio:" + folio + "_" + year + ".pdf";
-
         crearReportePdf(nombre);
     }
 
     private void crearReportePdf(string nombre)
-    {
-     // Variables  
+    { 
         Warning[] warnings;
         string[] streamIds;
         string mimeType = string.Empty;
         string encoding = string.Empty;
         string extension = string.Empty;
 
-        //Setup the report viewer object and get the array of bytes
         byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
 
         if (Estatus_de_folio_servicio.Text.Equals(FINALIZADO))
         {
             string nombre_archivo = Session["folio_p"].ToString();
-            string fecha_archivo = DateTime.Now.ToString("dd-MM-yyyy HH_mm");
+            string fechaDeActualizacion = DateTime.Now.ToString("dd-MM-yyyy HH_mm");
 
-            //El nombre del archivo al ser una actualizacion, llevara la fecha y hora a al que se subio la actualizacion
-            string filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + nombre_archivo + " " + fecha_archivo + ".pdf";
-
+            string filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + nombre_archivo + " " + fechaDeActualizacion + ".pdf";
             using (FileStream fs = new FileStream(filepath, FileMode.Create))
             {
                 fs.Write(bytes, 0, bytes.Length);
@@ -281,8 +263,7 @@ public partial class FSR : Page
             DateTime fechaYhoraDeInicioDeServicio = generarFechaYHoraDeInicioDeServicio();
             //Pendiente funcionalidad para verificar si la fecha Inicio de servicio es despues de la fecha de inicio real
             controladorFSR.iniciarFolioServicio(fechaYhoraDeInicioDeServicio, 
-                Session["folio_p"].ToString());
-            
+                Session["folio_p"].ToString());            
             actualizarFolioActividadSap();
         }
     }
@@ -326,8 +307,7 @@ public partial class FSR : Page
     }
 
     protected void Finalizar_Click(object sender, EventArgs e)
-    {
-    
+    {   
         string fechaYhoraInicio = datepicker2.Text.ToString() + " " + Hora_inicio_folio.SelectedValue.ToString() + ":" + Minuto_inicio_folio.SelectedValue.ToString();
         DateTime fechaYhoraInicioFolioServicio = DateTime.Parse(fechaYhoraInicio);
         string fechaYhoraFin = datepicker3.Text.ToString() + " " + Hora_fin_folio.SelectedValue.ToString() + ":" + Minuto_fin_folio.SelectedValue.ToString();
@@ -410,7 +390,6 @@ public partial class FSR : Page
             cuerpoDelCorreo = reader.ReadToEnd();
             reader.Dispose();
         }
-
         cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folioDeServicio);
         cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
         cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
