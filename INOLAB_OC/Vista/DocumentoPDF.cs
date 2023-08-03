@@ -40,6 +40,22 @@ namespace INOLAB_OC.Vista
             return filepath; 
         }
 
+        public string crearReporteFinalFSR(ReportViewer reporteador)
+        {
+            bytes = reporteador.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+            filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + folioFSR + ".pdf";
+            if (File.Exists(filepath))
+            {
+                File.Delete(filepath);
+            }
+            using (FileStream fileStream = new FileStream(filepath, FileMode.Create))
+            {
+                fileStream.Write(bytes, 0, bytes.Length);
+                fileStream.Dispose();
+            }
+            return filepath;
+        }
+
 
     }
 }

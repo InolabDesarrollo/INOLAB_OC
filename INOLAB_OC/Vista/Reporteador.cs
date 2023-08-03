@@ -87,7 +87,6 @@ namespace INOLAB_OC.Vista
 
             reportViewer.ServerReport.SetParameters(new ReportParameter[] { reportParameters });
             reportViewer.ShowParameterPrompts = false;
-
             return reportViewer;
         }
 

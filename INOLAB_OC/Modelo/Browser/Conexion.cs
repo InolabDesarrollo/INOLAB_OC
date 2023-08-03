@@ -31,7 +31,7 @@ namespace INOLAB_OC.Modelo
 
         private Conexion()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
@@ -51,7 +51,7 @@ namespace INOLAB_OC.Modelo
 
         private static void iniciarBaseDeDatos()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
@@ -76,7 +76,6 @@ namespace INOLAB_OC.Modelo
             conexion = new SqlConnection(conexionString);
             return conexion;
         }
-
 
 
         public static bool executeQuery(string query)

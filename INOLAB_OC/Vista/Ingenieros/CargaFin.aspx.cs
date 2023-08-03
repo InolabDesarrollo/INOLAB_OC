@@ -20,6 +20,7 @@ using INOLAB_OC.Modelo.Inolab;
 using INOLAB_OC.Controlador.Ingenieros;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using INOLAB_OC.Vista.Ingenieros;
+using INOLAB_OC.Vista;
 
 namespace INOLAB_OC
 {
@@ -58,7 +59,6 @@ namespace INOLAB_OC
             }
         }
       
-        int cargai =0;
         protected void Page_Init(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -192,28 +192,8 @@ namespace INOLAB_OC
 
         private string crearPDF(string fileName)
         {
-            Warning[] warnings;
-            string[] streamIds;
-            string mimeType = string.Empty;
-            string encoding = string.Empty;
-            string extension = string.Empty;
-            byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-            // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.  
-            string filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + fileName + ".pdf";
-            //Si existe este documento en el apartado de Docs, lo sustituye con el nuevo que se esta subiendo
-            if (File.Exists(filepath))
-            {
-                File.Delete(filepath);
-            }
-            //Se crea el PDF del folio para guardarlo en esa localizacion
-            using (FileStream fs = new FileStream(filepath, FileMode.Create))
-            {
-                fs.Write(bytes, 0, bytes.Length);
-                Console.Write(fs.Name);
-                fs.Dispose();
-            }
-            return filepath;
+            DocumentoPDF pdf = new DocumentoPDF(fileName);
+            return pdf.crearReporteFinalFSR(ReportViewer1);
         }
 
         private void notificarAlAsesorDeVentasDatosDeFolioServicio()
@@ -315,8 +295,7 @@ namespace INOLAB_OC
             }catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-            }
-                                       
+            }                                  
         }
         private string cuerpoDelCorreoElectronicoParaCliente(string folioDeServicio, string cliente)
         {
@@ -325,12 +304,10 @@ namespace INOLAB_OC
             {
                 cuerpoDelCorreo = reader.ReadToEnd();
                 reader.Dispose();
-            }
-            
+            }          
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folioDeServicio);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
             cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + convertirImagenAStringBase64(Server.MapPath("/Imagenes/slogan.png")));
-
             return cuerpoDelCorreo;
         }
 
