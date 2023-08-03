@@ -15,8 +15,7 @@ using INOLAB_OC.Controlador.Ingenieros;
 
 public partial class DetalleFSR : Page
 {
-    int q;
-    
+
     const int FINALIZADO =3;
     const string sinFechaAsignada = "";
     const string sinAccionRegistrada = "";
@@ -47,15 +46,13 @@ public partial class DetalleFSR : Page
        agregarEncabezadosDePanel();
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
        cargarAccionesDelIngeniero();
-       llenarInformacionDeRefaccionesActuales();
-      
+       llenarInformacionDeRefaccionesActuales();   
     }
 
     protected void Page_Init(object sender, EventArgs e)
     {
         idUsuario = Session["idUsuario"].ToString();
         idFolioServicio = Session["folio_p"].ToString();
-
         controladorFSR = new C_FSR(repositorio, idUsuario);
         controladorFSRAccion = new C_FSR_Accion(repositorioFsrAccion);
         consularSiServicioFuncionaCorrectamente();
@@ -99,27 +96,6 @@ public partial class DetalleFSR : Page
         GridView1.DataSource =  controladorFSRAccion.consultarDatosDeFSRAccion(idFolioServicio);
         GridView1.DataBind();
     }
-    private void llenarInformacionDeRefaccionesActuales()
-    {
-        try
-        {
-            DataSet refacciones =  controladorRefaccion.consultarNumeroYCantidadDeRefaccion(idFolioServicio);           
-            int numeroDeRefacciones = refacciones.Tables[0].Rows.Count;
-            if (numeroDeRefacciones > 0)
-            {
-                foreach (DataRow dataRow in refacciones.Tables[0].Rows)
-                {
-                    agregarDatosDeRefacciones(dataRow["numRefaccion"].ToString(), dataRow["cantidadRefaccion"].ToString());
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-
-        }
-    }
-
     protected void Agregar_nuevas_acciones_Click(object sender, EventArgs e)
     {
         seccion_nuevo_servicio.Style.Add("display", "block");
@@ -136,37 +112,29 @@ public partial class DetalleFSR : Page
         }
         else
         {
-
           if (txtacciones.Text.Equals(sinAccionRegistrada))
             {               
                 acciones.Text = "Favor de ingresar la acción realizada";
             }
             else
             {
-                //Comparacion de fechas (no puede hacerlo si la fecha es anterior a la fecha de servicio) funcionalidad pendiente
-                
-                    string fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada;
-                    
-                    fechaNuevaAccion = Fecha_nueva_accion_realizada.Text;
-                    horasDedicadasEnNuevaAccion = txthorasD.Text;
-                    nuevaAccionRealizada = txtacciones.Text;
+               string fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada;                    
+               fechaNuevaAccion = Fecha_nueva_accion_realizada.Text;
+               horasDedicadasEnNuevaAccion = txthorasD.Text;
+               nuevaAccionRealizada = txtacciones.Text;
 
-                    if (insertarNuevaAccionRealizada(fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada))
-                    {
-                        string[] vectorFechaNuevaAccion = fechaNuevaAccion.Split('-');
-                        string onemod = vectorFechaNuevaAccion[2] + "-" + vectorFechaNuevaAccion[1] + "-" + vectorFechaNuevaAccion[0];
-
-                    cerrarVentanaAgregarNuevaAccion();
-                    cargarAccionesDelIngeniero();
-                    }
-                    else
-                    {
-                    cerrarVentanaAgregarNuevaAccion();
-                    Response.Redirect("DetalleFSR.aspx");
-                    }
+               if (insertarNuevaAccionRealizada(fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada))
+                  { 
+                   cerrarVentanaAgregarNuevaAccion();
+                   cargarAccionesDelIngeniero();
+                  }
+                  else
+                  {
+                  cerrarVentanaAgregarNuevaAccion();
+                  Response.Redirect("DetalleFSR.aspx");
+                  }
             }
         }
-
     }
     private bool insertarNuevaAccionRealizada(String fechaNuevaAccion, String horasDedicadasEnNuevaAccion, String nuevaAccionRealizada)
     {  
@@ -203,7 +171,6 @@ public partial class DetalleFSR : Page
         try
         {          
             string observacionesDeFolioServicio = controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "Observaciones");
-
             if (observacionesDeFolioServicio != null)
             {
                 txtobservaciones.Text = observacionesDeFolioServicio;
@@ -212,8 +179,7 @@ public partial class DetalleFSR : Page
         }
         catch (Exception ex)
         {
-            Console.Write(ex.ToString());
-            
+            Console.Write(ex.ToString());   
         }
         finally
         {
@@ -228,7 +194,6 @@ public partial class DetalleFSR : Page
         try
         {   
             string fallaEncontrada = controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "FallaEncontrada");
-
             if (fallaEncontrada != null)
             {
                 txtfallaencontrada.Text = fallaEncontrada;
@@ -389,6 +354,25 @@ public partial class DetalleFSR : Page
             Response.Write("<script>alert('Error al agregar a la tabla de datos');</script>");
         }
     }
+    private void llenarInformacionDeRefaccionesActuales()
+    {
+        try
+        {
+            DataSet refacciones = controladorRefaccion.consultarNumeroYCantidadDeRefaccion(idFolioServicio);
+            int numeroDeRefacciones = refacciones.Tables[0].Rows.Count;
+            if (numeroDeRefacciones > 0)
+            {
+                foreach (DataRow dataRow in refacciones.Tables[0].Rows)
+                {
+                    agregarDatosDeRefacciones(dataRow["numRefaccion"].ToString(), dataRow["cantidadRefaccion"].ToString());
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Write(ex.ToString());
+        }
+    }
     protected void Mostrar_ventana_refacciones_Click(object sender, EventArgs e)
     {
         refacciones.Style.Add("display", "block");
@@ -434,33 +418,26 @@ public partial class DetalleFSR : Page
     }
     public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
+        int fila;
         //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
         try
         {
             if (e.CommandName == "Borrar")
             {
-                //Me trae el indice del datagrid que seleccione 
                 e.CommandArgument.ToString();
-                q = Convert.ToInt32(e.CommandArgument.ToString());
+                fila = Convert.ToInt32(e.CommandArgument.ToString());
+                string idFolioDeAccion = GridView1.Rows[fila].Cells[0].Text.ToString();
 
-                string idFolioDeAccion;
-                idFolioDeAccion = GridView1.Rows[q].Cells[0].Text.ToString();
                 E_FSRAccion entidadFsrAccion;
                 entidadFsrAccion = controladorFSRAccion.consultarFSRAccion(Convert.ToInt32(idFolioDeAccion));
-         
-                string accionEnServicio =  entidadFsrAccion.AccionR;              
-                string fechaDeAccion =  entidadFsrAccion.FechaAccion;                
-                string horaDeAccion =  entidadFsrAccion.HorasAccion;
-                string idFolioServicioAccion =  entidadFsrAccion.idFSRAccion;        
-                string idFolioDeServicio = entidadFsrAccion.idFolioFSR;
-                string tipoDeServicio = controlador_V_FSR.consultarValorDeCampo("TipoServicio", idFolioDeServicio);
-                                
-                fol.Text = idFolioDeServicio;
-                serv.Text = tipoDeServicio;
-                descacci.Text = accionEnServicio;
-                fechacci.Text = fechaDeAccion;
-                horaacci.Text = horaDeAccion;
-                IDAccion.Text = idFolioServicioAccion;
+                                     
+                fol.Text = entidadFsrAccion.idFolioFSR;
+                serv.Text = controlador_V_FSR.consultarValorDeCampo("TipoServicio", entidadFsrAccion.idFolioFSR);
+                descacci.Text = entidadFsrAccion.AccionR;
+                fechacci.Text = entidadFsrAccion.FechaAccion;
+                horaacci.Text = entidadFsrAccion.HorasAccion;
+                IDAccion.Text = entidadFsrAccion.idFSRAccion;
+
                 avisodel.Style.Add("display", "block");
                 headerone.Style.Add("display", "none");
                 footerid.Style.Add("display", "none");

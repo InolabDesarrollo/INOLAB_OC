@@ -17,7 +17,7 @@ namespace Test.Controlador.Ingeniero
         {
             //Array
             string correoElectronicoEmisor = "notificaciones@inolab.com";
-            string correoCliente = "coordinacion-servicio@inolab.com";
+            string correoCliente = "oscar";
             string correosCopia = "omarflores@inolab.com,omar.andreas.sotomayor@gmail.com";
             string contraseña = "Notificaciones2021*";
 
