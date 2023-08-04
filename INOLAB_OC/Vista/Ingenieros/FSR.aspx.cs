@@ -146,7 +146,7 @@ public partial class FSR : Page
 
         if (usuario == 71)
         {
-            btnadjuntar.Visible = true;
+            btnadjuntar.Visible = false;
         }
         else
         {
