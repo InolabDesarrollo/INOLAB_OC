@@ -52,11 +52,11 @@ namespace INOLAB_OC.Vista.Ingenieros
         {
             try
             {
-                string[] images = imagen.Split(',');
-                string tipoDeImagen = definirTipoDeImagen(images[0]);
-                string img2 = images[1];
+                string[] imagenes = imagen.Split(',');
+                string tipoDeImagen = definirTipoDeImagen(imagenes[0]);
+                string imagenFirma = imagenes[1];
 
-                int idFirmaImagen = Conexion.insertarFirmaImagen(nombreDeImagen, tipoDeImagen, img2);
+                int idFirmaImagen = Conexion.insertarFirmaImagen(nombreDeImagen, tipoDeImagen, imagenFirma);
                 if (idFirmaImagen != 0)
                 {
                     controladorFSR.actualizarValorDeCampoPorFolio(folioServicio, "IdFirmaImg", Convert.ToString(idFirmaImagen));
@@ -87,6 +87,35 @@ namespace INOLAB_OC.Vista.Ingenieros
             }
             return tipoDeImagen;
         }
+
+        public int verificarSiSeAgregoFirmaDeCliente()
+        {
+            int firmaCliente = -1;
+            try
+            {
+                firmaCliente = Convert.ToInt32(controladorFSR.consultarValorDeCampoPorFolioyUsuario(folioServicio, "IdFirmaImg"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return firmaCliente;
+        }
+
+        public int verificarSiSeAgregoFirmaDeIngeniero()
+        {
+            int firmaIngeniero = -1;
+            try
+            {
+                firmaIngeniero = Convert.ToInt32(controladorFSR.consultarValorDeCampoPorFolioyUsuario(folioServicio, "IDFirmaIng"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return firmaIngeniero;
+        }
+
 
     }
 }

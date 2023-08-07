@@ -19,18 +19,20 @@ using DocumentFormat.OpenXml.Office2013.Drawing.Chart;
 using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Modelo.Inolab;
 using INOLAB_OC.Vista.Ingenieros;
+using INOLAB_OC;
 
 public partial class VistaPrevia : Page
 {
     static string idUsuario;
     static SCL5Repository repositorioSCL5 = new SCL5Repository();
     C_SCL5 controladorSCL5;
-
+    Firma firmaReporte;
     protected void Page_Load(object sender, EventArgs e)
     {
         controladorSCL5 = new C_SCL5(repositorioSCL5);
         idUsuario = Session["idUsuario"].ToString();
         cargarDatosInicialesDeUsuario();
+        firmaReporte = new Firma(idUsuario, Session["folio_p"].ToString());
     }
     static FSR_Repository reposiorioFSR = new FSR_Repository();
     C_FSR controladorFSR = new C_FSR(reposiorioFSR, idUsuario);
@@ -155,8 +157,6 @@ public partial class VistaPrevia : Page
         headerid.Style.Add("display", "block");
         sectionreport.Style.Add("display", "block");
         footerid.Style.Add("display", "flex");
-
-        Firma firmaReporte = new Firma(Session["idUsuario"].ToString(), Session["folio_p"].ToString());
         if (nombre.Length < 1)
         {
             nombre = "N/A";
@@ -178,8 +178,8 @@ public partial class VistaPrevia : Page
     {
         int firmaCliente = 0;
         int firmaIngeniero = 0;
-        firmaCliente = verificarSiSeAgregoFirmaDeCliente();
-        firmaIngeniero = verificarSiSeAgregoFirmaDeIngeniero();
+        firmaCliente =  firmaReporte.verificarSiSeAgregoFirmaDeCliente();
+        firmaIngeniero = firmaReporte.verificarSiSeAgregoFirmaDeIngeniero();
 
         if (firmaCliente <= 0 )
         {    
@@ -198,35 +198,7 @@ public partial class VistaPrevia : Page
             footerid.Style.Add("display", "none");
         }
     }
-
-    private int verificarSiSeAgregoFirmaDeCliente()
-    {
-        int firmaCliente = -1;
-        try
-        {
-            firmaCliente = Convert.ToInt32(controladorFSR.consultarValorDeCampoPorFolioyUsuario(Session["folio_p"].ToString(), "IdFirmaImg"));
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        return firmaCliente;
-    }
-
-    private int verificarSiSeAgregoFirmaDeIngeniero()
-    {
-        int firmaIngeniero =-1;
-        try
-        {
-            firmaIngeniero = Convert.ToInt32(controladorFSR.consultarValorDeCampoPorFolioyUsuario(Session["folio_p"].ToString(), "IDFirmaIng"));
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        return firmaIngeniero;
-    }
-   
+ 
     protected void firmaing_Click(object sender, EventArgs e)
     {
         Response.Redirect("FirmarFolio.aspx");
