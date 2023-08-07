@@ -15,6 +15,7 @@ using System.IO;
 using INOLAB_OC.Modelo;
 using INOLAB_OC.Controlador;
 using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Vista.Ingenieros;
 
 namespace INOLAB_OC
 {
@@ -56,6 +57,7 @@ namespace INOLAB_OC
         {
             string imagenFirma = hidValue.Value;
             string nombreDelCliente = textboxnombre.Text;
+            Firma firmaReporte = new Firma(Session["idUsuario"].ToString(), Session["folio_p"].ToString());
 
             firma.Style.Add("display", "none");
             headerid.Style.Add("display", "block");
@@ -66,46 +68,12 @@ namespace INOLAB_OC
             {
                 nombreDelCliente = "N/A";
             }
-            if (actualizaFirmaEnElDocumento(nombreDelCliente, imagenFirma))
+            if (firmaReporte.actualizarFirmaIngeniero(nombreDelCliente, imagenFirma))
             {
                 ReportViewer1.ServerReport.Refresh();
             }
         }
 
-        protected bool actualizaFirmaEnElDocumento(string nombreDeImagenFirma, string imagen)
-        { 
-            try
-            {
-                string[] imagenes = imagen.Split(',');
-                string pattern = @"[^:\s*]\w+\/[\w-+\d.]+(?=[;| ])";
-                string tipoDeImagen = "";
-                string img1 = imagenes[0];
-                string imgenFirma = imagenes[1];
-
-                Regex regex = new Regex(pattern);
-                Match mach = regex.Match(img1);
-                if (mach.Success)
-                    tipoDeImagen = mach.Value;
-
-                int idFirmaIngeniero = Conexion.insertarFirmaIngeniero(nombreDeImagenFirma, tipoDeImagen, imgenFirma);
-
-                if (idFirmaIngeniero != 0)
-                {
-                    controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "IDFirmaIng", Convert.ToString(idFirmaIngeniero));
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Error al cargar la información');</script>");
-                Console.Write(ex.ToString());
-                return false;
-            }
-        }
 
         protected void firmaing_Click(object sender, EventArgs e)
         {

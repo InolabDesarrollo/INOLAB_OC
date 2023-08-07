@@ -220,6 +220,7 @@
       <DependentUpon>CargaFin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Ingenieros\CorreoElectronico.cs" />
+    <Compile Include="Vista\Ingenieros\Firma.cs" />
     <Compile Include="Vista\Reporteador.cs" />
     <Compile Include="Vista\Ventas\CRM_1.aspx.cs">
       <DependentUpon>CRM_1.aspx</DependentUpon>

@@ -18,6 +18,7 @@ using INOLAB_OC.Modelo.Browser;
 using DocumentFormat.OpenXml.Office2013.Drawing.Chart;
 using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Modelo.Inolab;
+using INOLAB_OC.Vista.Ingenieros;
 
 public partial class VistaPrevia : Page
 {
@@ -51,21 +52,16 @@ public partial class VistaPrevia : Page
         if (!Page.IsPostBack)
         {
             ReportViewer1.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
-            // Set the processing mode for the ReportViewer to Remote
             ReportViewer1.ProcessingMode = ProcessingMode.Remote;
 
             ServerReport serverReport = ReportViewer1.ServerReport;
-
-            // Set the report server URL and report path
             serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
             serverReport.ReportPath = "/OC/FSR Servicio v2";
 
-            // Create the sales order number report parameter
             ReportParameter salesOrderNumber = new ReportParameter();
             salesOrderNumber.Name = "folio";
             salesOrderNumber.Values.Add(Session["folio_p"].ToString());
 
-            // Set the report parameters for the report
             ReportViewer1.ServerReport.SetParameters( new ReportParameter[] { salesOrderNumber });
             ReportViewer1.ShowParameterPrompts = false;
         }
@@ -74,13 +70,11 @@ public partial class VistaPrevia : Page
     [Serializable]
     public sealed class MyReportServerCredentials :
         IReportServerCredentials
-    {//Inicializa el Reporteador
+    {
         public WindowsIdentity ImpersonationUser
         {
             get
             {
-                // Use the default Windows user.  Credentials will be
-                // provided by the NetworkCredentials property.
                 return null;
             }
         }
@@ -161,11 +155,13 @@ public partial class VistaPrevia : Page
         headerid.Style.Add("display", "block");
         sectionreport.Style.Add("display", "block");
         footerid.Style.Add("display", "flex");
+
+        Firma firmaReporte = new Firma(Session["idUsuario"].ToString(), Session["folio_p"].ToString());
         if (nombre.Length < 1)
         {
             nombre = "N/A";
         }
-        if(insertarFirma(nombre, image))
+        if(firmaReporte.actualizarFirmaCliente(nombre, image))
         {
             actualizarNombreDeClienteYFechaEnQueFirma(nombre);
             ReportViewer1.ServerReport.Refresh();
@@ -176,39 +172,6 @@ public partial class VistaPrevia : Page
     { 
         controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "NombreCliente", nombre);
         controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "FechaFirmaCliente",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-    }
-
-    protected bool insertarFirma(string nombreDeImagen, string imagen)
-    {
-        try
-        {
-            string[] images = imagen.Split(',');
-            string pattern = @"[^:\s*]\w+\/[\w-+\d.]+(?=[;| ])";
-            string tipoDeImagen = "";
-            string img1 = images[0];
-            string img2 = images[1];
-            Regex rx = new Regex(pattern);
-            Match m = rx.Match(img1);
-            if (m.Success)
-                tipoDeImagen = m.Value;
-           
-            int idFirmaImagen = Conexion.insertarFirmaImagen(nombreDeImagen, tipoDeImagen, img2);
-            if (idFirmaImagen != 0)
-            {
-                controladorFSR.actualizarValorDeCampoPorFolio(Session["folio_p"].ToString(), "IdFirmaImg", Convert.ToString(idFirmaImagen));
-                return true;
-            }
-            else
-            {       
-                return false;
-            }
-        }
-        catch (Exception ex)
-        {
-            Response.Write("<script>alert('Error al cargar la información');</script>");
-            Console.Write(ex.ToString());
-            return false;
-        }
     }
 
     protected void Finalizar_reporte_Click(object sender, EventArgs e)
