@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
-    <History>False|2023-08-02T19:54:10.2174269Z;False|2023-07-17T12:29:35.1936950-06:00;False|2023-07-17T12:28:26.5852973-06:00;</History>
+    <History>True|2023-08-07T15:44:09.5101739Z;True|2023-08-04T15:45:53.2009476-06:00;False|2023-08-02T13:54:10.2174269-06:00;False|2023-07-17T12:29:35.1936950-06:00;False|2023-07-17T12:28:26.5852973-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>08/02/2023 13:55:29</publishTime>
+      <publishTime>08/07/2023 09:44:08</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>08/02/2023 13:55:29</publishTime>
+      <publishTime>08/07/2023 09:44:08</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -79,7 +79,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/27/2023 10:38:44</publishTime>
     </File>
     <File Include="CSS/EncabezadoDetalleFSR.css">
-      <publishTime>07/31/2023 17:58:38</publishTime>
+      <publishTime>08/04/2023 17:01:20</publishTime>
     </File>
     <File Include="CSS/EncabezadoFirmaFolio.css">
       <publishTime>07/21/2023 10:35:50</publishTime>
@@ -118,7 +118,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Docs/Manual de Usuario SWF v3.pdf">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>04/08/2023 14:13:23</publishTime>
     </File>
     <File Include="FormatoFecha.js">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -184,16 +184,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="Vista/Ingenieros/DescargaFolio.aspx">
-      <publishTime>07/27/2023 10:37:09</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Vista/Ingenieros/DetalleFSR.aspx">
-      <publishTime>07/31/2023 17:58:39</publishTime>
+      <publishTime>08/07/2023 09:36:20</publishTime>
     </File>
     <File Include="Vista/Ingenieros/FirmarFolio.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="Vista/Ingenieros/FSR.aspx">
-      <publishTime>07/31/2023 17:58:39</publishTime>
+      <publishTime>03/08/2023 16:27:55</publishTime>
     </File>
     <File Include="Vista/Ingenieros/Informacion.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>

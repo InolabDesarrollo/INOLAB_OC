@@ -199,8 +199,7 @@ public partial class DetalleFSR : Page
         }
         catch (Exception ex)
         {
-            Console.Write(ex.ToString());
-            
+            Console.Write(ex.ToString()); 
         }
         finally
         {

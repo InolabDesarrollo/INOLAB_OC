@@ -464,6 +464,13 @@ header {
         padding: 2px;
         height: 5px;
     }
+    /*Nuevo servicio 
+    #seccion_nuevo_servicio {
+        position: absolute;
+        left: 10%;
+        width: 80%;
+        height: 70%;
+    }*/
 }
 
 #Funciona_Correctamente{

@@ -204,9 +204,8 @@
         <section class="seccion-nuevo-servicio"  id="seccion_nuevo_servicio" runat="server" style="display: none;">
             <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf">
                 
-                    <asp:ImageButton Visible="true" ID="closeimg" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" OnClick="Cerrar_ventana_agregar_nueva_accion_Click" />
-               
-
+                    <asp:ImageButton Visible="true" ID="closeimg" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="50px" Height="50px" OnClick="Cerrar_ventana_agregar_nueva_accion_Click" />
+              
                 <table class="auto-style5" id="tabla_nuevo_servicio">
                     <tr>
                         <td colspan="2">
@@ -298,7 +297,8 @@
                 </table>
             </div>
         </section>
-        <!-- Se implementa el formulario para la solicitud de refacciones-->  
+        <!-- Se implementa el formulario para la solicitud de refacciones--> 
+        
         <section class="centrar2"  id="refacciones" runat="server" style="display: none;">
             <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf2">
                 <div class="buton" id="closebtnref2">
@@ -323,9 +323,8 @@
                 </div>
             </div>
         </section>
-
-        <section class="seccion-agregar-refaccion"  id="SECCION_AGREGAR_REFACCION" runat="server" style="display: none;">
-            
+        <!--Agregar refaccion -->
+        <section class="seccion-agregar-refaccion"  id="SECCION_AGREGAR_REFACCION" runat="server" style="display: none;">       
                 <div class="buton" id="closebtnref1">
                     <asp:ImageButton Visible="true" ID="ImageButton1" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" OnClick="Cerrar_ventana_nueva_refaccion_Click" />
                 </div>
@@ -371,8 +370,7 @@
 
                         </tr>
                     </table>
-                 
-           
+                          
         </section>
 
 

@@ -32,7 +32,6 @@ namespace INOLAB_OC
             {
                 lbluser.Text = Session["nameUsuario"].ToString();
             }
-
             controladorFSR = new C_FSR(repositorioFSR, Session["idUsuario"].ToString());
         }
 
@@ -49,76 +48,10 @@ namespace INOLAB_OC
             }
         }
 
-        [Serializable]
-        public sealed class MyReportServerCredentials :
-            IReportServerCredentials
-        {//Inicializa el Reporteador
-            public WindowsIdentity ImpersonationUser
-            {
-                get
-                {
-                    // Use the default Windows user.  Credentials will be
-                    // provided by the NetworkCredentials property.
-                    return null;
-                }
-            }
-
-            public ICredentials NetworkCredentials
-            {
-                get
-                {
-                    /* Read the user information from the Web.config file.  
-                     By reading the information on demand instead of 
-                     storing it, the credentials will not be stored in 
-                     session, reducing the vulnerable surface area to the
-                     Web.config file, which can be secured with an ACL.
-
-                     User name */
-                    string userName =
-                        ConfigurationManager.AppSettings
-                            ["MyReportViewerUser"];
-
-                    if (string.IsNullOrEmpty(userName))
-                        throw new Exception(
-                            "Missing user name from web.config file");
-
-                    // Password
-                    string password =
-                        ConfigurationManager.AppSettings
-                            ["MyReportViewerPassword"];
-
-                    if (string.IsNullOrEmpty(password))
-                        throw new Exception(
-                            "Missing password from web.config file");
-
-                    // Domain
-                    string domain =
-                        ConfigurationManager.AppSettings
-                            ["MyReportViewerDomain"];
-
-                    return new NetworkCredential(userName, password, domain);
-                }
-            }
-
-            public bool GetFormsCredentials(out Cookie authCookie,
-                        out string userName, out string password,
-                        out string authority)
-            {
-                authCookie = null;
-                userName = null;
-                password = null;
-                authority = null;
-
-                // Not using form credentials
-                return false;
-            }
-        }
-
         protected void Mostrar_pantalla_para_firmar_documento_Click(object sender, EventArgs e)
         {
             Response.Redirect("VistaPrevia.aspx");
         }
-
         protected void Almacenar_la_firma_Click(object sender, EventArgs e)
         {
             string imagenFirma = hidValue.Value;
@@ -133,27 +66,26 @@ namespace INOLAB_OC
             {
                 nombreDelCliente = "N/A";
             }
-            if (actualizaFirmaActualEnElDocumento(nombreDelCliente, imagenFirma))
+            if (actualizaFirmaEnElDocumento(nombreDelCliente, imagenFirma))
             {
                 ReportViewer1.ServerReport.Refresh();
             }
         }
 
-        protected bool actualizaFirmaActualEnElDocumento(string nombreDeImagenFirma, string image)
+        protected bool actualizaFirmaEnElDocumento(string nombreDeImagenFirma, string imagen)
         { 
             try
             {
-                string[] images = image.Split(',');
+                string[] imagenes = imagen.Split(',');
                 string pattern = @"[^:\s*]\w+\/[\w-+\d.]+(?=[;| ])";
                 string tipoDeImagen = "";
-                string img1 = images[0];
-                string imgenFirma = images[1];
+                string img1 = imagenes[0];
+                string imgenFirma = imagenes[1];
 
-                Regex rx = new Regex(pattern);
-                Match m = rx.Match(img1);
-                if (m.Success)
-                    tipoDeImagen = m.Value;
-
+                Regex regex = new Regex(pattern);
+                Match mach = regex.Match(img1);
+                if (mach.Success)
+                    tipoDeImagen = mach.Value;
 
                 int idFirmaIngeniero = Conexion.insertarFirmaIngeniero(nombreDeImagenFirma, tipoDeImagen, imgenFirma);
 
@@ -173,141 +105,6 @@ namespace INOLAB_OC
                 Console.Write(ex.ToString());
                 return false;
             }
-        }
-
-        protected void finalizarbtn_Click(object sender, EventArgs e)
-        {//Realiza el update de los datos en FSR y sollicita la creación del PDF para mandarlo por correo electrónico 
-            try
-            {
-                
-                SqlDataReader sqldr = Conexion.getSqlDataReader("select Mail from FSR where Folio = " + Session["folio_p"].ToString() + " and IdFirmaImg is not null;");
-                if (sqldr.Read())
-                {
-                    string mail = sqldr.GetValue(0).ToString();
-                    Conexion.cerrarConexion();
-                    Conexion.updateHorasDeServicio(Session["folio_p"], Session["idUsuario"]);
-
-                    controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "IdStatus", "3");
-
-                    ReportViewer1.ServerReport.Refresh();
-                    enviarEmailConInformacionDelFSR(CreatePDF(Session["folio_p"].ToString()), mail);
-                    Response.Redirect("ServiciosAsignados.aspx");
-                }
-                else
-                {
-                    Response.Write("<script>alert('Falta realizar la firma del reporte');</script>");
-                    firma.Style.Add("display", "block");
-                    headerid.Style.Add("display", "none");
-                    sectionreport.Style.Add("display", "none");
-                    footerid.Style.Add("display", "none");
-                    string script = "startFirma();";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Star", script, true);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-        }
-
-        private void enviarEmailConInformacionDelFSR(string rutaReporteAdjuntoEnCorreoElectronico, string mail)
-        {
-            try
-            {
-                string to, correosElectronicosReceptores, CorreoElectronicoEmisor, EncabezadoDelCorreoElectronico;
-                Console.Write(mail);
-                to = "";
-                
-                SqlDataReader correosALosQueSeNotificara = Conexion.getSqlDataReader("select * from MailNotification;");
-
-                if (correosALosQueSeNotificara.HasRows)
-                {
-                    List<String> correoElectronico = new List<string>();
-                    while (correosALosQueSeNotificara.Read())
-                    {
-                        correoElectronico.Add(correosALosQueSeNotificara.GetValue(2).ToString());
-                    }
-                    correosElectronicosReceptores = String.Join(", ", correoElectronico);
-                }
-                else
-                {
-                    correosElectronicosReceptores = "carlosflores@inolab.com";
-                }
-                Conexion.cerrarConexion();
-                CorreoElectronicoEmisor = "notificaciones@inolab.com";
-                EncabezadoDelCorreoElectronico = "FSR folio " + Session["folio_p"];
-                MailMessage message = new MailMessage();
-
-                message.Bcc.Add(correosElectronicosReceptores);
-                message.From = new MailAddress(CorreoElectronicoEmisor);
-                message.Body = crearCuerpoDelCorreoElectronico(Session["folio_p"].ToString(), "cliente");
-                message.IsBodyHtml = true;
-                message.Subject = EncabezadoDelCorreoElectronico;
-
-                Attachment attach = new Attachment(rutaReporteAdjuntoEnCorreoElectronico);
-                message.Attachments.Add(attach);
-
-                SmtpClient configuracionesCorreoEmisor = new SmtpClient();
-                configuracionesCorreoEmisor.Port = 1025;
-                configuracionesCorreoEmisor.Host = "smtp.inolab.com";
-                configuracionesCorreoEmisor.EnableSsl = false;
-                configuracionesCorreoEmisor.DeliveryMethod = SmtpDeliveryMethod.Network;
-                configuracionesCorreoEmisor.UseDefaultCredentials = false;
-                configuracionesCorreoEmisor.Credentials = new System.Net.NetworkCredential("notificaciones@inolab.com", "Notificaciones2021*");
-                configuracionesCorreoEmisor.Send(message);
-                message.Dispose();
-                configuracionesCorreoEmisor.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-        }
-
-        private string CreatePDF(string fileName)
-        {
-            Warning[] warnings;
-            string[] streamIds;
-            string mimeType = string.Empty;
-            string encoding = string.Empty;
-            string extension = string.Empty;
-
-            byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-            string filepath = HttpRuntime.AppDomainAppPath + "Docs\\" + fileName + ".pdf";
-            if (File.Exists(filepath))
-            {
-                File.Delete(filepath);
-            }
-            using (FileStream fs = new FileStream(filepath, FileMode.Create))
-            {
-                fs.Write(bytes, 0, bytes.Length);
-                Console.Write(fs.Name);
-                fs.Dispose();
-            }
-            return filepath;
-        }
-
-        private string crearCuerpoDelCorreoElectronico(string folio, string cliente)
-        {
-            string cuerpoDelCorreo = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("./HTML/index2.html")))
-            {
-                cuerpoDelCorreo = reader.ReadToEnd();
-                reader.Dispose();
-            }
-
-            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{folio}", folio);
-            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{cliente}", cliente);
-            cuerpoDelCorreo = cuerpoDelCorreo.Replace("{slogan}", "data:image/png;base64," + GetBase64StringForImage(Server.MapPath("./Imagenes/slogan.png")));
-            return cuerpoDelCorreo;
-        }
-
-        protected static string GetBase64StringForImage(string imgPath)
-        {
-            byte[] imageBytes = System.IO.File.ReadAllBytes(imgPath);
-            string base64String = Convert.ToBase64String(imageBytes);
-            return base64String;
         }
 
         protected void firmaing_Click(object sender, EventArgs e)

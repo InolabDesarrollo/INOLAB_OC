@@ -103,7 +103,6 @@ public partial class VistaPrevia : Page
                 if (string.IsNullOrEmpty(userName))
                     throw new Exception("Missing user name from web.config file");
 
-                // Password
                 string password =
                     ConfigurationManager.AppSettings
                         ["MyReportViewerPassword"];
@@ -111,7 +110,6 @@ public partial class VistaPrevia : Page
                 if (string.IsNullOrEmpty(password))
                     throw new Exception("Missing password from web.config file");
 
-                // Domain
                 string domain =
                     ConfigurationManager.AppSettings
                         ["MyReportViewerDomain"];
@@ -128,8 +126,6 @@ public partial class VistaPrevia : Page
             userName = null;
             password = null;
             authority = null;
-
-            // Not using form credentials
             return false;
         }
     }
