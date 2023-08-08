@@ -136,11 +136,6 @@ namespace INOLAB_OC.Modelo.Browser
             Conexion.executeQuery(query);
         }
 
-        public void consultarEstatusDeFolioServicio()
-        {
-
-        }
-
         public int consultarEstatusDeFolioServicio(string folio, string idUsuario)
         {
             string consulta = "SELECT Top 1 IdStatus FROM FSR where Folio= " + folio + " and Id_Ingeniero =" + idUsuario + ";";

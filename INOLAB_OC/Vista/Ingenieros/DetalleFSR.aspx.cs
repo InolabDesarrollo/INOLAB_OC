@@ -3,15 +3,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
-using System.Collections.Generic;
-using INOLAB_OC.Modelo;
-using INOLAB_OC;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using System.Diagnostics;
 using INOLAB_OC.Modelo.Browser;
 using INOLAB_OC.Controlador;
 using INOLAB_OC.Entidades;
 using INOLAB_OC.Controlador.Ingenieros;
+using INOLAB_OC.Vista.Ingenieros;
 
 public partial class DetalleFSR : Page
 {
@@ -25,6 +21,7 @@ public partial class DetalleFSR : Page
 
     static V_FSR_Repository repositorioV_FSR = new V_FSR_Repository();
     C_V_FSR controlador_V_FSR = new C_V_FSR(repositorioV_FSR);
+    Observaciones observacion;
 
     string idUsuario;
     string idFolioServicio;
@@ -36,6 +33,7 @@ public partial class DetalleFSR : Page
        controladorFSR = new C_FSR(repositorio, idUsuario);
        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
        entidadRefaccion = new E_Refaccion(idFolioServicio);
+       observacion = new Observaciones(idFolioServicio,idUsuario);
 
        agregarEncabezadosDePanel();
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
@@ -150,27 +148,14 @@ public partial class DetalleFSR : Page
     }
     protected void Buscar_observaciones_folio_servicio_Click(object sender, EventArgs e)
     {
-        try
-        {          
-            string observacionesDeFolioServicio = controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "Observaciones");
-            if (observacionesDeFolioServicio != null)
-            {
-                txtobservaciones.Text = observacionesDeFolioServicio;
-            }
-            Envio_de_notificacion_de_observacion.Checked = controladorFSR.verificarSiSeEnviaEmailAlAsesor(idFolioServicio, "NotAsesor");
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());   
-        }
-        finally
-        {
-            observaciones.Style.Add("display", "block");
-            headerone.Style.Add("filter", "blur(9px)");
-            contenone.Style.Add("filter", "blur(9px)");
-            footerid.Style.Add("display", "none");
-        }
-    }
+        txtobservaciones.Text= observacion.consultarObservaciones();
+        Envio_de_notificacion_de_observacion.Checked = controladorFSR.verificarSiSeEnviaEmailAlAsesor(idFolioServicio, "NotAsesor");
+        
+        observaciones.Style.Add("display", "block");
+        headerone.Style.Add("filter", "blur(9px)");
+        contenone.Style.Add("filter", "blur(9px)");
+        footerid.Style.Add("display", "none");    
+    }   
     protected void Btn_Fallas_Encontradas_Click(object sender, EventArgs e)
     {
         try
@@ -220,22 +205,9 @@ public partial class DetalleFSR : Page
     }
     protected void Actualizar_observaciones_Click(object sender, EventArgs e)
     {
-        if(txtobservaciones.Text.Length > 0) 
-        {
-            try
-            {
-                controladorFSR.actualizarValorDeCampoPorFolioYUsuario(idFolioServicio, "Observaciones", txtobservaciones.Text);
-                Session["not_ase"] = controladorFSR.verificarSiEnviaNotificacionDeObservacionesAlUsuario(Envio_de_notificacion_de_observacion.Checked, idFolioServicio);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-            finally
-            {
-                cerrarCampoObservaciones();
-            }
-        }
+        observacion.actualizarObservaciones(txtobservaciones.Text);
+        Session["not_ase"] = observacion.verificarNotificacionEnvioDeObservaciones(Envio_de_notificacion_de_observacion.Checked);
+        cerrarCampoObservaciones();
     }
   
     protected void Actualizar_fallas_encontradas_Click(object sender, EventArgs e)
