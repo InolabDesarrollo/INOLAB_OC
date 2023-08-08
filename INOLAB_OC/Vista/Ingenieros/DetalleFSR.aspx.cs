@@ -22,6 +22,7 @@ public partial class DetalleFSR : Page
     static V_FSR_Repository repositorioV_FSR = new V_FSR_Repository();
     C_V_FSR controlador_V_FSR = new C_V_FSR(repositorioV_FSR);
     Observaciones observacion;
+    Fallas falla;
 
     string idUsuario;
     string idFolioServicio;
@@ -34,6 +35,7 @@ public partial class DetalleFSR : Page
        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
        entidadRefaccion = new E_Refaccion(idFolioServicio);
        observacion = new Observaciones(idFolioServicio,idUsuario);
+       falla = new Fallas(idUsuario, idFolioServicio);
 
        agregarEncabezadosDePanel();
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
@@ -158,25 +160,12 @@ public partial class DetalleFSR : Page
     }   
     protected void Btn_Fallas_Encontradas_Click(object sender, EventArgs e)
     {
-        try
-        {   
-            string fallaEncontrada = controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "FallaEncontrada");
-            if (fallaEncontrada != null)
-            {
-                txtfallaencontrada.Text = fallaEncontrada;
-            }          
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString()); 
-        }
-        finally
-        {
-            FallaEncontrada.Style.Add("display", "block");
-            headerone.Style.Add("filter", "blur(9px)");
-            contenone.Style.Add("filter", "blur(9px)");
-            footerid.Style.Add("display", "none");
-        }
+       txtfallaencontrada.Text= falla.consultarFallaEncontrada();
+             
+       FallaEncontrada.Style.Add("display", "block");
+       headerone.Style.Add("filter", "blur(9px)");
+       contenone.Style.Add("filter", "blur(9px)");
+       footerid.Style.Add("display", "none");        
     }
     protected void Cerrar_campo_observaciones_Click(object sender, ImageClickEventArgs e)
     {
@@ -212,21 +201,8 @@ public partial class DetalleFSR : Page
   
     protected void Actualizar_fallas_encontradas_Click(object sender, EventArgs e)
     {
-        if (txtfallaencontrada.Text.Length > 0)
-        {
-            try
-            {
-                controladorFSR.actualizarValorDeCampoPorFolioYUsuario(idFolioServicio, "FallaEncontrada", txtfallaencontrada.Text);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-            finally
-            {
-                cerrarCompoFallasEncontradas();
-            }
-        }
+        falla.actualizarFallas(txtfallaencontrada.Text);
+        cerrarCompoFallasEncontradas();
     }
 
     protected void Btn_Vista_Previa_Click(object sender, EventArgs e)
