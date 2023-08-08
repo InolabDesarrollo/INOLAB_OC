@@ -15,21 +15,16 @@ using INOLAB_OC.Controlador.Ingenieros;
 
 public partial class DetalleFSR : Page
 {
-
     const int FINALIZADO =3;
     const string sinFechaAsignada = "";
     const string sinAccionRegistrada = "";
     E_FSRAccion entidadAccion;
-
+    E_Refaccion entidadRefaccion;
     static FSR_Repository repositorio = new FSR_Repository();
     C_FSR controladorFSR;
-    E_Servicio entidadServicio = new E_Servicio();
 
     static V_FSR_Repository repositorioV_FSR = new V_FSR_Repository();
     C_V_FSR controlador_V_FSR = new C_V_FSR(repositorioV_FSR);
-
-    static Refaccion_Repository repositorioRefaccion = new Refaccion_Repository();
-    C_Refaccion controladorRefaccion = new C_Refaccion(repositorioRefaccion);
 
     string idUsuario;
     string idFolioServicio;
@@ -40,6 +35,8 @@ public partial class DetalleFSR : Page
 
        controladorFSR = new C_FSR(repositorio, idUsuario);
        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
+       entidadRefaccion = new E_Refaccion(idFolioServicio);
+
        agregarEncabezadosDePanel();
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
        cargarAccionesDelIngeniero();
@@ -120,12 +117,11 @@ public partial class DetalleFSR : Page
 
     private void agregarNuevaAccion()
     {
-        entidadAccion = new E_FSRAccion(idFolioServicio, Session["idUsuario"].ToString());
+        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
         entidadAccion.FechaAccion = Fecha_nueva_accion_realizada.Text;
         entidadAccion.HorasAccion = txthorasD.Text;
         entidadAccion.AccionR = txtacciones.Text;
         int filasAfectadasPorUpdate = entidadAccion.agregarAccion();
-
         if (filasAfectadasPorUpdate == 1)
         {
             cerrarVentanaAgregarNuevaAccion();
@@ -298,53 +294,35 @@ public partial class DetalleFSR : Page
    
     protected void Agregar_refaccion_a_base_de_datos_Click(object sender, EventArgs e)
     { 
-        string numeroDePartes, descripcionDeRefacion, cantidadDeRefacciones;
-        numeroDePartes = txtbox_numero_de_partes.Text;
-        descripcionDeRefacion = txtbox_descripcion_refaccion.Text;
-        cantidadDeRefacciones = txtbox_cantidad_refaccion.Text;
-        E_Refaccion refaccion = new E_Refaccion(idFolioServicio);
+        string numeroDePartes = txtbox_numero_de_partes.Text;
+        string descripcionDeRefacion = txtbox_descripcion_refaccion.Text;
+        string cantidadDeRefacciones = txtbox_cantidad_refaccion.Text;
 
-        if (numeroDePartes.Length > 0)
+        if (numeroDePartes.Length > 0 && descripcionDeRefacion.Length > 0 && cantidadDeRefacciones.Length > 0)
         {
-            if (descripcionDeRefacion.Length > 0)
+            if (entidadRefaccion.insertarRefaccion(numeroDePartes, cantidadDeRefacciones, descripcionDeRefacion))
             {
-                if (cantidadDeRefacciones.Length > 0)
-                {
-                    if (refaccion.insertarRefaccion(numeroDePartes,cantidadDeRefacciones,descripcionDeRefacion))
-                    {
-                        agregarDatosDeRefacciones(numeroDePartes, cantidadDeRefacciones);
-                        cerrarVentanaDeNuevaRefaccion();
-                    }
-                }
-                else
-                    Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
+                agregarDatosDeRefacciones(numeroDePartes, cantidadDeRefacciones);
+                cerrarVentanaDeNuevaRefaccion();
             }
-            else
-                Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
         }
         else
+        {
             Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
+        }
     }
 
     private void agregarDatosDeRefacciones(string numeroDePartes, string numeroDeRefacciones)
     {
-        E_Refaccion refaccion = new E_Refaccion(idFolioServicio);
-        try
-        {
-            Table1.Rows.Add(refaccion.crearFilaParaRefacciones(numeroDePartes, numeroDeRefacciones));
-        }
-        catch(Exception ex)
-        {
-            Response.Write("<script>alert('Error al agregar a la tabla de datos');</script>");
-        }
+        Table1.Rows.Add(entidadRefaccion.crearFilaParaRefacciones(numeroDePartes, numeroDeRefacciones));  
     }
+
     private void llenarInformacionDeRefaccionesActuales()
     {
         try
         {
-            DataSet refacciones = controladorRefaccion.consultarNumeroYCantidadDeRefaccion(idFolioServicio);
-            int numeroDeRefacciones = refacciones.Tables[0].Rows.Count;
-            if (numeroDeRefacciones > 0)
+            DataSet refacciones = entidadRefaccion.consultarRefacciones();
+            if (refacciones.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dataRow in refacciones.Tables[0].Rows)
                 {

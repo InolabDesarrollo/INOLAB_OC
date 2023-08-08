@@ -2,6 +2,7 @@
 using INOLAB_OC.Modelo.Browser;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -12,7 +13,7 @@ namespace INOLAB_OC.Entidades
     {
         private readonly string idFolioServicio;
 
-        public  E_Refaccion()
+        public E_Refaccion()
         {
 
         }
@@ -30,7 +31,7 @@ namespace INOLAB_OC.Entidades
         public string descRefaccion { get; set; }
         public string idFSR { get; set; }
 
-       
+
         public bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
         {
             E_Refaccion refaccion = new E_Refaccion();
@@ -55,6 +56,36 @@ namespace INOLAB_OC.Entidades
             fila.Style.Add("HorizontalAlign", "Center");
             return fila;
         }
+
+        public DataSet consultarRefacciones()
+        {
+            return controladorRefaccion.consultarNumeroYCantidadDeRefaccion(idFolioServicio);
+        }
+
+        public Table llenarInformacionDeRefaccionesActuales()
+        {
+            Table Table1 = new Table();
+            try
+            {
+                DataSet refacciones = consultarRefacciones();
+                if (refacciones.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dataRow in refacciones.Tables[0].Rows)
+                    {
+                        Table1.Rows.Add(crearFilaParaRefacciones(dataRow["numRefaccion"].ToString(), dataRow["cantidadRefaccion"].ToString()));
+                    }
+                    return Table1;
+                }
+                return Table1;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+                return Table1;
+            }
+
+        }
     }
+
 }
 
