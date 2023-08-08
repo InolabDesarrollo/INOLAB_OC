@@ -24,6 +24,7 @@ using INOLAB_OC;
 public partial class VistaPrevia : Page
 {
     static string idUsuario;
+    static string folioServicio;
     static SCL5Repository repositorioSCL5 = new SCL5Repository();
     C_SCL5 controladorSCL5;
     Firma firmaReporte;
@@ -31,8 +32,9 @@ public partial class VistaPrevia : Page
     {
         controladorSCL5 = new C_SCL5(repositorioSCL5);
         idUsuario = Session["idUsuario"].ToString();
+        folioServicio = Session["folio_p"].ToString();
         cargarDatosInicialesDeUsuario();
-        firmaReporte = new Firma(idUsuario, Session["folio_p"].ToString());
+        firmaReporte = new Firma(idUsuario, folioServicio);
     }
     static FSR_Repository reposiorioFSR = new FSR_Repository();
     C_FSR controladorFSR = new C_FSR(reposiorioFSR, idUsuario);
@@ -163,15 +165,10 @@ public partial class VistaPrevia : Page
         }
         if(firmaReporte.actualizarFirmaCliente(nombre, image))
         {
-            actualizarNombreDeClienteYFechaEnQueFirma(nombre);
+            controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "NombreCliente", nombre);
+            controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "FechaFirmaCliente", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             ReportViewer1.ServerReport.Refresh();
         }
-    }
-
-    protected void actualizarNombreDeClienteYFechaEnQueFirma(string nombre)
-    { 
-        controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "NombreCliente", nombre);
-        controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "FechaFirmaCliente",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
     }
 
     protected void Finalizar_reporte_Click(object sender, EventArgs e)

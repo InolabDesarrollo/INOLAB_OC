@@ -19,13 +19,11 @@ public partial class DetalleFSR : Page
     const int FINALIZADO =3;
     const string sinFechaAsignada = "";
     const string sinAccionRegistrada = "";
+    E_FSRAccion entidadAccion;
 
     static FSR_Repository repositorio = new FSR_Repository();
     C_FSR controladorFSR;
     E_Servicio entidadServicio = new E_Servicio();
-
-    static FSR_AccionRepository repositorioFsrAccion = new FSR_AccionRepository();
-    C_FSR_Accion controladorFSRAccion;
 
     static V_FSR_Repository repositorioV_FSR = new V_FSR_Repository();
     C_V_FSR controlador_V_FSR = new C_V_FSR(repositorioV_FSR);
@@ -41,12 +39,11 @@ public partial class DetalleFSR : Page
        idFolioServicio = Session["folio_p"].ToString();
 
        controladorFSR = new C_FSR(repositorio, idUsuario);
-       controladorFSRAccion = new C_FSR_Accion(repositorioFsrAccion);
-
+       entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
        agregarEncabezadosDePanel();
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
        cargarAccionesDelIngeniero();
-       llenarInformacionDeRefaccionesActuales();   
+       llenarInformacionDeRefaccionesActuales();
     }
 
     protected void Page_Init(object sender, EventArgs e)
@@ -54,7 +51,6 @@ public partial class DetalleFSR : Page
         idUsuario = Session["idUsuario"].ToString();
         idFolioServicio = Session["folio_p"].ToString();
         controladorFSR = new C_FSR(repositorio, idUsuario);
-        controladorFSRAccion = new C_FSR_Accion(repositorioFsrAccion);
         consularSiServicioFuncionaCorrectamente();
     }
     public void agregarEncabezadosDePanel()
@@ -92,7 +88,7 @@ public partial class DetalleFSR : Page
 
     private void cargarAccionesDelIngeniero()
     {
-        GridView1.DataSource =  controladorFSRAccion.consultarDatosDeFSRAccion(idFolioServicio);
+        GridView1.DataSource =  entidadAccion.consultarAcciones();
         GridView1.DataBind();
     }
     protected void Agregar_nuevas_acciones_Click(object sender, EventArgs e)
@@ -112,43 +108,35 @@ public partial class DetalleFSR : Page
         else
         {
           if (txtacciones.Text.Equals(sinAccionRegistrada))
-            {               
+            {
                 acciones.Text = "Favor de ingresar la acción realizada";
             }
-            else
+          else
             {
-               string fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada;                    
-               fechaNuevaAccion = Fecha_nueva_accion_realizada.Text;
-               horasDedicadasEnNuevaAccion = txthorasD.Text;
-               nuevaAccionRealizada = txtacciones.Text;
-
-               if (insertarNuevaAccionRealizada(fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada))
-                  { 
-                   cerrarVentanaAgregarNuevaAccion();
-                   cargarAccionesDelIngeniero();
-                  }
-                  else
-                  {
-                  cerrarVentanaAgregarNuevaAccion();
-                  Response.Redirect("DetalleFSR.aspx");
-                  }
+                agregarNuevaAccion();
             }
         }
     }
-    private bool insertarNuevaAccionRealizada(String fechaNuevaAccion, String horasDedicadasEnNuevaAccion, String nuevaAccionRealizada)
-    {  
-        E_FSRAccion entidadAccion = new E_FSRAccion();
-        entidadAccion.FechaAccion = fechaNuevaAccion;
-        entidadAccion.HorasAccion = horasDedicadasEnNuevaAccion;
-        entidadAccion.AccionR = nuevaAccionRealizada;
-        entidadAccion.idFolioFSR = idFolioServicio;
-        entidadAccion.idUsuario = Session["idUsuario"].ToString();
-        entidadAccion.FechaSistema = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
-        int filasAfectadasPorUpdate = controladorFSRAccion.agregarAccionFSR(entidadAccion);
-        return (filasAfectadasPorUpdate == 1) ? true: false;
+    private void agregarNuevaAccion()
+    {
+        entidadAccion = new E_FSRAccion(idFolioServicio, Session["idUsuario"].ToString());
+        entidadAccion.FechaAccion = Fecha_nueva_accion_realizada.Text;
+        entidadAccion.HorasAccion = txthorasD.Text;
+        entidadAccion.AccionR = txtacciones.Text;
+        int filasAfectadasPorUpdate = entidadAccion.agregarAccion();
+
+        if (filasAfectadasPorUpdate == 1)
+        {
+            cerrarVentanaAgregarNuevaAccion();
+            cargarAccionesDelIngeniero();
+        }
+        else
+        {
+            cerrarVentanaAgregarNuevaAccion();
+            Response.Redirect("DetalleFSR.aspx");
+        }
     }
-
     protected void Cerrar_ventana_agregar_nueva_accion_Click(object sender, ImageClickEventArgs e)
     {
         cerrarVentanaAgregarNuevaAccion();
@@ -425,7 +413,7 @@ public partial class DetalleFSR : Page
                 string idFolioDeAccion = GridView1.Rows[fila].Cells[0].Text.ToString();
 
                 E_FSRAccion entidadFsrAccion;
-                entidadFsrAccion = controladorFSRAccion.consultarFSRAccion(Convert.ToInt32(idFolioDeAccion));
+                entidadFsrAccion =  entidadAccion.consultarAccion(Convert.ToInt32(idFolioDeAccion));
                                      
                 fol.Text = entidadFsrAccion.idFolioFSR;
                 serv.Text = controlador_V_FSR.consultarValorDeCampo("TipoServicio", entidadFsrAccion.idFolioFSR);
@@ -448,7 +436,7 @@ public partial class DetalleFSR : Page
 
     public void Borrar_accion_realizada_Click(object sender, EventArgs e)
     {
-        controladorFSRAccion.eliminarAccionFSR(IDAccion.Text);
+        entidadAccion.eliminarAccion(IDAccion.Text);
         cargarAccionesDelIngeniero();
 
         avisodel.Style.Add("display", "none");
