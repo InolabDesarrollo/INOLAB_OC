@@ -50,7 +50,6 @@ namespace INOLAB_OC
                 ReportViewer1.ShowParameterPrompts = false;
             }      
         } 
-
         
         [Serializable]
         public sealed class MyReportServerCredentials :

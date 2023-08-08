@@ -121,6 +121,7 @@ public partial class DetalleFSR : Page
         entidadAccion.FechaAccion = Fecha_nueva_accion_realizada.Text;
         entidadAccion.HorasAccion = txthorasD.Text;
         entidadAccion.AccionR = txtacciones.Text;
+
         int filasAfectadasPorUpdate = entidadAccion.agregarAccion();
         if (filasAfectadasPorUpdate == 1)
         {
@@ -323,7 +324,6 @@ public partial class DetalleFSR : Page
     }
     protected void Agrendar_proximo_servicio_Click(object sender, EventArgs e)
     {
-        //Guarda la fecha de proximo servicio que se haya insertado (Si se oprimio sin haber seleccionado una fecha antes aparecera como 1999-01-01)
         controladorFSR.actualizarValorDeCampoPorFolio(idFolioServicio, "Proximo_Servicio", datepicker1.Text);
     }
     public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)

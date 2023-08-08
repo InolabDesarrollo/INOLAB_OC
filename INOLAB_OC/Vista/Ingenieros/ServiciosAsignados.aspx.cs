@@ -57,9 +57,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             ReportViewer1.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
-            // Set the processing mode for the ReportViewer to Remote
             ReportViewer1.ProcessingMode = ProcessingMode.Remote;
-
             ServerReport serverReport = ReportViewer1.ServerReport;
 
             serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
@@ -78,7 +76,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
 
     public sealed class MyReportServerCredentials :
         IReportServerCredentials
-    {//Inicializa el reporteador con las credenciales almacenadas en la configuración
+    {
         public WindowsIdentity ImpersonationUser
         {
             get
@@ -124,8 +122,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             userName = null;
             password = null;
             authority = null;
-
-            // Not using form credentials
             return false;
         }
     }
@@ -160,7 +156,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             }
             if (e.CommandName == "Select2")
             {
-                //Para el modo offline, genera un archivo con toda la informacion que ya hay del folio para que se llene en el aplicativo accediendo a esta 
                 numeroDeFolioDeServicio = ((LinkButton)filasDelDataGridView.Cells[0].Controls[0]).Text;
                 estatusDelServicio = ((LinkButton)filasDelDataGridView.Cells[1].Controls[0]).Text;
                 Session["folio_p"] = numeroDeFolioDeServicio;
@@ -263,16 +258,13 @@ public partial class ServiciosAsignados : System.Web.UI.Page
     {
         ServerReport serverReport = ReportViewer1.ServerReport;
 
-        // Set the report server URL and report path
         serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
         serverReport.ReportPath = "/Servicio/Calendario-Servicio-Ing";
 
-        // Create the sales order number report parameter
         ReportParameter salesOrderNumber = new ReportParameter();
         salesOrderNumber.Name = "ing";
         salesOrderNumber.Values.Add(Session["idUsuario"].ToString());
 
-        // Set the report parameters for the report
         ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
         ReportViewer1.ShowParameterPrompts = false;
 
@@ -280,24 +272,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         string year = DateTime.Now.Year.ToString();
         string day = DateTime.Now.Day.ToString();
         string nombre = "Calendario_" + day + "-" + month + "-" + year + ".pdf";
-        CrearArchivoPDF(nombre);
-    }
-
-    protected void recrearPDFParaFolioDeServicioFinalizado(string folio)
-    {
-        ServerReport serverReport = ReportViewer1.ServerReport;
-        serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
-        serverReport.ReportPath = "/OC/FSR Servicio";
-
-        ReportParameter salesOrderNumber = new ReportParameter();
-        salesOrderNumber.Name = "folio";
-        salesOrderNumber.Values.Add(folio);
-
-        ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
-        ReportViewer1.ShowParameterPrompts = false;
-
-        string año = DateTime.Now.Year.ToString();
-        string nombre = "Folio:" + folio + "_" + año + ".pdf";
         CrearArchivoPDF(nombre);
     }
 
@@ -310,14 +284,13 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         string extension = string.Empty;
 
         byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-        // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.  
+ 
         Response.Buffer = true;
         Response.Clear();
         Response.ContentType = mimeType;
         Response.AddHeader("content-disposition", "attachment; filename="+ nombre);
-        Response.BinaryWrite(bytes); // create the file  
-        Response.Flush(); // send it to the client to download  
+        Response.BinaryWrite(bytes);  
+        Response.Flush(); 
     }
 
     protected void Tipo_De_Estatus_De_Servicio_SelectedIndexChanged(object sender, EventArgs e)
