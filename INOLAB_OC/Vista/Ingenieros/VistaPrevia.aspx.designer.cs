@@ -67,6 +67,15 @@ public partial class VistaPrevia
     protected global::System.Web.UI.WebControls.Label lbluser;
 
     /// <summary>
+    /// Control Btn_Reporte_Refacciones.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Reporte_Refacciones;
+
+    /// <summary>
     /// Control sectionreport.
     /// </summary>
     /// <remarks>

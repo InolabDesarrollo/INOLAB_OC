@@ -259,5 +259,11 @@ public partial class VistaPrevia : Page
             Response.Redirect("CargaFin.aspx");
         }
     }
-   
+
+    protected void Reporte_Refacciones(object sender, EventArgs e)
+    {
+        Response.Redirect("ReporteRefacciones.aspx");
+    }
+
+
 }
