@@ -304,6 +304,7 @@
                 <div class="buton" id="closebtnref2">
                     <asp:ImageButton Visible="true" ID="ImageButton2" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" OnClick="Cerrar_Ventana_Refacciones_Click" />
                 </div>
+
                 <div>
                 <!--Aquí va la lista de refacciones que ya se han agregado con anterioridad -->
                     <div class="form-style-2-heading">

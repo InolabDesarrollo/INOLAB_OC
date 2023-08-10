@@ -12,10 +12,6 @@ namespace INOLAB_OC.Modelo
 {
     public class ConexionComercial
     {
-        private static string source;
-        private static string catalog;
-        private static string user;
-        private static string password;
         private static SqlConnection conexion;
         private bool databaseProduction = false;
         private static bool databaseTest = true;

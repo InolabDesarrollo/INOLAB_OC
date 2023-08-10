@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\Normalize.css" />
+    <Content Include="CSS\ReporteRefacciones.css" />
     <Content Include="CSS\ServiciosAsignados.css" />
     <Content Include="CSS\VistaPrevia.css" />
     <Content Include="Vista\Ingenieros\Calendario.aspx" />
@@ -221,10 +222,10 @@
     <Compile Include="Vista\Ingenieros\CargaFin.aspx.designer.cs">
       <DependentUpon>CargaFin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Ingenieros\CorreoElectronico.cs" />
-    <Compile Include="Vista\Ingenieros\Fallas.cs" />
-    <Compile Include="Vista\Ingenieros\Firma.cs" />
-    <Compile Include="Vista\Ingenieros\Observaciones.cs" />
+    <Compile Include="Vista\Ingenieros\Responsabilidades\CorreoElectronico.cs" />
+    <Compile Include="Vista\Ingenieros\Responsabilidades\Fallas.cs" />
+    <Compile Include="Vista\Ingenieros\Responsabilidades\Firma.cs" />
+    <Compile Include="Vista\Ingenieros\Responsabilidades\Observaciones.cs" />
     <Compile Include="Vista\Ingenieros\ReporteRefacciones.aspx.cs">
       <DependentUpon>ReporteRefacciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
