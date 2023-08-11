@@ -37,11 +37,11 @@ namespace INOLAB_OC
             }
             else
             {
-                verificarSiUsuarioEsJefeDeSuArea();
+                verificarSiUsuarioEsJefeDeSuArea();       
                 lbluser.Text = Session["nameUsuario"].ToString();
             }
         }
-      
+       
 
         public void verificarSiUsuarioEsJefeDeSuArea()
         {

@@ -3,12 +3,24 @@
     padding: 0;
 }
 
-body {
+html {
+    height: 100%;
     background: #fffffa;
 }
 
+body {
+    min-height: 100%;
+    background: #fffffa;
+}
 
-.header2 {
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    padding: 0 50px;
+    display: flex;
+    align-items: center;
+
     position: fixed;
     height: 83px;
     z-index: 100;
@@ -17,20 +29,7 @@ body {
     left: 3px;
 }
 
-
-header {
-    width: 100%;
-    position: fixed;
-    z-index: 100;
-
-    height: 200px;
-    padding: 0 50px;
-    display: flex;
-    /*justify-content: space-between; Queden separados*/
-    align-items: center;
-}
-
-.menu-encabezado { /*IMPORTANTEEEE*/
+.menu-encabezado { 
     text-transform: uppercase;
     padding: 0 25px;
     transition: 0.4s;
@@ -70,7 +69,7 @@ header {
 /*RESPONSIVE */
 /*Menor o igual*/
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
 
     .mostrar-menu, .esconder-menu {
         display: block;
@@ -104,4 +103,59 @@ header {
     #check:checked ~ .menu-encabezado {
         right: 0;
     }
+}
+
+
+.Btn-funciones {
+    background-color: #85C1E9; /*#85C1E9*/
+    height: 40px;
+    font-weight: bold;
+    margin-top: 80px;
+    margin-left: 30px;
+    margin-bottom:6px;
+    padding: 10px;
+}
+
+.registro-refacciones {
+    margin: 2px 1px;
+}
+
+#Div_titulo_refacciones {
+    display: flex;
+    justify-content: center;
+    background-color: #AED6F1;
+    margin: 0px;
+}
+
+#Lbl_titulo_refacciones {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#Tbl_Refacciones {
+    margin: 0px;
+}
+
+#Sect_agregar_refaccion {
+    margin-top: 100px;
+    background-color: #D6EAF8;
+    margin: 1px 5px;
+}
+
+
+#lbl_agregar_refaccion_titulo {
+    display: flex;
+    justify-content: center;
+    margin-bottom:10px;
+    font-weight:bold;
+    font-size:30px;
+}
+
+.txbox-agregar-refaccion{
+    width:90%;
+    background-color:white;
+}
+
+#RegularExpressionValidator{
+    margin-bottom:10px;
 }

@@ -15,31 +15,40 @@ namespace INOLAB_OC.Vista.Ingenieros
     {
 
         /// <summary>
-        /// Control Logotipo.
+        /// Control Head1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Logotipo;
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
 
         /// <summary>
-        /// Control lbl_Usuario.
+        /// Control Image1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Usuario;
+        protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// Control Usuario.
+        /// Control label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Usuario;
+        protected global::System.Web.UI.WebControls.Label label1;
+
+        /// <summary>
+        /// Control lbluser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbluser;
 
         /// <summary>
         /// Control Btn_Servicios_Asignados.
@@ -69,48 +78,138 @@ namespace INOLAB_OC.Vista.Ingenieros
         protected global::System.Web.UI.WebControls.Button Btn_Salir;
 
         /// <summary>
-        /// Control Refacciones.
+        /// Control Btn_agregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Refacciones;
+        protected global::System.Web.UI.WebControls.Button Btn_agregar;
 
         /// <summary>
-        /// Control ImageButton2.
+        /// Control Lbl_Folio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.Label Lbl_Folio;
 
         /// <summary>
-        /// Control Label4.
+        /// Control Sect_refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_refacciones;
 
         /// <summary>
-        /// Control Table1.
+        /// Control Lbl_titulo_refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
+        protected global::System.Web.UI.WebControls.Label Lbl_titulo_refacciones;
 
         /// <summary>
-        /// Control btnNuevoR.
+        /// Control Tbl_Refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevoR;
+        protected global::System.Web.UI.WebControls.Table Tbl_Refacciones;
+
+        /// <summary>
+        /// Control Sect_agregar_refaccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_agregar_refaccion;
+
+        /// <summary>
+        /// Control lbl_agregar_refaccion_titulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_agregar_refaccion_titulo;
+
+        /// <summary>
+        /// Control LBL_NUM_PARTES_REFACCION.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_NUM_PARTES_REFACCION;
+
+        /// <summary>
+        /// Control txtbox_numero_de_partes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbox_numero_de_partes;
+
+        /// <summary>
+        /// Control RegularExpressionValidator1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+
+        /// <summary>
+        /// Control LBL_CANTIDAD_REFACCION.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_CANTIDAD_REFACCION;
+
+        /// <summary>
+        /// Control txtbox_cantidad_refaccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbox_cantidad_refaccion;
+
+        /// <summary>
+        /// Control RegularExpressionValidator3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
+
+        /// <summary>
+        /// Control LBL_DESCRIPCION_REFACCION.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_DESCRIPCION_REFACCION;
+
+        /// <summary>
+        /// Control txtbox_descripcion_refaccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbox_descripcion_refaccion;
     }
 }

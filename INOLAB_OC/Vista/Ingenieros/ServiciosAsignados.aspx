@@ -34,7 +34,7 @@
         }
         .auto-style9 {
             width: 144px;
-        }
+        }   
         .auto-style11 {
             width: 360px;
         }
