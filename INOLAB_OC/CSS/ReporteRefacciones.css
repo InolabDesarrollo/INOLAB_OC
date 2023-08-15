@@ -133,22 +133,36 @@ header {
 }
 
 #Tbl_Refacciones {
-    margin: 0px;
+    margin: 5px;
 }
 
 #Sect_agregar_refaccion {
-    margin-top: 100px;
     background-color: #D6EAF8;
     margin: 1px 5px;
 }
 
+#Btn_Agregar_Refaccion {
+    background-color: #85C1E9; /*#85C1E9*/
+    height: 40px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 6px;
+    padding: 10px;
+}
+
+
+#Gv_Refacciones{
+    margin:5px 10px;
+    
+}
 
 #lbl_agregar_refaccion_titulo {
     display: flex;
     justify-content: center;
-    margin-bottom:10px;
-    font-weight:bold;
-    font-size:30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .txbox-agregar-refaccion{
@@ -156,6 +170,4 @@ header {
     background-color:white;
 }
 
-#RegularExpressionValidator{
-    margin-bottom:10px;
-}
+

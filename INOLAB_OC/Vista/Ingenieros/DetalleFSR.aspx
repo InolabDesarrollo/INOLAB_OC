@@ -321,6 +321,7 @@
                     <div id="botonnuevoRef" class="btnnuevoRef">
                         <asp:Button runat="server" Text="Nuevo" BorderStyle="None" style="float:right" ID="btnNuevoR" OnClick="Mostrar_nueva_refaccion_Click"/>
                     </div>
+
                 </div>
             </div>
         </section>

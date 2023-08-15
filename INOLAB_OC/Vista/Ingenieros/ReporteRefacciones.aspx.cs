@@ -1,20 +1,37 @@
 ﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
+using INOLAB_OC.Vista.Ingenieros.Responsabilidades;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace INOLAB_OC.Vista.Ingenieros
 {
     public partial class ReporteRefacciones : System.Web.UI.Page
     {
+        ReporteRefaccion refaccion;
+        
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                DataTable refacciones = new DataTable();
+                refacciones.Columns.Add("NumeroRefaccion", typeof(string));
+                refacciones.Columns.Add("CantidadRefaccion", typeof(string));
+                refacciones.Columns.Add("Descripcion", typeof(string));
+                ViewState["Refacciones"] = refacciones;
+                actualizarGvRefacciones();
 
+                refaccion = new ReporteRefaccion("123");
+            }
         }
 
         protected void Servicios_Asignados(object sender, EventArgs e)
@@ -31,16 +48,47 @@ namespace INOLAB_OC.Vista.Ingenieros
             Response.Redirect("/Sesion.aspx");
         }
           
-        protected void Agregar_Refaccion(object sender, EventArgs e)
+        protected void Mostrar_Ventana_Nueva_Refaccion(object sender, EventArgs e)
         {
-            Sect_refacciones.Style.Add("display","none");
-            Sect_agregar_refaccion.Style.Add("display", "block");
+            Sect_Refacciones.Style.Add("display", "none");
+            Sect_agregar_refaccion.Style.Add("display", "block");         
         }
 
-        protected void Cerrar_Refacciones(object sender, EventArgs e)
+        protected void Agregar_nueva_refaccion(object sender, EventArgs e)
         {
+            if (txtbox_numero_de_partes.Text != "" && txtbox_cantidad_refaccion.Text != "" && txtbox_descripcion_refaccion.Text != "")
+            {
+                DataTable refaccionNueva = (DataTable)ViewState["Refacciones"];
+                refaccionNueva.Rows.Add(txtbox_numero_de_partes.Text.Trim(), txtbox_cantidad_refaccion.Text.Trim(), txtbox_descripcion_refaccion.Text.Trim());
+                ViewState["Refacciones"] = refaccionNueva;
+                actualizarGvRefacciones();
+                cerrarVentanaNuevaReaccion();
+            }            
+            else
+            {
+                Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
+            }
+        }
+
+        protected void actualizarGvRefacciones()
+        {
+            Gv_Refacciones.DataSource = (DataTable)ViewState["Refacciones"];
+            Gv_Refacciones.DataBind();
+        }
+
+        protected void Cerrar_Ventana_Refacciones(object sender, EventArgs e)
+        {
+            cerrarVentanaNuevaReaccion();
+        }
+
+        private void cerrarVentanaNuevaReaccion()
+        {
+            txtbox_numero_de_partes.Text = "";
+            txtbox_cantidad_refaccion.Text = "";
+            txtbox_descripcion_refaccion.Text = "";
+
             Sect_agregar_refaccion.Style.Add("display", "none");
-            Sect_refacciones.Style.Add("display", "block");
+            Sect_Refacciones.Style.Add("display", "block");
         }
 
     }

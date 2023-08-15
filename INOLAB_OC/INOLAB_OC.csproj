@@ -233,6 +233,8 @@
     <Compile Include="Vista\Ingenieros\ReporteRefacciones.aspx.designer.cs">
       <DependentUpon>ReporteRefacciones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Ingenieros\Responsabilidades\Refaccion.cs" />
+    <Compile Include="Vista\Ingenieros\Responsabilidades\ReporteRefaccion.cs" />
     <Compile Include="Vista\Reporteador.cs" />
     <Compile Include="Vista\Ventas\CRM_1.aspx.cs">
       <DependentUpon>CRM_1.aspx</DependentUpon>

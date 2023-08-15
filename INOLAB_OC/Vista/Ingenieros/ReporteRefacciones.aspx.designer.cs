@@ -96,31 +96,22 @@ namespace INOLAB_OC.Vista.Ingenieros
         protected global::System.Web.UI.WebControls.Label Lbl_Folio;
 
         /// <summary>
-        /// Control Sect_refacciones.
+        /// Control Sect_Refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_refacciones;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_Refacciones;
 
         /// <summary>
-        /// Control Lbl_titulo_refacciones.
+        /// Control Gv_Refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_titulo_refacciones;
-
-        /// <summary>
-        /// Control Tbl_Refacciones.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Tbl_Refacciones;
+        protected global::System.Web.UI.WebControls.GridView Gv_Refacciones;
 
         /// <summary>
         /// Control Sect_agregar_refaccion.
@@ -211,5 +202,14 @@ namespace INOLAB_OC.Vista.Ingenieros
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbox_descripcion_refaccion;
+
+        /// <summary>
+        /// Control Btn_Agregar_Refaccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Agregar_Refaccion;
     }
 }

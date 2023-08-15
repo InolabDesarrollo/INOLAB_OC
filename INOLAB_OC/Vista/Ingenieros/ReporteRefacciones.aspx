@@ -48,29 +48,27 @@
             </header>
 
            <section  runat="server">
-              <asp:Button runat="server" Text="Agregar" class="Btn-funciones" id="Btn_agregar"  OnClick="Agregar_Refaccion" />
+              <asp:Button runat="server" Text="Agregar" class="Btn-funciones" id="Btn_agregar"  OnClick="Mostrar_Ventana_Nueva_Refaccion" />
               <asp:Label  runat="server" Text="N° de Folio: "  class="Btn-funciones" id="Lbl_Folio"></asp:Label>
-           </section> 
-
-        <section class="registro-refacciones"  id="Sect_refacciones" runat="server" style="display: block;">
-            <div class="div-refacciones" style="background-color: RGBA(255,255,255,1); padding:5px;" >
-                    <div  id="Div_titulo_refacciones"  >
-                        <asp:Label ID="Lbl_titulo_refacciones" runat="server">Registro de Refacciones</asp:Label>
-                    </div>
-                    <asp:Table ID="Tbl_Refacciones" runat="server" Width="100%" GridLines="Vertical" BorderColor="#252932"> 
-                    <asp:TableRow BackColor="#0000FF" ForeColor="White" HorizontalAlign="Center">
-                    <asp:TableHeaderCell Width="20%">N° refacción</asp:TableHeaderCell>
-                    <asp:TableHeaderCell Width="20%">Cantidad</asp:TableHeaderCell>
-                    <asp:TableHeaderCell>Comentario</asp:TableHeaderCell>
-                    </asp:TableRow>
-                    </asp:Table>                          
+           </section>  
+          
+           <section ID="Sect_Refacciones" runat="server" Width="97%" style="display: block;" >
+            <div  >
+            <asp:GridView ID="Gv_Refacciones" runat="server" Width="97%" Font-Size="18px"  AutoGenerateColumns="false" >
+             <Columns >
+                <asp:BoundField HeaderText="Numero" DataField="NumeroRefaccion"  Visible="true"  ItemStyle-Width="10%"/>
+                <asp:BoundField HeaderText="Cantidad Refaccion" DataField="CantidadRefaccion"  Visible="true" ItemStyle-Width="10%" />
+                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true" ItemStyle-Width="80%" />
+            </Columns>
+            <HeaderStyle BackColor="#5B2C6F" forecolor="#FBFCFC " />
+            </asp:GridView>
             </div>
-        </section>
+          </section> 
 
           <!--Agregar refaccion -->  
         <section  id="Sect_agregar_refaccion" runat="server" style="display: none;">       
                 <div class="buton" id="closebtnref1">
-                    <asp:ImageButton Visible="true"  runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" onClick="Cerrar_Refacciones" />
+                    <asp:ImageButton Visible="true"  runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" onClick="Cerrar_Ventana_Refacciones" />
                 </div>
             
                     <table class="tabla-agregar-refaccion">
@@ -108,9 +106,15 @@
                         <tr>  
                               <br />
                               <asp:Label ID="LBL_DESCRIPCION_REFACCION" runat="server" Text="Descripción"  ></asp:Label><br />
-                              <asp:TextBox ID="txtbox_descripcion_refaccion" runat="server" TextMode="MultiLine" Rows="5" MaxLength="240" autocomplete="off" AutoCompleteType="Disabled" CssClass="txbox-agregar-refaccion"></asp:TextBox>                                       
+                              <asp:TextBox ID="txtbox_descripcion_refaccion" runat="server" TextMode="MultiLine" Rows="5" MaxLength="240" autocomplete="off" AutoCompleteType="Disabled" CssClass="txbox-agregar-refaccion"></asp:TextBox>   
+                              
                         </tr>
-                   </table>                       
+                   </table>
+            
+            
+                <div id="Div_agregar_refaccion" >
+                        <asp:Button runat="server" Text="Agregar" BorderStyle="None"  ID="Btn_Agregar_Refaccion" OnClick="Agregar_nueva_refaccion"/>
+                </div>
         </section>  
          
       </form>
