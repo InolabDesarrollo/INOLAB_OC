@@ -9,7 +9,6 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
 {
     public class ReporteRefaccion : Refaccion
     {
-
         public ReporteRefaccion(string idFolio)
         {
             this.idFolioServicio = idFolioServicio;

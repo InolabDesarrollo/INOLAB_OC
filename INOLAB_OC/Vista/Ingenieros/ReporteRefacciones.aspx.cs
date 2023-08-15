@@ -17,8 +17,7 @@ namespace INOLAB_OC.Vista.Ingenieros
     public partial class ReporteRefacciones : System.Web.UI.Page
     {
         ReporteRefaccion refaccion;
-        
-        
+             
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

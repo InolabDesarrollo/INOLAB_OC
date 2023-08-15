@@ -1,4 +1,5 @@
 ﻿using INOLAB_OC.Entidades;
+using INOLAB_OC.Vista.Ingenieros.Responsabilidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,10 +13,9 @@ namespace INOLAB_OC.Modelo.Browser.Interfaces
     {
         void eliminarRefaccion(string id);
 
-        void actualizarRefaccion(E_Refaccion entidad);
+        void actualizarRefaccion(Refaccion entidad);
 
-        int agregarRefaccion(E_Refaccion entidad);
-        E_Refaccion optenerPorId(int id);
+        int agregarRefaccion(Refaccion entidad);
 
         DataSet consultarTodosLosDatosDeRefaccion(string id);
 

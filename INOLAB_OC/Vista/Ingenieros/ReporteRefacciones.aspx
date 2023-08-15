@@ -113,7 +113,7 @@
             
             
                 <div id="Div_agregar_refaccion" >
-                        <asp:Button runat="server" Text="Agregar" BorderStyle="None"  ID="Btn_Agregar_Refaccion" OnClick="Agregar_nueva_refaccion"/>
+                     <asp:Button runat="server" Text="Agregar" BorderStyle="None"  ID="Btn_Agregar_Refaccion" OnClick="Agregar_nueva_refaccion"/>
                 </div>
         </section>  
          
