@@ -9,25 +9,18 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
 {
     public class ReporteRefaccion : Refaccion
     {
+
         public ReporteRefaccion(string idFolio)
         {
             this.idFolioServicio = idFolioServicio;
         }
-        public  TableRow crearFilaParaRefacciones(string numeroDePartes, string numeroDeRefacciones, string descripcion)
+
+        public ReporteRefaccion(string idFolio,string numeroRefaccion,string cantidadRefaccion,string descripcion)
         {
-            TableRow fila = new TableRow();
-            TableCell[] celda = new TableCell[3];
-            celda[0] = new TableCell();
-            celda[1] = new TableCell();
-            celda[2] = new TableCell();
-
-            celda[0].Text = numeroDePartes;
-            celda[1].Text = numeroDeRefacciones + " pieza(s)";
-            celda[2].Text = descripcion;
-
-            fila.Cells.AddRange(celda);
-            fila.Style.Add("HorizontalAlign", "Center");
-            return fila;
+            this.idFolioServicio = idFolioServicio;
+            this.NumeroRefaccion = numeroRefaccion;
+            this.CantidadRefaccion=cantidadRefaccion;
+            this.Descripcion= descripcion;
         }
 
         public override bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)

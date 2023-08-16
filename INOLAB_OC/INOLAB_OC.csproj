@@ -182,6 +182,7 @@
     <Compile Include="Modelo\Browser\Interfaces\IV_FSR_Repository.cs" />
     <Compile Include="Modelo\Browser\MailNotification_Repository.cs" />
     <Compile Include="Modelo\Browser\Refaccion_Repository.cs" />
+    <Compile Include="Modelo\Browser\ReporteRefaccionRepository.cs" />
     <Compile Include="Modelo\Browser\UsuarioRepository.cs" />
     <Compile Include="Modelo\Browser\V_FSR_Repository.cs" />
     <Compile Include="Modelo\Comercial\Funnel_Repository.cs" />

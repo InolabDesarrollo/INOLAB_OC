@@ -1,5 +1,6 @@
 ﻿using INOLAB_OC.Entidades;
 using INOLAB_OC.Modelo.Browser.Interfaces;
+using INOLAB_OC.Vista.Ingenieros.Responsabilidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +22,7 @@ namespace INOLAB_OC.Controlador.Ingenieros
             return repository.consultarNumeroYCantidadDeRefaccion(idFSR);
         }
 
-        public int agregarRefaccion(E_Refaccion entidad)
+        public int agregarRefaccion(Refaccion entidad)
         {
             return repository.agregarRefaccion(entidad);
         }

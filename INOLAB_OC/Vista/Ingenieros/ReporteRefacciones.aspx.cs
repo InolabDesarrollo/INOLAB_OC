@@ -1,5 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
+using INOLAB_OC.Controlador.Ingenieros;
+using INOLAB_OC.Modelo.Browser;
 using INOLAB_OC.Vista.Ingenieros.Responsabilidades;
 using System;
 using System.Collections.Generic;
@@ -16,20 +18,19 @@ namespace INOLAB_OC.Vista.Ingenieros
 {
     public partial class ReporteRefacciones : System.Web.UI.Page
     {
-        ReporteRefaccion refaccion;
-             
+        ReporteRefaccionRepository repositorio = new ReporteRefaccionRepository();
+        C_Refaccion controlador;
         protected void Page_Load(object sender, EventArgs e)
         {
+            controlador = new C_Refaccion(repositorio);
             if (!IsPostBack)
-            {
+            {            
                 DataTable refacciones = new DataTable();
                 refacciones.Columns.Add("NumeroRefaccion", typeof(string));
                 refacciones.Columns.Add("CantidadRefaccion", typeof(string));
                 refacciones.Columns.Add("Descripcion", typeof(string));
                 ViewState["Refacciones"] = refacciones;
                 actualizarGvRefacciones();
-
-                refaccion = new ReporteRefaccion("123");
             }
         }
 
@@ -57,6 +58,10 @@ namespace INOLAB_OC.Vista.Ingenieros
         {
             if (txtbox_numero_de_partes.Text != "" && txtbox_cantidad_refaccion.Text != "" && txtbox_descripcion_refaccion.Text != "")
             {
+                ReporteRefaccion refaccion = new ReporteRefaccion(Session["folio_p"].ToString(), txtbox_numero_de_partes.Text, txtbox_cantidad_refaccion.Text, 
+                    txtbox_descripcion_refaccion.Text);
+                controlador.agregarRefaccion(refaccion);
+
                 DataTable refaccionNueva = (DataTable)ViewState["Refacciones"];
                 refaccionNueva.Rows.Add(txtbox_numero_de_partes.Text.Trim(), txtbox_cantidad_refaccion.Text.Trim(), txtbox_descripcion_refaccion.Text.Trim());
                 ViewState["Refacciones"] = refaccionNueva;

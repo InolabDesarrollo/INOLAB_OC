@@ -12,7 +12,6 @@ namespace INOLAB_OC.Entidades
 {
     public class E_Refaccion:Refaccion
     {
-    
         static Refaccion_Repository repositorioRefaccion = new Refaccion_Repository();
         C_Refaccion controladorRefaccion = new C_Refaccion(repositorioRefaccion);
 
