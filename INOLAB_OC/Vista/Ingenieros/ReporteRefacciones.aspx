@@ -54,11 +54,12 @@
           
            <section ID="Sect_Refacciones" runat="server" Width="97%" style="display: block;" >
             <div  >
-            <asp:GridView ID="Gv_Refacciones" runat="server" Width="97%" Font-Size="18px"  AutoGenerateColumns="false" >
+            <asp:GridView ID="Gv_Refacciones" runat="server" Width="97%"   AutoGenerateColumns="false" >
              <Columns >
+                <asp:BoundField HeaderText="Id" DataField="idReporteRefaccion"  Visible="true" ItemStyle-Width="10%" />
                 <asp:BoundField HeaderText="Numero" DataField="NumeroRefaccion"  Visible="true"  ItemStyle-Width="10%"/>
                 <asp:BoundField HeaderText="Cantidad Refaccion" DataField="CantidadRefaccion"  Visible="true" ItemStyle-Width="10%" />
-                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true" ItemStyle-Width="80%" />
+                <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true" ItemStyle-Width="70%" />
             </Columns>
             <HeaderStyle BackColor="#5B2C6F" forecolor="#FBFCFC " />
             </asp:GridView>
@@ -106,12 +107,12 @@
                         <tr>  
                               <br />
                               <asp:Label ID="LBL_DESCRIPCION_REFACCION" runat="server" Text="Descripción"  ></asp:Label><br />
-                              <asp:TextBox ID="txtbox_descripcion_refaccion" runat="server" TextMode="MultiLine" Rows="5" MaxLength="240" autocomplete="off" AutoCompleteType="Disabled" CssClass="txbox-agregar-refaccion"></asp:TextBox>   
+                             <asp:TextBox ID="txtbox_descripcion_refaccion" runat="server" TextMode="MultiLine" Rows="5" MaxLength="240" autocomplete="off" AutoCompleteType="Disabled" CssClass="txbox-agregar-refaccion"></asp:TextBox>   
                               
                         </tr>
                    </table>
             
-            
+                 
                 <div id="Div_agregar_refaccion" >
                      <asp:Button runat="server" Text="Agregar" BorderStyle="None"  ID="Btn_Agregar_Refaccion" OnClick="Agregar_nueva_refaccion"/>
                 </div>

@@ -66,6 +66,11 @@ header {
     }
 
 
+#Gv_Refacciones {
+    margin: 5px 10px;
+    font-size:18px;
+}
+
 /*RESPONSIVE */
 /*Menor o igual*/
 
@@ -102,6 +107,10 @@ header {
 
     #check:checked ~ .menu-encabezado {
         right: 0;
+    }
+
+    #Gv_Refacciones {
+        Font-Size: 14px;
     }
 }
 
@@ -151,11 +160,6 @@ header {
     padding: 10px;
 }
 
-
-#Gv_Refacciones{
-    margin:5px 10px;
-    
-}
 
 #lbl_agregar_refaccion_titulo {
     display: flex;

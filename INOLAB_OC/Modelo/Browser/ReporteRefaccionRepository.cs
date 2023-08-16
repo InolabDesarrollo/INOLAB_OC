@@ -24,7 +24,8 @@ namespace INOLAB_OC.Modelo.Browser
 
         public DataSet consultarNumeroYCantidadDeRefaccion(string idFSR)
         {
-            throw new NotImplementedException();
+            return Conexion.getDataSet("select idReporteRefaccion,NumeroRefaccion,CantidadRefaccion,Descripcion from " +
+                "ReporteRefaccion where idFSR= " + idFSR + ";");
         }
 
         public DataSet consultarTodosLosDatosDeRefaccion(string id)

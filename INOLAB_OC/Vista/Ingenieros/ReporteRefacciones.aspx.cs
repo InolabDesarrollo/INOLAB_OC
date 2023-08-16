@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
+﻿using DocumentFormat.OpenXml.Office.Excel;
+using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Modelo.Browser;
@@ -18,20 +19,20 @@ namespace INOLAB_OC.Vista.Ingenieros
 {
     public partial class ReporteRefacciones : System.Web.UI.Page
     {
-        ReporteRefaccionRepository repositorio = new ReporteRefaccionRepository();
-        C_Refaccion controlador;
+        string folioServicio;
         protected void Page_Load(object sender, EventArgs e)
         {
-            controlador = new C_Refaccion(repositorio);
-            if (!IsPostBack)
-            {            
-                DataTable refacciones = new DataTable();
-                refacciones.Columns.Add("NumeroRefaccion", typeof(string));
-                refacciones.Columns.Add("CantidadRefaccion", typeof(string));
-                refacciones.Columns.Add("Descripcion", typeof(string));
-                ViewState["Refacciones"] = refacciones;
-                actualizarGvRefacciones();
-            }
+            lbluser.Text = " "+ Session["nameUsuario"].ToString();
+            folioServicio = Session["folio_p"].ToString();
+            Lbl_Folio.Text = "N° de Folio: " + folioServicio;
+            consultarTodasLasRefacciones(folioServicio);
+        }
+
+        private void consultarTodasLasRefacciones(string folioServicio)
+        {
+            ReporteRefaccion refacciones = new ReporteRefaccion(folioServicio);
+            Gv_Refacciones.DataSource = refacciones.consultarTodasLasRefacciones();
+            Gv_Refacciones.DataBind();
         }
 
         protected void Servicios_Asignados(object sender, EventArgs e)
@@ -51,33 +52,24 @@ namespace INOLAB_OC.Vista.Ingenieros
         protected void Mostrar_Ventana_Nueva_Refaccion(object sender, EventArgs e)
         {
             Sect_Refacciones.Style.Add("display", "none");
-            Sect_agregar_refaccion.Style.Add("display", "block");         
+            Sect_agregar_refaccion.Style.Add("display", "block");
+            Btn_agregar.Text = "-";
         }
 
         protected void Agregar_nueva_refaccion(object sender, EventArgs e)
         {
             if (txtbox_numero_de_partes.Text != "" && txtbox_cantidad_refaccion.Text != "" && txtbox_descripcion_refaccion.Text != "")
             {
-                ReporteRefaccion refaccion = new ReporteRefaccion(Session["folio_p"].ToString(), txtbox_numero_de_partes.Text, txtbox_cantidad_refaccion.Text, 
+                ReporteRefaccion refaccion = new ReporteRefaccion(folioServicio, txtbox_numero_de_partes.Text, txtbox_cantidad_refaccion.Text, 
                     txtbox_descripcion_refaccion.Text);
-                controlador.agregarRefaccion(refaccion);
-
-                DataTable refaccionNueva = (DataTable)ViewState["Refacciones"];
-                refaccionNueva.Rows.Add(txtbox_numero_de_partes.Text.Trim(), txtbox_cantidad_refaccion.Text.Trim(), txtbox_descripcion_refaccion.Text.Trim());
-                ViewState["Refacciones"] = refaccionNueva;
-                actualizarGvRefacciones();
+                refaccion.agregarRefaccion();
+                consultarTodasLasRefacciones(folioServicio);
                 cerrarVentanaNuevaReaccion();
             }            
             else
             {
                 Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
             }
-        }
-
-        protected void actualizarGvRefacciones()
-        {
-            Gv_Refacciones.DataSource = (DataTable)ViewState["Refacciones"];
-            Gv_Refacciones.DataBind();
         }
 
         protected void Cerrar_Ventana_Refacciones(object sender, EventArgs e)
@@ -93,6 +85,7 @@ namespace INOLAB_OC.Vista.Ingenieros
 
             Sect_agregar_refaccion.Style.Add("display", "none");
             Sect_Refacciones.Style.Add("display", "block");
+            Btn_agregar.Text = "Agregar";
         }
 
     }
