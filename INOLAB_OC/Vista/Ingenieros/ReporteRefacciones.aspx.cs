@@ -102,7 +102,6 @@ namespace INOLAB_OC.Vista.Ingenieros
                 int id=int.Parse( refacciones.Rows[indice]["IdReporteRefaccion"].ToString());
                 refaccion.eliminar(id);
                 consultarTodasLasRefacciones(folioServicio);
-
             }
         }
 

@@ -324,8 +324,18 @@ public partial class DetalleFSR : Page
     }
     protected void Agrendar_proximo_servicio_Click(object sender, EventArgs e)
     {
-        controladorFSR.actualizarValorDeCampoPorFolio(idFolioServicio, "Proximo_Servicio", datepicker1.Text);
+        if (datepicker1.Text != "")
+        {
+            string folio = datepicker1.Text; 
+            controladorFSR.actualizarValorDeCampoPorFolio(idFolioServicio, "Proximo_Servicio", datepicker1.Text);
+        }
+        else
+        {
+            controladorFSR.actualizarValorDeCampoNull(idFolioServicio);
+        }   
     }
+    
+
     public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
         int fila;

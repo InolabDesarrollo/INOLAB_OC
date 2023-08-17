@@ -558,6 +558,7 @@ namespace INOLAB_OC
                 ListItem i7 = new ListItem("Karla Mariana", "Karla Mariana");
                 ListItem i8 = new ListItem("Gustavo", "Gustavo");
                 ListItem i9 = new ListItem("Sebastian", "Sebastian");
+                ListItem i10 = new ListItem("Anaid", "Anaid");
 
                 ddlF_Asesor.Items.Add(i1);
                 ddlF_Asesor.Items.Add(i2);
@@ -568,6 +569,7 @@ namespace INOLAB_OC
                 ddlF_Asesor.Items.Add(i7);
                 ddlF_Asesor.Items.Add(i8);
                 ddlF_Asesor.Items.Add(i9);
+                ddlF_Asesor.Items.Add(i10);
             }         
         }
         //Asesores Servicio

@@ -197,5 +197,10 @@ namespace INOLAB_OC.Controlador
             return _fsrRepository.consultarMailDeFolioServicio(folioFSR);
         }
 
+        public void actualizarValorDeCampoNull(string folioFSR)
+        {
+            _fsrRepository.actualizarValorDeCampoNull(folioFSR);
+        }
+
     }
 }

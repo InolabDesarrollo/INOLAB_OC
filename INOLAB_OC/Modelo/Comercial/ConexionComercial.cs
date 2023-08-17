@@ -60,7 +60,7 @@ namespace INOLAB_OC.Modelo
             catch (SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS: FAILED");
+                Trace.WriteLine("PASS: FAILED "+ex.Message);
                 return -1;
             }
 

@@ -31,7 +31,7 @@ namespace INOLAB_OC.Modelo
 
         private Conexion()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
@@ -92,7 +92,7 @@ namespace INOLAB_OC.Modelo
             }catch (SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS: FAILED executeQuery()");
+                Trace.WriteLine("PASS: FAILED executeQuery() "+ex.Message);
                 return false;
             }
             
@@ -113,7 +113,7 @@ namespace INOLAB_OC.Modelo
             }catch (SqlException ex)
             {
                 conexion.Close();
-                Trace.WriteLine("PASS: FAILED getScalar()");
+                Trace.WriteLine("PASS: FAILED getScalar() "+ex.Message);
                 return -1;
             }
            
@@ -357,6 +357,28 @@ namespace INOLAB_OC.Modelo
             }
         }
 
+        public static void actualizarCampoNull(string folioFsr)
+        {
+            iniciarBaseDeDatos();
+            try
+            {
+                SqlCommand comando = new SqlCommand("actualizarValorDeCampoNuloFSR", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                conexion.Open();
+                comando.Parameters.Add("@Folio", SqlDbType.VarChar);
+
+                comando.Parameters["@Folio"].Value = folioFsr;
+                comando.ExecuteNonQuery();
+                conexion.Close();
+                Trace.WriteLine("SUCCES STORE PROCEDURE actualizarCampoNull");
+            }
+            catch (SqlException ex)
+            {
+                conexion.Close();
+                Trace.WriteLine("PASS FAILED actualizarCampoNull" + ex.Message);
+            }
+        }
+
         public static SqlDataReader getSqlDataReader(string query)
          {
             iniciarBaseDeDatos();
@@ -375,6 +397,8 @@ namespace INOLAB_OC.Modelo
                 return null;
             }
          }
+
+
  
        public static void cerrarConexion()
        {

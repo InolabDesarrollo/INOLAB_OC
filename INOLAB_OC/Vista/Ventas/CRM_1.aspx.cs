@@ -45,8 +45,6 @@ namespace INOLAB_OC
                 Btn_reporte_cotizaciones.Visible = true;
                 ligaReporte = "/Comercial/FunnelxAsesor";
             }                      
-
-
         }
 
         

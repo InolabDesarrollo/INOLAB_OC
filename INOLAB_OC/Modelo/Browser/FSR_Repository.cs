@@ -125,7 +125,7 @@ namespace INOLAB_OC.Modelo.Browser
 
         public void actualizarValorDeCampo(string folio,  string campo, string valorDelCampo)
         {
-            string query = "UPDATE FSR SET "+ campo +" = '"+ valorDelCampo + "' where Folio = '"+ folio +"';";
+            string query = "UPDATE FSR SET "+ campo +" = '"+ valorDelCampo + "' where Folio = "+ folio +";";
             Conexion.executeQuery(query);
         }
 
@@ -157,6 +157,11 @@ namespace INOLAB_OC.Modelo.Browser
         public string consultarMailDeFolioServicio(string folioFSR)
         {     
             return Conexion.getText("select Mail from FSR where Folio = " + folioFSR + " and IdFirmaImg is not null;");
+        }
+
+        public void actualizarValorDeCampoNull(string folioFsr)
+        {
+            Conexion.actualizarCampoNull(folioFsr);
         }
     }
 }

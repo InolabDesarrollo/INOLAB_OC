@@ -154,7 +154,7 @@
                 </label>
 
                     <nav class="menu-responsive">
-                       <asp:Button class="Btn_Header" runat="server" Text="Reporte Refacciones"  ID="Btn_Reporte_Refacciones"  onClick="Reporte_Refacciones" />
+                       <asp:Button class="Btn_Header" runat="server" Text="Reporte Refacciones"  ID="Btn_Reporte_Refacciones"  onClick="Reporte_Refacciones" Visible="false" />
                 
                        <button  type="reset" class="dropbtn" id="Btn_Atras" onclick="go('atras')">Atras</button> 
                     
