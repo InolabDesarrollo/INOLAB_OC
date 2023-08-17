@@ -11,7 +11,7 @@ namespace INOLAB_OC.Modelo.Browser.Interfaces
 {
     public interface IRefaccion
     {
-        void eliminarRefaccion(string id);
+        void eliminarRefaccion(int id);
 
         void actualizarRefaccion(Refaccion entidad);
 

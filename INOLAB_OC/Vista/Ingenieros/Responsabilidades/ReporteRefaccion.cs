@@ -50,6 +50,11 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
             DataTable dataTable = dataSet.Tables[0];
             return dataTable;
         }
+        
+        public void eliminar(int id)
+        {
+            controlador.eliminarRefaccion(id);
+        }
 
     }
 }

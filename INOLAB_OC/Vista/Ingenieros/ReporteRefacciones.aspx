@@ -54,9 +54,10 @@
           
            <section ID="Sect_Refacciones" runat="server" Width="97%" style="display: block;" >
             <div  >
-            <asp:GridView ID="Gv_Refacciones" runat="server" Width="97%"   AutoGenerateColumns="false" >
+            <asp:GridView ID="Gv_Refacciones" runat="server" Width="97%"   AutoGenerateColumns="false" 
+                OnRowCommand="Gv_Refacciones_RowCommand">
              <Columns >
-                <asp:BoundField HeaderText="Id" DataField="idReporteRefaccion"  Visible="true" ItemStyle-Width="10%" />
+                <asp:ButtonField Text="Eliminar" Visible="true" ItemStyle-Width="10%" CommandName="Eliminar" />
                 <asp:BoundField HeaderText="Numero" DataField="NumeroRefaccion"  Visible="true"  ItemStyle-Width="10%"/>
                 <asp:BoundField HeaderText="Cantidad Refaccion" DataField="CantidadRefaccion"  Visible="true" ItemStyle-Width="10%" />
                 <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true" ItemStyle-Width="70%" />

@@ -1,9 +1,11 @@
-﻿using DocumentFormat.OpenXml.Office.Excel;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Office.Excel;
 using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Modelo.Browser;
 using INOLAB_OC.Vista.Ingenieros.Responsabilidades;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,18 +22,21 @@ namespace INOLAB_OC.Vista.Ingenieros
     public partial class ReporteRefacciones : System.Web.UI.Page
     {
         string folioServicio;
+        ReporteRefaccion refaccion;
         protected void Page_Load(object sender, EventArgs e)
         {
             lbluser.Text = " "+ Session["nameUsuario"].ToString();
             folioServicio = Session["folio_p"].ToString();
             Lbl_Folio.Text = "N° de Folio: " + folioServicio;
+            refaccion = new ReporteRefaccion(folioServicio);
+
             consultarTodasLasRefacciones(folioServicio);
         }
 
         private void consultarTodasLasRefacciones(string folioServicio)
         {
-            ReporteRefaccion refacciones = new ReporteRefaccion(folioServicio);
-            Gv_Refacciones.DataSource = refacciones.consultarTodasLasRefacciones();
+            refaccion = new ReporteRefaccion(folioServicio);
+            Gv_Refacciones.DataSource = refaccion.consultarTodasLasRefacciones();
             Gv_Refacciones.DataBind();
         }
 
@@ -86,6 +91,19 @@ namespace INOLAB_OC.Vista.Ingenieros
             Sect_agregar_refaccion.Style.Add("display", "none");
             Sect_Refacciones.Style.Add("display", "block");
             Btn_agregar.Text = "Agregar";
+        }
+
+        protected void Gv_Refacciones_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("Eliminar"))
+            {
+                int indice = int.Parse(e.CommandArgument.ToString());
+                System.Data.DataTable refacciones = refaccion.consultarTodasLasRefacciones();
+                int id=int.Parse( refacciones.Rows[indice]["IdReporteRefaccion"].ToString());
+                refaccion.eliminar(id);
+                consultarTodasLasRefacciones(folioServicio);
+
+            }
         }
 
     }

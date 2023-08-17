@@ -33,9 +33,9 @@ namespace INOLAB_OC.Modelo.Browser
             throw new NotImplementedException();
         }
 
-        public void eliminarRefaccion(string id)
+        public void eliminarRefaccion(int id)
         {
-            throw new NotImplementedException();
+            Conexion.executeQuery(" DELETE  FROM ReporteRefaccion WHERE IdReporteRefaccion ="+id+";");
         }
     }
 }

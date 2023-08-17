@@ -26,5 +26,10 @@ namespace INOLAB_OC.Controlador.Ingenieros
         {
             return repository.agregarRefaccion(entidad);
         }
+
+        public void eliminarRefaccion(int id)
+        {
+            repository.eliminarRefaccion(id);
+        }
     }
 }

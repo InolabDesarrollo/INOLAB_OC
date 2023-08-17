@@ -184,9 +184,9 @@ namespace INOLAB_OC
                 controladorOSCL = new C_OSCL(repositorioOSCL, int.Parse(callId));
                 controladorOSCL.verificarSiSeCierraLaLLamada(numeroDeValoresEnEstatus, HayFoliosConEstatusDiferenteDeFinalizado);
             }
-            catch (Exception er)
+            catch (Exception ex)
             {
-                Response.Write("<script>alert('Fallo en subir a sap ');</script>");
+                Response.Write("<script>alert('Fallo en subir a sap ');</script>"+ ex.Message.ToString());
             }
         }
 
