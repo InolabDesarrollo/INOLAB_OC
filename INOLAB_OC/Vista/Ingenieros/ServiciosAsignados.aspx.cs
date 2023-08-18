@@ -42,13 +42,13 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             if (controladorUsuario.validarSiUsuarioEsGefeDeArea(idUsuario))
             {
                 Btn_Calendario.Visible = true;
+                Btn_ReporteRefacciones.Visible = true;
             }
             else
             {
                 Btn_Calendario.Visible = false;
             }
         }
-        Btn_Buscar_Folio.Visible=false;
         btninformacion.Visible = false;
     }
    
@@ -129,7 +129,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
   
     protected void Gridview_datos_de_servicio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
-        //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
         try
         {
             int index = int.Parse(e.CommandArgument.ToString());
@@ -246,7 +245,12 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         }
         return reporteServicio;
     }
- 
+
+    protected void Reporte_Refacciones_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("GerenteReporteRefacciones.aspx");
+    }
+
     protected void Btn_Salir_Click(object sender, EventArgs e)
     {
         Session.Clear();
@@ -341,4 +345,5 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         string _open = "window.open('Informacion.aspx', '_newtab');";
         ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
     }
+
 }

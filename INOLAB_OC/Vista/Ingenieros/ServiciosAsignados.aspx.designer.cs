@@ -103,13 +103,13 @@ public partial class ServiciosAsignados
     protected global::System.Web.UI.WebControls.Button btndescargafolio;
 
     /// <summary>
-    /// Control Btn_Buscar_Folio.
+    /// Control Btn_ReporteRefacciones.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button Btn_Buscar_Folio;
+    protected global::System.Web.UI.WebControls.Button Btn_ReporteRefacciones;
 
     /// <summary>
     /// Control Button1.
