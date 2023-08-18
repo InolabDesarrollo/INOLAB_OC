@@ -63,7 +63,7 @@ namespace INOLAB_OC.Vista.Ingenieros
 
         protected void Agregar_nueva_refaccion(object sender, EventArgs e)
         {
-            if (txtbox_numero_de_partes.Text != "" && txtbox_cantidad_refaccion.Text != "" && txtbox_descripcion_refaccion.Text != "")
+            if (txtbox_cantidad_refaccion.Text != "" && txtbox_descripcion_refaccion.Text != "")
             {
                 ReporteRefaccion refaccion = new ReporteRefaccion(folioServicio, txtbox_numero_de_partes.Text, txtbox_cantidad_refaccion.Text, 
                     txtbox_descripcion_refaccion.Text);

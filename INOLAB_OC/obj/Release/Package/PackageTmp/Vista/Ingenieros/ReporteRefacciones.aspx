@@ -82,7 +82,16 @@
                         <tr>                     
                                 <asp:Label ID="LBL_NUM_PARTES_REFACCION" runat="server" Text="N° de partes" ></asp:Label><br />
                                 <asp:TextBox ID="txtbox_numero_de_partes" runat="server" autocomplete="off" AutoCompleteType="Disabled" CssClass="txbox-agregar-refaccion" ></asp:TextBox><br />                          
-                        </tr>                 
+                        </tr>
+                        <tr>
+                            <br />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                                    ControlToValidate="txtbox_numero_de_partes" runat="server"
+                                    ErrorMessage="Solo se permiten números"
+                                    ValidationExpression="\d+">
+                             </asp:RegularExpressionValidator>
+                        </tr>
+                 
                         <tr>    
                             <br />
                               <asp:Label ID="LBL_CANTIDAD_REFACCION" runat="server" Text="Cantidad"   ></asp:Label><br />

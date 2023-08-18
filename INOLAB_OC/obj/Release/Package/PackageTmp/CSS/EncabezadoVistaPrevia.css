@@ -156,3 +156,8 @@ header nav {
     width: auto;
     height: 50px;
 }
+
+#Btn_Reporte_Refacciones {
+    height: 100px;
+    background-color: red;
+}

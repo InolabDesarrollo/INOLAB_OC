@@ -143,11 +143,11 @@
         </header>
         
         <section class="contenido2">
-            <div class="drop" runat="server" id="contenone" >
+            <div class="drop" runat="server" id="contenone" style="max-height:500px;overflow-y:scroll;" >
                 <div class="form-style-2-heading">
                     <asp:Label ID="titulo" runat="server">Detalle de FSR</asp:Label>
                 </div>
-                <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" Width="100%" Font-Size="9pt" DataKeyNames="idFSRAccion" CellPadding="4"  ForeColor="#333333" GridLines="None" BorderStyle="Ridge" Font-Bold="False" CssClass="auto-style7" OnRowCommand="GridView_de_acciones_realizadas_en_folio_OnRowComand" >
+                <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" Width="100%" Font-Size="9pt" DataKeyNames="idFSRAccion" CellPadding="4"  ForeColor="#333333" GridLines="None" BorderStyle="Ridge" Font-Bold="False" CssClass="auto-style7" OnRowCommand="GridView_de_acciones_realizadas_en_folio_OnRowComand"  >
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField HeaderText="id" DataField="idFSRAccion" SortExpression="idFSRAccion" Visible="true">
@@ -186,20 +186,22 @@
                 <div id="botonsa" class="btnnuevo" >
                     
                 </div>
-                    <table style="width: 100%;">
-                        <tr>
-                            <td class="auto-style8">
-                                <asp:Label ID="proxs" runat="server" >Próximo Servicio</asp:Label>
-                                <asp:TextBox ID="datepicker1" runat="server" CssClass="auto-style7"></asp:TextBox> <br /> <br />
-                                <asp:Button ID="btnProxServicio" runat="server" Text="Agregar" Width="92px" AutoPostBack="True" OnClick="Agrendar_proximo_servicio_Click" />
-                            </td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
-                </div>
+              <table style="width: 100%;">
+            
+               <tr>
+                  <td class="auto-style8">
+                       <asp:Label ID="proxs" runat="server" >Próximo Servicio</asp:Label>
+                      <asp:TextBox ID="datepicker1" runat="server" CssClass="auto-style7"></asp:TextBox> <br /> <br />
+                      <asp:Button ID="btnProxServicio" runat="server" Text="Agregar" Width="92px" AutoPostBack="True" OnClick="Agrendar_proximo_servicio_Click" />
+                 </td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+               </tr>        
+          </table>
+         </div>
+                            
         </section>
-        
+
         <!--seccion para ingresar una nueva accion realizada -->
         <section class="seccion-nuevo-servicio"  id="seccion_nuevo_servicio" runat="server" style="display: none;">
             <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf">
@@ -304,6 +306,7 @@
                 <div class="buton" id="closebtnref2">
                     <asp:ImageButton Visible="true" ID="ImageButton2" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" OnClick="Cerrar_Ventana_Refacciones_Click" />
                 </div>
+
                 <div>
                 <!--Aquí va la lista de refacciones que ya se han agregado con anterioridad -->
                     <div class="form-style-2-heading">
@@ -320,6 +323,7 @@
                     <div id="botonnuevoRef" class="btnnuevoRef">
                         <asp:Button runat="server" Text="Nuevo" BorderStyle="None" style="float:right" ID="btnNuevoR" OnClick="Mostrar_nueva_refaccion_Click"/>
                     </div>
+
                 </div>
             </div>
         </section>

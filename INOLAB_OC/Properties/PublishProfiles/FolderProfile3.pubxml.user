@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
-    <History>True|2023-08-07T15:44:09.5101739Z;True|2023-08-04T15:45:53.2009476-06:00;False|2023-08-02T13:54:10.2174269-06:00;False|2023-07-17T12:29:35.1936950-06:00;False|2023-07-17T12:28:26.5852973-06:00;</History>
+    <History>True|2023-08-17T23:29:39.3025576Z;True|2023-08-07T09:44:09.5101739-06:00;True|2023-08-04T15:45:53.2009476-06:00;False|2023-08-02T13:54:10.2174269-06:00;False|2023-07-17T12:29:35.1936950-06:00;False|2023-07-17T12:28:26.5852973-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>08/07/2023 09:44:08</publishTime>
+      <publishTime>08/17/2023 17:29:38</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>08/07/2023 09:44:08</publishTime>
+      <publishTime>08/17/2023 17:29:38</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -79,10 +79,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/27/2023 10:38:44</publishTime>
     </File>
     <File Include="CSS/EncabezadoDetalleFSR.css">
-      <publishTime>08/04/2023 17:01:20</publishTime>
+      <publishTime>04/08/2023 17:01:20</publishTime>
     </File>
     <File Include="CSS/EncabezadoFirmaFolio.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>08/08/2023 17:44:10</publishTime>
     </File>
     <File Include="CSS/EncabezadoFSR.css">
       <publishTime>07/31/2023 17:58:38</publishTime>
@@ -91,7 +91,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2023 10:35:50</publishTime>
     </File>
     <File Include="CSS/EncabezadoVistaPrevia.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>08/08/2023 17:25:21</publishTime>
     </File>
     <File Include="CSS/EstiloVista.css">
       <publishTime>07/31/2023 11:41:45</publishTime>
@@ -105,6 +105,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="CSS/Normalize.css">
       <publishTime>07/21/2023 10:35:50</publishTime>
     </File>
+    <File Include="CSS/ReporteRefacciones.css">
+      <publishTime>08/16/2023 14:14:04</publishTime>
+    </File>
     <File Include="CSS/ServiciosAsignados.css">
       <publishTime>07/21/2023 10:35:50</publishTime>
     </File>
@@ -114,11 +117,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="CSS/uploadify.css">
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
+    <File Include="CSS/VistaPrevia.css">
+      <publishTime>08/09/2023 12:40:08</publishTime>
+    </File>
     <File Include="Docs/0.pdf">
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Docs/Manual de Usuario SWF v3.pdf">
-      <publishTime>04/08/2023 14:13:23</publishTime>
+      <publishTime>08/04/2023 14:13:23</publishTime>
     </File>
     <File Include="FormatoFecha.js">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -187,22 +193,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Vista/Ingenieros/DetalleFSR.aspx">
-      <publishTime>08/07/2023 09:36:20</publishTime>
+      <publishTime>08/17/2023 10:51:03</publishTime>
     </File>
     <File Include="Vista/Ingenieros/FirmarFolio.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="Vista/Ingenieros/FSR.aspx">
-      <publishTime>03/08/2023 16:27:55</publishTime>
+      <publishTime>08/03/2023 16:27:55</publishTime>
     </File>
     <File Include="Vista/Ingenieros/Informacion.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
+    <File Include="Vista/Ingenieros/ReporteRefacciones.aspx">
+      <publishTime>08/17/2023 09:30:45</publishTime>
+    </File>
     <File Include="Vista/Ingenieros/ServiciosAsignados.aspx">
-      <publishTime>08/01/2023 17:21:29</publishTime>
+      <publishTime>08/10/2023 13:13:22</publishTime>
     </File>
     <File Include="Vista/Ingenieros/VistaPrevia.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>08/17/2023 17:19:55</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_1.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>
@@ -217,7 +226,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/02/2023 13:55:30</publishTime>
+      <publishTime>02/08/2023 13:55:30</publishTime>
     </File>
   </ItemGroup>
 </Project>
