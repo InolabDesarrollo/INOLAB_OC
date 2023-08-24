@@ -11,7 +11,7 @@ namespace INOLAB_OC.Vista.Ingenieros
 {
 
 
-    public partial class GerenteReporteRefaccion
+    public partial class EdicionReporteRefacciones
     {
 
         /// <summary>
@@ -60,6 +60,15 @@ namespace INOLAB_OC.Vista.Ingenieros
         protected global::System.Web.UI.WebControls.Button Btn_Servicios_Asignados;
 
         /// <summary>
+        /// Control Btn_Buscador_Refacciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Buscador_Refacciones;
+
+        /// <summary>
         /// Control Btn_Salir.
         /// </summary>
         /// <remarks>
@@ -69,102 +78,138 @@ namespace INOLAB_OC.Vista.Ingenieros
         protected global::System.Web.UI.WebControls.Button Btn_Salir;
 
         /// <summary>
-        /// Control Lbl_BuscarPor.
+        /// Control Txbox_Folio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_BuscarPor;
+        protected global::System.Web.UI.WebControls.TextBox Txbox_Folio;
 
         /// <summary>
-        /// Control List_BuscarReporte.
+        /// Control Sect_Refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList List_BuscarReporte;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_Refacciones;
 
         /// <summary>
-        /// Control Sect_Buscar_Por.
+        /// Control Gv_Refacciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_Buscar_Por;
+        protected global::System.Web.UI.WebControls.GridView Gv_Refacciones;
 
         /// <summary>
-        /// Control Lbl_Buscar_Por.
+        /// Control Sect_Editar_Refaccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Buscar_Por;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_Editar_Refaccion;
 
         /// <summary>
-        /// Control Txbox_Buscar_Por.
+        /// Control lbl_agregar_refaccion_titulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txbox_Buscar_Por;
+        protected global::System.Web.UI.WebControls.Label lbl_agregar_refaccion_titulo;
 
         /// <summary>
-        /// Control Btn_Buscar.
+        /// Control LBL_NUM_PARTES_REFACCION.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Buscar;
+        protected global::System.Web.UI.WebControls.Label LBL_NUM_PARTES_REFACCION;
 
         /// <summary>
-        /// Control Btn_Buscar_Ingeniero.
+        /// Control txtbox_numero_de_partes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Buscar_Ingeniero;
+        protected global::System.Web.UI.WebControls.TextBox txtbox_numero_de_partes;
 
         /// <summary>
-        /// Control Sect_Gv_Folios.
+        /// Control LBL_CANTIDAD_REFACCION.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_Gv_Folios;
+        protected global::System.Web.UI.WebControls.Label LBL_CANTIDAD_REFACCION;
 
         /// <summary>
-        /// Control Gv_Folios.
+        /// Control txtbox_cantidad_refaccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Gv_Folios;
+        protected global::System.Web.UI.WebControls.TextBox txtbox_cantidad_refaccion;
 
         /// <summary>
-        /// Control Sect_Gv_Ingenieros.
+        /// Control RegularExpressionValidator3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sect_Gv_Ingenieros;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
 
         /// <summary>
-        /// Control Gv_Ingenieros.
+        /// Control LBL_DESCRIPCION_REFACCION.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Gv_Ingenieros;
+        protected global::System.Web.UI.WebControls.Label LBL_DESCRIPCION_REFACCION;
+
+        /// <summary>
+        /// Control txtbox_descripcion_refaccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbox_descripcion_refaccion;
+
+        /// <summary>
+        /// Control Lbl_Comentario_Gerente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Comentario_Gerente;
+
+        /// <summary>
+        /// Control Txtbox_Comentario_Gerente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txtbox_Comentario_Gerente;
+
+        /// <summary>
+        /// Control Btn_Finalizar_Edicion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Finalizar_Edicion;
     }
 }

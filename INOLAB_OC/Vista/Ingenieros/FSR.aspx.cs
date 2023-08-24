@@ -261,7 +261,6 @@ public partial class FSR : Page
         else
         { 
             DateTime fechaYhoraDeInicioDeServicio = generarFechaYHoraDeInicioDeServicio();
-            //Pendiente funcionalidad para verificar si la fecha Inicio de servicio es despues de la fecha de inicio real
             controladorFSR.iniciarFolioServicio(fechaYhoraDeInicioDeServicio, 
                 Session["folio_p"].ToString());            
             actualizarFolioActividadSap();

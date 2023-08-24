@@ -223,7 +223,6 @@ public partial class VistaPrevia : Page
         string fechaCompletaYhoraDeCierrDeFolio = fechaDeFolio + " " + hora.ToString() + ":" + minuto.ToString();  
         return  DateTime.Parse(fechaCompletaYhoraDeCierrDeFolio);
     }
-
     public DateTime getFechaYhoraInicioDeServicio()
     {
         DateTime fechaInicioDeServicio = consultarFechaInicioFolioServicio();

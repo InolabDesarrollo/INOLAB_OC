@@ -17,14 +17,15 @@ namespace INOLAB_OC.Modelo.Browser
 
         public int agregarRefaccion(Refaccion entidad)
         {
-            string query = "Insert into ReporteRefaccion(NumeroRefaccion,CantidadRefaccion,Descripcion,idFSR)" +
-                " values('" + entidad.NumeroRefaccion + "'," + entidad.CantidadRefaccion + ",'" + entidad.Descripcion + "','" + entidad.idFolioServicio + "');";
+            DateTime fechaActual = DateTime.Now;
+            string query = "Insert into ReporteRefaccion(NumeroRefaccion,CantidadRefaccion,Descripcion,FechaRegistro,idFSR)" +
+                " values('" + entidad.NumeroRefaccion + "'," + entidad.CantidadRefaccion + ",'" + entidad.Descripcion + "','"+fechaActual.ToString("yyyy-MM-dd") +"', '" + entidad.idFolioServicio + "');";
             return Conexion.getNumberOfRowsAfected(query);
         }
 
-        public DataSet consultarNumeroYCantidadDeRefaccion(string idFSR)
+        public DataSet consultarRefacciones(string idFSR)
         {
-            return Conexion.getDataSet("select idReporteRefaccion,NumeroRefaccion,CantidadRefaccion,Descripcion from " +
+            return Conexion.getDataSet("select * from " +
                 "ReporteRefaccion where idFSR= " + idFSR + ";");
         }
 
@@ -36,6 +37,49 @@ namespace INOLAB_OC.Modelo.Browser
         public void eliminarRefaccion(int id)
         {
             Conexion.executeQuery(" DELETE  FROM ReporteRefaccion WHERE IdReporteRefaccion ="+id+";");
+        }
+
+        public DataSet consultarFoliosPorArea(int areaIngeniero)
+        {
+            return Conexion.getDataSet(" SELECT DISTINCT FSR.Folio,FSR.Id_Ingeniero, CONCAT( Usr.Nombre,' ', Usr.Apellidos) As 'Nombre', Fsr.Cliente, Rr.FechaRegistro \r\n" +
+                " FROM ReporteRefaccion Rr\r\n INNER JOIN FSR \r\nON Rr.idFSR = FSR.Folio\r\nINNER JOIN Usuarios Usr\r\nON Usr.idUsuario = FSR.Id_Ingeniero " +
+                "\r\n WHERE Usr.IngArea = " + areaIngeniero + ";");
+        }
+
+        public DataSet consultarFoliosPorAreaYFolio(int areaIngeniero,string folio)
+        {
+            return Conexion.getDataSet(" SELECT DISTINCT FSR.Folio,FSR.Id_Ingeniero, CONCAT( Usr.Nombre,' ', Usr.Apellidos) As 'Nombre', Fsr.Cliente, Rr.FechaRegistro \r\n" +
+                " FROM ReporteRefaccion Rr\r\n INNER JOIN FSR \r\nON Rr.idFSR = FSR.Folio\r\nINNER JOIN Usuarios Usr\r\nON Usr.idUsuario = FSR.Id_Ingeniero " +
+                "\r\n WHERE Usr.IngArea = " + areaIngeniero +" AND Folio = "+folio+ ";");
+        }
+
+        public DataSet consultarIngenierosPorArea(int areaGerente)
+        {
+            return Conexion.getDataSet(" SELECT DISTINCT CONCAT( Usr.Nombre,' ',Usr.Apellidos) As 'Nombre',  FSR.Folio, Fsr.Cliente\r\n " +
+                " FROM ReporteRefaccion Rr\r\nINNER JOIN FSR \r\nON Rr.idFSR = FSR.Folio\r\n" +
+                " INNER JOIN Usuarios Usr\r\nON Usr.idUsuario = FSR.Id_Ingeniero\r\n" +
+                " WHERE Usr.IngArea = " + areaGerente + ";");
+        }
+
+        public DataSet consultarIngenierosPorAreaYNombre(int areaGerente, string nombreIngeniero)
+        {
+
+            return Conexion.getDataSet(" SELECT DISTINCT CONCAT( Usr.Nombre,' ',Usr.Apellidos) As 'Nombre',  FSR.Folio, Fsr.Cliente\r\n " +
+                " FROM ReporteRefaccion Rr\r\nINNER JOIN FSR \r\nON Rr.idFSR = FSR.Folio\r\n" +
+                " INNER JOIN Usuarios Usr\r\nON Usr.idUsuario = FSR.Id_Ingeniero\r\n " +
+                " WHERE Usr.IngArea = " + areaGerente + " AND Nombre LIKE '%"+nombreIngeniero+ "%'"+ ";");
+
+        }
+
+        public DataSet consultarDatosPorIdReporteRefaccion(string idReporteRefaccion)
+        {
+            return Conexion.getDataSet("SELECT * FROM ReporteRefaccion WHERE IdReporteRefaccion = " + idReporteRefaccion + ";");
+        }
+
+        public void actualizarRegistroRefaccion(Refaccion refaccion, string idReporteRefaccion)
+        {
+            Conexion.executeQuery("UPDATE ReporteRefaccion SET NumeroRefaccion = "+refaccion.NumeroRefaccion+", CantidadRefaccion = "+refaccion.CantidadRefaccion+", Descripcion = "+refaccion.Descripcion+", " +
+                "\r\n RevisoGerente ='1', ComentarioGerente = "+refaccion.ComentarioGerente +" WHERE IdReporteRefaccion = "+ idReporteRefaccion + ";");
         }
     }
 }

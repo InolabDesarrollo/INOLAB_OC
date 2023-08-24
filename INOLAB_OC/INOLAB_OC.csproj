@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\EncabezadoInolab.css" />
+    <Content Include="CSS\GerenteReporteRefacciones.css" />
     <Content Include="CSS\Normalize.css" />
     <Content Include="CSS\ReporteRefacciones.css" />
     <Content Include="CSS\ServiciosAsignados.css" />
@@ -95,6 +96,7 @@
     <Content Include="Vista\Ingenieros\Calendario_Areas.aspx" />
     <Content Include="Vista\Ingenieros\CalSel.aspx" />
     <Content Include="Vista\Ingenieros\CargaFin.aspx" />
+    <Content Include="Vista\Ingenieros\EdicionReporteRefacciones.aspx" />
     <Content Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx" />
     <Content Include="Vista\Ingenieros\ReporteRefacciones.aspx" />
     <Content Include="Vista\Ventas\CRM_1.aspx" />
@@ -225,6 +227,13 @@
     <Compile Include="Vista\Ingenieros\CargaFin.aspx.designer.cs">
       <DependentUpon>CargaFin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Ingenieros\EdicionReporteRefacciones.aspx.cs">
+      <DependentUpon>EdicionReporteRefacciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Ingenieros\EdicionReporteRefacciones.aspx.designer.cs">
+      <DependentUpon>EdicionReporteRefacciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx.cs">
       <DependentUpon>GerenteReporteRefacciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +241,7 @@
     <Compile Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx.designer.cs">
       <DependentUpon>GerenteReporteRefacciones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Ingenieros\Responsabilidades\Cordenada.cs" />
     <Compile Include="Vista\Ingenieros\Responsabilidades\CorreoElectronico.cs" />
     <Compile Include="Vista\Ingenieros\Responsabilidades\Fallas.cs" />
     <Compile Include="Vista\Ingenieros\Responsabilidades\Firma.cs" />

@@ -16,7 +16,7 @@ header {
     z-index: 100;
     background: #0264d6;
     top: -19px;
-    left: 3px;
+    left: -1px;
 }
 
 
@@ -75,15 +75,14 @@ header {
         line-height: 100;
         width: 120px;
     }
-
 }
 
 /*HEADER */
 
 header {
     height: 100px;
-    padding: 0 50px; 
-    display: flex; 
+    padding: 0 50px;
+    display: flex;
     align-items: center;
 }
 
@@ -96,13 +95,14 @@ header {
 
 .mostrar-menu, .esconder-menu {
     font-size: 30px;
-    cursor: pointer; 
-    display: none; 
+    cursor: pointer;
+    display: none;
     transition: 0.4s;
 }
 
 .mostrar-menu {
-    order: 1; /
+    order: 1;
+    
 }
 
 #check {
@@ -143,4 +143,86 @@ header {
     #check:checked ~ .menu {
         right: 0;
     }
+
+    #Btn_Buscar {
+        margin-top: 10px;
+        margin-left: 28px;
+    }
+
+    #Btn_Buscar_Ingeniero {
+        margin-top: 10px;
+        margin-left: 28px;
+    }
+
+    #Txbox_Buscar_Por {
+        width: 130px;
+    }
+    
 }
+
+#Sect_Buscar {
+    background-color: #D4E6F1;
+}
+.GridView {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+
+
+#Lbl_Buscar_Por {
+    background-color: #D2B4DE;
+    font-size: 15px;
+    height: 40px;
+    font-weight: bold;
+    margin-top: 80px;
+    margin-left: 30px;
+    margin-bottom: 6px;
+    padding: 5px;
+}
+
+#Txbox_Buscar_Por {
+    margin-left: 5px;
+    width: 175px;
+}
+
+
+@media only screen and (max-width: 500px) {
+
+    .GridView {
+        margin: 7px 10px;
+        font-size: 14px;
+    }
+}
+
+#Gv_Refacciones {
+    margin-top:10px;
+}
+
+#Txbox_Folio{
+    font-size:18px;
+    width:140px;
+}
+
+.txbox-agregar-refaccion{
+    margin:10px;
+}
+
+#Sect_Editar_Refaccion {
+    background-color: #A9CCE3;
+}
+
+#Txtbox_Comentario_Gerente{
+    height:100px;
+}
+
+
+#Btn_Finalizar_Edicion {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    margin: 3px 5px;
+    padding: 3px;
+    background-color: #1B4F72;
+}
+

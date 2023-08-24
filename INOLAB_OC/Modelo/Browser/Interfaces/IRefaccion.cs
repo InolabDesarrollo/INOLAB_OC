@@ -19,8 +19,17 @@ namespace INOLAB_OC.Modelo.Browser.Interfaces
 
         DataSet consultarTodosLosDatosDeRefaccion(string id);
 
-        DataSet consultarNumeroYCantidadDeRefaccion(string idFSR);
+        DataSet consultarRefacciones(string idFSR);
 
-        
+        DataSet consultarFoliosPorArea(int areaIngeniero);
+
+        DataSet consultarFoliosPorAreaYFolio(int areaGerente, string folio);
+
+        DataSet consultarIngenierosPorArea(int areaIngeniero);
+
+        DataSet consultarIngenierosPorAreaYNombre(int areaGerente, string nombre);
+
+        void actualizarRegistroRefaccion(Refaccion refaccion, string idReporteRefaccion);
+
     }
 }

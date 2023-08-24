@@ -46,6 +46,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             }
             else
             {
+                Btn_ReporteRefacciones.Visible = false;
                 Btn_Calendario.Visible = false;
             }
         }

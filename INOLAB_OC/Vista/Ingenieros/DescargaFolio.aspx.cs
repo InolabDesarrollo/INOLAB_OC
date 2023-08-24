@@ -139,12 +139,22 @@ namespace INOLAB_OC
 
         protected void recrearReporteDeServicioFinalizado(string folio)
         {
-            Reporteador reporte = new Reporteador();
-            reportViewer = reporte.crearReporteador(folio);
+            ServerReport serverReport = ReportViewer1.ServerReport;
+            serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
+            serverReport.ReportPath = "/OC/FSR Servicio";
+
+            ReportParameter salesOrderNumber = new ReportParameter();
+            salesOrderNumber.Name = "folio";
+            salesOrderNumber.Values.Add(folio);
+
+            ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
+            ReportViewer1.ShowParameterPrompts = false;
 
             string año = DateTime.Now.Year.ToString();
-            string nombreDeReporte = "Folio:" + folio + "_" + año + ".pdf";
-            crearReportePDF(nombreDeReporte);
+            string nombre = "Folio:" + folio + "_" + año + ".pdf";
+
+
+            crearReportePDF(nombre);
         }
 
         private void  crearReportePDF(string nombre)
@@ -155,7 +165,7 @@ namespace INOLAB_OC
             string encoding = string.Empty;
             string extension = string.Empty;
 
-            byte[] bytes = reportViewer.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+            byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
             Response.Buffer = true;
             Response.Clear();
             Response.ContentType = mimeType;

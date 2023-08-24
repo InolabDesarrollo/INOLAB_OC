@@ -99,7 +99,7 @@ namespace INOLAB_OC.Vista.Ingenieros
             {
                 int indice = int.Parse(e.CommandArgument.ToString());
                 System.Data.DataTable refacciones = refaccion.consultarTodasLasRefacciones();
-                int id=int.Parse( refacciones.Rows[indice]["IdReporteRefaccion"].ToString());
+                int id=int.Parse(refacciones.Rows[indice]["IdReporteRefaccion"].ToString());
                 refaccion.eliminar(id);
                 consultarTodasLasRefacciones(folioServicio);
             }

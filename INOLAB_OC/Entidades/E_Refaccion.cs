@@ -24,7 +24,7 @@ namespace INOLAB_OC.Entidades
             this.idFolioServicio = _idFolioServicio;
         }
 
-        public override bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
+        public  bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
         {
             E_Refaccion refaccion = new E_Refaccion();
             refaccion.idFolioServicio = idFolioServicio;
@@ -51,7 +51,7 @@ namespace INOLAB_OC.Entidades
 
         public DataSet consultarRefacciones()
         {
-            return controladorRefaccion.consultarNumeroYCantidadDeRefaccion(idFolioServicio);
+            return controladorRefaccion.consultarRefacciones(idFolioServicio);
         }
 
     }

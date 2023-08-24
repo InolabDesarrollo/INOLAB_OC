@@ -14,6 +14,7 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
 {
     public class ReporteRefaccion : Refaccion
     {
+
         ReporteRefaccionRepository repositorio = new ReporteRefaccionRepository();
         C_Refaccion controlador;
 
@@ -26,15 +27,20 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
             controlador = new C_Refaccion(repositorio);
         }
 
+        public ReporteRefaccion(string idFolio, string numeroRefaccion, string cantidadRefaccion, string descripcion,string comentarioGerente)
+        {
+            this.idFolioServicio = idFolio;
+            this.NumeroRefaccion = numeroRefaccion;
+            this.CantidadRefaccion = cantidadRefaccion;
+            this.Descripcion = descripcion;
+            controlador = new C_Refaccion(repositorio);
+            this.ComentarioGerente = comentarioGerente;
+        }
+
         public ReporteRefaccion(string idFolio)
         {
             this.idFolioServicio = idFolio;
             controlador = new C_Refaccion(repositorio);
-        }
-
-        public override bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
-        {
-            throw new NotImplementedException();
         }
 
         public int agregarRefaccion()
@@ -44,13 +50,25 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
             return repositorio.agregarRefaccion(refaccion);
         }
 
+        public void actualizarRefaccion(string id)
+        {
+            ReporteRefaccion refaccion = new ReporteRefaccion(this.idFolioServicio, this.NumeroRefaccion, this.CantidadRefaccion,
+                this.Descripcion,this.ComentarioGerente);
+            repositorio.actualizarRegistroRefaccion(refaccion, id);
+        }
+
         public DataTable consultarTodasLasRefacciones()
         {
-            DataSet dataSet = controlador.consultarNumeroYCantidadDeRefaccion(this.idFolioServicio); 
+            DataSet dataSet = controlador.consultarRefacciones(this.idFolioServicio); 
             DataTable dataTable = dataSet.Tables[0];
             return dataTable;
         }
-        
+
+        public string consultarIdReporteRefaccion(int fila)
+        {
+            DataTable refacciones = consultarTodasLasRefacciones();
+            return refacciones.Rows[fila]["IdReporteRefaccion"].ToString();
+        }
         public void eliminar(int id)
         {
             controlador.eliminarRefaccion(id);

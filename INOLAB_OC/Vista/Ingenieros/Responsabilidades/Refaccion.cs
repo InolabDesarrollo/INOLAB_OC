@@ -16,8 +16,7 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
         public string NumeroRefaccion { get; set; }
         public  string CantidadRefaccion { get; set; }
         public  string Descripcion { get; set; }
-
-        public abstract bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion);        
-        
+       
+        public string ComentarioGerente { get; set; }
     }
 }

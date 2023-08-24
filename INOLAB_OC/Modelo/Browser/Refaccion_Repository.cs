@@ -16,6 +16,11 @@ namespace INOLAB_OC.Modelo.Browser
             throw new NotImplementedException();
         }
 
+        public void actualizarRegistroRefaccion(Refaccion refaccion, string idReporteRefaccion)
+        {
+            throw new NotImplementedException();
+        }
+
         public int agregarRefaccion(Refaccion entidad)
         {
             string query = "Insert into Refaccion(numRefaccion,cantidadRefaccion,descRefaccion,idFSR)" +
@@ -23,10 +28,36 @@ namespace INOLAB_OC.Modelo.Browser
             return Conexion.getNumberOfRowsAfected(query);
         }
 
-        public DataSet consultarNumeroYCantidadDeRefaccion(string idFSR)
+        public DataSet consultarFoliosPorArea(int areaIngeniero)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet consultarFoliosPorAreaYFolio(int areaIngeniero, string folio)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet consultarIngenierosPorArea(int areaIngeniero)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet consultarIngenierosPorAreaYNombre(int areaGerente, string nombre)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet consultarNumeroYCantidadDeRefacciones(string idFSR)
         {
             return Conexion.getDataSet("select numRefaccion,cantidadRefaccion from " +
                 "Refaccion where idFSR= " + idFSR + ";");
+        }
+
+        public DataSet consultarRefacciones(string idFSR)
+        {
+            return Conexion.getDataSet("select * from " +
+                " Refaccion where idFSR= " + idFSR + ";");
         }
 
         public DataSet consultarTodosLosDatosDeRefaccion(string id)

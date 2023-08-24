@@ -17,9 +17,9 @@ namespace INOLAB_OC.Controlador.Ingenieros
             this.repository = repository;
         }
 
-        public DataSet consultarNumeroYCantidadDeRefaccion(string idFSR)
+        public DataSet consultarRefacciones(string idFSR)
         {
-            return repository.consultarNumeroYCantidadDeRefaccion(idFSR);
+            return repository.consultarRefacciones(idFSR);
         }
 
         public int agregarRefaccion(Refaccion entidad)
@@ -30,6 +30,31 @@ namespace INOLAB_OC.Controlador.Ingenieros
         public void eliminarRefaccion(int id)
         {
             repository.eliminarRefaccion(id);
+        }
+
+        public DataSet consultarFoliosPorArea(int areaIngeniero)
+        {
+            return repository.consultarFoliosPorArea(areaIngeniero);
+        } 
+
+        public DataSet consultarFoliosPorAreaYFolio(int areaGerente,string Folio)
+        {
+            return repository.consultarFoliosPorAreaYFolio(areaGerente, Folio);
+        }
+
+        public DataSet consultarIngenierosPorArea(int areaGerente)
+        {
+            return repository.consultarIngenierosPorArea(areaGerente);
+        }
+
+        public DataSet consultarIngenierosPorAreaYNombre(int areaGerente)
+        {
+            return repository.consultarIngenierosPorArea(areaGerente);
+        }
+
+        public DataSet consultarIngenierosPorAreaYNombre(int areaGerente,string nombre)
+        {
+            return repository.consultarIngenierosPorAreaYNombre(areaGerente, nombre);
         }
     }
 }

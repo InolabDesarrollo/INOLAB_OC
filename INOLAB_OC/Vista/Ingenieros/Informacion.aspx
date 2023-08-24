@@ -76,7 +76,8 @@
                     <table style="width: 100%; height:35px;">
                         <tr>
                             <td class="auto-style9">Estatus del Servicio</td>
-                            <td class="auto-style12"><asp:DropDownList ID="ddlfiltro" runat="server" Width="177px" AutoPostBack="True" OnSelectedIndexChanged="ddlfiltro_SelectedIndexChanged1">
+                            <td class="auto-style12">
+                                <asp:DropDownList ID="ddlfiltro" runat="server" Width="177px" AutoPostBack="True" OnSelectedIndexChanged="ddlfiltro_SelectedIndexChanged1">
                                 <asp:ListItem></asp:ListItem>
                                 <asp:ListItem>Asignado</asp:ListItem>
                                 <asp:ListItem>En Proceso</asp:ListItem>
