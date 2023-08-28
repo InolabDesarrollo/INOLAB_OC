@@ -101,7 +101,7 @@
                         </tr>
                    </table>                
                 <div id="Div_agregar_refaccion" >
-                     <asp:Button runat="server" Text="Finalizar" BorderStyle="None"  ID="Btn_Finalizar_Edicion" />
+                     <asp:Button runat="server" Text="Finalizar" BorderStyle="None"  ID="Btn_Finalizar_Edicion" OnClick="Finalizar_Edicion" Pos/>
                 </div>
         </section>  
       </form>

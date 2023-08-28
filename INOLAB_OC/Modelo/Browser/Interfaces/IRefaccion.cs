@@ -31,5 +31,8 @@ namespace INOLAB_OC.Modelo.Browser.Interfaces
 
         void actualizarRegistroRefaccion(Refaccion refaccion, string idReporteRefaccion);
 
+        DataSet consultarRegistrosPorIdIngeniero(string idIngeniero);
+
+        DataSet consultarRegistrosPorIdIngeniero(string idIngeniero, bool revisado);
     }
 }

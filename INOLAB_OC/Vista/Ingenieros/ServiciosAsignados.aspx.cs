@@ -347,4 +347,9 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
     }
 
+    protected void Monitor_Reporte_Refacciones_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("MonitorReporteRefacciones.aspx");
+    }
+
 }

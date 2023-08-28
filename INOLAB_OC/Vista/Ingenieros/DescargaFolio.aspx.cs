@@ -19,7 +19,8 @@ namespace INOLAB_OC
     {
         static V_FSR_Repository repositorioVFSR = new V_FSR_Repository();
         C_V_FSR controladorVFSR = new C_V_FSR(repositorioVFSR);
-        ReportViewer reportViewer;
+        static FSR_Repository repositorioFSR = new FSR_Repository();
+        C_FSR controladorFsr;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["idUsuario"] == null)
@@ -31,8 +32,9 @@ namespace INOLAB_OC
                 lbluser.Text = Session["nameUsuario"].ToString();
             }
             cargarDatosDeFoliosConEstatusFinalizado();
+            controladorFsr = new C_FSR(repositorioFSR, Session["idUsuario"].ToString());
         }
-              
+
         protected void Page_Init(object sender, EventArgs e)
         {           
             if (!Page.IsPostBack)
@@ -48,6 +50,7 @@ namespace INOLAB_OC
                 salesOrderNumber.Values.Add(Session["idUsuario"].ToString());
                 ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
                 ReportViewer1.ShowParameterPrompts = false;
+                ReportViewer1.ServerReport.Refresh();
             }      
         } 
         
@@ -123,7 +126,8 @@ namespace INOLAB_OC
                     int index = int.Parse(e.CommandArgument.ToString());
                     GridViewRow fila = GridViewServicios_Finalizados.Rows[index];
                     folio = ((LinkButton)fila.Cells[0].Controls[0]).Text;
-                    estatusFolio = fila.Cells[1].Text; 
+                    estatusFolio = fila.Cells[1].Text;
+                    actualizarNombreCliente(folio);
                 }
                 Session["folio_p"] = folio;
                 if (estatusFolio.Equals("Finalizado"))
@@ -135,6 +139,13 @@ namespace INOLAB_OC
             {
                 Console.Write(ex.ToString());
             }
+        }
+
+        private void actualizarNombreCliente(string folio)
+        {
+            string nombre = controladorFsr.consultarValorDeCampoPorFolioyUsuario(folio, "NombreCliente");
+            controladorFsr.actualizarValorDeCampoPorFolioYUsuario(folio, "NombreCliente", nombre);
+            ReportViewer1.ServerReport.Refresh();
         }
 
         protected void recrearReporteDeServicioFinalizado(string folio)
@@ -153,7 +164,7 @@ namespace INOLAB_OC
             string año = DateTime.Now.Year.ToString();
             string nombre = "Folio:" + folio + "_" + año + ".pdf";
 
-
+            ReportViewer1.ServerReport.Refresh();
             crearReportePDF(nombre);
         }
 

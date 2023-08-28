@@ -76,9 +76,10 @@
                             <asp:Button ID="btndescargafolio" runat="server" Text="Descargar Folio" class="dropbtn" UseSubmitBehavior="False" OnClick="Btn_Descarga_Folio_De_Servicio_Finalizado_Click" />
 
                             <asp:Button ID="Btn_ReporteRefacciones" runat="server" Text="Reporte Refacciones" class="dropbtn" UseSubmitBehavior="False" OnClick="Reporte_Refacciones_Click" />
+                    
+                            <asp:Button ID="Btn_Monitor_Refacciones" runat="server" Text="Monitoreo Reporte Refacciones" class="dropbtn"  UseSubmitBehavior="False" OnClick="Monitor_Reporte_Refacciones_Click" />
                                
                             <asp:Button ID="Button1" runat="server" Text="Salir" class="dropbtn"  UseSubmitBehavior="False" OnClick="Btn_Salir_Click" />
-                    
 
                     <label for="check" class="esconder-menu">
                         &#215

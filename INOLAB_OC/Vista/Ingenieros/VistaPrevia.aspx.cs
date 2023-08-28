@@ -87,13 +87,6 @@ public partial class VistaPrevia : Page
         {
             get
             {
-                /* Read the user information from the Web.config file.  
-                 By reading the information on demand instead of 
-                 storing it, the credentials will not be stored in 
-                 session, reducing the vulnerable surface area to the
-                 Web.config file, which can be secured with an ACL.
-
-                 User name */
                 string userName =
                     ConfigurationManager.AppSettings
                         ["MyReportViewerUser"];

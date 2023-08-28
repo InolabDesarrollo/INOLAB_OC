@@ -60,6 +60,16 @@ namespace INOLAB_OC.Modelo.Browser
                 " Refaccion where idFSR= " + idFSR + ";");
         }
 
+        public DataSet consultarRegistrosPorIdIngeniero(string idIngeniero)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataSet consultarRegistrosPorIdIngeniero(string idIngeniero, bool revisado)
+        {
+            throw new NotImplementedException();
+        }
+
         public DataSet consultarTodosLosDatosDeRefaccion(string id)
         {
             throw new NotImplementedException();

@@ -43,6 +43,10 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
             controlador = new C_Refaccion(repositorio);
         }
 
+        public ReporteRefaccion() {
+            controlador = new C_Refaccion(repositorio);
+        }
+
         public int agregarRefaccion()
         {
             ReporteRefaccion refaccion = new ReporteRefaccion(this.idFolioServicio,this.NumeroRefaccion,this.CantidadRefaccion,
@@ -69,10 +73,27 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
             DataTable refacciones = consultarTodasLasRefacciones();
             return refacciones.Rows[fila]["IdReporteRefaccion"].ToString();
         }
+
+        public DataRow consultarFilaReporteRefaccion(int fila)
+        {
+            DataTable refacciones = consultarTodasLasRefacciones();
+            DataRow rowDataTable = refacciones.Rows[fila];
+            return rowDataTable;
+        }
+
         public void eliminar(int id)
         {
             controlador.eliminarRefaccion(id);
         }
 
+        public DataSet consultarReporteRefaccionPorIdIngeniero(string idIngeniero)
+        {
+            return controlador.consultarReporteRefaccionPorIdIngeniero(idIngeniero);
+        }
+
+        public DataSet consultarReporteRefaccionPorIdIngeniero(string idIngeniero, bool revisado)
+        {
+            return controlador.consultarReporteRefaccionPorIdIngeniero(idIngeniero,revisado);
+        }
     }
 }
