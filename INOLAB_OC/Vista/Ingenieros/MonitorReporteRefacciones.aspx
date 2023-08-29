@@ -12,7 +12,6 @@
     <link href="../../CSS/Normalize.css" rel="stylesheet" />
     <link href="../../CSS/ReporteRefacciones.css" rel="stylesheet" />
     <link href="../../CSS/GerenteReporteRefacciones.css" rel="stylesheet" />
-    <link href="../../CSS/MonitorRefacciones.css" rel="stylesheet" />
  </head>
     <body>
       <form  runat="server">
@@ -36,7 +35,9 @@
                 </nap>        
             </header>
            <section >
-               <asp:DropDownList ID="List_Refacciones" runat="server"  AutoPostBack="True" class="Btn-funciones"  >
+               <asp:DropDownList ID="List_Refacciones" runat="server"  AutoPostBack="True" class="Btn-funciones" 
+                   OnSelectedIndexChanged="List_Buscar_Refacciones"  >
+
                 <asp:ListItem></asp:ListItem>
                                 <asp:ListItem>Revisados</asp:ListItem>
                                 <asp:ListItem>Sin Revisar</asp:ListItem>
@@ -48,8 +49,7 @@
               <asp:GridView runat="server" ID="Gv_Folios"  Width="97%"  Class="GridView" AutoGenerateColumns="false" >
                   <Columns >
                     <asp:BoundField HeaderText="Folio" DataField="Folio"  Visible="true"  ItemStyle-Width="10%"/>                 
-                    <asp:BoundField HeaderText="Reviso Gerente" DataField="RevisoGerente"  Visible="true"  ItemStyle-Width="10%"/>
-                    <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true"  ItemStyle-Width="30%"/>
+                    <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true"  ItemStyle-Width="40%"/>
                     <asp:BoundField HeaderText="Comentario Gerente" DataField="ComentarioGerente"  Visible="true"  ItemStyle-Width="40%"/>
                     <asp:BoundField HeaderText="Fecha Registro" DataField="FechaRegistro"  Visible="true"  ItemStyle-Width="10%"/>
                   </Columns>
@@ -57,7 +57,6 @@
               </asp:GridView>
              </div>
           </section>
-
       </form>
 </body>
 </html>

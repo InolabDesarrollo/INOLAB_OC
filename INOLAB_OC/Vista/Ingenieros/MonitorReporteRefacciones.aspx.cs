@@ -18,6 +18,7 @@ namespace INOLAB_OC.Vista.Ingenieros
         {
             idIngeniero = Session["idUsuario"].ToString();
             consultarReportesRefacciones();
+            lbluser.Text = Session["nameUsuario"].ToString();
         }
 
         protected void Servicios_Asignados(object sender, EventArgs e)
@@ -34,6 +35,33 @@ namespace INOLAB_OC.Vista.Ingenieros
         {
             refaccion = new ReporteRefaccion();
             Gv_Folios.DataSource = refaccion.consultarReporteRefaccionPorIdIngeniero(idIngeniero);
+            Gv_Folios.DataBind();
+        }
+
+        protected void List_Buscar_Refacciones(object sender, EventArgs e)
+        {
+            bool revisado;
+            if (List_Refacciones.Text.Equals("Revisados"))
+            {
+                revisado = true;
+                consultarReportesRefacciones(revisado);
+            }
+            else if (List_Refacciones.Text.Equals("Sin Revisar"))
+            {
+                revisado = false;
+                consultarReportesRefacciones(revisado);
+            }
+            else if (List_Refacciones.Text.Equals("Todos"))
+            {
+                consultarReportesRefacciones();
+            }
+            
+        }
+
+        private void consultarReportesRefacciones(bool revisado)
+        {
+            refaccion = new ReporteRefaccion();
+            Gv_Folios.DataSource = refaccion.consultarReporteRefaccionPorIdIngeniero(idIngeniero,revisado);
             Gv_Folios.DataBind();
         }
 

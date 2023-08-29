@@ -43,6 +43,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             {
                 Btn_Calendario.Visible = true;
                 Btn_ReporteRefacciones.Visible = true;
+                Btn_Monitor_Refacciones.Visible = false;
             }
             else
             {
