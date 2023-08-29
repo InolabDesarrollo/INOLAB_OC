@@ -66,5 +66,10 @@ namespace INOLAB_OC.Controlador.Ingenieros
         {
             return repository.consultarRegistrosPorIdIngeniero(idIngeniero, revisado);
         }
+
+        public DataSet consultarTodosLosDatosDeRefacciones(string idFsr)
+        {
+            return repository.consultarTodosLosDatosDeRefaccion(idFsr);
+        }
     }
 }

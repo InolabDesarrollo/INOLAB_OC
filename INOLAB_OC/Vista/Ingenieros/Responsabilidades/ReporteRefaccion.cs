@@ -95,5 +95,10 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
         {
             return controlador.consultarReporteRefaccionPorIdIngeniero(idIngeniero,revisado);
         }
+
+        public DataSet consultarTodasLasRefacciones(string idFolioFsr)
+        {
+            return controlador.consultarTodosLosDatosDeRefacciones(idFolioFsr);
+        }
     }
 }

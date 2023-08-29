@@ -230,4 +230,13 @@ header {
     margin-top: 2px;
     margin-bottom: 10px;
     padding-top: 5px;
+
 }
+
+#Buscar_Folio_Monitor {
+    margin-left: 30px;
+    padding: 7px;
+    background-color: #A9CCE3;
+    font-weight:bold;
+}
+

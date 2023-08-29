@@ -31,7 +31,7 @@ namespace INOLAB_OC.Modelo.Browser
 
         public DataSet consultarTodosLosDatosDeRefaccion(string id)
         {
-            throw new NotImplementedException();
+            return Conexion.getDataSet("SELECT * FROM ReporteRefaccion WHERE idFsr = " + id);
         }
 
         public void eliminarRefaccion(int id)
@@ -74,7 +74,7 @@ namespace INOLAB_OC.Modelo.Browser
 
         public DataSet consultarRegistrosPorIdIngeniero(string idIngeniero)
         {
-            return Conexion.getDataSet("SELECT DISTINCT FSR.Folio, Rr.RevisoGerente, Rr.Descripcion,Rr.ComentarioGerente, Rr.FechaRegistro\r\n" +
+            return Conexion.getDataSet("SELECT DISTINCT FSR.Folio AS 'idFSR', Rr.RevisoGerente, Rr.Descripcion,Rr.ComentarioGerente, Rr.FechaRegistro\r\n" +
                 " FROM ReporteRefaccion Rr\r\nINNER JOIN FSR " +
                 "\r\n ON Rr.idFSR = FSR.Folio\r\nINNER JOIN Usuarios Usr " +
                 "\r\n ON Usr.idUsuario = FSR.Id_Ingeniero" +
@@ -85,18 +85,19 @@ namespace INOLAB_OC.Modelo.Browser
         {
             if (revisado)
             {
-                return Conexion.getDataSet("SELECT DISTINCT FSR.Folio, Rr.RevisoGerente, Rr.Descripcion,Rr.ComentarioGerente, Rr.FechaRegistro\r\nFROM ReporteRefaccion Rr" +
+                return Conexion.getDataSet("SELECT DISTINCT FSR.Folio AS 'idFSR', Rr.RevisoGerente, Rr.Descripcion,Rr.ComentarioGerente, Rr.FechaRegistro\r\nFROM ReporteRefaccion Rr" +
                     "\r\nINNER JOIN FSR \r\nON Rr.idFSR = FSR.Folio\r\nINNER JOIN Usuarios Usr\r\nON Usr.idUsuario = FSR.Id_Ingeniero" +
                     "\r\nWHERE FSR.Id_Ingeniero = "+ idIngeniero + " AND  Rr.RevisoGerente is  NOT NULL;");
             }
             else
             {
-                return Conexion.getDataSet("SELECT DISTINCT FSR.Folio, Rr.RevisoGerente, Rr.Descripcion,Rr.ComentarioGerente, Rr.FechaRegistro\r\nFROM ReporteRefaccion Rr" +
+                return Conexion.getDataSet("SELECT DISTINCT FSR.Folio AS 'idFSR', Rr.RevisoGerente, Rr.Descripcion,Rr.ComentarioGerente, Rr.FechaRegistro\r\nFROM ReporteRefaccion Rr" +
                     " \r\nINNER JOIN FSR \r\nON Rr.idFSR = FSR.Folio\r\nINNER JOIN Usuarios Usr\r\nON Usr.idUsuario = FSR.Id_Ingeniero" +
                     " \r\nWHERE FSR.Id_Ingeniero = " + idIngeniero + " AND  Rr.RevisoGerente is  NULL;");
             }
         }
 
+      
         public DataSet consultarDatosPorIdReporteRefaccion(string idReporteRefaccion)
         {
             return Conexion.getDataSet("SELECT * FROM ReporteRefaccion WHERE IdReporteRefaccion = " + idReporteRefaccion + ";");
@@ -106,5 +107,6 @@ namespace INOLAB_OC.Modelo.Browser
         {
             Conexion.executeQuery("UPDATE ReporteRefaccion SET NumeroRefaccion = "+refaccion.NumeroRefaccion+", CantidadRefaccion = "+refaccion.CantidadRefaccion+", Descripcion = '"+refaccion.Descripcion+"',  RevisoGerente = '1', ComentarioGerente = '"+refaccion.ComentarioGerente +"'  WHERE IdReporteRefaccion = "+ idReporteRefaccion + ";");
         }
+
     }
 }

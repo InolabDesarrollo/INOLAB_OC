@@ -41,14 +41,21 @@
                 <asp:ListItem></asp:ListItem>
                                 <asp:ListItem>Revisados</asp:ListItem>
                                 <asp:ListItem>Sin Revisar</asp:ListItem>
+                                <asp:ListItem>Por Folio</asp:ListItem>
                                 <asp:ListItem>Todos</asp:ListItem>
-               </asp:DropDownList>    
+               </asp:DropDownList>
+               <asp:TextBox runat="server"  ID="Txt_Folio_Monitor" class="Btn-funciones" Width="100px"  />
            </section>
+
+          <section id="Section_Buscar_Monitoreo">
+               <asp:Button runat="server"  Text="Buscar"  id="Buscar_Folio_Monitor" AutoPostBack="False" OnClick="Buscar_Folio"  />
+          </section>
+
            <section id="Sect_Gv_Monitor_Folios" style="display: block;"  runat="server">
               <div  style="max-height:500px;overflow-y:scroll;" >
               <asp:GridView runat="server" ID="Gv_Folios"  Width="97%"  Class="GridView" AutoGenerateColumns="false" >
                   <Columns >
-                    <asp:BoundField HeaderText="Folio" DataField="Folio"  Visible="true"  ItemStyle-Width="10%"/>                 
+                    <asp:BoundField HeaderText="Folio" DataField="idFSR"  Visible="true"  ItemStyle-Width="10%" />    
                     <asp:BoundField HeaderText="Descripcion" DataField="Descripcion"  Visible="true"  ItemStyle-Width="40%"/>
                     <asp:BoundField HeaderText="Comentario Gerente" DataField="ComentarioGerente"  Visible="true"  ItemStyle-Width="40%"/>
                     <asp:BoundField HeaderText="Fecha Registro" DataField="FechaRegistro"  Visible="true"  ItemStyle-Width="10%"/>
@@ -57,6 +64,9 @@
               </asp:GridView>
              </div>
           </section>
+
+  
+
       </form>
 </body>
 </html>

@@ -78,6 +78,24 @@ namespace INOLAB_OC.Vista.Ingenieros
         protected global::System.Web.UI.WebControls.DropDownList List_Refacciones;
 
         /// <summary>
+        /// Control Txt_Folio_Monitor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_Folio_Monitor;
+
+        /// <summary>
+        /// Control Buscar_Folio_Monitor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Buscar_Folio_Monitor;
+
+        /// <summary>
         /// Control Sect_Gv_Monitor_Folios.
         /// </summary>
         /// <remarks>
