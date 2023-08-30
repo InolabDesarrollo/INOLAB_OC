@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
 {
@@ -63,9 +64,18 @@ namespace INOLAB_OC.Vista.Ingenieros.Responsabilidades
 
         public DataTable consultarTodasLasRefacciones()
         {
-            DataSet dataSet = controlador.consultarRefacciones(this.idFolioServicio); 
-            DataTable dataTable = dataSet.Tables[0];
-            return dataTable;
+            try
+            {
+                DataSet dataSet = controlador.consultarRefacciones(this.idFolioServicio);
+                DataTable dataTable = dataSet.Tables[0];
+                return dataTable;
+
+            }catch(Exception ex)
+            {
+                Trace.WriteLine(ex.ToString());
+                DataTable tabla = new DataTable();
+                return tabla;
+            }                         
         }
 
         public string consultarIdReporteRefaccion(int fila)

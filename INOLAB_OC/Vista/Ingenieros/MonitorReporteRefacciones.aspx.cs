@@ -97,7 +97,5 @@ namespace INOLAB_OC.Vista.Ingenieros
             Gv_Folios.DataSource = refaccion.consultarTodasLasRefacciones(Txt_Folio_Monitor.Text);
             Gv_Folios.DataBind();
         }
-
-
     }
 }
