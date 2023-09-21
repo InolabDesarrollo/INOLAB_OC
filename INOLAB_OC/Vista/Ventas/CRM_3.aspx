@@ -294,7 +294,8 @@
                                     <asp:ListItem>Abel</asp:ListItem>
                                     <asp:ListItem>Adrian</asp:ListItem>
                                     <asp:ListItem>Anaid</asp:ListItem> 
-                                    <asp:ListItem>Amairani</asp:ListItem>     
+                                    <asp:ListItem>Amairani</asp:ListItem> 
+                                    <asp:ListItem SelectedIndex="3">Gustavo</asp:ListItem> 
                                     <asp:ListItem>Aranzha</asp:ListItem>                                                             
                                     <asp:ListItem>Artemio</asp:ListItem>                                                             
                                     <asp:ListItem>Dinorath</asp:ListItem>                                                             

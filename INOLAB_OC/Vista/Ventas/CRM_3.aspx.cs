@@ -456,7 +456,6 @@ namespace INOLAB_OC
             ConexionComercial.executeQuery("Update Funnel set Asesor='" + ddAsesorA.Text + "' where NoRegistro=" + Convert.ToInt32(lblresistro.Text));
 
             Response.Write("<script language=javascript>if(confirm('Se asigno Asesor Correctamente')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
-
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
