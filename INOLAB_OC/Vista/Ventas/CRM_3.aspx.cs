@@ -43,7 +43,7 @@ namespace INOLAB_OC
                 gte = "Paola";
             }
             //Comercial - Equipo
-            if ((Session["idUsuario"].ToString() == "1") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "123") || (Session["idUsuario"].ToString() == "124") || (Session["idUsuario"].ToString() == "84") || (Session["idUsuario"].ToString() == "98") || (Session["idUsuario"].ToString() == "126") || (Session["idUsuario"].ToString() == "131") || (Session["idUsuario"].ToString() == "139"))
+            if ((Session["idUsuario"].ToString() == "1") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "123") || (Session["idUsuario"].ToString() == "124") || (Session["idUsuario"].ToString() == "84") || (Session["idUsuario"].ToString() == "98") || (Session["idUsuario"].ToString() == "126") || (Session["idUsuario"].ToString() == "131") || (Session["idUsuario"].ToString() == "139") || (Session["idUsuario"].ToString() == "146"))
             {
                 gte = "Karla";
             }
@@ -68,7 +68,7 @@ namespace INOLAB_OC
             }
 
             // Vizualizacion de Botones
-            if (lbliduser.Text == "7" || lbliduser.Text == "74" ) // usuario ARTEMIO
+            if (lbliduser.Text == "7" || lbliduser.Text == "98" ) // usuario ARTEMIO
             {
                 btnPlan.Visible = false;
                 BtnMenuPrincipal.Visible = true;
@@ -100,7 +100,7 @@ namespace INOLAB_OC
         }
         private void ValidaGTE()
         {
-            if((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
+            if((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6") || (Session["idUsuario"].ToString() == "98"))
             {
                 ddAsesorA.Enabled = true;
                 ddlF_Asesor.Visible = true;
@@ -477,7 +477,7 @@ namespace INOLAB_OC
 
         protected void btnfiltrar_Click(object sender, EventArgs e)
         {
-            if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
+            if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6") || (Session["idUsuario"].ToString() == "98"))
             {
                 gte_Fitro_Fecha();
             }
@@ -528,7 +528,7 @@ namespace INOLAB_OC
         // Carga la lista de asesores por area comercial
         private void Lista()
         {
-            if((Session["idUsuario"].ToString() == "13"))
+            if((Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "98"))
             {
                 equipos();                
             }
