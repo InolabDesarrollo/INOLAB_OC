@@ -8,6 +8,7 @@ using INOLAB_OC.Controlador;
 using INOLAB_OC.Entidades;
 using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Vista.Ingenieros;
+using INOLAB_OC.Responsabilities;
 
 public partial class DetalleFSR : Page
 {
@@ -168,6 +169,35 @@ public partial class DetalleFSR : Page
        contenone.Style.Add("filter", "blur(9px)");
        footerid.Style.Add("display", "none");        
     }
+
+    protected void Btn_Comentarios_Ingeniero_Click(object sender, EventArgs e)
+    {
+        Agregar_Comentarios_Finales.Style.Add("display", "block");
+        headerone.Style.Add("filter", "blur(9px)");
+        contenone.Style.Add("filter", "blur(9px)");
+        footerid.Style.Add("display", "none");
+    }
+
+    protected void Btn_Gurardar_Comentarios_Ingeniero_Click(object sender, EventArgs e)
+    {
+        C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
+        SeguimientoFSR comentario = new SeguimientoFSR();
+        comentario.FechaSistema = DateTime.Today.ToString();
+        comentario.ComentarioIngeniero = TextBox_Comentarios_Finales.Text;
+
+        controlador.insertarComentarioIngeniero(comentario);
+    }
+
+    protected void Cerrar_Comentarios_Finales_Click(object sender, ImageClickEventArgs e)
+    {
+        Agregar_Comentarios_Finales.Style.Add("display", "none");
+        contenone.Style.Add("filter", "blur(0)");
+        headerone.Style.Add("filter", "blur(0)");
+        footerid.Style.Add("display", "flex");
+    }
+
+
+
     protected void Cerrar_campo_observaciones_Click(object sender, ImageClickEventArgs e)
     {
         cerrarCampoObservaciones();

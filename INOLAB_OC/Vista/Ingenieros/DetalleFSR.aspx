@@ -247,8 +247,9 @@
                 </div>
         </section>
 
+        <!-- Seccion observaciones -->
         <section class="centrar2"  id="observaciones" runat="server" style="display: none;">
-            <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf1">
+            <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectio">
                 <div class="buton" id="closebtndiv">
                     <asp:ImageButton Visible="true" ID="closebtn1" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" OnClick="Cerrar_campo_observaciones_Click"  />
                 </div>
@@ -273,6 +274,34 @@
                 </table>
             </div>
         </section>
+
+        <section class="centrar2" id="Agregar_Comentarios_Finales" runat="server" style="display: none;" >
+            <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf1">
+                <div class="buton" id="close">
+                     <asp:ImageButton Visible="true" ID="ImageButton4" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px" OnClick="Cerrar_Comentarios_Finales_Click"  />
+                </div>
+                <table class="auto-style5">
+                    <tr>
+                       <td colspan="2">
+                         <asp:Label ID="Label_Comentarios_Finales" runat="server" Text="Comentarios Finales" CssClass="auto-style4"></asp:Label>
+                       </td>
+                    </tr> 
+                    <tr>
+                        <td class="auto-style6" colspan="2">
+                             <asp:TextBox ID="TextBox_Comentarios_Finales" runat="server" TextMode="MultiLine" Rows="7" MaxLength="280" AutoCompleteType="Disabled" ></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6" colspan="2">
+                            <asp:Button runat="server" Text="Guardar" BorderStyle="None" style="float:right;" ID="Btn_Gurardar_Comentarios_Ingeniero" OnClick="Btn_Gurardar_Comentarios_Ingeniero_Click"/>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+
 
         <section class="centrar2"  id="FallaEncontrada" runat="server" style="display: none;">
             <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf4">
@@ -426,6 +455,9 @@
             </div>
             <div runat="server" id="Btn_vista_previa_reportes" class="footerbtn" >    
                  <asp:Button runat="server" Text="Vista Previa" BorderStyle="None" style="float:unset;" ID="vpbutton"  OnClick="Btn_Vista_Previa_Click" />
+            </div>
+            <div runat="server" id="Comnetarios_Ingeniero" class="footerbtn" >    
+                <asp:Button runat="server" Text="Comentarios Adicionales" BorderStyle="None" style="float:unset;" ID="Btn_Comentarios_Ingeniero"      OnClick="Btn_Comentarios_Ingeniero_Click"/>
             </div>
         </footer>
     </form>

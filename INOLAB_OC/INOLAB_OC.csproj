@@ -162,6 +162,7 @@
     <Compile Include="Controlador\Ingenieros\C_MailNotification.cs" />
     <Compile Include="Controlador\Ingenieros\C_OCLG.cs" />
     <Compile Include="Controlador\Ingenieros\C_OSCL.cs" />
+    <Compile Include="Controlador\Ingenieros\C_Comentario_Ingeniero.cs" />
     <Compile Include="Controlador\Ingenieros\C_V_FSR.cs" />
     <Compile Include="Controlador\Ingenieros\C_CargaFin.cs" />
     <Compile Include="Controlador\Ingenieros\C_FSR.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Modelo\Browser\MailNotification_Repository.cs" />
     <Compile Include="Modelo\Browser\Refaccion_Repository.cs" />
     <Compile Include="Modelo\Browser\ReporteRefaccionRepository.cs" />
+    <Compile Include="Modelo\Browser\SeguimientoFSR_Repository.cs" />
     <Compile Include="Modelo\Browser\UsuarioRepository.cs" />
     <Compile Include="Modelo\Browser\V_FSR_Repository.cs" />
     <Compile Include="Modelo\Comercial\Funnel_Repository.cs" />
@@ -200,6 +202,7 @@
     <Compile Include="Modelo\Inolab\OCLG_Repository.cs" />
     <Compile Include="Modelo\Inolab\OSCL_Repository.cs" />
     <Compile Include="Modelo\Inolab\SCL5Repository.cs" />
+    <Compile Include="Responsabilities\SeguimientoFSR.cs" />
     <Compile Include="Vista\DocumentoPDF.cs" />
     <Compile Include="Vista\Ingenieros\Calendario.aspx.cs">
       <DependentUpon>Calendario.aspx</DependentUpon>

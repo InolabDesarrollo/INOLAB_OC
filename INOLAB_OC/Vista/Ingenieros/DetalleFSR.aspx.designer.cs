@@ -283,6 +283,51 @@ public partial class DetalleFSR
     protected global::System.Web.UI.WebControls.Button btnguardar;
 
     /// <summary>
+    /// Control Agregar_Comentarios_Finales.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl Agregar_Comentarios_Finales;
+
+    /// <summary>
+    /// Control ImageButton4.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
+
+    /// <summary>
+    /// Control Label_Comentarios_Finales.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label Label_Comentarios_Finales;
+
+    /// <summary>
+    /// Control TextBox_Comentarios_Finales.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox TextBox_Comentarios_Finales;
+
+    /// <summary>
+    /// Control Btn_Gurardar_Comentarios_Ingeniero.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Gurardar_Comentarios_Ingeniero;
+
+    /// <summary>
     /// Control FallaEncontrada.
     /// </summary>
     /// <remarks>
@@ -677,4 +722,22 @@ public partial class DetalleFSR
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button vpbutton;
+
+    /// <summary>
+    /// Control Comnetarios_Ingeniero.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl Comnetarios_Ingeniero;
+
+    /// <summary>
+    /// Control Btn_Comentarios_Ingeniero.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Comentarios_Ingeniero;
 }

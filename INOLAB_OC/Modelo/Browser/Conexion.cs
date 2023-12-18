@@ -425,6 +425,7 @@ namespace INOLAB_OC.Modelo
             }
             catch (SqlException ex)
             {
+                Console.WriteLine(ex.Message);
                 conexion.Close();
             }
       }
