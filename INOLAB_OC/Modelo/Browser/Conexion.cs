@@ -29,29 +29,10 @@ namespace INOLAB_OC.Modelo
         private static bool databaseProduction = false;
         private static bool databaseTest = true;
 
-        private Conexion()
-        {
-            if (databaseProduction)
-            {
-                source = "INOLABSERVER03";
-                catalog = "BrowserPruebas";
-                user = "ventas";
-                password = "V3ntas_17";
-            }
-            else
-            {
-                source = "INOLABSERVER03";
-                catalog = "Browser";
-                user = "ventas";
-                password = "V3ntas_17";
-            }
-            string conexionString = @"Data Source=" + source + ";Initial Catalog=" + catalog + ";Persist Security Info=True;User ID=" + user + ";Password= " + password + "";
-            conexion = new SqlConnection(conexionString);
-        }
 
         private static void iniciarBaseDeDatos()
         {
-            if (databaseProduction)
+            if (databaseTest)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";

@@ -89,6 +89,11 @@ namespace Test.Controlador.Ingeniero
             throw new NotImplementedException();
         }
 
+        public void actualizarValorDeCampoNull(string folioFSR)
+        {
+            throw new NotImplementedException();
+        }
+
         public int consultarEstatusDeFolioServicio(string folio, string idUsuario)
         {
             throw new NotImplementedException();

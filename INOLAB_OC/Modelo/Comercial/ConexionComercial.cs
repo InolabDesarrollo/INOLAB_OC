@@ -13,8 +13,6 @@ namespace INOLAB_OC.Modelo
     public class ConexionComercial
     {
         private static SqlConnection conexion;
-        private bool databaseProduction = false;
-        private static bool databaseTest = true;
 
         private static void initDatabase()
         {

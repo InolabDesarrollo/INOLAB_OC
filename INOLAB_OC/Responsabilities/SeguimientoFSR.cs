@@ -7,7 +7,7 @@ namespace INOLAB_OC.Responsabilities
 {
     public class SeguimientoFSR
     {
-        public string IdFsr;
+        public int IdFsr;
 
         public string FechaSistema;
 

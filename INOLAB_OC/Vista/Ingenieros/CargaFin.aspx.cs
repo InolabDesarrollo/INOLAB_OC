@@ -204,6 +204,7 @@ namespace INOLAB_OC
                 envioDeCorreoElectronicoAlAsesorDeVentas(correoElectronicoAsesorVentas);
             }
         }
+
         private void envioDeCorreoElectronicoAlAsesorDeVentas(string correoAsesorDeVentas)
         {
             string asunto = "Notificación de observaciones Folio: " + Session["folio_p"].ToString();

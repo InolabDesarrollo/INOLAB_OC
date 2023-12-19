@@ -80,7 +80,6 @@ namespace INOLAB_OC.Controlador
                 fechaYHoraInicioServicio = _fsrRepository.consultarFechaInicioDeFolio(folio, _idUsuario, campoDondeSeConsulta);
  
                 return fechaYHoraInicioServicio;
-
             }
             catch (Exception ex)
             {
