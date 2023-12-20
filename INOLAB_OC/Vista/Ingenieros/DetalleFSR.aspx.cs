@@ -178,6 +178,9 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(9px)");
         contenone.Style.Add("filter", "blur(9px)");
         footerid.Style.Add("display", "none");
+
+        C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
+        TextBox_Comentarios_Finales.Text = controlador.consultarComentario(Convert.ToInt32(idFolioServicio));
     }
 
     protected void Btn_Gurardar_Comentarios_Ingeniero_Click(object sender, EventArgs e)

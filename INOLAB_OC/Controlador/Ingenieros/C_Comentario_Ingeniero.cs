@@ -4,6 +4,7 @@ using INOLAB_OC.Modelo.Browser;
 using INOLAB_OC.Responsabilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -70,6 +71,12 @@ namespace INOLAB_OC.Controlador.Ingenieros
             notificacion.enviarNotificacion(correoAsesor, cuerpoDelCorreo, asuntoDelCorreo);
         }
 
+        public string consultarComentario(int idFolioServicio)
+        {
+            DataTable informacionSeguimiento = repository.consultarInformacionSeguimiento(idFolioServicio); 
+            string comentario = informacionSeguimiento.Rows[0]["Comentarios"].ToString();
+            return comentario;
+        }
 
     }
 

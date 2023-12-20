@@ -1,6 +1,7 @@
 ﻿using INOLAB_OC.Responsabilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -23,6 +24,11 @@ namespace INOLAB_OC.Modelo.Browser
         public bool verificarSiExisteComentarioDeIngeniero(int idFolioServicio)
         {
             return Conexion.isThereSomeInformation("Select * from SeguimientoFSR WHERE FolioFSR = "+idFolioServicio+";");
+        }
+
+        public DataTable consultarInformacionSeguimiento(int idFolioServicio)
+        {
+            return Conexion.getDataTable("Select * from SeguimientoFSR WHERE FolioFSR = "+ idFolioServicio + ";");
         }
       
     }

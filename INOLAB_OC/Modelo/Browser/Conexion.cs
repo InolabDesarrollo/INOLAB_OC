@@ -32,7 +32,7 @@ namespace INOLAB_OC.Modelo
 
         private static void iniciarBaseDeDatos()
         {
-            if (databaseTest)
+            if (databaseProduction)
             {
                 source = "INOLABSERVER03";
                 catalog = "BrowserPruebas";
