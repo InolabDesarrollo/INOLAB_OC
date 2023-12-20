@@ -300,6 +300,7 @@ namespace INOLAB_OC
         }
         private string cuerpoDelCorreoElectronicoParaCliente(string folioDeServicio, string cliente)
         {
+            
             string cuerpoDelCorreo = string.Empty;
             using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/index2.html")))
             {

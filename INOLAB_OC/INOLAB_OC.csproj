@@ -93,6 +93,7 @@
     <Content Include="CSS\ReporteRefacciones.css" />
     <Content Include="CSS\ServiciosAsignados.css" />
     <Content Include="CSS\VistaPrevia.css" />
+    <Content Include="HTML\Comentario_Ingeniero.html" />
     <Content Include="Vista\Ingenieros\Calendario.aspx" />
     <Content Include="Vista\Ingenieros\Calendario_Areas.aspx" />
     <Content Include="Vista\Ingenieros\CalSel.aspx" />
