@@ -30,6 +30,10 @@ namespace INOLAB_OC.Modelo.Browser
         {
             return Conexion.getDataTable("Select * from SeguimientoFSR WHERE FolioFSR = "+ idFolioServicio + ";");
         }
-      
+
+        public bool checkIfCommentExist(int idFolioServicio)
+        {
+            return Conexion.isThereSomeInformation("Select * from SeguimientoFSR WHERE FolioFSR = " + idFolioServicio + ";");
+        }
     }
 }

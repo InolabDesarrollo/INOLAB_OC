@@ -42,7 +42,7 @@ namespace INOLAB_OC.Controlador.Ingenieros
 
         private bool validarSiSeEnviaCorreoAlAsesor(string comentarioIngeniero)
         {
-            if (comentarioIngeniero.Length >=10 )
+            if (comentarioIngeniero.Length >=15 )
             {
                 return true;
             }
@@ -63,8 +63,7 @@ namespace INOLAB_OC.Controlador.Ingenieros
         }
 
         private string crearCuerpoDeCorreoComentario(int idFolioServicio, string comentarioIngeniero)
-        {
-            
+        {          
             string nombreIngeniero = repositorioV_FSR.consultarValorDeCampo("Ingeniero", Convert.ToString(idFolioServicio));
             string cuerpo = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n    " +
                 " <title>Comentarios de ingeniero para folio {folio} </title>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"main.css\">\r\n    <style >\r\n        a {\r\n            font-weight: bold;\r\n            color: black;\r\n        }\r\n        body{\r\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\r\n            background: rgb(255,255,250);\r\n            margin: 10px;\r\n            background-repeat: no-repeat;\r\n            background-attachment: fixed;\r\n        }" +
@@ -80,9 +79,17 @@ namespace INOLAB_OC.Controlador.Ingenieros
 
         public string consultarComentario(int idFolioServicio)
         {
-            DataTable informacionSeguimiento = repository.consultarInformacionSeguimiento(idFolioServicio); 
-            string comentario = informacionSeguimiento.Rows[0]["Comentarios"].ToString();
-            return comentario;
+            string comentario = "";
+            if (repository.checkIfCommentExist(idFolioServicio))
+            {
+                DataTable informacionSeguimiento = repository.consultarInformacionSeguimiento(idFolioServicio);
+                comentario = informacionSeguimiento.Rows[0]["Comentarios"].ToString();
+                return comentario;
+            }
+            else
+            {
+                return comentario;
+            }
         }
 
     }
