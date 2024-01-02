@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
-    <History>True|2023-12-27T22:26:07.2566617Z;False|2023-12-27T16:20:20.9067562-06:00;True|2023-12-13T17:44:37.6090428-06:00;True|2023-12-04T11:22:00.3745770-06:00;True|2023-07-17T12:31:48.3274950-06:00;False|2023-07-17T12:30:59.2289766-06:00;False|2023-07-17T12:30:28.2142255-06:00;</History>
+    <History>True|2023-12-27T23:06:13.3971136Z;True|2023-12-27T16:26:07.2566617-06:00;False|2023-12-27T16:20:20.9067562-06:00;True|2023-12-13T17:44:37.6090428-06:00;True|2023-12-04T11:22:00.3745770-06:00;True|2023-07-17T12:31:48.3274950-06:00;False|2023-07-17T12:30:59.2289766-06:00;False|2023-07-17T12:30:28.2142255-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>12/27/2023 16:26:05</publishTime>
+      <publishTime>12/27/2023 17:06:12</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>12/27/2023 16:26:05</publishTime>
+      <publishTime>12/27/2023 17:06:12</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -241,7 +241,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_3.aspx">
-      <publishTime>12/18/2023 10:36:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_4.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>

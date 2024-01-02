@@ -10,6 +10,7 @@ using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Vista.Ingenieros;
 using INOLAB_OC.Responsabilities;
 using System.Web.Services.Description;
+using System.IO;
 
 public partial class DetalleFSR : Page
 {
@@ -191,8 +192,15 @@ public partial class DetalleFSR : Page
         comentario.IdIngeniero = idUsuario;
         comentario.IdFsr = Convert.ToInt32(idFolioServicio);
 
+        string cuerpoDelCorreo = string.Empty;
+        using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/Comentario_Ingeniero.html")))
+        {
+            cuerpoDelCorreo = reader.ReadToEnd();
+            reader.Dispose();
+        }
         C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
-        controlador.insertarComentarioIngeniero(comentario);
+        controlador.insertarComentarioIngeniero(comentario, cuerpoDelCorreo);
+
         cerrarComentariosFinales();
     }
 
