@@ -22,7 +22,7 @@ namespace INOLAB_OC.Responsabilities
             MailMessage mensaje = new MailMessage(emailSender, mailRecipient);
 
             mensaje.To.Add(mailRecipient);
-            mensaje.Bcc.Add("omarflores@inolab.com");
+            mensaje.Bcc.Add("omarflores@inolab.com, carlosfores@inolab.com");
             mensaje.Subject = asuntoDelCorreo;
             mensaje.IsBodyHtml = true;
             mensaje.Body = cuerpoCorreo;
