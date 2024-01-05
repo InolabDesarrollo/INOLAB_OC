@@ -36,4 +36,8 @@
     <ProjectReference Include="..\INOLAB_OC\INOLAB_OC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="HTML\" />
+  </ItemGroup>
+
 </Project>

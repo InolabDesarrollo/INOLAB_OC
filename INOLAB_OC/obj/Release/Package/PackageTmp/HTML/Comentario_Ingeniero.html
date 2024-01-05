@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Comentarios de ingeniero para folio {folio} </title>
+    <title>Comentario de Ingeniero en  Folio N° {folio} </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <style>
         a {
-            font-weight: bold;
             color: black;
+            font-weight: normal;
         }
 
         body {
@@ -29,30 +29,42 @@
         <tr>
             <th valign="bottom" colspan="3">
                 <font size="5">
-                    Comentario de ingeniero en folio: {folio}
+                    Comentario de Ingeniero en  Folio N° {folio}
                 </font>
             </th>
             <th valign="top" align="center" colspan="3">
-                <img src="http://www.inolab.com/images/logoInolab.jpg">
-                <img src="{slogan}" width="35%">
+                <img src="http://www.inolab.com/images/logoInolab.jpg"><br><br><br>
             </th>
         </tr>
         <tr></tr>
         <tr>
             <td colspan="4">
-                <p>
-                    <font COLOR="black">El ingeniero  relizo el siguiente comentario en el  folio de servicio </font><br />
-                    <b><font COLOR="blue">Ingeniero: </font></b> <a class="a">{Ingeniero}</a> <br />
-                    <b><font COLOR="blue">Comentario:</font></b> <a class="a">{comentario}</a> <br />
-                </p><br />
-                <p>
-                    Este correo se envia automaticamente, favor de NO responder.<br />
-                    Saludos
-                </p>
+                Buen día, <br><br>
+                El ingeniero {ingeniero} ha realizádo el comentario sobre la siguiente <b> actividad: {actividad}</b><br><br>
+                <font COLOR="blue">Número de Llamada:</font>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="a">{n_llamada}</a><br>
 
+                <font COLOR="blue">Número de Actividad:</font> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                <a class="a">{actividad}</a><br>
+
+                <font COLOR="blue">Cliente:</font>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  
+                <a class="a">{cliente}</a><br>
+
+                <font COLOR="blue">Ingeniero:</font>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  
+                <a class="a">{ingeniero}</a><br>
+
+                <font COLOR="blue">Comentario:</font>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;
+                <a class="a">{comentario}</a>  <br /><br>
+                      
             </td>
         </tr>
-        <tr></tr>
+            <td colspan="4">
+                Favor no responder este mensaje que ha sido emitido automáticamente por el sistema de <br>
+                notificaciones de  <b>INOLAB Especialistas.</b>
+            </td>
+        <tr>
+
+        </tr>
         <tr>
         </tr>
     </table>
