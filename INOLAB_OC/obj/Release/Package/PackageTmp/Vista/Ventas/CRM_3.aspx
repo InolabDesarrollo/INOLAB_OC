@@ -359,6 +359,19 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                                <asp:Label ID="Label5" runat="server" Text="Buscar por:" Font-Bold="True" Visible="True"></asp:Label>
+                                <asp:DropDownList ID="ddlbuscar" class="mercado" runat="server" AutoPostBack="True">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem>Cliente</asp:ListItem>
+                                    <asp:ListItem>Marca</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="txtbuscar" class="mercado" runat="server" Width="176px" Visible="True"></asp:TextBox>
+                                <asp:Button ID="btnbuscar" runat="server" Text="Buscar" class="boton" Visible="True" OnClick="btnbuscar_Click" />
+
+                            </td>
+                        </tr>
+                        <tr>
                             <td colspan="11">
                     <asp:GridView ID="GridView1" AutoPostBack="False" runat="server"  AutoGenerateColumns="False" Width="100%" Font-Size="9pt"  DataKeyNames="NoRegistro" CellPadding="4"  ForeColor="#333333" GridLines="None" Font-Bold="False" CssClass="auto-style7" style="margin-top: 0" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnPageIndexChanging="GridView1_PageIndexChanging">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
