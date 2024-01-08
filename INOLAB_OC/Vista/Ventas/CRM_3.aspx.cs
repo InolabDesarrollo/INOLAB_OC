@@ -154,7 +154,7 @@ namespace INOLAB_OC
             //    traerTodosLosDatosDelFunnel();
             //}
             lblcontador.Text = GridView1.Rows.Count.ToString();
-   
+            ddlbuscar.Text = null;
         }
 
         private void traerDatosDelFunnelDependiendoElTipoDeRegistro()
@@ -607,6 +607,31 @@ namespace INOLAB_OC
                 ddlF_Asesor.Items.Add(i4);
             }
         }
+        //  FILTRADO DE BUSQUEDA PARA CLIENTE Y MARCA EN GENERAL
+        protected void btnbuscar_Click(object sender, EventArgs e)
+        {
+            if (ddlbuscar.Text=="Cliente")
+            {
+                BusquedaCliente();
+            }
+            else
+            {
+                BusquedaMarca();
+            }
 
+          
+        }
+        private void BusquedaCliente()
+        {
+            string query = "Select* from  funnel where asesor='" + lbluser.Text + "' and cliente like '%" + txtbuscar.Text + "%' ";
+            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataBind();
+        }
+        private void BusquedaMarca()
+        {
+            string query = "Select* from  funnel where asesor='" + lbluser.Text + "' and marca like '%" + txtbuscar.Text + "%' ";
+            GridView1.DataSource = ConexionComercial.getDataSet(query);
+            GridView1.DataBind();
+        }
     }
 }
