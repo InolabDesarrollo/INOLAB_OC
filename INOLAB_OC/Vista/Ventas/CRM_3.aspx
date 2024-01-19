@@ -311,6 +311,8 @@
                                     <asp:ListItem>Yuliet</asp:ListItem>                                                             
                                     <asp:ListItem>Carlos</asp:ListItem>
                                     <asp:ListItem>Demo</asp:ListItem>
+                                    <asp:ListItem>Silvia</asp:ListItem>
+                                    <asp:ListItem>Janatan</asp:ListItem>
                                 </asp:DropDownList></td>
                         </tr>
                         <tr>

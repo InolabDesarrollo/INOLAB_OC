@@ -261,7 +261,7 @@
            </div>
             <div style="display: none;">
                 <input id="hidValue" type="hidden" runat="server" />
-                <asp:Button runat="server" id="hidebutton" OnClick="Btn_guardar_firmar_Click" />
+                <asp:Button runat="server" id="hidebutton" OnClick="Btn_guardar_datos_de_cliente_Click" />
             </div>
         </section>
 
