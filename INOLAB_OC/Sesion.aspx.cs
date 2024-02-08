@@ -82,7 +82,7 @@ namespace INOLAB_OC
                     {
                         if(Session["idUsuario"].ToString() == ceoArtemio)
                         {
-                            Response.Redirect("Vista/Ventas/CRM_4.aspx");
+                            Response.Redirect("Vista/Ventas/CRM_3.aspx");
                         }
                         else
                         {

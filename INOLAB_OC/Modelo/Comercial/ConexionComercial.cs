@@ -266,7 +266,7 @@ namespace INOLAB_OC.Modelo
                 cmd.Parameters.Add("@registro", SqlDbType.Int);
                 cmd.Parameters.Add("@cliente", SqlDbType.VarChar);
                 cmd.Parameters.Add("@clasif", SqlDbType.VarChar);
-                cmd.Parameters.Add("@f_cierre", SqlDbType.Date);
+                cmd.Parameters.Add("@f_cierre", SqlDbType.Date );
                 cmd.Parameters.Add("@equipo", SqlDbType.VarChar);
                 cmd.Parameters.Add("@marca", SqlDbType.VarChar);
                 cmd.Parameters.Add("@modelo", SqlDbType.VarChar);
@@ -359,6 +359,8 @@ namespace INOLAB_OC.Modelo
                 Trace.WriteLine("FAIL STORE PROCEDURE"+ ex.Message);
             }
         }
+
+
 
     }
 }

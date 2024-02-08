@@ -135,9 +135,9 @@
                                 <asp:Label ID="Label3" runat="server" Text="Clasificación"></asp:Label>
                             </td>
                             <td colspan="2">
-                                <asp:Label ID="Label4" runat="server" Text="Fecha de Cierre"></asp:Label>
+                                <asp:Label ID="Label4" runat="server" Text="Fecha de Cierre de Etapa"></asp:Label>
                             </td>
-                            <td colspan="2">
+                            <td colspan="2"><asp:Label ID="Label17" runat="server" Text="Fecha OC" visible="false"></asp:Label>
                                 &nbsp;</td>
                             <td colspan="2">
                                 <asp:Label ID="Label6" runat="server" Text="Última Actualización"></asp:Label>
@@ -165,7 +165,7 @@
                                 <asp:Label ID="lblresistro" Visible="false" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td colspan="2">
-                                &nbsp;</td>
+                                &nbsp;<asp:TextBox ID="datepicker2" visible="false" class="mercado" runat="server"></asp:TextBox></td>
                             <td colspan="2">
                                 <asp:TextBox ID="txtf_actualiza" class="mercado" runat="server"></asp:TextBox>
                             </td>
@@ -269,7 +269,7 @@
                                 <asp:Label ID="Label10" runat="server" Text="Valor USD"></asp:Label>
                             </td>
                             <td colspan="2">
-                                &nbsp;</td>
+                                &nbsp;<asp:Label ID="Label18" visible="false" runat="server" Text="Autorizacion"></asp:Label></td>
                             <td>
                                 &nbsp;<asp:Label ID="lblasesorA" runat="server" Text="Asesor Asignado" Visible="true"></asp:Label></td>
                         </tr>
@@ -287,7 +287,13 @@
                                 <asp:TextBox ID="txtvalor" class="mercado" runat="server">0</asp:TextBox>
                             </td>
                             <td colspan="2">
-                                &nbsp;</td>
+                                &nbsp;<asp:DropDownList ID="ddlAutorizado" visible="false" class="mercado" runat="server" AutoPostBack="True" Width="135px"  Enabled="False">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem Value="Ninguno">Ninguno</asp:ListItem>
+                                    <asp:ListItem Value="En Espera">En Espera</asp:ListItem>
+                                    <asp:ListItem>AUtorizado</asp:ListItem> 
+  
+                                </asp:DropDownList></td>
                             <td>
                                 &nbsp;<asp:DropDownList ID="ddAsesorA" class="mercado" runat="server" AutoPostBack="True" Width="135px" Visible="true" OnSelectedIndexChanged="ddAsesorA_SelectedIndexChanged">
                                     <asp:ListItem></asp:ListItem>
@@ -311,6 +317,8 @@
                                     <asp:ListItem>Yuliet</asp:ListItem>                                                             
                                     <asp:ListItem>Carlos</asp:ListItem>
                                     <asp:ListItem>Demo</asp:ListItem>
+                                    <asp:ListItem>Janatan</asp:ListItem>
+                                    <asp:ListItem>Silvia</asp:ListItem>
                                 </asp:DropDownList></td>
                         </tr>
                         <tr>

@@ -190,7 +190,7 @@ namespace INOLAB_OC
 
         protected void Ir_a_registro_funnel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CRM_3.aspx");
+            Response.Redirect("CRM_3.1.aspx");
         }
         protected void Ir_a_grafica_funnel_Click(object sender, EventArgs e)
         {
