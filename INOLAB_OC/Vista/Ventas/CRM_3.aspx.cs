@@ -320,7 +320,6 @@ namespace INOLAB_OC
 
             Response.Write("<script language=javascript>if(confirm('Registro Guardado Exitosamente')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
         }
-
         // parametro para la consulta en BD 
         int numeroDeRegistro;
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -682,7 +681,6 @@ namespace INOLAB_OC
         {
             if (!IsPostBack)
             {
-
                 ListItem i1 = new ListItem("Abel", "Abel");
                 ListItem i2 = new ListItem("Adrian", "Adrian");
                 ListItem i3 = new ListItem("Amairani", "Amairani");
@@ -693,9 +691,14 @@ namespace INOLAB_OC
                 ListItem i8 = new ListItem("Gustavo", "Gustavo");
                 ListItem i9 = new ListItem("Sebastian", "Sebastian");
                 ListItem i10 = new ListItem("Anaid", "Anaid");
+<<<<<<< HEAD
                 ListItem i11 = new ListItem("Silvia", "Silvia");
                 ListItem i12 = new ListItem("Janatan", "Janatan");
                 //ListItem i13 = new ListItem("Todos", "Todos");
+=======
+                ListItem silvia = new ListItem("Silvia", "Silvia");
+                ListItem janathan = new ListItem("Janatan", "Janatan");
+>>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
 
                 ddlF_Asesor.Items.Add(i1);
                 ddlF_Asesor.Items.Add(i2);
@@ -707,9 +710,14 @@ namespace INOLAB_OC
                 ddlF_Asesor.Items.Add(i8);
                 ddlF_Asesor.Items.Add(i9);
                 ddlF_Asesor.Items.Add(i10);
+<<<<<<< HEAD
                 ddlF_Asesor.Items.Add(i11);
                 ddlF_Asesor.Items.Add(i12);
                 //ddlF_Asesor.Items.Add(i13);
+=======
+                ddlF_Asesor.Items.Add(silvia);
+                ddlF_Asesor.Items.Add(janathan);
+>>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
             }         
         }
         //Asesores Servicio

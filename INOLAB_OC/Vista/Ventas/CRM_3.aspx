@@ -317,11 +317,17 @@
                                     <asp:ListItem>Yuliet</asp:ListItem>                                                             
                                     <asp:ListItem>Carlos</asp:ListItem>
                                     <asp:ListItem>Demo</asp:ListItem>
+<<<<<<< HEAD
                                     <asp:ListItem>Janatan</asp:ListItem>
                                     <asp:ListItem>Silvia</asp:ListItem>
                                 </asp:DropDownList>
 
                             </td>
+=======
+                                    <asp:ListItem>Silvia</asp:ListItem>
+                                    <asp:ListItem>Janatan</asp:ListItem>
+                                </asp:DropDownList></td>
+>>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
                         </tr>
                         <tr>
                             <td>

@@ -23,11 +23,11 @@ using INOLAB_OC;
 
 public partial class VistaPrevia : Page
 {
-    static string idUsuario;
-    static string folioServicio;
-    static SCL5Repository repositorioSCL5 = new SCL5Repository();
-    C_SCL5 controladorSCL5;
-    Firma firmaReporte;
+    private static string idUsuario;
+    private static string folioServicio;
+    private static SCL5Repository repositorioSCL5 = new SCL5Repository();
+    private C_SCL5 controladorSCL5;
+    private Firma firmaReporte;
     protected void Page_Load(object sender, EventArgs e)
     {
         controladorSCL5 = new C_SCL5(repositorioSCL5);
@@ -144,21 +144,44 @@ public partial class VistaPrevia : Page
         ClientScript.RegisterStartupScript(GetType(), "Star", script, true);
     }
 
-    protected void Btn_guardar_firmar_Click(object sender, EventArgs e)
+    protected void Btn_guardar_datos_de_cliente_Click(object sender, EventArgs e)
     {
-        string image = hidValue.Value;
-        string nombre = textboxnombre.Text;
+        string firmaDelCliente = hidValue.Value;
+        string nombreDelCliente = textboxnombre.Text;
+        this.mostrarPanelDeFirma();
+
+        if (nombreDelCliente.Length < 1)
+        {
+            Response.Write("<script>alert('No puedes dejar el nombre de cliente vacio');</script>");
+        }
+        else
+        {
+            bool firmaEsValida = firmaReporte.verficarQueFirmaEsValida(firmaDelCliente);
+            if (firmaEsValida)
+            {
+                this.guardarDatosCliente(nombreDelCliente, firmaDelCliente);
+            }
+            else
+            {
+                Response.Write("<script>alert('No puedes dejar la firma del cliente vacia');</script>");
+            }
+        }
+    }
+
+    private void mostrarPanelDeFirma()
+    {
         firma.Style.Add("display", "none");
         headerid.Style.Add("display", "block");
         sectionreport.Style.Add("display", "block");
         footerid.Style.Add("display", "flex");
-        if (nombre.Length < 1)
+    }
+
+    private void guardarDatosCliente(string nombreDelCliente, string firmaDelCliente)
+    {
+        bool seActualizoFirmaDeCliente = firmaReporte.actualizarFirmaCliente(nombreDelCliente, firmaDelCliente);
+        if (seActualizoFirmaDeCliente)
         {
-            nombre = "N/A";
-        }
-        if(firmaReporte.actualizarFirmaCliente(nombre, image))
-        {
-            controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "NombreCliente", nombre);
+            controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "NombreCliente", nombreDelCliente);
             controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "FechaFirmaCliente", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             ReportViewer1.ServerReport.Refresh();
         }
@@ -166,10 +189,8 @@ public partial class VistaPrevia : Page
 
     protected void Finalizar_reporte_Click(object sender, EventArgs e)
     {
-        int firmaCliente = 0;
-        int firmaIngeniero = 0;
-        firmaCliente =  firmaReporte.verificarSiSeAgregoFirmaDeCliente();
-        firmaIngeniero = firmaReporte.verificarSiSeAgregoFirmaDeIngeniero();
+        int firmaCliente =  firmaReporte.verificarSiSeAgregoFirmaDeCliente();
+        int firmaIngeniero = firmaReporte.verificarSiSeAgregoFirmaDeIngeniero();
 
         if (firmaCliente <= 0 )
         {    
@@ -229,7 +250,7 @@ public partial class VistaPrevia : Page
             DateTime fechaSolucion = Convert.ToDateTime(controladorFSR.consultarValorDeCampoPorFolioyUsuario(Session["folio_p"].ToString(), "WebFechaIni"));
             return fechaSolucion;
         }
-        catch (Exception et)
+        catch
         {
             DateTime fecha_sol = Convert.ToDateTime(controladorFSR.consultarValorDeCampoPorFolioyUsuario("Inicio_Servicio", Session["folio_p"].ToString()));
             controladorFSR.actualizarValorDeCampoPorFolioYUsuario(Session["folio_p"].ToString(), "WebFechaIni", fecha_sol.ToString("yyyy-MM-dd HH:mm:ss.fff"));
@@ -256,6 +277,5 @@ public partial class VistaPrevia : Page
     {
         Response.Redirect("ReporteRefacciones.aspx");
     }
-
 
 }

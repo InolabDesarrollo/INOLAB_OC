@@ -14,7 +14,6 @@ namespace Test
     [TestClass]
     public class Test_Notificacion
     {
-
         [TestMethod]
         public void enviarNotificacion_String()
         {
@@ -48,7 +47,5 @@ namespace Test
             
             return cuerpo;
         }
-
-
     }
 }
