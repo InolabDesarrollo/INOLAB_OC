@@ -36,5 +36,20 @@ namespace INOLAB_OC.Controlador.Ventas
             return repositorioFunnel.consultarDatosFunnelPorAsesor(asesor);
         }
 
+        public DataSet consultaGteAsesorClasificacion(string asesor, string clasificacion_A)
+        {
+            return repositorioFunnel.consultaGteAsesorClasificacion(asesor,clasificacion_A);
+        }
+
+        public DataSet consultarDatosFunnelAutorizar()
+        {
+            return repositorioFunnel.consultaFunnelAutorizar();
+        }
+        // CONSUL AUTORIZACION POR GTE
+        public DataSet consultarDatosFunnelAutorizarGTE(string gte)
+        {
+            return repositorioFunnel.consultaFunnelAutorizarGTE(gte);
+        }
+
     }
 }

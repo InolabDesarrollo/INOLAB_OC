@@ -34,14 +34,41 @@ namespace INOLAB_OC.Modelo.Comercial
 
         public System.Data.DataSet consultarDatosPorAsesorYClasificacion(string asesor, string clasificacion)
         {
-            string query = "Select * from  funnel where asesor = '" + asesor + "' and clasificacion='" + clasificacion + "'";
+            string query = "Select * from  funnel where asesor = '" + asesor + "' and clasificacion='" + clasificacion + "' and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
+            //string query = "Select * from  funnel where asesor = '" + asesor + "' and clasificacion='" + clasificacion + "'";
             return ConexionComercial.getDataSet(query);
         }
 
         public System.Data.DataSet consultarDatosFunnelPorAsesor(string asesor)
         {
-            string query = "Select * from  funnel where asesor='" + asesor + "'";
+            string query = "Select * from  funnel where asesor='" + asesor + "' and clasificacion in ('Lead','Proyecto','Forecast') and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
             return ConexionComercial.getDataSet(query);
         }
+
+        public System.Data.DataSet consultaGteAsesorClasificacion (string asesor, string clasificacion_A)
+        {
+            string query = "Select * from  funnel where asesor='" + asesor + "' and clasificacion ='"+clasificacion_A+"' and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
+
+            return ConexionComercial.getDataSet(query);
+        }
+
+        public System.Data.DataSet consultaFunnelAutorizar()
+        {
+            string query = "Select * from  funnel where  Autoriza is not null";
+
+            return ConexionComercial.getDataSet(query);
+        }
+<<<<<<< HEAD
+=======
+
+
+        // CONSULTA AUTORIZACIONES POR GTE
+        public System.Data.DataSet consultaFunnelAutorizarGTE(string gte)
+        {
+            string query = "Select * from  funnel where  Autoriza is not null and gte='"+gte+"'";
+
+            return ConexionComercial.getDataSet(query);
+        }
+>>>>>>> cb80edc75fd0e3324de83b07725570bca8f72b1c
     }
 }
