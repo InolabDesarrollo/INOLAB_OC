@@ -1,4 +1,5 @@
-﻿using INOLAB_OC.Controlador;
+﻿using DocumentFormat.OpenXml.Drawing;
+using INOLAB_OC.Controlador;
 using INOLAB_OC.Modelo;
 using INOLAB_OC.Modelo.Browser;
 using System;
@@ -141,6 +142,11 @@ namespace INOLAB_OC.Vista.Ingenieros
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        public bool verificarQueSeGuardoNombreDeCliente(string folio)
+        {
+            return repositorioFSR.verificarQueSeGuardoNombreDeCliente(folio);
         }
 
     }

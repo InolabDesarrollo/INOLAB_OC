@@ -22,10 +22,17 @@ namespace INOLAB_OC.Vista.Ingenieros
         }
 
         public void enviar(System.Net.Mail.MailMessage mensaje)
-        {
-            smtpClient.Send(mensaje);
-            mensaje.Dispose();
-            smtpClient.Dispose();
+        {          
+            try
+            {
+                smtpClient.Send(mensaje);
+                mensaje.Dispose();
+                smtpClient.Dispose();
+
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());   
+            }
         }
         
     }

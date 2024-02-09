@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
-    <History>True|2024-01-18T20:14:02.7790071Z;False|2024-01-18T14:12:30.1701479-06:00;True|2024-01-08T11:15:59.1859388-06:00;True|2024-01-02T17:50:41.5160653-06:00;True|2024-01-02T17:42:02.9880957-06:00;True|2023-12-27T17:06:13.3971136-06:00;True|2023-12-27T16:26:07.2566617-06:00;False|2023-12-27T16:20:20.9067562-06:00;True|2023-12-13T17:44:37.6090428-06:00;True|2023-12-04T11:22:00.3745770-06:00;True|2023-07-17T12:31:48.3274950-06:00;False|2023-07-17T12:30:59.2289766-06:00;False|2023-07-17T12:30:28.2142255-06:00;</History>
+    <History>True|2024-01-19T18:58:26.5188688Z;True|2024-01-18T14:14:02.7790071-06:00;False|2024-01-18T14:12:30.1701479-06:00;True|2024-01-08T11:15:59.1859388-06:00;True|2024-01-02T17:50:41.5160653-06:00;True|2024-01-02T17:42:02.9880957-06:00;True|2023-12-27T17:06:13.3971136-06:00;True|2023-12-27T16:26:07.2566617-06:00;False|2023-12-27T16:20:20.9067562-06:00;True|2023-12-13T17:44:37.6090428-06:00;True|2023-12-04T11:22:00.3745770-06:00;True|2023-07-17T12:31:48.3274950-06:00;False|2023-07-17T12:30:59.2289766-06:00;False|2023-07-17T12:30:28.2142255-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>01/18/2024 14:14:01</publishTime>
+      <publishTime>01/19/2024 12:58:24</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>01/18/2024 14:14:01</publishTime>
+      <publishTime>01/19/2024 12:58:24</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -241,7 +241,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_3.aspx">
-      <publishTime>01/08/2024 13:00:26</publishTime>
+      <publishTime>01/19/2024 12:04:44</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_4.aspx">
       <publishTime>07/21/2023 10:35:51</publishTime>

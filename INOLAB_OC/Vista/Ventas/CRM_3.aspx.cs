@@ -74,7 +74,6 @@ namespace INOLAB_OC
                 BtnMenuPrincipal.Visible = true;
                 Button1.Visible = false;
                 
-
             }
             else // Asesores
             {
@@ -192,7 +191,6 @@ namespace INOLAB_OC
             txtfecha1.Text = null;
             txtfecha2.Text = null;
         }
-
         private void cargarTodosLosRegistrosDelAsesor()
         {
             string query = "Select* from  funnel where asesor='" + lbluser.Text + "' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "'";
@@ -204,8 +202,6 @@ namespace INOLAB_OC
             verificarQueNoHallaCeldasVacias();
             guardarDatosDeNuevoRegistro();
         }
-
-
         private void verificarQueNoHallaCeldasVacias()
         {
             if (txtcliente.Text == "")
@@ -408,8 +404,7 @@ namespace INOLAB_OC
         {
             Response.Redirect("CRM_2.aspx");
         }
-
-      
+    
         protected void Ir_a_cotizaciones_Click(object sender, EventArgs e)
         {
             Response.Redirect("http://inolabserver01/Reportes_Inolab/Pages/ReportViewer.aspx?%2fComercial%2fCOTIZACION-EQUIPO&rs:Command=Render");
@@ -419,7 +414,6 @@ namespace INOLAB_OC
         {
             Response.Redirect("./CRM_1.aspx");
         }
-
         protected void Filtrar_registros_Click(object sender, EventArgs e)
         {
             if(ddlClasificacion.Text=="Todo")
@@ -619,9 +613,7 @@ namespace INOLAB_OC
             else
             {
                 BusquedaMarca();
-            }
-
-          
+            }          
         }
         private void BusquedaCliente()
         {

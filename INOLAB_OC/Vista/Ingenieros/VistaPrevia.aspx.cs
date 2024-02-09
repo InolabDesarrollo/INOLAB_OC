@@ -150,7 +150,7 @@ public partial class VistaPrevia : Page
         string nombreDelCliente = textboxnombre.Text;
         this.mostrarPanelDeFirma();
 
-        if (nombreDelCliente.Length < 1)
+        if (nombreDelCliente.Length < 3)
         {
             Response.Write("<script>alert('No puedes dejar el nombre de cliente vacio');</script>");
         }
@@ -191,14 +191,19 @@ public partial class VistaPrevia : Page
     {
         int firmaCliente =  firmaReporte.verificarSiSeAgregoFirmaDeCliente();
         int firmaIngeniero = firmaReporte.verificarSiSeAgregoFirmaDeIngeniero();
+        bool seGuardoNombreDeCliente = firmaReporte.verificarQueSeGuardoNombreDeCliente(folioServicio);
 
         if (firmaCliente <= 0 )
         {    
-            Response.Write("<script>alert('Falta firma de cliente');</script>");
-            
-        }else if (firmaIngeniero <= 0)
+            Response.Write("<script>alert('Falta firma de cliente');</script>");            
+        }
+        if (firmaIngeniero <= 0)
         {
             Response.Write("<script>alert('Falta firma de Ingeniero');</script>");
+        }
+        if (!seGuardoNombreDeCliente)
+        {
+            Response.Write("<script>alert('Falta registrar nombre del cliente');</script>");
         }
         else
         {

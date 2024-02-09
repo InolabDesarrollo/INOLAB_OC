@@ -43,7 +43,5 @@ namespace INOLAB_OC.Modelo.Comercial
             string query = "Select * from  funnel where asesor='" + asesor + "'";
             return ConexionComercial.getDataSet(query);
         }
-
-
     }
 }

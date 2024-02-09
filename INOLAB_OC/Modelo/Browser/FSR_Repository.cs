@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Diagnostics;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace INOLAB_OC.Modelo.Browser
 {
@@ -162,6 +163,21 @@ namespace INOLAB_OC.Modelo.Browser
         public void actualizarValorDeCampoNull(string folioFsr)
         {
             Conexion.actualizarCampoNull(folioFsr);
+        }
+
+        public bool verificarQueSeGuardoNombreDeCliente(string folio)
+        {
+            bool seTieneRegistroDeFolio = Conexion.isThereSomeInformation("SELECT NombreCliente FROM FSR WHERE Folio = '" + folio + "';");
+            string valorDeCampo = Conexion.getText("SELECT NombreCliente FROM FSR WHERE Folio = '" + folio + "';");
+
+            if(seTieneRegistroDeFolio && valorDeCampo.Length > 0)
+            {
+                return Conexion.isThereSomeInformation("SELECT NombreCliente FROM FSR WHERE Folio = '" + folio + "';");
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
