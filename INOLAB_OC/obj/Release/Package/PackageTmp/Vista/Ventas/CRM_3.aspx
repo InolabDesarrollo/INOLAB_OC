@@ -116,6 +116,7 @@
                 <asp:Button ID="btnPlan" runat="server" Text="Plan de Trabajo" class="boton"  visible="True" OnClick="Volver_a_plan_de_trabajo_Click" />      
                 <asp:Button ID="Button1" runat="server" Text="Cotizaciones" class="boton" OnClick="Ir_a_cotizaciones_Click"  />
                 <asp:Button ID="BtnMenuPrincipal" runat="server" Text="Menu Principal" class="boton" OnClick="Btn_MenuPrincipal_Click"  />
+                <asp:Button ID="btnAturizaciones" runat="server" Text="Autorizaciones" class="boton" OnClick="btnAturizaciones_Click" />
 
                 <label for="check" class="esconder-menu">
                         &#215
@@ -137,8 +138,8 @@
                             <td colspan="2">
                                 <asp:Label ID="Label4" runat="server" Text="Fecha de Cierre de Etapa"></asp:Label>
                             </td>
-                            <td colspan="2"><asp:Label ID="Label17" runat="server" Text="Fecha OC" visible="false"></asp:Label>
-                                &nbsp;</td>
+                            <td colspan="2">
+                            </td>
                             <td colspan="2">
                                 <asp:Label ID="Label6" runat="server" Text="Última Actualización"></asp:Label>
                             </td>
@@ -148,7 +149,8 @@
                                 <asp:TextBox ID="txtcliente" class="mercado" runat="server" Width="430px"></asp:TextBox>
                             </td>
                             <td colspan="2">
-                                <asp:DropDownList ID="ddlClas_save" class="mercado" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="True" Width="135px">
+                                
+                                <asp:DropDownList ID="ddlClas_save" class="mercado" runat="server" AutoPostBack="True" Width="135px" OnSelectedIndexChanged="ddlClas_save_SelectedIndexChanged">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Prospecto</asp:ListItem>
                                     <asp:ListItem>Oportunidad</asp:ListItem>
@@ -159,13 +161,16 @@
                                     <asp:ListItem>No Relacionado</asp:ListItem>
                                     <asp:ListItem>Perdido</asp:ListItem>
                                 </asp:DropDownList>
+                                <asp:Label ID="lblmensaje_clas" runat="server" Text="Necesitas Autorizacion para cambiar la Clasificación" Visible="false" ForeColor="#CC0000"></asp:Label>
                             </td>
+
                             <td colspan="2">
-                                <asp:TextBox ID="datepicker" class="mercado" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="datepicker" class="mercado" runat="server" Enabled="False"></asp:TextBox>
                                 <asp:Label ID="lblresistro" Visible="false" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td colspan="2">
-                                &nbsp;<asp:TextBox ID="datepicker2" visible="false" class="mercado" runat="server"></asp:TextBox></td>
+                                
+                            </td>
                             <td colspan="2">
                                 <asp:TextBox ID="txtf_actualiza" class="mercado" runat="server"></asp:TextBox>
                             </td>
@@ -191,7 +196,7 @@
                                 <asp:TextBox ID="TXTcONTACTO" class="mercado" runat="server" Width="430px"></asp:TextBox>
                             </td>
                             <td colspan="2" class="auto-style6">
-                                <asp:DropDownList ID="ddLocalidad" class="mercado" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="True" Width="135px">
+                                <asp:DropDownList ID="ddLocalidad" class="mercado" runat="server" AutoPostBack="True" Width="135px">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Aguascalientes</asp:ListItem>
                                         <asp:ListItem>Baja California</asp:ListItem>
@@ -231,7 +236,7 @@
                                 </asp:DropDownList>
                             </td>
                             <td colspan="2" class="auto-style6">
-                                <asp:DropDownList ID="ddOrigen" class="mercado" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="True" Width="135px">
+                                <asp:DropDownList ID="ddOrigen" class="mercado" runat="server" AutoPostBack="True" Width="135px">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Correo</asp:ListItem>
                                     <asp:ListItem>Garantía</asp:ListItem>
@@ -247,7 +252,7 @@
                             <td colspan="2" class="auto-style6">
                                 &nbsp;</td>
                             <td colspan="2" class="auto-style6">
-                                <asp:DropDownList ID="ddTipoVenta" class="mercado" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="True" Width="135px">
+                                <asp:DropDownList ID="ddTipoVenta" class="mercado" runat="server" AutoPostBack="True" Width="135px">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Equipo</asp:ListItem>
                                     <asp:ListItem>Servicio</asp:ListItem>
@@ -269,7 +274,7 @@
                                 <asp:Label ID="Label10" runat="server" Text="Valor USD"></asp:Label>
                             </td>
                             <td colspan="2">
-                                &nbsp;<asp:Label ID="Label18" visible="false" runat="server" Text="Autorizacion"></asp:Label></td>
+                                &nbsp;</td>
                             <td>
                                 &nbsp;<asp:Label ID="lblasesorA" runat="server" Text="Asesor Asignado" Visible="true"></asp:Label></td>
                         </tr>
@@ -287,13 +292,8 @@
                                 <asp:TextBox ID="txtvalor" class="mercado" runat="server">0</asp:TextBox>
                             </td>
                             <td colspan="2">
-                                &nbsp;<asp:DropDownList ID="ddlAutorizado" visible="false" class="mercado" runat="server" AutoPostBack="True" Width="135px"  Enabled="False">
-                                    <asp:ListItem></asp:ListItem>
-                                    <asp:ListItem Value="Ninguno">Ninguno</asp:ListItem>
-                                    <asp:ListItem Value="En Espera">En Espera</asp:ListItem>
-                                    <asp:ListItem>AUtorizado</asp:ListItem> 
-  
-                                </asp:DropDownList></td>
+                                &nbsp;
+                            </td>
                             <td>
                                 &nbsp;<asp:DropDownList ID="ddAsesorA" class="mercado" runat="server" AutoPostBack="True" Width="135px" Visible="true" OnSelectedIndexChanged="ddAsesorA_SelectedIndexChanged">
                                     <asp:ListItem></asp:ListItem>
@@ -318,14 +318,57 @@
                                     <asp:ListItem>Carlos</asp:ListItem>
                                     <asp:ListItem>Demo</asp:ListItem>
 <<<<<<< HEAD
-                                    <asp:ListItem>Silvia</asp:ListItem>
                                     <asp:ListItem>Janatan</asp:ListItem>
+                                    <asp:ListItem>Silvia</asp:ListItem>
+                                </asp:DropDownList>
+
+                            </td>
 =======
-                                    <asp:ListItem>Janatan</asp:ListItem>
                                     <asp:ListItem>Silvia</asp:ListItem>
->>>>>>> cb80edc75fd0e3324de83b07725570bca8f72b1c
+                                    <asp:ListItem>Janatan</asp:ListItem>
                                 </asp:DropDownList></td>
+>>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
                         </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label19" runat="server" Text="Autorizacion"></asp:Label>
+                                
+                            </td>
+                            <td>
+                                <asp:Label ID="Label17" runat="server" Text="Fecha OC" Visible="False"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:DropDownList ID="ddlAutorizado" class="mercado" runat="server" AutoPostBack="True" Width="135px" Enabled="False" Visible="True" OnSelectedIndexChanged="ddlAutorizado_SelectedIndexChanged">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem Value="Fecha Cierre">Fecha Cierre</asp:ListItem>
+                                    <asp:ListItem Value="Clasificacion">Clasificacion</asp:ListItem> 
+  
+                                </asp:DropDownList>
+                                <asp:TextBox ID="txtfechacierre_aut" class="mercado" runat="server" Visible="false" TextMode="Date"></asp:TextBox>
+                                <asp:DropDownList ID="ddlclasif_aut" class="mercado" runat="server"  AutoPostBack="True" Width="135px" Visible="false">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem>Prospecto</asp:ListItem>
+                                    <asp:ListItem>Oportunidad</asp:ListItem>
+                                    <asp:ListItem>Lead</asp:ListItem>
+                                    <asp:ListItem>Proyecto</asp:ListItem>
+                                    <asp:ListItem>Forecast</asp:ListItem>
+                                    <asp:ListItem>Perdido</asp:ListItem>
+
+                                </asp:DropDownList>
+                                <asp:Button ID="btnautorizacion" runat="server" Text="Solicitar Autorizacion" class="boton" Visible="False" CssClass="auto-style5" OnClick="btnautorizacion_Click" />
+                            </td>
+                            <td>
+                                <asp:TextBox ID="datepicker2" visible="false" class="mercado" runat="server"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblestatusautorizacion" runat="server" Text="En Proceso de Autorizacion" Visible="false" ForeColor="#CC0000"></asp:Label>
+                            </td>
+                            
+                            
+                        </tr>
+
                         <tr>
                             <td colspan="11">
                                 <asp:Label ID="Label11" runat="server" Text="Estatus"></asp:Label>
@@ -333,19 +376,30 @@
                         </tr>
                         <tr>
                             <td colspan="11">
-                                <asp:TextBox ID="txtestatus" class="mercado" runat="server" Height="99px" Width="1035px" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtestatus" class="mercado" runat="server" Height="99px" Width="900px" TextMode="MultiLine"></asp:TextBox>
                                 <asp:Button ID="btnGuardar" runat="server" Text="Guardar Registro" class="boton" Visible="True" CssClass="auto-style5" OnClick="btnGuardar_Click" /> 
                                 <asp:Button ID="btnactualiza" runat="server" Text="Actualizar Registro" class="boton" Visible="False" CssClass="auto-style5" OnClick="btnactualiza_Click" />             
                                 <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar Registros" class="boton" Visible="True" CssClass="auto-style5" OnClick="btnLimpiar_Click" /> 
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="11">&nbsp;</td>
+                            
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <asp:DropDownList runat="server" ID="ddlF_Asesor" class="mercado" OnSelectedIndexChanged="ddlF_Asesor_SelectedIndexChanged" Visible="false" AutoPostBack="True">
                                   <asp:ListItem></asp:ListItem>                  
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlGTeClasif" class="mercado" runat="server" Visible="false" AutoPostBack="True" OnSelectedIndexChanged="ddlGTeClasif_SelectedIndexChanged">
+                                    <asp:ListItem></asp:ListItem>
+                                    <asp:ListItem>Prospecto</asp:ListItem>
+                                    <asp:ListItem>Oportunidad</asp:ListItem>
+                                    <asp:ListItem>Lead</asp:ListItem>
+                                    <asp:ListItem>Proyecto</asp:ListItem>
+                                    <asp:ListItem>Forecast</asp:ListItem>
+                                    <asp:ListItem>Orden Compra</asp:ListItem>
+                                    <asp:ListItem>No Relacionado</asp:ListItem>
+                                    <asp:ListItem>Perdido</asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:DropDownList ID="ddlClasificacion" class="mercado" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="True">
                                     <asp:ListItem></asp:ListItem>
@@ -359,16 +413,17 @@
                                     <asp:ListItem>Perdido</asp:ListItem>
                                     <asp:ListItem>Todo</asp:ListItem>
                                 </asp:DropDownList>
+                                <asp:Label ID="lbltotalvalor" runat="server" Font-Bold="True" ForeColor="#009933"></asp:Label>
                                 <asp:Label ID="Label12" runat="server" Text="Total de Registros:  " Font-Bold="True"></asp:Label>
                                 <asp:Label ID="lblcontador" runat="server" Text="0" Font-Bold="True"></asp:Label>
                             </td>
                             <td colspan="9">
-                                <asp:Label ID="lblfecha1" runat="server" Text="Filtrar Fecha de Cierre de:   " Font-Bold="True" Visible="false"></asp:Label>
+                                <asp:Label ID="lblfecha1" runat="server" Text="Filtrar Fecha de Cierre de:   " Font-Bold="True" Visible="True"></asp:Label>
                                 &nbsp;
-                                <asp:TextBox ID="txtfecha1" runat="server" TextMode="Date" Visible="false">01/01/2023</asp:TextBox>
-                                &nbsp;<asp:Label ID="lblfecha2" runat="server" Text="   a   " Font-Bold="True" Visible="false"></asp:Label>
-                                &nbsp;<asp:TextBox ID="txtfecha2" runat="server" TextMode="Date" Visible="false">31/12/2090</asp:TextBox>
-                                <asp:Button ID="btnfiltrar" runat="server" Text="Filtrar" class="boton" Visible="False" CssClass="auto-style5" OnClick="btnfiltrar_Click" /> 
+                                <asp:TextBox ID="txtfecha1" runat="server" TextMode="Date" Visible="true">01/01/2023</asp:TextBox>
+                                &nbsp;<asp:Label ID="lblfecha2" runat="server" Text="   a   " Font-Bold="True" Visible="true"></asp:Label>
+                                &nbsp;<asp:TextBox ID="txtfecha2" runat="server" TextMode="Date" Visible="true">31/12/2090</asp:TextBox>
+                                <asp:Button ID="btnfiltrar" runat="server" Text="Filtrar" class="boton" Visible="true" CssClass="auto-style5" OnClick="btnfiltrar_Click" /> 
                             </td>
                         </tr>
                         <tr>
@@ -386,7 +441,7 @@
                         </tr>
                         <tr>
                             <td colspan="11">
-                    <asp:GridView ID="GridView1" AutoPostBack="False" runat="server"  AutoGenerateColumns="False" Width="100%" Font-Size="9pt"  DataKeyNames="NoRegistro" CellPadding="4"  ForeColor="#333333" GridLines="None" Font-Bold="False" CssClass="auto-style7" style="margin-top: 0" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnPageIndexChanging="GridView1_PageIndexChanging">
+                                <asp:GridView ID="GridView1" AutoPostBack="False" runat="server" AutoGenerateColumns="False" Width="100%" Font-Size="9pt" DataKeyNames="NoRegistro" CellPadding="4" ForeColor="#333333" GridLines="None" Font-Bold="False" CssClass="auto-style7" Style="margin-top: 0" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>   
                         <asp:CommandField ButtonType="Button"  ShowSelectButton="True">
@@ -404,7 +459,7 @@
                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
                         <asp:BoundField DataField="Modelo"  HeaderText="Modelo" SortExpression="Modelo" ItemStyle-Width="10%">
                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Valor"  HeaderText="Valor USD" SortExpression="valor" ItemStyle-Width="10%">
+                        <asp:BoundField DataField="Valor" HeaderText="Valor USD" SortExpression="valor" ItemStyle-Width="10%">
                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
                         <asp:BoundField DataField="FechaCreacion"  HeaderText="Fecha Creacion" SortExpression="FechaCreacion" ItemStyle-Width="5%" DataFormatString="{0:d}">
                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>

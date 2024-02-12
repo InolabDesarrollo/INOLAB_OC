@@ -119,7 +119,7 @@ public partial class FSR : Page
             Btn_Estatus_Servicio.Text = "Guardar Cambios";
             Btn_actualizar_fechas.Visible = true;
             Btn_agregar_acciones.Visible = true;
-            Btn_Reenviar_Correo.Visible = false;
+            Btn_Reenviar_Correo.Visible = true;
         }
         else if (status.Equals(PROCESO))
         {
@@ -130,6 +130,7 @@ public partial class FSR : Page
         else if(status == ASIGNADO)
         {
             Btn_Estatus_Servicio.Text = "Iniciar Servicio";
+            Btn_Reenviar_Correo.Visible = false;
         }
         else if (idservicio.SelectedValue.ToString() == "4" || idservicio.SelectedValue.ToString() == "8" ||
             idservicio.SelectedValue.ToString() == "9")

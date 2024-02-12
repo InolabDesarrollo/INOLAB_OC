@@ -58,17 +58,12 @@ namespace INOLAB_OC.Modelo.Comercial
 
             return ConexionComercial.getDataSet(query);
         }
-<<<<<<< HEAD
-=======
 
-
-        // CONSULTA AUTORIZACIONES POR GTE
         public System.Data.DataSet consultaFunnelAutorizarGTE(string gte)
         {
-            string query = "Select * from  funnel where  Autoriza is not null and gte='"+gte+"'";
+            string query = "Select * from  funnel where  Autoriza is not null and gte='" + gte + "'";
 
             return ConexionComercial.getDataSet(query);
         }
->>>>>>> cb80edc75fd0e3324de83b07725570bca8f72b1c
     }
 }

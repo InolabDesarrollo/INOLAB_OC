@@ -221,7 +221,7 @@
                     <tr>
                         <td class="auto-style6" colspan="2" style="text-align:left">
                             <asp:Label ID="Label5" runat="server">Se hace la mención que después de realizada la firma, 
-                                ya NO se poda realizar ningún cambio a la información contenida de este folio número: 
+                                ya NO se podrá realizar ningún cambio a la información contenida de este folio número: 
                                 <asp:label ID="ulfol" runat="server">a</asp:label> por motivos de seguridad, protección 
                                 y veracidad de la información.
                             </asp:Label>

@@ -90,14 +90,10 @@ namespace INOLAB_OC
                 btnPlan.Visible = false;
                 BtnMenuPrincipal.Visible = true;
                 Button1.Visible = false;
-<<<<<<< HEAD
-                
-=======
                 btnAturizaciones.Visible = true;
 
 
 
->>>>>>> cb80edc75fd0e3324de83b07725570bca8f72b1c
             }
             else // Asesores
             {
@@ -240,11 +236,8 @@ namespace INOLAB_OC
            
             guardarDatosDeNuevoRegistro();
         }
-<<<<<<< HEAD
-=======
 
         // no esta validando la funcion
->>>>>>> cb80edc75fd0e3324de83b07725570bca8f72b1c
         private void verificarQueNoHallaCeldasVacias()
         {
             if (txtcliente.Text == "")
@@ -490,12 +483,7 @@ namespace INOLAB_OC
         {
             Response.Redirect("CRM_2.aspx");
         }
-<<<<<<< HEAD
     
-=======
-
-      // MENU COTIZACIONES
->>>>>>> cb80edc75fd0e3324de83b07725570bca8f72b1c
         protected void Ir_a_cotizaciones_Click(object sender, EventArgs e)
         {
             Response.Redirect("http://inolabserver01/Reportes_Inolab/Pages/ReportViewer.aspx?%2fComercial%2fCOTIZACION-EQUIPO&rs:Command=Render");
@@ -700,14 +688,8 @@ namespace INOLAB_OC
                 ListItem i8 = new ListItem("Gustavo", "Gustavo");
                 ListItem i9 = new ListItem("Sebastian", "Sebastian");
                 ListItem i10 = new ListItem("Anaid", "Anaid");
-<<<<<<< HEAD
-                ListItem i11 = new ListItem("Silvia", "Silvia");
-                ListItem i12 = new ListItem("Janatan", "Janatan");
-                //ListItem i13 = new ListItem("Todos", "Todos");
-=======
                 ListItem silvia = new ListItem("Silvia", "Silvia");
                 ListItem janathan = new ListItem("Janatan", "Janatan");
->>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
 
                 ddlF_Asesor.Items.Add(i1);
                 ddlF_Asesor.Items.Add(i2);
@@ -719,14 +701,8 @@ namespace INOLAB_OC
                 ddlF_Asesor.Items.Add(i8);
                 ddlF_Asesor.Items.Add(i9);
                 ddlF_Asesor.Items.Add(i10);
-<<<<<<< HEAD
-                ddlF_Asesor.Items.Add(i11);
-                ddlF_Asesor.Items.Add(i12);
-                //ddlF_Asesor.Items.Add(i13);
-=======
                 ddlF_Asesor.Items.Add(silvia);
                 ddlF_Asesor.Items.Add(janathan);
->>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
             }         
         }
         //Asesores Servicio

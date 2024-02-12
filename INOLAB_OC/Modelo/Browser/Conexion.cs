@@ -58,7 +58,6 @@ namespace INOLAB_OC.Modelo
             return conexion;
         }
 
-
         public static bool executeQuery(string query)
         {
             iniciarBaseDeDatos();

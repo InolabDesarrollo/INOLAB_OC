@@ -153,7 +153,7 @@ namespace INOLAB_OC
                 string path = crearPDF(Session["folio_p"].ToString());
                 notificarAlAsesorDeVentasDatosDeFolioServicio();
                 verificarElTipoDeContrato(path, correoElectronicoCliente);
-                envioDeCorreoElectronicoACliente(path, correoDeCliente);
+                //envioDeCorreoElectronicoACliente(path, correoDeCliente);
                 Response.Redirect("ServiciosAsignados.aspx");
             }
             else
