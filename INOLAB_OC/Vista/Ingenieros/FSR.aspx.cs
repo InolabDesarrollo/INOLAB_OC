@@ -72,7 +72,6 @@ public partial class FSR : Page
         }
         consultaDatosFolioServicio();
     }
-    
     public void consultaDatosFolioServicio()
     {
         DataRow informacionServicio =controladorFSR.consultarInformacionFolioServicioPorFolioYUsuario( Session["idUsuario"].ToString(),Session["folio_p"].ToString());
