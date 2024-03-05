@@ -22,6 +22,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"/>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
     <script>
         $(function () {
             $("#datepicker").datepicker();
@@ -165,7 +170,7 @@
                             </td>
 
                             <td colspan="2">
-                                <asp:TextBox ID="datepicker" class="mercado" runat="server" Enabled="False"></asp:TextBox>
+                                <asp:TextBox ID="datepicker" class="mercado" runat="server" ></asp:TextBox>
                                 <asp:Label ID="lblresistro" Visible="false" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td colspan="2">
@@ -317,17 +322,13 @@
                                     <asp:ListItem>Yuliet</asp:ListItem>                                                             
                                     <asp:ListItem>Carlos</asp:ListItem>
                                     <asp:ListItem>Demo</asp:ListItem>
-<<<<<<< HEAD
                                     <asp:ListItem>Janatan</asp:ListItem>
                                     <asp:ListItem>Silvia</asp:ListItem>
+                                    <asp:ListItem>Gabriel</asp:ListItem>
                                 </asp:DropDownList>
 
                             </td>
-=======
-                                    <asp:ListItem>Silvia</asp:ListItem>
-                                    <asp:ListItem>Janatan</asp:ListItem>
-                                </asp:DropDownList></td>
->>>>>>> ba5c7295a65e3ee3448067f50dbaca2e326f5c3f
+
                         </tr>
                         <tr>
                             <td>
@@ -335,7 +336,7 @@
                                 
                             </td>
                             <td>
-                                <asp:Label ID="Label17" runat="server" Text="Fecha OC" Visible="False"></asp:Label>
+                                <asp:Label ID="lblFechaOC" runat="server" Text="Fecha OC" Visible="False"></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -355,7 +356,6 @@
                                     <asp:ListItem>Proyecto</asp:ListItem>
                                     <asp:ListItem>Forecast</asp:ListItem>
                                     <asp:ListItem>Perdido</asp:ListItem>
-
                                 </asp:DropDownList>
                                 <asp:Button ID="btnautorizacion" runat="server" Text="Solicitar Autorizacion" class="boton" Visible="False" CssClass="auto-style5" OnClick="btnautorizacion_Click" />
                             </td>
@@ -441,47 +441,48 @@
                         </tr>
                         <tr>
                             <td colspan="11">
-                                <asp:GridView ID="GridView1" AutoPostBack="False" runat="server" AutoGenerateColumns="False" Width="100%" Font-Size="9pt" DataKeyNames="NoRegistro" CellPadding="4" ForeColor="#333333" GridLines="None" Font-Bold="False" CssClass="auto-style7" Style="margin-top: 0" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound">
-                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <Columns>   
-                        <asp:CommandField ButtonType="Button"  ShowSelectButton="True">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5%" />
-                        </asp:CommandField>
-                        <asp:BoundField DataField="NoRegistro"  HeaderText="#Registro" SortExpression="Registro" ItemStyle-Width="5%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Clasificacion"  HeaderText="Clasificacion" SortExpression="Clasificacion" ItemStyle-Width="5%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Cliente"  HeaderText="Cliente" SortExpression="Cliente" ItemStyle-Width="5%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                         <asp:BoundField DataField="Equipo"  HeaderText="Equipo" SortExpression="Equipo" ItemStyle-Width="10%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Marca"  HeaderText="Marca" SortExpression="Marca" ItemStyle-Width="10%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Modelo"  HeaderText="Modelo" SortExpression="Modelo" ItemStyle-Width="10%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Valor" HeaderText="Valor USD" SortExpression="valor" ItemStyle-Width="10%">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="FechaCreacion"  HeaderText="Fecha Creacion" SortExpression="FechaCreacion" ItemStyle-Width="5%" DataFormatString="{0:d}">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="FechaActualizacion"  HeaderText="Ultima Actualizacion" SortExpression="FechaActualizacion" ItemStyle-Width="5%" DataFormatString="{0:d}">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="FechaCierre"  HeaderText="Fecha Cierre" SortExpression="FechaCierre" ItemStyle-Width="5%" DataFormatString="{0:d}">
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                        <asp:BoundField DataField="Estatus"  HeaderText="Estatus" SortExpression="Estatus" ItemStyle-Width="30%">
-                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
-                    </Columns>
+                                <asp:GridView ID="GridView1" AutoPostBack="False" runat="server" AutoGenerateColumns="False" Width="100%" Font-Size="9pt" DataKeyNames="NoRegistro" CellPadding="4" ForeColor="#333333" GridLines="None" Font-Bold="False" CssClass="datatable" Style="margin-top: 0" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" ClientIDMode="Static">
+  
+                                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                    <Columns>   
+                                        <asp:CommandField ButtonType="Button"  ShowSelectButton="True">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5%" />
+                                        </asp:CommandField>
+                                        <asp:BoundField DataField="NoRegistro"  HeaderText="#Registro" SortExpression="Registro" ItemStyle-Width="5%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="Clasificacion"  HeaderText="Clasificacion" SortExpression="Clasificacion" ItemStyle-Width="5%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="Cliente"  HeaderText="Cliente" SortExpression="Cliente" ItemStyle-Width="5%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                         <asp:BoundField DataField="Equipo"  HeaderText="Equipo" SortExpression="Equipo" ItemStyle-Width="10%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="Marca"  HeaderText="Marca" SortExpression="Marca" ItemStyle-Width="10%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="Modelo"  HeaderText="Modelo" SortExpression="Modelo" ItemStyle-Width="10%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="Valor" HeaderText="Valor USD" SortExpression="valor" ItemStyle-Width="10%">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="FechaCreacion"  HeaderText="Fecha Creacion" SortExpression="FechaCreacion" ItemStyle-Width="5%" DataFormatString="{0:d}">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="FechaActualizacion"  HeaderText="Ultima Actualizacion" SortExpression="FechaActualizacion" ItemStyle-Width="5%" DataFormatString="{0:d}">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="FechaCierre"  HeaderText="Fecha Cierre" SortExpression="FechaCierre" ItemStyle-Width="5%" DataFormatString="{0:d}">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                        <asp:BoundField DataField="Estatus"  HeaderText="Estatus" SortExpression="Estatus" ItemStyle-Width="30%">
+                                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle"></ItemStyle></asp:BoundField>
+                                    </Columns>
 
-                    <EditRowStyle BackColor="#999999" HorizontalAlign="Center" VerticalAlign="Middle"  />
-                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerSettings Position="TopAndBottom" />
-                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#F7F6F3" Height="60px" ForeColor="#333333"/>
-                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                    <EditRowStyle BackColor="#999999" HorizontalAlign="Center" VerticalAlign="Middle"  />
+                                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                    <PagerSettings Position="TopAndBottom" />
+                                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="#F7F6F3" Height="60px" ForeColor="#333333"/>
+                                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
                
                             </td>

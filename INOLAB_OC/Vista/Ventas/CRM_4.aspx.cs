@@ -64,14 +64,10 @@ namespace INOLAB_OC
         protected void ddlF_Asesor_SelectedIndexChanged(object sender, EventArgs e)
         {
             Gte_Funnel_Asesor();
-            //lblcontador.Text = GridView1.Rows.Count.ToString();
-            //ddlClasificacion.Text = null;
-            //ddlGTeClasif.Text = null;
+
         }
         private void Gte_Funnel_Asesor()
         {
-            //GridView1.DataSource = controladorFunnel.consultarDatosFunnelPorAsesor(ddlF_Asesor.SelectedValue);
-            //GridView1.DataBind();
         }
 
         protected void TextBox11_TextChanged(object sender, EventArgs e)
@@ -98,15 +94,7 @@ namespace INOLAB_OC
             datepicker2.Text = datosFunel["C_FechaCierre"].ToString();
             lblresistro.Text= datosFunel["NoRegistro"].ToString();
             lblautorizar.Text= datosFunel["Autoriza"].ToString();
-            ////CAMBIA COLOR PARA EVITAR FECHA EN PROSPECTO
-            //if (ddlClas_save.Text == "Prospecto" || ddlClas_save.Text == "Perdido" || ddlClas_save.Text == "No Relacionado")
-            //{
-            //    datepicker.ForeColor = Color.White;
-            //}
-            //if (ddlClas_save.Text-* != "Prospecto")
-            //{
-            //    datepicker.ForeColor = Color.Black;
-            //}
+
 
         }
 
@@ -132,13 +120,8 @@ namespace INOLAB_OC
         {
             if(lblautorizar.Text=="Clasificacion")
             {
-                if (string.IsNullOrWhiteSpace(datepicker2.Text))
-                {
-                    Response.Write("<script>alert('Selecciona la Fecha Cierre de Etapa para Actualizar el cambio de Clasificacion.');</script>");
-                    return;
-
-                }
-                ConexionComercial.executeQuery("Update Funnel set Autoriza=null, fechacierre='" + Convert.ToDateTime(datepicker2.Text).ToString("yyyy-MM-dd") + "',Clasificacion='" + txtCambioClasif.Text + "',c_fechacierre=null,c_clasificacion=null where noregistro=" + Convert.ToInt32(lblresistro.Text));
+                //ConexionComercial.executeQuery("Update Funnel set Autoriza=null, fechacierre='" + Convert.ToDateTime(datepicker2.Text).ToString("yyyy-MM-dd") + "',Clasificacion='" + txtCambioClasif.Text + "',c_fechacierre=null,c_clasificacion=null where noregistro=" + Convert.ToInt32(lblresistro.Text));
+                ConexionComercial.executeQuery("Update Funnel set Autoriza=null,Clasificacion='" + txtCambioClasif.Text + "',c_fechacierre=null,c_clasificacion=null where noregistro=" + Convert.ToInt32(lblresistro.Text));
                 Response.Write("<script language=javascript>if(confirm('Registro Autorizado Correctamente para Cambio de Clasificacion')==true){ location.href='CRM_4.aspx'} else {location.href='CRM_4.aspx'}</script>");
             }
             if (lblautorizar.Text == "Fecha")
@@ -153,11 +136,10 @@ namespace INOLAB_OC
                 Response.Write("<script language=javascript>if(confirm('Registro Autorizado Correctamente para Cambio de Fecha Cierre')==true){ location.href='CRM_4.aspx'} else {location.href='CRM_4.aspx'}</script>");
             }
         }
-                
 
-
-
-
-        
+        protected void Btn_VolverMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./CRM_3.aspx");
+        }
     }
 }
