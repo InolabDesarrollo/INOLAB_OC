@@ -27,7 +27,7 @@ namespace INOLAB_OC
         string gte;
         C_Funnel controladorFunnel = new C_Funnel();
 
-        //FECHA VENCIMIENTO PROSPECTO DE 30 DIAS
+        //FECHA VENCIMIENTO PROSPECTO  DIAS
         DateTime Fecha_Vencimiento_Prospecto = DateTime.Now.AddDays(365);
 
         //FECHA VENCIMIENTO OPORTUNIDAD DE 30 DIAS
@@ -62,12 +62,17 @@ namespace INOLAB_OC
             if ((Session["idUsuario"].ToString() == "1") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "123") || (Session["idUsuario"].ToString() == "124") || (Session["idUsuario"].ToString() == "84") || (Session["idUsuario"].ToString() == "98") 
                 || (Session["idUsuario"].ToString() == "126") || (Session["idUsuario"].ToString() == "131") || (Session["idUsuario"].ToString() == "139") || (Session["idUsuario"].ToString() == "146") || (Session["idUsuario"].ToString() == "147") || (Session["idUsuario"].ToString() == "148"))
             {
-                gte = "Karla";
+                gte = "Abel";
             }
             //Comercial - Guadalajara
             if ((Session["idUsuario"].ToString() == "122") || (Session["idUsuario"].ToString() == "6"))
             {
                 gte = "Rodolfo";
+            }
+            //Comercial Equipos - Karla Ivette
+            if ((Session["idUsuario"].ToString() == "149"))
+            {
+                gte = "Karla";
             }
             // Direccion 
             if ((Session["idUsuario"].ToString() == "7"))
@@ -85,7 +90,7 @@ namespace INOLAB_OC
             }
 
             // Vizualizacion de Botones
-            if (lbliduser.Text == "7" || lbliduser.Text == "98" || lbliduser.Text == "2" ) // usuario ARTEMIO
+            if (lbliduser.Text == "7" || lbliduser.Text == "98" || lbliduser.Text == "2" || lbliduser.Text == "6") // usuario ARTEMIO
             {
                 btnPlan.Visible = false;
                 BtnMenuPrincipal.Visible = true;
@@ -117,7 +122,13 @@ namespace INOLAB_OC
             //}
 
             ValidaGTE();
-            datepicker.Enabled = false;
+
+            OcultaFiltrosfecha();
+
+
+
+
+ 
         }
         private void ValidaGTE()
         {
@@ -147,12 +158,7 @@ namespace INOLAB_OC
         string clasificacionDeRegistro;
         protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnfiltrar.Visible = true;
-            lblfecha1.Visible = true;
-            lblfecha2.Visible = true;
-            btnfiltrar.Visible = true;
-            txtfecha1.Visible = true;
-            txtfecha2.Visible = true;
+            MuestraFiltrosfecha();
 
             if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
             {
@@ -175,7 +181,6 @@ namespace INOLAB_OC
             lblcontador.Text = GridView1.Rows.Count.ToString();
             ddlbuscar.Text = null;
             CalcularSuma();
-
 
         }
 
@@ -217,7 +222,7 @@ namespace INOLAB_OC
 
         private void traerTodosLosDatosDelFunnel()
         {
-            txtfecha1.Text = "2023-01-01";
+            txtfecha1.Text = "2024-01-01";
             txtfecha2.Text = "2090-12-31";
             cargarTodosLosRegistrosDelAsesor();
             txtfecha1.Text = null;
@@ -327,8 +332,9 @@ namespace INOLAB_OC
             Gte_Registros_Asesor(numeroDeRegistro);
             //traerRegistrosDelFunnel(numeroDeRegistro);
             btnGuardar.Visible = false;
-            btnactualiza.Visible = true;
+            //btnactualiza.Visible = true;
             lblmensaje_clas.Visible=false;
+            ddlAutorizado.Enabled = true;
         }
         //TRAE REGISTROS DEL GRID
         private void Gte_Registros_Asesor (int numeroDeRegistro)
@@ -366,7 +372,7 @@ namespace INOLAB_OC
                 datepicker.ForeColor = Color.Black;
             }
             //En estas clasificaciones ya no se permite realizar alguna edicion
-            if (ddlClas_save.Text == "Perdido" || ddlClas_save.Text == "No Relacionado")
+            if (ddlClas_save.Text == "Perdido" || ddlClas_save.Text == "No Relacionado" || ddlClas_save.Text == "Orden Compra")
             {
                 txtcliente.Enabled = false;
                 datepicker.Enabled = false;
@@ -380,6 +386,7 @@ namespace INOLAB_OC
                 ddOrigen.Enabled = false;
                 ddTipoVenta.Enabled = false;
                 ddlClas_save.Enabled = false;
+                btnactualiza.Visible = false;
             }
 
             else
@@ -396,6 +403,7 @@ namespace INOLAB_OC
                 ddOrigen.Enabled = true;
                 ddTipoVenta.Enabled = true;
                 ddlClas_save.Enabled = true;
+                btnactualiza.Visible = true;
             }
             if(fechagridcierre < DateTime.Now)
             {
@@ -410,7 +418,9 @@ namespace INOLAB_OC
                 ddlClas_save.Enabled = true;
             }
             btnautorizacion.Visible = false;
-                
+
+            datepicker.Enabled = false;
+
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -445,6 +455,22 @@ namespace INOLAB_OC
             btnactualiza.Visible = false;
             lblmensaje_clas.Visible = false;
 
+            txtcliente.Enabled = true;
+            datepicker.Enabled = true;
+            txtequipo.Enabled = true;
+            txtmarca.Enabled = true;
+            txtmodelo.Enabled = true;
+            txtvalor.Enabled = true;
+            txtestatus.Enabled = true;
+            TXTcONTACTO.Enabled = true;
+            ddLocalidad.Enabled = true;
+            ddOrigen.Enabled = true;
+            ddTipoVenta.Enabled = true;
+            ddlClas_save.Enabled = true;
+            lblFechaOC.Visible = false;
+            datepicker2.Visible= false;
+            ddlAutorizado.Enabled = false;
+            OcultaFiltrosfecha();
         }
         // FUNCION PARA ACTUALIZAR REGISTROS
         protected void Actualizar_registro_Click(object sender, EventArgs e)
@@ -519,7 +545,7 @@ namespace INOLAB_OC
 
         public void filtrarPorFechaDeCierre()
         {
-            string query = "Select * from  funnel where asesor='" + lbluser.Text + "'and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "'";
+            string query = "Select * from  funnel where asesor='" + lbluser.Text + "'and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "' and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
 
@@ -598,7 +624,15 @@ namespace INOLAB_OC
 
             }
 
-
+            if(ddlClas_save.Text=="Orden Compra")
+            {
+                if (datepicker2.Text == "")
+                {
+                    Response.Write("<script>alert('Ingresa la Fecha de Orden de Compra.');</script>");
+                    return;
+                }
+                GuardaOC();
+            }
             actualizarNuevosValores();
         }
 
@@ -609,33 +643,56 @@ namespace INOLAB_OC
 
         protected void btnfiltrar_Click(object sender, EventArgs e)
         {
-
-            if (ddlClasificacion.Text == "Todo")
+            if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6") || (Session["idUsuario"].ToString() == "98"))
             {
-                filtrarPorFechaDeCierre();
+                if(ddlGTeClasif.Text=="")
+                {
+                    string query = "Select * from  funnel where asesor='" + ddlF_Asesor.Text + "'and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "'"; // and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
+                    GridView1.DataSource = ConexionComercial.getDataSet(query);
+                    GridView1.DataBind();
+                }
+                else
+                {
+                    string query = "Select * from  funnel where asesor='" + ddlF_Asesor.Text + "'and clasificacion='" + ddlGTeClasif.Text + "' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "'"; // and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
+                    GridView1.DataSource = ConexionComercial.getDataSet(query);
+                    GridView1.DataBind();
+                }
+                
             }
             else
             {
-                filtrarPorClasificacion();
-            }
-        
+                if (ddlClasificacion.Text == "Todo")
+                {
+                    filtrarPorFechaDeCierre();
+                }
+                else
+                {
+                    //filtro asesor de la clasificacion seleccionada
+                    filtrarPorClasificacion();
+                }
 
-        lblcontador.Text = GridView1.Rows.Count.ToString();
-            CalcularSuma();
+            }
+
+            lblcontador.Text = GridView1.Rows.Count.ToString();
+         CalcularSuma();
         }
 
         private void filtrarGTE()
         {
-            if(ddlF_Asesor.Text=="Todos")
+            if ((Session["idUsuario"].ToString() == "7") || (Session["idUsuario"].ToString() == "13") || (Session["idUsuario"].ToString() == "2") || (Session["idUsuario"].ToString() == "6"))
             {
-                string query = "Select * from  funnel where gte='" + lbluser.Text + "'' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "' and clasificacion in ('lead','Proyecto','Forecast')";
+
+            }
+                if (ddlF_Asesor.Text=="Todos")
+            {
+                string query = "Select * from  funnel where gte='" + lbluser.Text + "'' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "' and clasificacion in ('lead','Proyecto','Forecast') and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
                 GridView1.DataSource = ConexionComercial.getDataSet(query);
                 GridView1.DataBind();
             }
         }
         public void gte_Fitro_Fecha()
         {
-            string query = "Select * from  funnel where asesor='" + ddlF_Asesor.Text + "'and clasificacion='" + ddlClasificacion.Text + "' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "'";
+            string query = "Select * from  funnel where asesor='" + ddlF_Asesor.Text + "'and clasificacion='" + ddlClasificacion.Text + "' and fechacierre between '" + txtfecha1.Text + "' and '" + txtfecha2.Text + "' and NoRegistro not in (select NoRegistro from funnel where Clasificacion ='orden compra' and YEAR(FechaCierre)=2023)";
             GridView1.DataSource = ConexionComercial.getDataSet(query);
             GridView1.DataBind();
         }
@@ -647,7 +704,7 @@ namespace INOLAB_OC
         // Solo gerentes de ventas filtro para sus asesores
         protected void ddlF_Asesor_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            MuestraFiltrosfecha(); 
             Gte_Funnel_Asesor();
             lblcontador.Text = GridView1.Rows.Count.ToString();
             ddlClasificacion.Text = null;
@@ -688,8 +745,9 @@ namespace INOLAB_OC
                 ListItem i8 = new ListItem("Gustavo", "Gustavo");
                 ListItem i9 = new ListItem("Sebastian", "Sebastian");
                 ListItem i10 = new ListItem("Anaid", "Anaid");
-                ListItem silvia = new ListItem("Silvia", "Silvia");
-                ListItem janathan = new ListItem("Janatan", "Janatan");
+                ListItem i11 = new ListItem("Silvia", "Silvia");
+                ListItem i12 = new ListItem("Janatan", "Janatan");
+                ListItem i13 = new ListItem("Gabriel", "Gabriel");
 
                 ddlF_Asesor.Items.Add(i1);
                 ddlF_Asesor.Items.Add(i2);
@@ -701,8 +759,12 @@ namespace INOLAB_OC
                 ddlF_Asesor.Items.Add(i8);
                 ddlF_Asesor.Items.Add(i9);
                 ddlF_Asesor.Items.Add(i10);
-                ddlF_Asesor.Items.Add(silvia);
-                ddlF_Asesor.Items.Add(janathan);
+                ddlF_Asesor.Items.Add(i11);
+                ddlF_Asesor.Items.Add(i12);
+                ddlF_Asesor.Items.Add(i13);
+
+            //    ddlF_Asesor.Items.Add(silvia);
+            //    ddlF_Asesor.Items.Add(janathan);
             }         
         }
         //Asesores Servicio
@@ -785,14 +847,14 @@ namespace INOLAB_OC
 
 
                 // Verifica si la fecha está 15 días antes de hoy
-                if (fecha.AddDays(-15) <= DateTime.Now && tipo != "Perdido" && tipo != "Orden Compra" && tipo != "Prospecto")
+                if (fecha.AddDays(-15) <= DateTime.Now && tipo != "Perdido" && tipo != "Orden Compra" && tipo != "Prospecto" && tipo != "No Relacionado")
                 {
                     e.Row.BackColor = System.Drawing.Color.Yellow; // Establece el color de fondo en amarillo
                 }
                 // Verifica si la fecha cierre ya expiro
-                if (fecha < DateTime.Now && tipo != "Perdido" && tipo != "Orden Compra" && tipo != "Prospecto")
+                if (fecha < DateTime.Now && tipo != "Perdido" && tipo != "Orden Compra" && tipo != "Prospecto" && tipo != "No Relacionado")
                 {
-                    e.Row.BackColor = System.Drawing.Color.Pink; // Establece el color de fondo en rojo
+                    e.Row.BackColor = System.Drawing.Color.Red; // Establece el color de fondo en rojo
                 }
 
                 string formato = e.Row.Cells[2].Text;
@@ -976,26 +1038,48 @@ namespace INOLAB_OC
             {
                 datepicker.Text = Fecha_Vencimiento_Prospecto.ToString("dd/MM/yyyy");
                 datepicker.ForeColor = System.Drawing.Color.White;
+                datepicker.Enabled = false;
+                lblFechaOC.Visible = false;
+                datepicker2.Visible = false;
             }
             if (ddlClas_save.Text == "Oportunidad")
             {
                 datepicker.Text = Fecha_Vencimiento_Oportunidad.ToString("dd/MM/yyyy");
                 datepicker.ForeColor = System.Drawing.Color.Black;
+                datepicker.Enabled = false;
+                lblFechaOC.Visible = false;
+                datepicker2.Visible = false;
             }
             if (ddlClas_save.Text == "Lead")
             {
                 datepicker.Text = Fecha_Vencimiento_Lead.ToString("dd/MM/yyyy");
                 datepicker.ForeColor = System.Drawing.Color.Black;
+                datepicker.Enabled = false;
+                lblFechaOC.Visible = false;
+                datepicker2.Visible = false;
             }
             if (ddlClas_save.Text == "Proyecto")
             {
                 datepicker.Text = Fecha_Vencimiento_Proyecto.ToString("dd/MM/yyyy");
                 datepicker.ForeColor = System.Drawing.Color.Black;
+                datepicker.Enabled = false;
+                lblFechaOC.Visible = false;
+                datepicker2.Visible = false;
             }
             if (ddlClas_save.Text == "Forecast")
             {
                 datepicker.Text = Fecha_Vencimiento_Forecast.ToString("dd/MM/yyyy");
                 datepicker.ForeColor = System.Drawing.Color.Black;
+                datepicker.Enabled = false;
+                lblFechaOC.Visible = false;
+                datepicker2.Visible = false;
+            }
+            if (ddlClas_save.Text == "Orden Compra")
+            {
+                datepicker.Enabled = true;
+                lblFechaOC.Visible = true;
+                datepicker2.Visible = true;
+                
             }
 
         }
@@ -1011,6 +1095,7 @@ namespace INOLAB_OC
                     return;
                 }
                 ConexionComercial.executeQuery("Update Funnel set Autoriza='Fecha', C_Clasificacion=null,C_Fechacierre='" + txtfechacierre_aut.Text + "' where NoRegistro=" + Convert.ToInt32(lblresistro.Text));
+                Response.Write("<script language=javascript>if(confirm('Solicitud Enviada Correctamente, para cambio Fecha Cierre de Etapa')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
             }
             if (ddlAutorizado.Text == "Clasificacion")
             {
@@ -1020,10 +1105,18 @@ namespace INOLAB_OC
                     return;
                 }
                 ConexionComercial.executeQuery("Update Funnel set Autoriza='Clasificacion', C_FechaCierre=null, C_Clasificacion='" + ddlclasif_aut.Text + "' where NoRegistro=" + Convert.ToInt32(lblresistro.Text));
+                Response.Write("<script language=javascript>if(confirm('Solicitud Enviada Correctamente, para cambio de Clasificación')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
             }
             
-            Response.Write("<script language=javascript>if(confirm('Solicitu Enviada Correctamente')==true){ location.href='CRM_3.aspx'} else {location.href='CRM_3.aspx'}</script>");
+            
 
+        }
+
+        //GUARDA ORDEN DE COMPRA
+        protected void GuardaOC ()
+        {
+                ConexionComercial.executeQuery("Update funnel set FechaOC='"+ Convert.ToDateTime(datepicker.Text)+"' where NoRegistro=" + Convert.ToInt32(lblresistro.Text));
+           
         }
 
         protected void ddlGTeClasif_SelectedIndexChanged(object sender, EventArgs e)
@@ -1032,11 +1125,38 @@ namespace INOLAB_OC
             lblcontador.Text = GridView1.Rows.Count.ToString();
             //ddlClasificacion.Text = null;
             CalcularSuma();
+            MuestraFiltrosfecha();
         }
-
+        //MENU AUTORIZACIONES
         protected void btnAturizaciones_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRM_4.aspx");
         }
+
+        //OCULTA FILTROS FECHA
+
+        protected void OcultaFiltrosfecha()
+        {
+            lblfecha1.Visible = false;
+            lblfecha2.Visible= false;
+            txtfecha1.Visible = false;
+            txtfecha2.Visible = false;
+            btnfiltrar.Visible=false;
+
+        }
+        protected void MuestraFiltrosfecha()
+        {
+            lblfecha1.Visible = true;
+            lblfecha2.Visible = true;
+            txtfecha1.Visible = true;
+            txtfecha2.Visible = true;
+            btnfiltrar.Visible = true;  
+        }
+
+
+
+
+
+
     }
 }

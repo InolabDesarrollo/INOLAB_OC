@@ -120,7 +120,7 @@
                 <asp:Button ID="btnRegistroFunnel" runat="server" Text="Registro Funnel" class="boton"  visible="False" /> 
                 <asp:Button ID="btnInforme_A" runat="server" Text="Estadisticas" class="boton" visible="False"  Target="_blank" />     
                 <asp:Button ID="Button1" runat="server" Text="Cotizaciones" class="boton" visible="false"/>
-                <asp:Button ID="Btn_VolverMenuPrincipal" runat="server" Text="Volver a menu principal" class="boton" />
+                <asp:Button ID="Btn_VolverMenuPrincipal" runat="server" Text="Registros Funnel" class="boton" OnClick="Btn_VolverMenuPrincipal_Click" />
             
                 <label for="check" class="esconder-menu">
                         &#215
@@ -171,7 +171,8 @@
                       <td><asp:TextBox ID="txtequipo" class="mercado" runat="server" Width="430px"></asp:TextBox><asp:Label ID="lblautorizar" Visible="False" runat="server" Text="Label"></asp:Label></td>
                       <td><asp:TextBox ID="txtvalor" class="mercado" runat="server">0</asp:TextBox></td>
                       <td><asp:TextBox ID="datepicker2" class="mercado" runat="server"></asp:TextBox></td>
-                      <td><asp:TextBox ID="txtCambioClasif" class="mercado" runat="server"></asp:TextBox></td>
+                      <td>
+                          <asp:TextBox ID="txtCambioClasif" class="mercado" runat="server" Enabled="False"></asp:TextBox></td>
                       <td></td>
                     </tr>
                     <tr>
