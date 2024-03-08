@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+    <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
+    <History>True|2024-03-08T20:34:29.3841067Z;False|2024-03-08T14:34:13.5419688-06:00;True|2024-02-12T11:27:01.9950212-06:00;True|2023-08-17T17:29:39.3025576-06:00;True|2023-08-07T09:44:09.5101739-06:00;True|2023-08-04T15:45:53.2009476-06:00;False|2023-08-02T13:54:10.2174269-06:00;False|2023-07-17T12:29:35.1936950-06:00;False|2023-07-17T12:28:26.5852973-06:00;</History>
+=======
+    <_PublishTargetUrl>C:\Users\Carlos Flores\Desktop\Publicar web 2024</_PublishTargetUrl>
+    <History>True|2024-02-20T22:28:56.8181767Z;False|2024-02-20T16:28:49.1575642-06:00;True|2024-02-20T11:25:19.0070088-06:00;True|2024-02-20T10:18:16.1350644-06:00;False|2024-02-20T10:17:48.4859429-06:00;True|2024-02-16T10:57:09.7664541-06:00;True|2024-02-16T10:53:50.8939551-06:00;False|2024-02-14T12:24:33.9329471-06:00;True|2024-02-12T18:11:32.0557181-06:00;True|2024-02-12T17:00:32.8527610-06:00;True|2024-02-12T16:57:30.8893263-06:00;</History>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/DocumentFormat.OpenXml.dll">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.DataSet.dll">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.DataSet.pdb">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.dll">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/ExcelDataReader.pdb">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/INOLAB_OC.dll">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>03/08/2024 14:34:27</publishTime>
+    </File>
+    <File Include="bin/INOLAB_OC.pdb">
+      <publishTime>03/08/2024 14:34:27</publishTime>
+=======
+      <publishTime>02/20/2024 16:28:56</publishTime>
+    </File>
+    <File Include="bin/INOLAB_OC.pdb">
+      <publishTime>02/20/2024 16:28:56</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.Common.dll">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.DLL">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="bin/SpreadsheetLight.dll">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="BrowserDataSet.xsc">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="BrowserDataSet.xss">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="CSS/drop.css">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>03/08/2024 13:30:35</publishTime>
+    </File>
+    <File Include="CSS/Encabezado.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCalendario.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoComun.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/Encabezado.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCalendario.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoComun.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="CSS/EncabezadoConfirmacion.css">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_1.css">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_2.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_3.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDescargaFolio.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDetalleFSR.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFirmaFolio.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFSR.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInformacion.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInolab.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoVistaPrevia.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/EstiloVista.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_2.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_3.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDescargaFolio.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDetalleFSR.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFirmaFolio.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFSR.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInformacion.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInolab.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoVistaPrevia.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/EstiloVista.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="CSS/EstiloVistaConfirmacion.css">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="CSS/GerenteReporteRefacciones.css">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:34</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="CSS/main.css">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="CSS/MonitorRefacciones.css">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/Normalize.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/ReporteRefacciones.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/ServiciosAsignados.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="CSS/stilos.css">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/Normalize.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/ReporteRefacciones.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/ServiciosAsignados.css">
+      <publishTime>01/05/2024 16:50:34</publishTime>
+    </File>
+    <File Include="CSS/stilos.css">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="CSS/uploadify.css">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="CSS/VistaPrevia.css">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:34</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="Docs/0.pdf">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="Docs/Manual de Usuario SWF v3.pdf">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:35</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="FormatoFecha.js">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="HTML/Comentario_Ingeniero.html">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:35</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="HTML/index.html">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="HTML/index2.html">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="HTML/index_not_ase.html">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="HTML/index_not_fact.html">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="Imagenes/closeimg.png">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="Imagenes/LOGO_600x350.png">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="Imagenes/LOGO_Blanco_.png">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="Imagenes/LOGO_Blanco_Lineas.png">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="Imagenes/slogan.png">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="images/cancel.png">
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.3.2.min.js">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="scripts/jquery.uploadify.js">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="scripts/uploader.fla">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="scripts/uploader.swf">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="Sesion.aspx">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:35</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+    <File Include="upload.html">
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Calendario.aspx">
+<<<<<<< HEAD:INOLAB_OC/Properties/PublishProfiles/FolderProfile3.pubxml.user
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Calendario_Areas.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/CalSel.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/CargaFin.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/DescargaFolio.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/DetalleFSR.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/EdicionReporteRefacciones.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/FirmarFolio.aspx">
+      <publishTime>03/07/2024 18:16:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/FSR.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/GerenteReporteRefacciones.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Informacion.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/MonitorReporteRefacciones.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/ReporteRefacciones.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/ServiciosAsignados.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/VistaPrevia.aspx">
+      <publishTime>03/08/2024 13:30:35</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_1.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_2.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_3.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_4.aspx">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>02/12/2024 12:08:20</publishTime>
+=======
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Calendario_Areas.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/CalSel.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/CargaFin.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/DescargaFolio.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/DetalleFSR.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/EdicionReporteRefacciones.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/FirmarFolio.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/FSR.aspx">
+      <publishTime>02/12/2024 11:47:22</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/GerenteReporteRefacciones.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/Informacion.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/MonitorReporteRefacciones.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/ReporteRefacciones.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/ServiciosAsignados.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/VistaPrevia.aspx">
+      <publishTime>02/09/2024 15:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_1.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_2.aspx">
+      <publishTime>01/05/2024 16:50:35</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_3.aspx">
+      <publishTime>02/20/2024 11:56:39</publishTime>
+    </File>
+    <File Include="Vista/Ventas/CRM_4.aspx">
+      <publishTime>02/16/2024 10:15:44</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>02/16/2024 10:53:50</publishTime>
+>>>>>>> 5cbcaadf14c73def1952c48b82a6b56494270d0a:INOLAB_OC/Properties/PublishProfiles/FolderProfile5.pubxml.user
+    </File>
+  </ItemGroup>
+</Project>

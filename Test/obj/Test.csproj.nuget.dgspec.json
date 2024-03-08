@@ -1,14 +1,14 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj": {}
+    "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj": {
+    "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\INOLAB_OC\\INOLAB_OC.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj",
+        "projectUniqueName": "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\INOLAB_OC\\INOLAB_OC.csproj",
         "projectName": "INOLAB_OC",
-        "projectPath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj",
+        "projectPath": "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\INOLAB_OC\\INOLAB_OC.csproj",
         "frameworks": {
           "net48": {
             "projectReferences": {}
@@ -19,20 +19,20 @@
         "net48": {}
       }
     },
-    "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj": {
+    "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj",
+        "projectUniqueName": "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj",
-        "packagesPath": "C:\\Users\\Omar Sotomayor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\obj\\",
+        "projectPath": "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\Test\\Test.csproj",
+        "packagesPath": "C:\\Users\\Carlos Flores\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Omar Sotomayor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Carlos Flores\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -47,8 +47,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj": {
-                "projectPath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\INOLAB_OC\\INOLAB_OC.csproj"
+              "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\INOLAB_OC\\INOLAB_OC.csproj": {
+                "projectPath": "C:\\Users\\Carlos Flores\\Desktop\\Git 2024\\Web INOLAB 21022024 antes marca\\Web INOLAB\\INOLAB_OC\\INOLAB_OC.csproj"
               }
             }
           }
@@ -91,6 +91,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.21, 6.0.21]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.21, 6.0.21]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.21, 6.0.21]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
