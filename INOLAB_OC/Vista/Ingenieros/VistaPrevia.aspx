@@ -244,9 +244,9 @@
                     <canvas id="signature-pad" class="signature-pad"></canvas>            
                 </div> 
                 <div id="buttonsfirma" runat="server" style="text-align:center; white-space: nowrap;">
-                      <button id="salir" runat="server" class="drop2">Salir</button> 
-                      <button  id="clear" runat="server"  class="drop2">Limpiar</button>                
-                      <button  id="save" runat="server"  class="drop2" >Guardar</button>                              
+                      <button id="salir" runat="server" class="btn_firma_cliente">Salir</button> 
+                      <button  id="clear" runat="server"  class="btn_firma_cliente">Limpiar</button>                
+                      <button  id="save" runat="server"  class="btn_firma_cliente" >Guardar</button>                              
                </div>
            </div>
             <div style="display: none;">

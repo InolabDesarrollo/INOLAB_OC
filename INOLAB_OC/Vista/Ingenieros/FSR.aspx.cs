@@ -118,11 +118,11 @@ public partial class FSR : Page
             Btn_Estatus_Servicio.Text = "Guardar Cambios";
             Btn_actualizar_fechas.Visible = true;
             Btn_agregar_acciones.Visible = true;
-            Btn_Reenviar_Correo.Visible = true; //cambio de prueba github
+            Btn_Reenviar_Correo.Visible = true; 
         }
         else if (status.Equals(PROCESO))
         {
-            Btn_Estatus_Servicio.Text = "Continuar Servicio";
+            Btn_Estatus_Servicio.Text = "Continuar Servicio Y Guardar Datos";
             Btn_actualizar_fechas.Visible = false;
             Btn_agregar_acciones.Visible = false;
         }
@@ -349,6 +349,7 @@ public partial class FSR : Page
         string folioFSR = Session["folio_p"].ToString();
         string ubicacionArchivo = crearPDF(folioFSR);
         enviarCorreoACliente(folioFSR, ubicacionArchivo);
+        Response.Write("<script>alert('El correo a cliente se ha enviado de forma correcta');</script>");
     }
     private string crearPDF(string folioFSR)
     {
