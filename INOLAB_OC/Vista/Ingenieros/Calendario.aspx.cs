@@ -8,10 +8,13 @@ using System.Web.UI;
 using System.Globalization;
 using INOLAB_OC.Modelo;
 using System.Diagnostics;
+using INOLAB_OC.Controlador;
+using INOLAB_OC.Modelo.Browser;
 
 public partial class Calendario : Page
 {
-
+    static UsuarioRepository repositorioUsuario = new UsuarioRepository();
+    C_Usuario controladorUsuario = new C_Usuario(repositorioUsuario);
     string idAreaIngeniero = "";
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -53,9 +56,7 @@ public partial class Calendario : Page
 
     public void generarCalendarioDeServicios()
     {
-       
-        string query = "Select IngArea from usuarios where idUsuario = " + Session["idUsuario"].ToString();
-        idAreaIngeniero = Conexion.getText(query);
+        idAreaIngeniero = controladorUsuario.consultarValorDeCampo("IngArea", Session["idUsuario"].ToString());
 
         ReportViewer1.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
         ReportViewer1.ProcessingMode = ProcessingMode.Remote;

@@ -265,13 +265,13 @@ public partial class DetalleFSR
     protected global::System.Web.UI.WebControls.TextBox txtobservaciones;
 
     /// <summary>
-    /// Control Envio_de_notificacion_de_eliminacion_de_accion.
+    /// Control Envio_de_notificacion_de_observacion.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.CheckBox Envio_de_notificacion_de_eliminacion_de_accion;
+    protected global::System.Web.UI.WebControls.CheckBox Envio_de_notificacion_de_observacion;
 
     /// <summary>
     /// Control btnguardar.
@@ -281,6 +281,51 @@ public partial class DetalleFSR
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button btnguardar;
+
+    /// <summary>
+    /// Control Agregar_Comentarios_Finales.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl Agregar_Comentarios_Finales;
+
+    /// <summary>
+    /// Control ImageButton4.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
+
+    /// <summary>
+    /// Control Label_Comentarios_Finales.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label Label_Comentarios_Finales;
+
+    /// <summary>
+    /// Control TextBox_Comentarios_Finales.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox TextBox_Comentarios_Finales;
+
+    /// <summary>
+    /// Control Btn_Gurardar_Comentarios_Ingeniero.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Gurardar_Comentarios_Ingeniero;
 
     /// <summary>
     /// Control FallaEncontrada.
@@ -634,13 +679,13 @@ public partial class DetalleFSR
     protected global::System.Web.UI.WebControls.Label funciona;
 
     /// <summary>
-    /// Control CHECKED_ESTA_FUNCIONANDO.
+    /// Control Funciona_Correctamente_lista.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.CheckBox CHECKED_ESTA_FUNCIONANDO;
+    protected global::System.Web.UI.WebControls.DropDownList Funciona_Correctamente_lista;
 
     /// <summary>
     /// Control Btn_reportar_falla.
@@ -677,4 +722,22 @@ public partial class DetalleFSR
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button vpbutton;
+
+    /// <summary>
+    /// Control Comnetarios_Ingeniero.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl Comnetarios_Ingeniero;
+
+    /// <summary>
+    /// Control Btn_Comentarios_Ingeniero.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Comentarios_Ingeniero;
 }

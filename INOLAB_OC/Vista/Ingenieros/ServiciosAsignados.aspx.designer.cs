@@ -103,6 +103,24 @@ public partial class ServiciosAsignados
     protected global::System.Web.UI.WebControls.Button btndescargafolio;
 
     /// <summary>
+    /// Control Btn_ReporteRefacciones.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_ReporteRefacciones;
+
+    /// <summary>
+    /// Control Btn_Monitor_Refacciones.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Monitor_Refacciones;
+
+    /// <summary>
     /// Control Button1.
     /// </summary>
     /// <remarks>

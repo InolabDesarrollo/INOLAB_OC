@@ -16,62 +16,59 @@ using DocumentFormat.OpenXml.Drawing.Charts;
 using INOLAB_OC;
 using INOLAB_OC.Modelo;
 using INOLAB_OC.Controlador;
+using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Entidades;
+using System.Web.Services.Description;
+using INOLAB_OC.Modelo.Browser.Interfaces;
 
 public partial class ServiciosAsignados : System.Web.UI.Page
 {
+    static V_FSR_Repository repositorio = new V_FSR_Repository();
+    C_V_FSR controlador_Vista_ServiciosAsignados = new C_V_FSR(repositorio);
+    E_V_FSR entidad_VistaFsr = new E_V_FSR();
+
+    static UsuarioRepository repositorioUsuario = new UsuarioRepository();
+    C_Usuario controladorUsuario = new C_Usuario(repositorioUsuario);
+
+    string idUsuario;
     protected void Page_Load(object sender, EventArgs e)
-    { 
-        if (Session["idUsuario"] == null) { 
-            Response.Redirect("./Sesion.aspx");
+    {
+        idUsuario = Session["idUsuario"].ToString();
+        if (Session["idUsuario"] == null) {
+            Response.Redirect("/Sesion.aspx");
         }
         else {
             lbluser.Text = Session["nameUsuario"].ToString();
-            if (validarSiUsuarioEsGefeDeArea())
+            if (controladorUsuario.validarSiUsuarioEsGefeDeArea(idUsuario))
             {
                 Btn_Calendario.Visible = true;
+                Btn_ReporteRefacciones.Visible = true;
+                Btn_Monitor_Refacciones.Visible = false;
             }
             else
             {
+                Btn_ReporteRefacciones.Visible = false;
                 Btn_Calendario.Visible = false;
             }
         }
-
         btninformacion.Visible = false;
     }
-
-    public bool validarSiUsuarioEsGefeDeArea()
-    {
-        if (Session["idUsuario"].ToString() == "54" || Session["idUsuario"].ToString() == "60" ||
-                Session["idUsuario"].ToString() == "30")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }    
-    }
-
+   
     protected void Page_Init(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
             ReportViewer1.ServerReport.ReportServerCredentials = new MyReportServerCredentials();
-            // Set the processing mode for the ReportViewer to Remote
             ReportViewer1.ProcessingMode = ProcessingMode.Remote;
-
             ServerReport serverReport = ReportViewer1.ServerReport;
 
-            // Set the report server URL and report path
             serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
             serverReport.ReportPath = "/Servicio/Calendario-Servicio-Ing";
 
-            // Create the sales order number report parameter
             ReportParameter salesOrderNumber = new ReportParameter();
             salesOrderNumber.Name = "ing";
             salesOrderNumber.Values.Add(Session["idUsuario"].ToString());
 
-            // Set the report parameters for the report
             ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
             ReportViewer1.ShowParameterPrompts = false;
         }
@@ -81,7 +78,7 @@ public partial class ServiciosAsignados : System.Web.UI.Page
 
     public sealed class MyReportServerCredentials :
         IReportServerCredentials
-    {//Inicializa el reporteador con las credenciales almacenadas en la configuración
+    {
         public WindowsIdentity ImpersonationUser
         {
             get
@@ -127,8 +124,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             userName = null;
             password = null;
             authority = null;
-
-            // Not using form credentials
             return false;
         }
     }
@@ -136,14 +131,13 @@ public partial class ServiciosAsignados : System.Web.UI.Page
   
     protected void Gridview_datos_de_servicio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
-        //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
         try
         {
-
             int index = int.Parse(e.CommandArgument.ToString());
             GridViewRow filasDelDataGridView = Gridview_datos_de_servicio.Rows[index];
             string numeroDeFolioDeServicio = "";
             string estatusDelServicio = "";
+            entidad_VistaFsr.FechaEnQueSeAgendoServicio = filasDelDataGridView.Cells[4].Text;
 
             if (e.CommandName == "Select")
             {
@@ -151,9 +145,10 @@ public partial class ServiciosAsignados : System.Web.UI.Page
                 estatusDelServicio = ((LinkButton)filasDelDataGridView.Cells[1].Controls[0]).Text;
                 Session["folio_p"] = numeroDeFolioDeServicio;
                 Session["not_ase"] = "";
+               
                 if (estatusDelServicio.Equals("Asignado"))
                 {
-                    verificarSiServicioTieneFechaActual(filasDelDataGridView);
+                    verificarSiServicioTieneFechaActual(entidad_VistaFsr);
                 }
                 else
                 {
@@ -162,7 +157,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
             }
             if (e.CommandName == "Select2")
             {
-                //Para el modo offline, genera un archivo con toda la informacion que ya hay del folio para que se llene en el aplicativo accediendo a esta 
                 numeroDeFolioDeServicio = ((LinkButton)filasDelDataGridView.Cells[0].Controls[0]).Text;
                 estatusDelServicio = ((LinkButton)filasDelDataGridView.Cells[1].Controls[0]).Text;
                 Session["folio_p"] = numeroDeFolioDeServicio;
@@ -199,14 +193,10 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         }
     }
 
-    private void verificarSiServicioTieneFechaActual(GridViewRow filasDelDataGridView)
+    private void verificarSiServicioTieneFechaActual(E_V_FSR entidad_V_FSR)
     {
-        string fechaDelServicio = "";
-        string fechaDelDiaActual = "";
-        fechaDelServicio = filasDelDataGridView.Cells[4].Text;
-        fechaDelDiaActual = DateTime.Now.ToString("dd/MM/yyyy");
-
-        if (fechaDelDiaActual.Equals(fechaDelServicio))
+        bool fechaDeServicioEsIgualAFechaDeHoy = controlador_Vista_ServiciosAsignados.verificarSiServicioTieneLaFechaDeHoy(entidad_V_FSR);
+        if (fechaDeServicioEsIgualAFechaDeHoy)
         {
             Response.Redirect("FSR.aspx", true);
         }
@@ -223,44 +213,27 @@ public partial class ServiciosAsignados : System.Web.UI.Page
 
         documentoReporteServicio.ImportDataTable(1, 1, reporteServicio, true);
         string rutaReporteServicio = HttpRuntime.AppDomainAppPath + "Docs\\" + Session["folio_p"].ToString() + ".xlsx";
-
         documentoReporteServicio.SaveAs(rutaReporteServicio);
     }
 
     private System.Data.DataTable generarReporteServiciosModoOffLine()
     {
-        SLDocument documentoSl = new SLDocument();
         System.Data.DataTable reporteServicio = new System.Data.DataTable();
-
-        string[] columnasParaReporteServicio = { "IdFSR", "Folio", "Cliente", "Departamento", "Direccion", "Telefono", "Localidad",
-                        "N_Reportado","N_Responsable","Mail","TipoContrato","TipoProblema","TipoServicio","servicio","Ingeniero",
-                    "mailIng","F_SolicitudServicio","FechaServicio","Equipo","Marca","Modelo","NoSerie","IdEquipo_C","Estatusid","Estatus","Observaciones",
-                    "NoLlamada","Inicio_Servicio","Fin_Servicio","Dia","FallaReportada","HoraServicio","Confirmacion","Propuesta","Actividad","S_Confirmacion",
-                    "Asesor1","Correoasesor1","CooreoIng","Proximo_Servicio","idcontrato","idservicio","idproblema","IdResp","Responsable","IdDocumenta","Documentador",
-                    "Refaccion","Ingeniero_A1","IdIng_A1","mailIng_A1","Ingeniero_A2","IdIng_A2","mailIng_A2","F_InicioServicio","F_FinServicio","IdT_Servicio","OC","ArchivoAdjunto",
-                    "DiaInicioServ","DiaFinServ", "DiasServ","NotAsesor","Funcionando","FallaEncontrada","FechaFirmCliente","NombreCliente"};
-
-        foreach (string columna in columnasParaReporteServicio)
-        {
-            reporteServicio.Columns.Add(columna, typeof(string));
-        }
-
+        reporteServicio = controlador_Vista_ServiciosAsignados.definirColumnasParaReporteServicio(); 
         List<string> valoresParaReporteServicio = new List<string>();
-        DataRow informacionServicios = C_ServiciosAsignados.InformacionDeFolioParaReporteServicios(Session["folio_p"].ToString());
-
+        DataRow informacionServicios = controlador_Vista_ServiciosAsignados.consultarInformacionDeFolioServicio(Session["folio_p"].ToString());
 
         for (int i = 0; i == 67; i++)
         {
-            string valorColumna = columnasParaReporteServicio[i];
+            string valorColumna = reporteServicio.Columns[i].ColumnName;
+            
             if (valorColumna.Equals("F_SolicitudServicio"))
             {
                 valoresParaReporteServicio.Insert(i, Convert.ToDateTime(informacionServicios[valorColumna].ToString()).ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
             }
             else if (valorColumna.Equals("FechaServicio"))
             {
                 valoresParaReporteServicio.Insert(i, Convert.ToDateTime(informacionServicios[valorColumna].ToString()).ToString("yyyy-MM-dd"));
-
             }
             else if (i == 28 || i == 29 || i == 40 || i == 66)
             {
@@ -271,36 +244,33 @@ public partial class ServiciosAsignados : System.Web.UI.Page
                 valoresParaReporteServicio.Insert(i, informacionServicios[valorColumna].ToString());
                 reporteServicio.Rows.Add(valoresParaReporteServicio[i]);
             }
-
-
         }
-
         return reporteServicio;
     }
 
-   
+    protected void Reporte_Refacciones_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("GerenteReporteRefacciones.aspx");
+    }
 
     protected void Btn_Salir_Click(object sender, EventArgs e)
     {
         Session.Clear();
         Session.Abandon();
-        Response.Redirect("../Sesion.aspx");
+        Response.Redirect("/Sesion.aspx");
     }
 
     protected void Btn_Descrgar_Calendario_De_Servicios_Click(object sender, EventArgs e)
     {
         ServerReport serverReport = ReportViewer1.ServerReport;
 
-        // Set the report server URL and report path
         serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
         serverReport.ReportPath = "/Servicio/Calendario-Servicio-Ing";
 
-        // Create the sales order number report parameter
         ReportParameter salesOrderNumber = new ReportParameter();
         salesOrderNumber.Name = "ing";
         salesOrderNumber.Values.Add(Session["idUsuario"].ToString());
 
-        // Set the report parameters for the report
         ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
         ReportViewer1.ShowParameterPrompts = false;
 
@@ -308,29 +278,6 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         string year = DateTime.Now.Year.ToString();
         string day = DateTime.Now.Day.ToString();
         string nombre = "Calendario_" + day + "-" + month + "-" + year + ".pdf";
-        CrearArchivoPDF(nombre);
-    }
-
-    protected void recrearPDFParaFolioDeServicioFinalizado(string folio)
-    {
-
-        ServerReport serverReport = ReportViewer1.ServerReport;
-        // Set the report server URL and report path
-        serverReport.ReportServerUrl = new Uri("http://INOLABSERVER01/Reportes_Inolab");
-        serverReport.ReportPath = "/OC/FSR Servicio";
-
-        // Create the sales order number report parameter
-        ReportParameter salesOrderNumber = new ReportParameter();
-        salesOrderNumber.Name = "folio";
-        salesOrderNumber.Values.Add(folio);
-
-        // Set the report parameters for the report
-        ReportViewer1.ServerReport.SetParameters(new ReportParameter[] { salesOrderNumber });
-        ReportViewer1.ShowParameterPrompts = false;
-
-        string month = DateTime.Now.Month.ToString();
-        string year = DateTime.Now.Year.ToString();
-        string nombre = "Folio:" + folio + "_" + year + ".pdf";
         CrearArchivoPDF(nombre);
     }
 
@@ -343,46 +290,38 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         string extension = string.Empty;
 
         byte[] bytes = ReportViewer1.ServerReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-        // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.  
+ 
         Response.Buffer = true;
         Response.Clear();
         Response.ContentType = mimeType;
         Response.AddHeader("content-disposition", "attachment; filename="+ nombre);
-        Response.BinaryWrite(bytes); // create the file  
-        Response.Flush(); // send it to the client to download  
+        Response.BinaryWrite(bytes);  
+        Response.Flush(); 
     }
 
-    
     protected void Tipo_De_Estatus_De_Servicio_SelectedIndexChanged(object sender, EventArgs e)
     {
-        string query = "";
-        if(Estatus_de_servicio.Text=="Asignado")
+        entidad_VistaFsr.Estatus= Estatus_de_servicio.Text;
+        if (Estatus_de_servicio.Text.Equals("Todos"))
         {
-            query = "select *from V_FSR where Estatus='Asignado' and IdIngeniero=" + Session["idusuario"] +" order by folio desc";
-            consultarFoliosDeServicio(query);
+            consultarTodosLosFoliosDeServicio(idUsuario);
         }
-        if (Estatus_de_servicio.Text == "En Proceso")
+        else
         {
-            query = "select *from V_FSR where Estatus='En Proceso' and IdIngeniero=" + Session["idusuario"]+" order by folio desc";
-            consultarFoliosDeServicio(query);
-        }
-        if (Estatus_de_servicio.Text == "Finalizado")
-        {
-            query = "select *from v_fsr where estatus='Finalizado' and idingeniero=" + Session["idusuario"]+ " order by folio desc";
-            consultarFoliosDeServicio(query);
-        }
-        if (Estatus_de_servicio.Text == "Todos")
-        {
-            query = "Select DISTINCT* from  v_fsr where idingeniero = " + Session["Idusuario"] + " order by folio desc";
-            consultarFoliosDeServicio(query);
+            consultarFoliosDeServicioPorEstatus(entidad_VistaFsr, idUsuario);    
         }
     }
    
-
-    public void consultarFoliosDeServicio(string query)
+    public void consultarFoliosDeServicioPorEstatus(E_V_FSR entidadServicio, string idUsuario)
     {
-        Gridview_datos_de_servicio.DataSource = Conexion.getDataSet(query);
+        Gridview_datos_de_servicio.DataSource = controlador_Vista_ServiciosAsignados.consultarFolioServicioPorEstatus(entidadServicio, idUsuario);
+        Gridview_datos_de_servicio.DataBind();
+        contador.Text = Gridview_datos_de_servicio.Rows.Count.ToString();
+    }
+
+    private void consultarTodosLosFoliosDeServicio(string idUsuario)
+    {
+        Gridview_datos_de_servicio.DataSource = controlador_Vista_ServiciosAsignados.consultarTodosLosFoliosDeIngeniero(idUsuario);
         Gridview_datos_de_servicio.DataBind();
         contador.Text = Gridview_datos_de_servicio.Rows.Count.ToString();
     }
@@ -408,4 +347,10 @@ public partial class ServiciosAsignados : System.Web.UI.Page
         string _open = "window.open('Informacion.aspx', '_newtab');";
         ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), _open, true);
     }
+
+    protected void Monitor_Reporte_Refacciones_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("MonitorReporteRefacciones.aspx");
+    }
+
 }

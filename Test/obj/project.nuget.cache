@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qifFbySrJtjfjzHJ+2Sh2Val8zOa30Ey8WBDUbE14WFpRGxERNo5Eo/vADzXBM5JgfA6ZOgiW4djHF6DG7ZYEw==",
+  "dgSpecHash": "DrBUXxLZXaxKnwSW1VNr68eHQxwj/dRnJRjN88V7MEKJFrY+MQRt+SWB1yxej+NhTSslZDj+l8q/9vvC8TBGiQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\Test.csproj",
   "expectedPackageFiles": [
@@ -32,5 +32,12 @@
     "C:\\Users\\Omar Sotomayor\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\Omar Sotomayor\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\Omar Sotomayor\\source\\repos\\INOLAB_OC\\Test\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -1,319 +1,253 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-This file is used by the publish/package process of your Web project. You can customize the behavior of this process
-by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
-    <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Carlos\Desktop\Publicar proyecto Web</_PublishTargetUrl>
+    <History>True|2024-02-09T23:02:39.8753039Z;False|2024-02-09T16:55:29.9589577-06:00;False|2024-02-09T16:54:08.2066652-06:00;</History>
+    <LastFailureDetails />
+    <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
-    <File Include="Adjuntar.aspx">
-      <publishTime>01/26/2023 10:02:30</publishTime>
-    </File>
-    <File Include="anexos.aspx">
-      <publishTime>10/26/2020 11:57:32</publishTime>
-    </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
-      <publishTime>08/04/2013 13:21:24</publishTime>
-    </File>
-    <File Include="bin/es/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/11/2012 09:13:48</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.DataSet.dll">
-      <publishTime>05/02/2019 04:39:58</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.DataSet.pdb">
-      <publishTime>05/02/2019 04:39:58</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.dll">
-      <publishTime>05/02/2019 04:39:50</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.pdb">
-      <publishTime>05/02/2019 04:39:50</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
-      <publishTime>01/03/2011 14:16:38</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>05/24/2023 09:31:46</publishTime>
+      <publishTime>02/09/2024 17:02:37</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>05/24/2023 09:31:46</publishTime>
+      <publishTime>02/09/2024 17:02:37</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
-      <publishTime>07/05/2015 10:56:24</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.DLL">
-      <publishTime>07/05/2015 10:56:24</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
-      <publishTime>07/05/2015 10:56:24</publishTime>
-    </File>
-    <File Include="bin/Microsoft.SqlServer.Types.dll">
-      <publishTime>02/11/2012 07:55:10</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/SpreadsheetLight.dll">
-      <publishTime>04/02/2017 03:53:50</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="BrowserDataSet.xsc">
-      <publishTime>08/07/2020 21:51:42</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="BrowserDataSet.xss">
-      <publishTime>08/07/2020 21:51:42</publishTime>
-    </File>
-    <File Include="Calendario.aspx">
-      <publishTime>10/02/2023 11:33:20</publishTime>
-    </File>
-    <File Include="Calendario_Areas.aspx">
-      <publishTime>06/30/2022 12:32:58</publishTime>
-    </File>
-    <File Include="CalSel.aspx">
-      <publishTime>06/17/2022 09:33:22</publishTime>
-    </File>
-    <File Include="CargaFin.aspx">
-      <publishTime>06/07/2022 10:48:36</publishTime>
-    </File>
-    <File Include="ConfirmacionServicio.aspx">
-      <publishTime>03/30/2022 10:53:34</publishTime>
-    </File>
-    <File Include="Cotizacion.aspx">
-      <publishTime>03/04/2023 16:48:58</publishTime>
-    </File>
-    <File Include="CRM_1.aspx">
-      <publishTime>04/17/2023 17:04:08</publishTime>
-    </File>
-    <File Include="CRM_2.aspx">
-      <publishTime>04/17/2023 16:26:24</publishTime>
-    </File>
-    <File Include="CRM_3.aspx">
-      <publishTime>04/20/2023 17:37:16</publishTime>
-    </File>
-    <File Include="CRM_4.aspx">
-      <publishTime>05/05/2023 11:18:32</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="CSS/drop.css">
-      <publishTime>10/02/2023 10:43:52</publishTime>
+      <publishTime>07/31/2023 11:41:45</publishTime>
     </File>
     <File Include="CSS/Encabezado.css">
-      <publishTime>06/16/2022 12:00:56</publishTime>
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCalendario.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoComun.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
     </File>
     <File Include="CSS/EncabezadoConfirmacion.css">
-      <publishTime>03/30/2022 11:00:24</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_1.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_2.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoCRM_3.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDescargaFolio.css">
+      <publishTime>07/27/2023 10:38:44</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoDetalleFSR.css">
+      <publishTime>12/18/2023 13:43:01</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFirmaFolio.css">
+      <publishTime>08/24/2023 11:09:09</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoFSR.css">
+      <publishTime>08/24/2023 11:09:09</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInformacion.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoInolab.css">
+      <publishTime>08/24/2023 11:09:09</publishTime>
+    </File>
+    <File Include="CSS/EncabezadoVistaPrevia.css">
+      <publishTime>08/24/2023 11:09:09</publishTime>
     </File>
     <File Include="CSS/EstiloVista.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>07/31/2023 11:41:45</publishTime>
     </File>
     <File Include="CSS/EstiloVistaConfirmacion.css">
-      <publishTime>03/30/2022 10:52:52</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/GerenteReporteRefacciones.css">
+      <publishTime>08/29/2023 13:11:09</publishTime>
     </File>
     <File Include="CSS/main.css">
-      <publishTime>06/17/2021 10:22:04</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
+    </File>
+    <File Include="CSS/MonitorRefacciones.css">
+      <publishTime>08/29/2023 09:55:19</publishTime>
+    </File>
+    <File Include="CSS/Normalize.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
+    </File>
+    <File Include="CSS/ReporteRefacciones.css">
+      <publishTime>08/24/2023 11:09:09</publishTime>
+    </File>
+    <File Include="CSS/ServiciosAsignados.css">
+      <publishTime>07/21/2023 10:35:50</publishTime>
     </File>
     <File Include="CSS/stilos.css">
-      <publishTime>03/30/2022 10:23:52</publishTime>
+      <publishTime>07/21/2023 10:35:50</publishTime>
     </File>
     <File Include="CSS/uploadify.css">
-      <publishTime>01/19/2023 13:42:52</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
-    <File Include="DescargaFolio.aspx">
-      <publishTime>03/29/2022 16:27:12</publishTime>
-    </File>
-    <File Include="Detalle Registro1.aspx">
-      <publishTime>11/04/2022 11:10:56</publishTime>
-    </File>
-    <File Include="DetalleFSR.aspx">
-      <publishTime>08/23/2022 14:05:04</publishTime>
-    </File>
-    <File Include="Detalles Registro Equipo1.aspx">
-      <publishTime>01/25/2023 10:16:12</publishTime>
+    <File Include="CSS/VistaPrevia.css">
+      <publishTime>08/24/2023 11:09:09</publishTime>
     </File>
     <File Include="Docs/0.pdf">
-      <publishTime>06/22/2021 10:01:38</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Docs/Manual de Usuario SWF v3.pdf">
-      <publishTime>08/23/2022 16:46:44</publishTime>
-    </File>
-    <File Include="ejemplo.aspx">
-      <publishTime>06/09/2021 15:24:42</publishTime>
-    </File>
-    <File Include="ejemplo1.aspx">
-      <publishTime>01/24/2023 17:32:44</publishTime>
-    </File>
-    <File Include="ejemplosubir.aspx">
-      <publishTime>01/23/2023 11:56:26</publishTime>
-    </File>
-    <File Include="experimento.aspx">
-      <publishTime>10/19/2020 12:06:38</publishTime>
-    </File>
-    <File Include="FirmarFolio.aspx">
-      <publishTime>03/29/2022 17:14:36</publishTime>
-    </File>
-    <File Include="Folios.aspx">
-      <publishTime>10/29/2020 11:35:58</publishTime>
+      <publishTime>08/30/2023 16:14:25</publishTime>
     </File>
     <File Include="FormatoFecha.js">
-      <publishTime>06/30/2020 13:09:28</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
-    <File Include="FSR.aspx">
-      <publishTime>03/29/2023 16:18:30</publishTime>
+    <File Include="HTML/Comentario_Ingeniero.html">
+      <publishTime>01/02/2024 17:18:48</publishTime>
     </File>
     <File Include="HTML/index.html">
-      <publishTime>03/28/2022 17:24:36</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="HTML/index2.html">
-      <publishTime>10/08/2022 11:01:56</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="HTML/index_not_ase.html">
-      <publishTime>01/07/2022 13:02:44</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="HTML/index_not_fact.html">
-      <publishTime>05/07/2022 10:58:52</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Imagenes/closeimg.png">
-      <publishTime>07/06/2021 09:16:12</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Imagenes/LOGO_600x350.png">
-      <publishTime>04/20/2020 11:44:12</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Imagenes/LOGO_Blanco_.png">
-      <publishTime>04/20/2020 11:44:18</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Imagenes/LOGO_Blanco_Lineas.png">
-      <publishTime>04/20/2020 11:44:18</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Imagenes/slogan.png">
-      <publishTime>04/20/2020 11:44:18</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="images/cancel.png">
-      <publishTime>01/19/2023 13:42:34</publishTime>
-    </File>
-    <File Include="Informacion.aspx">
-      <publishTime>01/02/2023 16:50:00</publishTime>
-    </File>
-    <File Include="Principal.aspx">
-      <publishTime>03/29/2022 17:48:22</publishTime>
-    </File>
-    <File Include="Registros1.aspx">
-      <publishTime>11/04/2022 11:14:40</publishTime>
-    </File>
-    <File Include="Registro_Equipos1.aspx">
-      <publishTime>11/04/2022 11:13:30</publishTime>
-    </File>
-    <File Include="Reporte.aspx">
-      <publishTime>06/21/2021 17:18:08</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="scripts/jquery-1.3.2.min.js">
-      <publishTime>01/19/2023 13:27:48</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="scripts/jquery.uploadify.js">
-      <publishTime>01/19/2023 13:27:48</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="scripts/uploader.fla">
-      <publishTime>01/19/2023 13:27:48</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="scripts/uploader.swf">
-      <publishTime>01/19/2023 13:27:48</publishTime>
-    </File>
-    <File Include="ServiciosAsignados.aspx">
-      <publishTime>10/02/2023 11:33:20</publishTime>
-    </File>
-    <File Include="Servicio_OC1.aspx">
-      <publishTime>03/23/2023 17:30:38</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="Sesion.aspx">
-      <publishTime>04/04/2022 12:39:50</publishTime>
-    </File>
-    <File Include="SubiendoArchivos.aspx">
-      <publishTime>07/15/2022 16:48:28</publishTime>
-    </File>
-    <File Include="SubirArchivos.aspx">
-      <publishTime>01/24/2023 17:32:08</publishTime>
-    </File>
-    <File Include="Upload.ashx">
-      <publishTime>01/19/2023 13:41:50</publishTime>
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
     <File Include="upload.html">
-      <publishTime>01/24/2023 17:25:26</publishTime>
+      <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
-    <File Include="Upload1.ashx">
-      <publishTime>01/23/2023 11:20:56</publishTime>
+    <File Include="Vista/Ingenieros/Calendario.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/.gitignore">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/Calendario_Areas.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/change-log.txt">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/CalSel.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/check-exists.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/CargaFin.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/index.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/DescargaFolio.aspx">
+      <publishTime>08/24/2023 11:09:10</publishTime>
     </File>
-    <File Include="uploadify-master/Instructions.txt">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/DetalleFSR.aspx">
+      <publishTime>12/18/2023 14:11:20</publishTime>
     </File>
-    <File Include="uploadify-master/jquery.uploadifive.js">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/EdicionReporteRefacciones.aspx">
+      <publishTime>08/24/2023 16:08:26</publishTime>
     </File>
-    <File Include="uploadify-master/jquery.uploadifive.min.js">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/FirmarFolio.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/LICENSE">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/FSR.aspx">
+      <publishTime>08/24/2023 11:09:10</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/.DS_Store">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/GerenteReporteRefacciones.aspx">
+      <publishTime>08/24/2023 11:09:10</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/check-exists.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/Informacion.aspx">
+      <publishTime>08/24/2023 11:09:10</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/index.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/MonitorReporteRefacciones.aspx">
+      <publishTime>08/29/2023 17:18:22</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/jquery.min.js">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/ReporteRefacciones.aspx">
+      <publishTime>08/24/2023 11:09:10</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/jquery.uploadifive.js">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/ServiciosAsignados.aspx">
+      <publishTime>08/28/2023 11:17:25</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/jquery.uploadifive.min.js">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ingenieros/VistaPrevia.aspx">
+      <publishTime>02/09/2024 16:53:18</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/uploadifive-cancel.png">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ventas/CRM_1.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/uploadifive-image-only.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ventas/CRM_2.aspx">
+      <publishTime>07/21/2023 10:35:51</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/uploadifive.css">
-      <publishTime>01/24/2023 17:07:46</publishTime>
+    <File Include="Vista/Ventas/CRM_3.aspx">
+      <publishTime>02/09/2024 16:43:51</publishTime>
     </File>
-    <File Include="uploadify-master/Sample/uploadifive.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
-    </File>
-    <File Include="uploadify-master/uploadifive-cancel.png">
-      <publishTime>01/24/2023 17:07:46</publishTime>
-    </File>
-    <File Include="uploadify-master/uploadifive-image-only.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
-    </File>
-    <File Include="uploadify-master/uploadifive.css">
-      <publishTime>01/24/2023 17:07:46</publishTime>
-    </File>
-    <File Include="uploadify-master/uploadifive.php">
-      <publishTime>01/24/2023 17:07:46</publishTime>
-    </File>
-    <File Include="UploadVB.ashx">
-      <publishTime>01/19/2023 13:46:06</publishTime>
-    </File>
-    <File Include="VistaPrevia.aspx">
-      <publishTime>08/24/2022 09:16:34</publishTime>
+    <File Include="Vista/Ventas/CRM_4.aspx">
+      <publishTime>02/09/2024 16:43:51</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/05/2023 11:23:47</publishTime>
+      <publishTime>02/09/2024 17:02:38</publishTime>
     </File>
   </ItemGroup>
 </Project>

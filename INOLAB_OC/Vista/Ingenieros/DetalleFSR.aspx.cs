@@ -3,43 +3,72 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
-using System.Collections.Generic;
-using INOLAB_OC.Modelo;
-using INOLAB_OC;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using System.Diagnostics;
+using INOLAB_OC.Modelo.Browser;
+using INOLAB_OC.Controlador;
+using INOLAB_OC.Entidades;
+using INOLAB_OC.Controlador.Ingenieros;
+using INOLAB_OC.Vista.Ingenieros;
+using INOLAB_OC.Responsabilities;
+using System.Web.Services.Description;
+using System.IO;
+
 public partial class DetalleFSR : Page
 {
-    int q;
-    
     const int FINALIZADO =3;
     const string sinFechaAsignada = "";
     const string sinAccionRegistrada = "";
+    E_FSRAccion entidadAccion;
+    E_Refaccion entidadRefaccion;
+    static FSR_Repository repositorio = new FSR_Repository();
+    C_FSR controladorFSR;
+
+    static V_FSR_Repository repositorioV_FSR = new V_FSR_Repository();
+    C_V_FSR controlador_V_FSR = new C_V_FSR(repositorioV_FSR);
+    Observaciones observacion;
+    Fallas falla;
+
+    private string idUsuario;
+    private string idFolioServicio;
     protected void Page_Load(object sender, EventArgs e)
     {
+       idUsuario = Session["idUsuario"].ToString();
+       idFolioServicio = Session["folio_p"].ToString();
+
+       controladorFSR = new C_FSR(repositorio, idUsuario);
+       entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
+       entidadRefaccion = new E_Refaccion(idFolioServicio);
+       observacion = new Observaciones(idFolioServicio,idUsuario);
+       falla = new Fallas(idUsuario, idFolioServicio);
+
        agregarEncabezadosDePanel();
        definirVisibilidadDeBotonesDependiendoEstatusFolio();
        cargarAccionesDelIngeniero();
        llenarInformacionDeRefaccionesActuales();
     }
 
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        idUsuario = Session["idUsuario"].ToString();
+        idFolioServicio = Session["folio_p"].ToString();
+        controladorFSR = new C_FSR(repositorio, idUsuario);
+        consularSiServicioFuncionaCorrectamente();
+    }
+
     public void agregarEncabezadosDePanel()
     {
         if (Session["idUsuario"] == null)
         {
-            Response.Redirect("./Sesion.aspx");
+            Response.Redirect("/Sesion.aspx");
         }
         else
         {
-            titulo.Text = "Detalle de FSR N°. " + Session["folio_p"].ToString();
+            titulo.Text = "Detalle de FSR N°. " + idFolioServicio;
             lbluser.Text = Session["nameUsuario"].ToString();
-
         }
     }
     public void definirVisibilidadDeBotonesDependiendoEstatusFolio()
     {
-        string consulta = "SELECT Top 1 IdStatus FROM FSR where Folio= " + Session["folio_p"].ToString() + " and Id_Ingeniero =" + Session["idUsuario"].ToString() + ";";
-        int estatusFolioDeServicio = Conexion.getScalar(consulta);
+        int estatusFolioDeServicio = controladorFSR.consultarEstatusDeFolioServicio(idFolioServicio);
         if (estatusFolioDeServicio == FINALIZADO)
         {
             Btn_agregar_refacciones_a_servicio.Visible = false;
@@ -60,48 +89,9 @@ public partial class DetalleFSR : Page
 
     private void cargarAccionesDelIngeniero()
     {
-        GridView1.DataSource = Conexion.getDataSet("Select * from  FSRAccion where idFolioFSR=" + Session["folio_p"]);
+        GridView1.DataSource =  entidadAccion.consultarAcciones();
         GridView1.DataBind();
     }
-
-    private void llenarInformacionDeRefaccionesActuales()
-    {
-        try
-        {
-
-            DataSet refacciones = Conexion.getDataSet("select numRefaccion,cantidadRefaccion from Refaccion where idFSR=" + Session["folio_p"] + ";");
-            int cuenta = refacciones.Tables[0].Rows.Count;
-
-            if (cuenta > 0)
-            {
-                foreach (DataRow dataRow in refacciones.Tables[0].Rows)
-                {
-                    agregarDatosDeRefacciones(dataRow["numRefaccion"].ToString(), dataRow["cantidadRefaccion"].ToString());
-                }
-            }
-
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-
-        }
-    }
-
-    private void cargardatos()
-    {
-        
-    //Se inicia el servicio en caso de que aun no este iniciado (Fecha sistema)
-    Conexion.executeQuery("UPDATE FSR SET Inicio_Servicio = CAST('" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AS DATETIME) WHERE Folio = " + Session["folio_p"].ToString() + " and Inicio_Servicio is null;");
-            
-     //Se actualiza el estao de folio a "En proceso"
-     Conexion.executeQuery("UPDATE FSR SET IdStatus = 2 WHERE Folio = " + Session["folio_p"].ToString() + " and IdStatus = 1;");
-     CHECKED_ESTA_FUNCIONANDO.Checked = verificarEstatusDelEquipo();
-        
-    }
-
-  
-
     protected void Agregar_nuevas_acciones_Click(object sender, EventArgs e)
     {
         seccion_nuevo_servicio.Style.Add("display", "block");
@@ -109,10 +99,8 @@ public partial class DetalleFSR : Page
         contenone.Style.Add("filter", "blur(9px)");
         footerid.Style.Add("display", "none");
     }
-
     protected void Agregar_nueva_actividad_al_reporte_Click(object sender, EventArgs e)
-    {
-       
+    {      
         lbl_fecha_nuevo_servicio.Text = "Fecha: ";
         if (Fecha_nueva_accion_realizada.Text.Equals(sinFechaAsignada))
         {
@@ -120,64 +108,40 @@ public partial class DetalleFSR : Page
         }
         else
         {
-
           if (txtacciones.Text.Equals(sinAccionRegistrada))
             {
-               
                 acciones.Text = "Favor de ingresar la acción realizada";
             }
-            else
+          else
             {
-                
-                DateTime fechaDeSolicitudDeServicio = Conexion.getDateTime("SELECT FechaServicio FROM FSR where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-                //Comparacion de fechas (no puede hacerlo si la fecha es anterior a la fecha de servicio) funcionalidad pendiente
-
-                    string fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada;
-                    fechaNuevaAccion = Fecha_nueva_accion_realizada.Text;
-                    horasDedicadasEnNuevaAccion = txthorasD.Text;
-                    nuevaAccionRealizada = txtacciones.Text;
-                    if (insertarNuevaAccionRealizada(fechaNuevaAccion, horasDedicadasEnNuevaAccion, nuevaAccionRealizada))
-                    {
-                        string[] vectorFechaNuevaAccion = fechaNuevaAccion.Split('-');
-                        string onemod = vectorFechaNuevaAccion[2] + "-" + vectorFechaNuevaAccion[1] + "-" + vectorFechaNuevaAccion[0];
-
-                    cerrarVentanaAgregarNuevaAccion();
-                    cargarAccionesDelIngeniero();
-                    }
-                    else
-                    {
-                    cerrarVentanaAgregarNuevaAccion();
-                    Response.Redirect("DetalleFSR.aspx");
-                    }
+                agregarNuevaAccion();
             }
         }
-
     }
 
-    private bool insertarNuevaAccionRealizada(String fechaNuevaAccion, String horasDedicadasEnNuevaAccion, String nuevaAccionRealizada)
+    private void agregarNuevaAccion()
     {
-        try
-        {
-            
-            int filasAfectadasPorUpdate = Conexion.getScalar("Insert into FSRAccion(FechaAccion,HorasAccion,AccionR,idFolioFSR,idUsuario, FechaSistema)" +
-                " values(CAST('" + fechaNuevaAccion + " " + DateTime.Now.ToString("HH:mm:ss.fff") + "' AS DATETIME)," + horasDedicadasEnNuevaAccion + ",'" + nuevaAccionRealizada + "'," + Session["folio_p"] + "," + Session["idUsuario"] + ",CAST('" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AS DATETIME));");
+        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
+        entidadAccion.FechaAccion = Fecha_nueva_accion_realizada.Text;
+        entidadAccion.HorasAccion = txthorasD.Text;
+        entidadAccion.AccionR = txtacciones.Text;
 
-            return (filasAfectadasPorUpdate == 1) ? true: false;
-            
-        }
-        catch(Exception ex)
+        int filasAfectadasPorUpdate = entidadAccion.agregarAccion();
+        if (filasAfectadasPorUpdate == 1)
         {
-            Response.Write("<script>alert('Error al cargar la información');</script>");
-            Console.Write(ex.ToString());
-            return false;
+            cerrarVentanaAgregarNuevaAccion();
+            cargarAccionesDelIngeniero();
+        }
+        else
+        {
+            cerrarVentanaAgregarNuevaAccion();
+            Response.Redirect("DetalleFSR.aspx");
         }
     }
-
     protected void Cerrar_ventana_agregar_nueva_accion_Click(object sender, ImageClickEventArgs e)
     {
         cerrarVentanaAgregarNuevaAccion();
     }
-
     public void cerrarVentanaAgregarNuevaAccion()
     {
         Fecha_nueva_accion_realizada.Text = "";
@@ -189,82 +153,68 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
-
     protected void Buscar_observaciones_folio_servicio_Click(object sender, EventArgs e)
     {
-        try
-        {
-            
-            string observacionesDeFolioServicio = Conexion.getText("select Observaciones from FSR where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-
-            if (observacionesDeFolioServicio != null)
-            {
-                txtobservaciones.Text = observacionesDeFolioServicio;
-            }
-
-            verificarSiSeEnviaEmailAlAsesor();
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-            
-        }
-        finally
-        {
-            observaciones.Style.Add("display", "block");
-            headerone.Style.Add("filter", "blur(9px)");
-            contenone.Style.Add("filter", "blur(9px)");
-            footerid.Style.Add("display", "none");
-        }
-    }
-
-    private void verificarSiSeEnviaEmailAlAsesor()
-    {
-        try
-        {
-            string asesor = Conexion.getText("SELECT NotAsesor FROM FSR where Folio=" + Session["folio_p"] + ";");
-
-            if (asesor == "Si")
-            {
-                Envio_de_notificacion_de_eliminacion_de_accion.Checked = true;
-            }
-            else
-            {
-                Envio_de_notificacion_de_eliminacion_de_accion.Checked = false;
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-
-        }
-    }
-
+        txtobservaciones.Text= observacion.consultarObservaciones();
+        Envio_de_notificacion_de_observacion.Checked = controladorFSR.verificarSiSeEnviaEmailAlAsesor(idFolioServicio, "NotAsesor");
+        
+        observaciones.Style.Add("display", "block");
+        headerone.Style.Add("filter", "blur(9px)");
+        contenone.Style.Add("filter", "blur(9px)");
+        footerid.Style.Add("display", "none");    
+    }   
     protected void Btn_Fallas_Encontradas_Click(object sender, EventArgs e)
     {
-        try
-        {   
-            string fallaEncontrada = Conexion.getText("select FallaEncontrada from FSR where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
+       txtfallaencontrada.Text= falla.consultarFallaEncontrada();
+             
+       FallaEncontrada.Style.Add("display", "block");
+       headerone.Style.Add("filter", "blur(9px)");
+       contenone.Style.Add("filter", "blur(9px)");
+       footerid.Style.Add("display", "none");        
+    }
 
-            if (fallaEncontrada != null)
-            {
-                txtfallaencontrada.Text = fallaEncontrada;
-            }
-           
-        }
-        catch (Exception ex)
+    protected void Btn_Comentarios_Ingeniero_Click(object sender, EventArgs e)
+    {
+        Agregar_Comentarios_Finales.Style.Add("display", "block");
+        headerone.Style.Add("filter", "blur(9px)");
+        contenone.Style.Add("filter", "blur(9px)");
+        footerid.Style.Add("display", "none");
+
+        C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
+        TextBox_Comentarios_Finales.Text = controlador.consultarComentario(Convert.ToInt32(idFolioServicio));
+    }
+
+    protected void Btn_Gurardar_Comentarios_Ingeniero_Click(object sender, EventArgs e)
+    {
+        SeguimientoFSR comentario = new SeguimientoFSR();
+        comentario.FechaSistema = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); 
+        comentario.ComentarioIngeniero = TextBox_Comentarios_Finales.Text;
+        comentario.IdIngeniero = idUsuario;
+        comentario.IdFsr = Convert.ToInt32(idFolioServicio);
+
+        string cuerpoDelCorreo = string.Empty;
+        using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/Comentario_Ingeniero.html")))
         {
-            Console.Write(ex.ToString());
-            
+            cuerpoDelCorreo = reader.ReadToEnd();
+            reader.Dispose();
         }
-        finally
-        {
-            FallaEncontrada.Style.Add("display", "block");
-            headerone.Style.Add("filter", "blur(9px)");
-            contenone.Style.Add("filter", "blur(9px)");
-            footerid.Style.Add("display", "none");
-        }
+        C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
+        controlador.insertarComentarioIngeniero(comentario, cuerpoDelCorreo);
+
+        cerrarComentariosFinales();
+    }
+
+    protected void Cerrar_Comentarios_Finales_Click(object sender, ImageClickEventArgs e)
+    {
+        cerrarComentariosFinales();
+    }
+
+    private void cerrarComentariosFinales()
+    {
+        Agregar_Comentarios_Finales.Style.Add("display", "none");
+        contenone.Style.Add("filter", "blur(0)");
+        headerone.Style.Add("filter", "blur(0)");
+        footerid.Style.Add("display", "flex");
     }
 
     protected void Cerrar_campo_observaciones_Click(object sender, ImageClickEventArgs e)
@@ -280,12 +230,10 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Cerrar_campo_fallas_encontradas_Click(object sender, ImageClickEventArgs e)
     {
         cerrarCompoFallasEncontradas();
     }
-
     private void cerrarCompoFallasEncontradas()
     {
         txtfallaencontrada.Text = "";
@@ -294,204 +242,97 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Actualizar_observaciones_Click(object sender, EventArgs e)
     {
-        if(txtobservaciones.Text.Length > 0)
-        {
-            try
-            {
-                Conexion.executeQuery(" UPDATE FSR SET Observaciones='" + txtobservaciones.Text + "' where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-                notificarObservacionesAlAsesor();
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-            finally
-            {
-                cerrarCampoObservaciones();
-            }
-        }
+        observacion.actualizarObservaciones(txtobservaciones.Text);
+        Session["not_ase"] = observacion.verificarNotificacionEnvioDeObservaciones(Envio_de_notificacion_de_observacion.Checked);
+        cerrarCampoObservaciones();
     }
-
-    private void notificarObservacionesAlAsesor()
-    {
-        if (Envio_de_notificacion_de_eliminacion_de_accion.Checked == true)
-        {
-            Conexion.executeQuery("update fsr set NotAsesor = 'Si' where Folio=" + Session["folio_p"].ToString() + ";");
-            Session["not_ase"] = "Si";
-        }
-        else if (Envio_de_notificacion_de_eliminacion_de_accion.Checked == false)
-        {
-            Conexion.executeQuery("update fsr set NotAsesor = 'No' where Folio=" + Session["folio_p"].ToString() + ";");
-            Session["not_ase"] = "No";
-        }
-    }
-
+  
     protected void Actualizar_fallas_encontradas_Click(object sender, EventArgs e)
     {
-        if (txtfallaencontrada.Text.Length > 0)
-        {
-            try
-            {
-                Conexion.executeQuery(" UPDATE FSR SET FallaEncontrada='" + txtfallaencontrada.Text + "' where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-            finally
-            {
-                cerrarCompoFallasEncontradas();
-            }
-        }
+        falla.actualizarFallas(txtfallaencontrada.Text);
+        cerrarCompoFallasEncontradas();
     }
 
     protected void Btn_Vista_Previa_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            verificarSiServicioFuncionaCorrectamente();
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-        }
-        finally
-        {
-            Response.Redirect("VistaPrevia.aspx");
-        }
+    {   
+        Response.Redirect("VistaPrevia.aspx");       
     }
-
-    private void verificarSiServicioFuncionaCorrectamente()
+    protected void Verificacion_de_estatusCheckedChanged(object sender, EventArgs e)
     {
-        string texto = "Si";
-        if (CHECKED_ESTA_FUNCIONANDO.Checked)
+        if (Funciona_Correctamente_lista.SelectedValue.Equals("1")){
+            controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "Si");
+        }else if (Funciona_Correctamente_lista.SelectedValue.Equals("2"))
         {
-            texto = "Si";
+            controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "No");
         }
         else
         {
-            texto = "No";
-        }
-
-        Conexion.executeQuery(" UPDATE FSR SET Funcionando='" + texto + "' where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
+            controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "NA");
+        }       
     }
 
-    protected bool verificarEstatusDelEquipo()
+    private void consularSiServicioFuncionaCorrectamente()
     {
-        try
-        {   
-            string texto = Conexion.getText(" SELECT Funcionando FROM FSR where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-            
-            if (texto == "Si")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch (Exception ex)
+        var funciona = controladorFSR.consultarValorDeCampoPorFolioyUsuario(idFolioServicio, "Funcionando");
+        if(funciona.Equals("Si"))
         {
-            Console.Write(ex.ToString());
-            return false;
+            Funciona_Correctamente_lista.SelectedValue = "1";
+        }
+        else if(funciona.Equals("No"))
+        {
+            Funciona_Correctamente_lista.SelectedValue = "2";
+        }
+        else
+        {
+            Funciona_Correctamente_lista.SelectedValue = "3";
         }
     }
-
-    protected void Verificacion_de_estatus_esta_o_no_funcionando_CheckedChanged(object sender, EventArgs e)
-    {
-        try
-        {
-            string texto = "Si";
-            if (CHECKED_ESTA_FUNCIONANDO.Checked)
-            {
-                texto = "Si";
-            }
-            else
-            {
-                texto = "No";
-            }
-            Conexion.executeQuery(" UPDATE FSR SET Funcionando='" + texto + "' where Folio=" + Session["folio_p"] + " and Id_Ingeniero =" + Session["idUsuario"] + ";");
-        }
-        catch (Exception ex)
-        {
-            Console.Write(ex.ToString());
-        }
-    }
-
    
     protected void Agregar_refaccion_a_base_de_datos_Click(object sender, EventArgs e)
     { 
-        string numeroDePartes, descripcionDeRefacion, cantidadDeRefacciones;
-        numeroDePartes = txtbox_numero_de_partes.Text;
-        descripcionDeRefacion = txtbox_descripcion_refaccion.Text;
-        cantidadDeRefacciones = txtbox_cantidad_refaccion.Text;
-        if (numeroDePartes.Length > 0)
+        string numeroDePartes = txtbox_numero_de_partes.Text;
+        string descripcionDeRefacion = txtbox_descripcion_refaccion.Text;
+        string cantidadDeRefacciones = txtbox_cantidad_refaccion.Text;
+
+        if (numeroDePartes.Length > 0 && descripcionDeRefacion.Length > 0 && cantidadDeRefacciones.Length > 0)
         {
-            if (descripcionDeRefacion.Length > 0)
+            if (entidadRefaccion.insertarRefaccion(numeroDePartes, cantidadDeRefacciones, descripcionDeRefacion))
             {
-                if (cantidadDeRefacciones.Length > 0)
-                {
-                    if (insertarRefaccion(numeroDePartes, cantidadDeRefacciones, descripcionDeRefacion))
-                    {
-                        agregarDatosDeRefacciones(numeroDePartes, cantidadDeRefacciones);
-                        cerrarVentanaDeNuevaRefaccion();
-                    }
-                }
-                else
-                    Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
+                agregarDatosDeRefacciones(numeroDePartes, cantidadDeRefacciones);
+                cerrarVentanaDeNuevaRefaccion();
             }
-            else
-                Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
         }
         else
+        {
             Response.Write("<script>alert('Favor de llenar todos los campos');</script>");
-    }
-
-    private void agregarDatosDeRefacciones(string no, string num)
-    {
-        try
-        {
-            TableRow row = new TableRow();
-            TableCell[] cell1 = new TableCell[2];
-            cell1[0] = new TableCell();
-            cell1[1] = new TableCell();
-            cell1[0].Text = no;
-            cell1[1].Text = num + " pieza(s)";
-            row.Cells.AddRange(cell1);
-            row.Style.Add("HorizontalAlign", "Center");
-            Table1.Rows.Add(row);
-        }
-        catch(Exception e)
-        {
-            Response.Write("<script>alert('Error al agregar a la tabla de datos');</script>");
         }
     }
 
+    private void agregarDatosDeRefacciones(string numeroDePartes, string numeroDeRefacciones)
+    {
+        Table1.Rows.Add(entidadRefaccion.crearFilaParaRefacciones(numeroDePartes, numeroDeRefacciones));  
+    }
 
-    protected bool insertarRefaccion(string numeroDePartes, string cantidadDeRefacciones, string descripcionDeRefacion)
+    private void llenarInformacionDeRefaccionesActuales()
     {
         try
         {
-
-            int numeroDeFilasAfectadas = Conexion.getNumberOfRowsAfected("Insert into Refaccion(numRefaccion,cantidadRefaccion,descRefaccion,idFSR)" +
-                " values('" + numeroDePartes + "'," + cantidadDeRefacciones + ",'" + descripcionDeRefacion + "'," + Session["folio_p"] + ");");
-            
-            return numeroDeFilasAfectadas == 1?  true : false;
-            
+            DataSet refacciones = entidadRefaccion.consultarRefacciones();
+            if (refacciones.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dataRow in refacciones.Tables[0].Rows)
+                {
+                    agregarDatosDeRefacciones(dataRow["numRefaccion"].ToString(), dataRow["cantidadRefaccion"].ToString());
+                }
+            }
         }
         catch (Exception ex)
         {
-            Response.Write("<script>alert('Error al cargar la información');</script>");
             Console.Write(ex.ToString());
-            return false;
         }
     }
-
-
     protected void Mostrar_ventana_refacciones_Click(object sender, EventArgs e)
     {
         refacciones.Style.Add("display", "block");
@@ -499,7 +340,6 @@ public partial class DetalleFSR : Page
         contenone.Style.Add("filter", "blur(9px)");
         footerid.Style.Add("display", "none");
     }
-
 
     protected void Cerrar_Ventana_Refacciones_Click(object sender, ImageClickEventArgs e)
     {
@@ -512,12 +352,10 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("filter", "blur(0)");
         footerid.Style.Add("display", "flex");
     }
-
     protected void Cerrar_ventana_nueva_refaccion_Click(object sender, ImageClickEventArgs e)
     {
         cerrarVentanaDeNuevaRefaccion();
     }
-
     private void cerrarVentanaDeNuevaRefaccion()
     {
         txtbox_numero_de_partes.Text = "";
@@ -533,45 +371,42 @@ public partial class DetalleFSR : Page
         refacciones.Style.Add("display", "none");
         SECCION_AGREGAR_REFACCION.Style.Add("display", "block");
     }
-
     protected void Agrendar_proximo_servicio_Click(object sender, EventArgs e)
     {
-        //Guarda la fecha de proximo servicio que se haya insertado (Si se oprimio sin haber seleccionado una fecha antes aparecera como 1999-01-01)
-        Conexion.executeQuery("Update FSR set Proximo_Servicio='" + datepicker1.Text + "' where Folio=" + Session["folio_p"]);
+        if (datepicker1.Text != "")
+        {
+            string folio = datepicker1.Text; 
+            controladorFSR.actualizarValorDeCampoPorFolio(idFolioServicio, "Proximo_Servicio", datepicker1.Text);
+        }
+        else
+        {
+            controladorFSR.actualizarValorDeCampoNull(idFolioServicio);
+        }   
     }
+    
 
     public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
+        int fila;
         //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
         try
         {
             if (e.CommandName == "Borrar")
             {
-                //Me trae el indice del datagrid que seleccione 
                 e.CommandArgument.ToString();
-                q = Convert.ToInt32(e.CommandArgument.ToString());
+                fila = Convert.ToInt32(e.CommandArgument.ToString());
+                string idFolioDeAccion = GridView1.Rows[fila].Cells[0].Text.ToString();
 
-                string idFolioDeAccion;
-                idFolioDeAccion = GridView1.Rows[q].Cells[0].Text.ToString();                
-                
-                //Busqueda de los campos de la accion 
-                
-                string accionEnServicio = Conexion.getText("select AccionR from FSRAccion where idFSRAccion=" + idFolioDeAccion + ";");
-                string fechaDeAccion = Conexion.getText("select convert(varchar, FechaAccion, 105) as FechaAccion from FSRAccion where idFSRAccion=" + idFolioDeAccion + ";");
-                
-                int horaDeAccion = Conexion.getScalar("select HorasAccion from FSRAccion where idFSRAccion=" + idFolioDeAccion + ";");
-                int idFolioServicioAccion = Conexion.getScalar("select IDFSRAccion from FSRAccion where idFSRAccion=" + idFolioDeAccion + ";");
-               
-                string idFolioDeServicio = Conexion.getText("select idFolioFSR from FSRAccion where idFSRAccion=" + idFolioDeAccion + ";");
-                string tipoDeServicio = Conexion.getText("select TipoServicio from v_fsr where Folio=" + idFolioDeServicio.ToString() + ";");
-               
+                E_FSRAccion entidadFsrAccion;
+                entidadFsrAccion =  entidadAccion.consultarAccion(Convert.ToInt32(idFolioDeAccion));
+                                     
+                fol.Text = entidadFsrAccion.idFolioFSR;
+                serv.Text = controlador_V_FSR.consultarValorDeCampo("TipoServicio", entidadFsrAccion.idFolioFSR);
+                descacci.Text = entidadFsrAccion.AccionR;
+                fechacci.Text = entidadFsrAccion.FechaAccion;
+                horaacci.Text = entidadFsrAccion.HorasAccion;
+                IDAccion.Text = entidadFsrAccion.idFSRAccion;
 
-                fol.Text = idFolioDeServicio;
-                serv.Text = tipoDeServicio;
-                descacci.Text = accionEnServicio;
-                fechacci.Text = fechaDeAccion;
-                horaacci.Text = horaDeAccion.ToString();
-                IDAccion.Text = idFolioServicioAccion.ToString();
                 avisodel.Style.Add("display", "block");
                 headerone.Style.Add("display", "none");
                 footerid.Style.Add("display", "none");
@@ -586,9 +421,7 @@ public partial class DetalleFSR : Page
 
     public void Borrar_accion_realizada_Click(object sender, EventArgs e)
     {
-        //Codigo para borrar la accion realizada
-
-        Conexion.executeQuery("delete from FSRAccion where idFSRAccion =" + IDAccion.Text + ";");
+        entidadAccion.eliminarAccion(IDAccion.Text);
         cargarAccionesDelIngeniero();
 
         avisodel.Style.Add("display", "none");
@@ -596,8 +429,6 @@ public partial class DetalleFSR : Page
         footerid.Style.Add("display", "flex");
         contenone.Style.Add("display", "block");
     }
-
-    //Enseñar a Carlos y Sandra borrarnobtn_Click
     protected void Cancelar_proceso_de_eliminar_accion_Click(object sender, EventArgs e)
     { 
         avisodel.Style.Add("display", "none");
@@ -606,19 +437,9 @@ public partial class DetalleFSR : Page
         contenone.Style.Add("display", "block");
     }
 
-
     protected void Verificar_si_se_envio_notificacion_a_usuario_CheckedChanged(object sender, EventArgs e)
     {
-        if (Envio_de_notificacion_de_eliminacion_de_accion.Checked == true)
-        {  
-            Conexion.executeQuery("update fsr set NotAsesor = 'Si' where Folio=" + Session["folio_p"].ToString() + ";");
-            Session["not_ase"] = "Si";
-        }
-        else if(Envio_de_notificacion_de_eliminacion_de_accion.Checked == false)
-        {
-            Conexion.executeQuery("update fsr set NotAsesor = 'No' where Folio=" + Session["folio_p"].ToString() + ";");
-            Session["not_ase"] = "No";
-        }
+        Session["not_ase"]= controladorFSR.verificarSiEnviaNotificacionDeObservacionesAlUsuario(Envio_de_notificacion_de_observacion.Checked, idFolioServicio);
     }
 
     protected void Ir_a_servicios_asignados_Click(object sender, EventArgs e)

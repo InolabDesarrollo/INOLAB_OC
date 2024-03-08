@@ -10,10 +10,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imagenes\closeimg.png" />
+    <None Remove="Imagenes\LOGO_600x350.png" />
+    <None Remove="Imagenes\LOGO_Blanco_.png" />
+    <None Remove="Imagenes\LOGO_Blanco_Lineas.png" />
+    <None Remove="Imagenes\slogan.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagenes\closeimg.png" />
+    <Content Include="Imagenes\LOGO_600x350.png" />
+    <Content Include="Imagenes\LOGO_Blanco_.png" />
+    <Content Include="Imagenes\LOGO_Blanco_Lineas.png" />
+    <Content Include="Imagenes\slogan.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\INOLAB_OC\INOLAB_OC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="HTML\" />
   </ItemGroup>
 
 </Project>
