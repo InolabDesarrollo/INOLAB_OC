@@ -15,12 +15,14 @@
 .drop2 {
     position: inherit;
     margin-right: 3%;
-    /*box-shadow:  5px 10px 8px grey;*/
     box-shadow: 1px 1px 10px 1px #252932;
     margin-bottom: 5%;
     padding: 1%;
     overflow: auto;
+    background-color: #4CAF50;
+    color:orangered;
 }
+
 .drop1 {
     margin-top: 5%;
     margin-left: 15%;
