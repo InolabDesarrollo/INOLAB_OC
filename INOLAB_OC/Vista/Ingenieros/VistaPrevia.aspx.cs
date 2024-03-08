@@ -301,9 +301,7 @@ public partial class VistaPrevia : Page
     {
         if (TxtBox_Nombre_Cliente.Text != "")
         {
-            C_Agregar_Nombre_Del_Cliente controller = new C_Agregar_Nombre_Del_Cliente();
-            controller.controll(Session["folio_p"].ToString(), TxtBox_Nombre_Cliente.Text);
-            Lbl_Confirmacion_Guardado_Nombre.Text = "Nombre de cliente guardado correctamente";
+
         }    
     }
 

@@ -236,18 +236,21 @@
     </Compile>
     <Compile Include="Vista\Ingenieros\EdicionReporteRefacciones.aspx.cs">
       <DependentUpon>EdicionReporteRefacciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\Ingenieros\EdicionReporteRefacciones.aspx.designer.cs">
       <DependentUpon>EdicionReporteRefacciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx.cs">
       <DependentUpon>GerenteReporteRefacciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx.designer.cs">
       <DependentUpon>GerenteReporteRefacciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Ingenieros\MonitorReporteRefacciones.aspx.cs">
       <DependentUpon>MonitorReporteRefacciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\Ingenieros\MonitorReporteRefacciones.aspx.designer.cs">
       <DependentUpon>MonitorReporteRefacciones.aspx</DependentUpon>
@@ -259,6 +262,7 @@
     <Compile Include="Vista\Ingenieros\Responsabilidades\Observaciones.cs" />
     <Compile Include="Vista\Ingenieros\ReporteRefacciones.aspx.cs">
       <DependentUpon>ReporteRefacciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\Ingenieros\ReporteRefacciones.aspx.designer.cs">
       <DependentUpon>ReporteRefacciones.aspx</DependentUpon>
@@ -342,6 +346,7 @@
     </Compile>
     <Compile Include="Sesion.aspx.cs">
       <DependentUpon>Sesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sesion.aspx.designer.cs">
       <DependentUpon>Sesion.aspx</DependentUpon>
