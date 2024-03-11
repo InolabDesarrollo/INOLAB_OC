@@ -178,12 +178,9 @@
                     </table>
                 </div>
 
-               
                     <button id="salir" runat="server" class="dropbtn" onclick="go('regresar')">Salir</button> 
                 
-                
-                    <button  id="clear" runat="server"  class="dropbtn">Limpiar</button> 
-                
+                    <button  id="clear" runat="server"  class="dropbtn">Limpiar</button>              
                 
                     <button  id="save" runat="server"  class="dropbtn">Guardar</button> 
                 

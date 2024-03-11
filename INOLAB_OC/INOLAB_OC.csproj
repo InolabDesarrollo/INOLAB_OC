@@ -159,6 +159,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BrowserDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controlador\Ingenieros\C_Agregar_Nombre_Del_Cliente.cs" />
     <Compile Include="Controlador\Ingenieros\C_FSR_Accion.cs" />
     <Compile Include="Controlador\Ingenieros\C_MailNotification.cs" />
     <Compile Include="Controlador\Ingenieros\C_OCLG.cs" />

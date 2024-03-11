@@ -220,24 +220,6 @@ public partial class VistaPrevia
     protected global::System.Web.UI.HtmlControls.HtmlGenericControl buttonsfirma;
 
     /// <summary>
-    /// Control labelcli.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label labelcli;
-
-    /// <summary>
-    /// Control textboxnombre.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox textboxnombre;
-
-    /// <summary>
     /// Control salir.
     /// </summary>
     /// <remarks>
@@ -281,6 +263,60 @@ public partial class VistaPrevia
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button hidebutton;
+
+    /// <summary>
+    /// Control Sec_Nombre_Cliente.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl Sec_Nombre_Cliente;
+
+    /// <summary>
+    /// Control closebtn1.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.ImageButton closebtn1;
+
+    /// <summary>
+    /// Control Lbl_Nombre_Cliente.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label Lbl_Nombre_Cliente;
+
+    /// <summary>
+    /// Control TxtBox_Nombre_Cliente.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox TxtBox_Nombre_Cliente;
+
+    /// <summary>
+    /// Control Btn_Guardar_Nombre.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Guardar_Nombre;
+
+    /// <summary>
+    /// Control Lbl_Confirmacion_Guardado_Nombre.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label Lbl_Confirmacion_Guardado_Nombre;
 
     /// <summary>
     /// Control floatsection.
@@ -380,6 +416,24 @@ public partial class VistaPrevia
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button firmarbtn;
+
+    /// <summary>
+    /// Control Div1.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+    /// <summary>
+    /// Control Btn_Nombre_Cliente.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button Btn_Nombre_Cliente;
 
     /// <summary>
     /// Control firmaingbtn.

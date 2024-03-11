@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../CSS/EstiloVista.css" />
     <link rel="stylesheet" href="../../CSS/VistaPrevia.css" />
     <link rel="stylesheet" href="../../CSS/drop.css" />
-   
+    <link rel="stylesheet" href="../../CSS/EncabezadoDetalleFSR.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"/>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
@@ -209,6 +209,7 @@
                 </table>
             </div>
         </section>
+
         <!-- Seccion de Ultima Advertencia-->
         <section class="centrar2"  id="ul_advert" runat="server" style="display: none;">
             <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf2">
@@ -235,35 +236,55 @@
                 </table>
             </div>
         </section>
-        <section id="firma" runat="server" style="display:none">
+
+        <!-- Seccion firma.-->
+           <section id="firma" runat="server" style="display:none" >
             <div id="divfirma" runat="server">
                 <div id="areafirma" runat="server">
-                    <canvas id="signature-pad" class="signature-pad" width="100%"></canvas>            
-                </div>
-                <div id="buttonsfirma" runat="server" style="text-align:center">
-                    <div id="nombrecli">
-                        <table><tr><td class="auto-style6" colspan="2">
-                            <asp:Label ID="labelcli" Text="Nombre:" runat="server"></asp:Label>
-                            <asp:TextBox Id="textboxnombre" runat="server"></asp:TextBox>
-                        </td></tr></table>
-
-                    </div>
-                    
-                        <button id="salir" runat="server" class="dropbtn">Salir</button> 
-                    
-                   
-                        <button  id="clear" runat="server"  class="dropbtn">Limpiar</button> 
-                    
-                    
-                        <button  id="save" runat="server"  class="dropbtn">Guardar</button> 
-                    
-                </div>
+                    <canvas id="signature-pad" class="signature-pad"></canvas>            
+                </div> 
+                <div id="buttonsfirma" runat="server" style="text-align:center; white-space: nowrap;">
+                      <button id="salir" runat="server" class="btn_firma_cliente">Salir</button> 
+                      <button  id="clear" runat="server"  class="btn_firma_cliente">Limpiar</button>                
+                      <button  id="save" runat="server"  class="btn_firma_cliente" >Guardar</button>                              
+               </div>
            </div>
             <div style="display: none;">
                 <input id="hidValue" type="hidden" runat="server" />
                 <asp:Button runat="server" id="hidebutton" OnClick="Btn_guardar_datos_de_cliente_Click" />
             </div>
         </section>
+        
+        <!-- Seccion Nombre Cliente -->
+    <section class="centrar2"  id="Sec_Nombre_Cliente" runat="server" style="display: none;">
+        <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectio">
+            <div class="buton" id="closebtndiv">
+                <asp:ImageButton Visible="true" ID="closebtn1" runat="server" ImageAlign="Right" ImageUrl="../../Imagenes/closeimg.png" Width="30px" Height="30px"  OnClick="Cerrar_campo_nombre_cliente_Click" />
+            </div>
+            <table class="auto-style5">
+                <tr>
+                    <td colspan="2">
+                        <asp:Label ID="Lbl_Nombre_Cliente" runat="server" Text="Nombre de cliente" CssClass="auto-style4"></asp:Label>
+                    </td>
+                </tr>                
+                <tr>
+                    <td class="auto-style6" colspan="2">
+                        <asp:TextBox ID="TxtBox_Nombre_Cliente" runat="server" TextMode="MultiLine" Rows="5" MaxLength="280" AutoCompleteType="Disabled" Width="80%"></asp:TextBox>
+                    </td>    
+                </tr>            
+                <tr>
+                    <td class="auto-style6" colspan="2">                            
+                        <asp:Button runat="server" Text="Guardar" BorderStyle="None" style="float:right;" ID="Btn_Guardar_Nombre"   OnClick="Guardar_nombre_cliente_Click"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style6" colspan="2">
+                        <asp:Label ID="Lbl_Confirmacion_Guardado_Nombre" runat="server"  CssClass="auto-style4" ></asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
 
         <!-- Seccion de formulario de fechas que iran al folio-->
         <section class="centrar2"  id="floatsection" runat="server" style="display: none;">
@@ -379,13 +400,15 @@
                         </td>    
                     </tr>
                 </table>
-
                 </div>
         </section>
 
         <footer runat="server" id="footerid" class="footercl">
             <div runat="server" id="firmabutton" class="footerbtn" >
                  <asp:Button runat="server" Text="Firma Usuario" BorderStyle="None" style="float:unset;" ID="firmarbtn" OnClick="Mostrar_pantalla_para_firma_de_documento_Click"  />
+            </div>
+            <div runat="server" id="Div1" class="footerbtn" >
+                 <asp:Button runat="server" Text="Nombre Cliente" BorderStyle="None" style="float:unset;" ID="Btn_Nombre_Cliente" OnClick="Btn_Agregar_Nombre_Cliente_Click" />
             </div>
             <div runat="server" id="firmaingbtn" class="footerbtn" >
                  <asp:Button runat="server" Text="Firma Ingeniero" BorderStyle="None" style="float:unset;" ID="firmaing" OnClick="firmaing_Click" />

@@ -20,6 +20,7 @@ using INOLAB_OC.Controlador.Ingenieros;
 using INOLAB_OC.Modelo.Inolab;
 using INOLAB_OC.Vista.Ingenieros;
 using INOLAB_OC;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 public partial class VistaPrevia : Page
 {
@@ -127,6 +128,8 @@ public partial class VistaPrevia : Page
         headerid.Style.Add("display", "none");
         sectionreport.Style.Add("display", "none");
         footerid.Style.Add("display", "none");
+        Sec_Nombre_Cliente.Style.Add("display", "none");
+        firma.Style.Add("display", "none");
     }
 
     protected void Btn_Aceptar_aviso_de_privacidad(object sender, EventArgs e)
@@ -134,11 +137,13 @@ public partial class VistaPrevia : Page
         avisopriv.Style.Add("display", "none");
         ulfol.Text = Session["folio_p"].ToString();
         ul_advert.Style.Add("display", "block");
+        firma.Style.Add("display", "none");
     }
 
     protected void Mostrar_ventana_de_firma_de_usuario(object sender, EventArgs e)
     {
         ul_advert.Style.Add("display", "none");
+        Sec_Nombre_Cliente.Style.Add("display", "none");
         firma.Style.Add("display", "block");
         string script = "startFirma();";
         ClientScript.RegisterStartupScript(GetType(), "Star", script, true);
@@ -147,25 +152,17 @@ public partial class VistaPrevia : Page
     protected void Btn_guardar_datos_de_cliente_Click(object sender, EventArgs e)
     {
         string firmaDelCliente = hidValue.Value;
-        string nombreDelCliente = textboxnombre.Text;
         this.mostrarPanelDeFirma();
-
-        if (nombreDelCliente.Length < 3)
-        {
-            Response.Write("<script>alert('No puedes dejar el nombre de cliente vacio');</script>");
-        }
-        else
-        {
-            bool firmaEsValida = firmaReporte.verficarQueFirmaEsValida(firmaDelCliente);
-            if (firmaEsValida)
-            {
-                this.guardarDatosCliente(nombreDelCliente, firmaDelCliente);
-            }
-            else
-            {
-                Response.Write("<script>alert('No puedes dejar la firma del cliente vacia');</script>");
-            }
-        }
+ 
+         bool firmaEsValida = firmaReporte.verficarQueFirmaEsValida(firmaDelCliente);
+         if (firmaEsValida)
+         {
+            this.guardarDatosCliente(firmaDelCliente);
+         }
+         else
+         {
+             Response.Write("<script>alert('No puedes dejar la firma del cliente vacia');</script>");
+         }      
     }
 
     private void mostrarPanelDeFirma()
@@ -174,14 +171,14 @@ public partial class VistaPrevia : Page
         headerid.Style.Add("display", "block");
         sectionreport.Style.Add("display", "block");
         footerid.Style.Add("display", "flex");
+        Sec_Nombre_Cliente.Style.Add("display", "none");
     }
 
-    private void guardarDatosCliente(string nombreDelCliente, string firmaDelCliente)
+    private void guardarDatosCliente(string firmaDelCliente)
     {
-        bool seActualizoFirmaDeCliente = firmaReporte.actualizarFirmaCliente(nombreDelCliente, firmaDelCliente);
+        bool seActualizoFirmaDeCliente = firmaReporte.actualizarFirmaCliente("firma", firmaDelCliente);
         if (seActualizoFirmaDeCliente)
         {
-            controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "NombreCliente", nombreDelCliente);
             controladorFSR.actualizarValorDeCampoPorFolioYUsuario(folioServicio, "FechaFirmaCliente", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             ReportViewer1.ServerReport.Refresh();
         }
@@ -192,6 +189,7 @@ public partial class VistaPrevia : Page
         int firmaCliente =  firmaReporte.verificarSiSeAgregoFirmaDeCliente();
         int firmaIngeniero = firmaReporte.verificarSiSeAgregoFirmaDeIngeniero();
         bool seGuardoNombreDeCliente = firmaReporte.verificarQueSeGuardoNombreDeCliente(folioServicio);
+        Sec_Nombre_Cliente.Style.Add("display", "none");
 
         if (firmaCliente <= 0 )
         {    
@@ -281,6 +279,32 @@ public partial class VistaPrevia : Page
     protected void Reporte_Refacciones(object sender, EventArgs e)
     {
         Response.Redirect("ReporteRefacciones.aspx");
+    }
+
+    protected void Cerrar_campo_nombre_cliente_Click(object sender, EventArgs e)
+    {
+        Sec_Nombre_Cliente.Style.Add("display", "none");
+        sectionreport.Style.Add("display", "block");
+        headerid.Style.Add("display", "block");
+        footerid.Style.Add("display", "flex");
+        ReportViewer1.ServerReport.Refresh();
+    }
+
+    protected void Btn_Agregar_Nombre_Cliente_Click(object sender, EventArgs e)
+    {
+        Sec_Nombre_Cliente.Style.Add("display", "block");
+        sectionreport.Style.Add("display", "none");
+        firma.Style.Add("display", "none");
+    }
+
+    protected void Guardar_nombre_cliente_Click(object sender, EventArgs e)
+    {
+        if (TxtBox_Nombre_Cliente.Text != "")
+        {
+            C_Agregar_Nombre_Del_Cliente controller = new C_Agregar_Nombre_Del_Cliente();
+            controller.controll(Session["folio_p"].ToString(), TxtBox_Nombre_Cliente.Text);
+            Lbl_Confirmacion_Guardado_Nombre.Text = "Nombre de cliente guardado correctamente";
+        }    
     }
 
 }
