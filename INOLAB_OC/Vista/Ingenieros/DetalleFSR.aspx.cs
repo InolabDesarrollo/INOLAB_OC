@@ -384,7 +384,6 @@ public partial class DetalleFSR : Page
         }   
     }
     
-
     public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
     {
         int fila;

@@ -13,8 +13,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="../../CSS/EstiloVista.css" />
     <link rel="stylesheet" href="../../CSS/VistaPrevia.css" />
+
+    <%--<link rel="stylesheet" href="../../CSS/drop.css" />--%>
+   
+
     <link rel="stylesheet" href="../../CSS/drop.css" />
     <link rel="stylesheet" href="../../CSS/EncabezadoDetalleFSR.css" />
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"/>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
