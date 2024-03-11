@@ -156,7 +156,6 @@ public partial class DetalleFSR : Page
     protected void Buscar_observaciones_folio_servicio_Click(object sender, EventArgs e)
     {
         txtobservaciones.Text= observacion.consultarObservaciones();
-        Envio_de_notificacion_de_observacion.Checked = controladorFSR.verificarSiSeEnviaEmailAlAsesor(idFolioServicio, "NotAsesor");
         
         observaciones.Style.Add("display", "block");
         headerone.Style.Add("filter", "blur(9px)");
@@ -245,7 +244,6 @@ public partial class DetalleFSR : Page
     protected void Actualizar_observaciones_Click(object sender, EventArgs e)
     {
         observacion.actualizarObservaciones(txtobservaciones.Text);
-        Session["not_ase"] = observacion.verificarNotificacionEnvioDeObservaciones(Envio_de_notificacion_de_observacion.Checked);
         cerrarCampoObservaciones();
     }
   
@@ -375,7 +373,6 @@ public partial class DetalleFSR : Page
     {
         if (datepicker1.Text != "")
         {
-            string folio = datepicker1.Text; 
             controladorFSR.actualizarValorDeCampoPorFolio(idFolioServicio, "Proximo_Servicio", datepicker1.Text);
         }
         else
@@ -434,11 +431,6 @@ public partial class DetalleFSR : Page
         headerone.Style.Add("display", "block");
         footerid.Style.Add("display", "flex");
         contenone.Style.Add("display", "block");
-    }
-
-    protected void Verificar_si_se_envio_notificacion_a_usuario_CheckedChanged(object sender, EventArgs e)
-    {
-        Session["not_ase"]= controladorFSR.verificarSiEnviaNotificacionDeObservacionesAlUsuario(Envio_de_notificacion_de_observacion.Checked, idFolioServicio);
     }
 
     protected void Ir_a_servicios_asignados_Click(object sender, EventArgs e)
