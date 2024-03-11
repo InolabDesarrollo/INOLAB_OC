@@ -191,14 +191,8 @@ public partial class DetalleFSR : Page
         comentario.IdIngeniero = idUsuario;
         comentario.IdFsr = Convert.ToInt32(idFolioServicio);
 
-        string cuerpoDelCorreo = string.Empty;
-        using (StreamReader reader = new StreamReader(Server.MapPath("/HTML/Comentario_Ingeniero.html")))
-        {
-            cuerpoDelCorreo = reader.ReadToEnd();
-            reader.Dispose();
-        }
         C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
-        controlador.insertarComentarioIngeniero(comentario, cuerpoDelCorreo);
+        controlador.insertarComentarioIngeniero(comentario);
 
         cerrarComentariosFinales();
     }
@@ -254,8 +248,19 @@ public partial class DetalleFSR : Page
     }
 
     protected void Btn_Vista_Previa_Click(object sender, EventArgs e)
-    {   
-        Response.Redirect("VistaPrevia.aspx");       
+    {
+        C_Comentario_Ingeniero controlador = new C_Comentario_Ingeniero();
+        
+        string comentarioIngeniero = controlador.consultarComentario(Convert.ToInt32(idFolioServicio));
+        if (comentarioIngeniero.Length > 2)
+        {
+            Response.Redirect("VistaPrevia.aspx");
+        }
+        else
+        {
+            Response.Write("<script>alert('Favor de llenar el campo de comentario ingeniero');</script>");
+        }
+              
     }
     protected void Verificacion_de_estatusCheckedChanged(object sender, EventArgs e)
     {

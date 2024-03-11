@@ -267,7 +267,6 @@
                     </tr>            
                     <tr>
                         <td class="auto-style6" colspan="2">                            
-                            <asp:CheckBox id="Envio_de_notificacion_de_observacion" runat="server" Text=" Notificar al Asesor" style="float:left;" OnCheckedChanged="Verificar_si_se_envio_notificacion_a_usuario_CheckedChanged" />
                             <asp:Button runat="server" Text="Guardar" BorderStyle="None" style="float:right;" ID="btnguardar" OnClick="Actualizar_observaciones_Click"/>
                         </td>
                     </tr>
