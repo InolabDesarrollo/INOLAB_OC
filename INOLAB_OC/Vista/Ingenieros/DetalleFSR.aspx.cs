@@ -35,7 +35,7 @@ public partial class DetalleFSR : Page
        idFolioServicio = Session["folio_p"].ToString();
 
        controladorFSR = new C_FSR(repositorio, idUsuario);
-       entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
+       entidadAccion = new E_FSRAccion();
        entidadRefaccion = new E_Refaccion(idFolioServicio);
        observacion = new Observaciones(idFolioServicio,idUsuario);
        falla = new Fallas(idUsuario, idFolioServicio);
@@ -45,7 +45,7 @@ public partial class DetalleFSR : Page
        cargarAccionesDelIngeniero();
        llenarInformacionDeRefaccionesActuales();
     }
-
+    
     protected void Page_Init(object sender, EventArgs e)
     {
         idUsuario = Session["idUsuario"].ToString();
@@ -89,7 +89,10 @@ public partial class DetalleFSR : Page
 
     private void cargarAccionesDelIngeniero()
     {
-        GridView1.DataSource =  entidadAccion.consultarAcciones();
+        FSR_AccionRepository reposotorio = new FSR_AccionRepository();
+        C_FSR_Accion controller = new C_FSR_Accion(reposotorio);
+        
+        GridView1.DataSource = controller.consultarDatosDeFSRAccion(idFolioServicio);
         GridView1.DataBind();
     }
     protected void Agregar_nuevas_acciones_Click(object sender, EventArgs e)
@@ -99,6 +102,7 @@ public partial class DetalleFSR : Page
         contenone.Style.Add("filter", "blur(9px)");
         footerid.Style.Add("display", "none");
     }
+
     protected void Agregar_nueva_actividad_al_reporte_Click(object sender, EventArgs e)
     {      
         lbl_fecha_nuevo_servicio.Text = "Fecha: ";
@@ -121,12 +125,15 @@ public partial class DetalleFSR : Page
 
     private void agregarNuevaAccion()
     {
-        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
+        entidadAccion = new E_FSRAccion();
         entidadAccion.FechaAccion = Fecha_nueva_accion_realizada.Text;
         entidadAccion.HorasAccion = txthorasD.Text;
         entidadAccion.AccionR = txtacciones.Text;
 
-        int filasAfectadasPorUpdate = entidadAccion.agregarAccion();
+        FSR_AccionRepository reposotorio = new FSR_AccionRepository();
+        C_FSR_Accion controller = new C_FSR_Accion(reposotorio);
+        
+        int filasAfectadasPorUpdate = controller.agregarAccionFSR(entidadAccion); ;
         if (filasAfectadasPorUpdate == 1)
         {
             cerrarVentanaAgregarNuevaAccion();
@@ -142,6 +149,74 @@ public partial class DetalleFSR : Page
     {
         cerrarVentanaAgregarNuevaAccion();
     }
+
+    public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
+    {
+        int fila;
+        FSR_AccionRepository reposotorio = new FSR_AccionRepository();
+        C_FSR_Accion controller = new C_FSR_Accion(reposotorio);
+
+        //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
+        try
+        {
+            if (e.CommandName == "Borrar")
+            {
+                e.CommandArgument.ToString();
+                fila = Convert.ToInt32(e.CommandArgument.ToString());
+                string idFolioDeAccion = GridView1.Rows[fila].Cells[0].Text.ToString();
+
+                E_FSRAccion entidadFsrAccion;               
+                entidadFsrAccion = controller.consultarFSRAccion(Convert.ToInt32(idFolioDeAccion));
+
+                fol.Text = entidadFsrAccion.idFolioFSR;
+                serv.Text = controlador_V_FSR.consultarValorDeCampo("TipoServicio", entidadFsrAccion.idFolioFSR);
+                descacci.Text = entidadFsrAccion.AccionR;
+                fechacci.Text = entidadFsrAccion.FechaAccion;
+                horaacci.Text = entidadFsrAccion.HorasAccion;
+                IDAccion.Text = entidadFsrAccion.idFSRAccion;
+
+                avisodel.Style.Add("display", "block");
+                headerone.Style.Add("display", "none");
+                footerid.Style.Add("display", "none");
+                contenone.Style.Add("display", "none");
+            }
+            if (e.CommandName == "Editar")
+            {
+                fila = Convert.ToInt32(e.CommandArgument.ToString());
+                string idFolioDeAccion = GridView1.Rows[fila].Cells[0].Text.ToString();
+                E_FSRAccion entidadFsrAccion;
+                entidadFsrAccion = controller.consultarFSRAccion(Convert.ToInt32(idFolioDeAccion));
+                Session["Entidad_Accion"] = entidadFsrAccion;
+                Response.Redirect("WebForm1.aspx");
+            }
+        }
+        catch (SqlException ex)
+        {
+            Console.Write(ex.ToString());
+        }
+    }
+
+    public void Borrar_accion_realizada_Click(object sender, EventArgs e)
+    {
+        FSR_AccionRepository reposotorio = new FSR_AccionRepository();
+        C_FSR_Accion controller = new C_FSR_Accion(reposotorio);
+
+        controller.eliminarAccionFSR(IDAccion.Text);
+        this.cargarAccionesDelIngeniero();
+
+        avisodel.Style.Add("display", "none");
+        headerone.Style.Add("display", "block");
+        footerid.Style.Add("display", "flex");
+        contenone.Style.Add("display", "block");
+    }
+    protected void Cancelar_proceso_de_eliminar_accion_Click(object sender, EventArgs e)
+    {
+        avisodel.Style.Add("display", "none");
+        headerone.Style.Add("display", "block");
+        footerid.Style.Add("display", "flex");
+        contenone.Style.Add("display", "block");
+    }
+
     public void cerrarVentanaAgregarNuevaAccion()
     {
         Fecha_nueva_accion_realizada.Text = "";
@@ -258,14 +333,16 @@ public partial class DetalleFSR : Page
         }
         else
         {
-            Response.Write("<script>alert('Favor de llenar el campo de comentario ingeniero');</script>");
+            Response.Write("<script>alert('Favor de llenar el campo de comentarios adicionales');</script>");
         }
               
     }
     protected void Verificacion_de_estatusCheckedChanged(object sender, EventArgs e)
     {
         if (Funciona_Correctamente_lista.SelectedValue.Equals("1")){
+
             controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "Si");
+
         }else if (Funciona_Correctamente_lista.SelectedValue.Equals("2"))
         {
             controladorFSR.verificarSiServicioFuncionaCorrectamente(idFolioServicio, "No");
@@ -386,58 +463,6 @@ public partial class DetalleFSR : Page
         }   
     }
     
-    public void GridView_de_acciones_realizadas_en_folio_OnRowComand(object sender, GridViewCommandEventArgs e)
-    {
-        int fila;
-        //Al darle clic al folio deseado este se almacena en la sesión y te redirige a la ventana de FSR
-        try
-        {
-            if (e.CommandName == "Borrar")
-            {
-                e.CommandArgument.ToString();
-                fila = Convert.ToInt32(e.CommandArgument.ToString());
-                string idFolioDeAccion = GridView1.Rows[fila].Cells[0].Text.ToString();
-
-                E_FSRAccion entidadFsrAccion;
-                entidadFsrAccion =  entidadAccion.consultarAccion(Convert.ToInt32(idFolioDeAccion));
-                                     
-                fol.Text = entidadFsrAccion.idFolioFSR;
-                serv.Text = controlador_V_FSR.consultarValorDeCampo("TipoServicio", entidadFsrAccion.idFolioFSR);
-                descacci.Text = entidadFsrAccion.AccionR;
-                fechacci.Text = entidadFsrAccion.FechaAccion;
-                horaacci.Text = entidadFsrAccion.HorasAccion;
-                IDAccion.Text = entidadFsrAccion.idFSRAccion;
-
-                avisodel.Style.Add("display", "block");
-                headerone.Style.Add("display", "none");
-                footerid.Style.Add("display", "none");
-                contenone.Style.Add("display", "none");
-            }
-        }
-        catch (SqlException ex)
-        {
-            Console.Write(ex.ToString());
-        }
-    }
-
-    public void Borrar_accion_realizada_Click(object sender, EventArgs e)
-    {
-        entidadAccion.eliminarAccion(IDAccion.Text);
-        cargarAccionesDelIngeniero();
-
-        avisodel.Style.Add("display", "none");
-        headerone.Style.Add("display", "block");
-        footerid.Style.Add("display", "flex");
-        contenone.Style.Add("display", "block");
-    }
-    protected void Cancelar_proceso_de_eliminar_accion_Click(object sender, EventArgs e)
-    { 
-        avisodel.Style.Add("display", "none");
-        headerone.Style.Add("display", "block");
-        footerid.Style.Add("display", "flex");
-        contenone.Style.Add("display", "block");
-    }
-
     protected void Ir_a_servicios_asignados_Click(object sender, EventArgs e)
     {
         Response.Redirect("ServiciosAsignados.aspx");

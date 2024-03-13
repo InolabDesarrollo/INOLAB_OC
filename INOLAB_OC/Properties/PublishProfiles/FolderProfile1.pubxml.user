@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <History>True|2024-03-11T23:31:59.2149492Z;True|2024-03-11T17:31:00.7706159-06:00;False|2024-03-11T17:30:45.6917259-06:00;True|2024-03-11T09:06:35.8780253-06:00;False|2024-03-11T09:06:18.6356728-06:00;</History>
+    <History>True|2024-03-12T15:50:42.2739530Z;False|2024-03-12T09:50:34.1239967-06:00;True|2024-03-11T17:31:59.2149492-06:00;True|2024-03-11T17:31:00.7706159-06:00;False|2024-03-11T17:30:45.6917259-06:00;True|2024-03-11T09:06:35.8780253-06:00;False|2024-03-11T09:06:18.6356728-06:00;</History>
     <LastFailureDetails />
     <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
   </PropertyGroup>
@@ -28,10 +28,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/25/2023 10:37:19</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>03/11/2024 17:31:58</publishTime>
+      <publishTime>03/12/2024 09:50:40</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>03/11/2024 17:31:58</publishTime>
+      <publishTime>03/12/2024 09:50:40</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
       <publishTime>05/25/2023 10:37:19</publishTime>
@@ -205,7 +205,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/08/2024 17:37:48</publishTime>
     </File>
     <File Include="Vista/Ingenieros/DetalleFSR.aspx">
-      <publishTime>03/11/2024 12:00:40</publishTime>
+      <publishTime>03/12/2024 09:08:06</publishTime>
     </File>
     <File Include="Vista/Ingenieros/EdicionReporteRefacciones.aspx">
       <publishTime>03/08/2024 17:37:48</publishTime>

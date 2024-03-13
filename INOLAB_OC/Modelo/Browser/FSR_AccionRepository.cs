@@ -13,7 +13,9 @@ namespace INOLAB_OC.Modelo.Browser
     {
         public void actualizarAccion(E_FSRAccion entidad)
         {
-            throw new NotImplementedException();
+            Conexion.executeQuery("UPDATE FSRAccion SET FechaAccion = '"+entidad.FechaAccion+"', " +
+                " HorasAccion = '"+entidad.HorasAccion+"', \r\n" +
+                " AccionR = '"+entidad.AccionR+"' WHERE idFSRAccion = '"+entidad.idFSRAccion+"';");            
         }
 
         public int agregarAccion(E_FSRAccion entidad)

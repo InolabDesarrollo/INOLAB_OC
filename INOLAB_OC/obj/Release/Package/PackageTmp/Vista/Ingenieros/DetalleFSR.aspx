@@ -282,7 +282,7 @@
                 <table class="auto-style5">
                     <tr>
                        <td colspan="2">
-                         <asp:Label ID="Label_Comentarios_Finales" runat="server" Text="Comentarios Finales" CssClass="auto-style4"></asp:Label>
+                         <asp:Label ID="Label_Comentarios_Finales" runat="server" Text="Comentarios Adicionales" CssClass="auto-style4"></asp:Label>
                        </td>
                     </tr> 
                     <tr>
@@ -293,7 +293,6 @@
                     <tr>
                         <td class="auto-style6" colspan="2">
                             <asp:Button runat="server" Text="Guardar" BorderStyle="None" style="float:right;" ID="Btn_Gurardar_Comentarios_Ingeniero" OnClick="Btn_Gurardar_Comentarios_Ingeniero_Click"/>
-
                         </td>
                     </tr>
                 </table>
