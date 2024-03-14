@@ -148,14 +148,20 @@ header nav {
     color: #ffffff;
 }
 
-
-
 #txthorasD {
     position: absolute;
     width: 250px;
     left: 43%;
 }
 
+#TxtBox_actualizar_horas_dedicadas {
+    position: relative;
+    width: 280px;
+    left: 43%;
+}
+#Lbl_actualizar_horas_dedicadas {
+    width: 160px;
+}
 #txtacciones {
     position: absolute;
     width: 250px;
@@ -166,6 +172,10 @@ header nav {
     width: 250px;
     left: 43%;
 }
+#TxtBox_actualizar_fecha_accion {
+    width:80px;
+}
+
 #datepicker_nuevo_servicio {
     position: absolute;
     width: 250px;
@@ -173,6 +183,11 @@ header nav {
 }
 
 #acciones {
+    position: absolute;
+    left: 28%;
+}
+
+#Lbl_Actualizar_Nueva_Accion {
     position: absolute;
     left: 28%;
 }
@@ -186,10 +201,13 @@ header nav {
     position: absolute;
     left: 37%;
 }
+#lbl_fecha_actualizar_accion {
+    position: absolute;
+    left: 37%;
+}
 
 #txtobservaciones {
     width: 75%;
-    
 }
 
 #TextBox_Comentarios_Finales {
@@ -445,6 +463,11 @@ header {
     }
 
     #txtacciones {
+        width: 110px;
+        height: 80px;
+        text-align: start;
+    }
+    #TxtBox_Actualizar_Accion {
         width: 110px;
         height: 80px;
         text-align: start;

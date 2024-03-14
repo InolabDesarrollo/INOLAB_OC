@@ -230,7 +230,7 @@ namespace INOLAB_OC.Modelo
                 comando.Parameters.Add("@tiporegistro", SqlDbType.VarChar);
                 comando.Parameters.Add("@cliente", SqlDbType.VarChar);
                 comando.Parameters.Add("@fllamada", SqlDbType.Date);
-                comando.Parameters.Add("@comentario", SqlDbType.VarChar);
+                comando.Parameters.Add("@descripcionDeAccion", SqlDbType.VarChar);
                 comando.Parameters.Add("@asesor", SqlDbType.VarChar);
                 comando.Parameters.Add("@objetivo", SqlDbType.VarChar);
                 comando.Parameters.Add("@hora", SqlDbType.VarChar);
@@ -238,7 +238,7 @@ namespace INOLAB_OC.Modelo
                 comando.Parameters["@tiporegistro"].Value = ddlTipoRegistro;
                 comando.Parameters["@cliente"].Value = textoCliente;
                 comando.Parameters["@fllamada"].Value = datePicker;
-                comando.Parameters["@comentario"].Value = comentario;
+                comando.Parameters["@descripcionDeAccion"].Value = comentario;
                 comando.Parameters["@asesor"].Value = user;
                 comando.Parameters["@objetivo"].Value = textoObjetivo;
                 comando.Parameters["@hora"].Value = hora;

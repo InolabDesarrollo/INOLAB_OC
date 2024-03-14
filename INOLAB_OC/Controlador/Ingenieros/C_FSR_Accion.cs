@@ -38,6 +38,10 @@ namespace INOLAB_OC.Controlador
             return repositorio.agregarAccion(entidad);
         }
 
+        public void actualizarAccion(E_FSRAccion entidad)
+        {
+            repositorio.actualizarAccion(entidad);
+        }
         
 
     }

@@ -41,12 +41,10 @@ namespace INOLAB_OC.Modelo.Browser
             string query = "select "+ campo + " from v_fsr where Folio= "+ Folio+";";
             return Conexion.getText(query);
         }
-
         public string consultarValorDeCampoTop(string campo, string folio)
         {
             string query = "Select top (1) "+campo+" FROM V_FSR where Folio= "+folio+";";
-            return Conexion.getText(query);
-           
+            return Conexion.getText(query);           
         }
 
         public DataSet consultarFoliosFinalizados(string idUsuario)

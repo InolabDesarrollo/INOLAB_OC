@@ -86,6 +86,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\ActualizarAccion.css" />
     <Content Include="CSS\EncabezadoInolab.css" />
     <Content Include="CSS\GerenteReporteRefacciones.css" />
     <Content Include="CSS\MonitorRefacciones.css" />
@@ -102,6 +103,7 @@
     <Content Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx" />
     <Content Include="Vista\Ingenieros\MonitorReporteRefacciones.aspx" />
     <Content Include="Vista\Ingenieros\ReporteRefacciones.aspx" />
+    <Content Include="Vista\Ingenieros\ActualizarAccion.aspx" />
     <Content Include="Vista\Ventas\CRM_1.aspx" />
     <Content Include="Vista\Ventas\CRM_2.aspx" />
     <Content Include="Vista\Ventas\CRM_3.aspx" />
@@ -270,6 +272,13 @@
     </Compile>
     <Compile Include="Vista\Ingenieros\Responsabilidades\Refaccion.cs" />
     <Compile Include="Vista\Ingenieros\Responsabilidades\ReporteRefaccion.cs" />
+    <Compile Include="Vista\Ingenieros\ActualizarAccion.aspx.cs">
+      <DependentUpon>ActualizarAccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Ingenieros\ActualizarAccion.aspx.designer.cs">
+      <DependentUpon>ActualizarAccion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Reporteador.cs" />
     <Compile Include="Vista\Ventas\CRM_1.aspx.cs">
       <DependentUpon>CRM_1.aspx</DependentUpon>
@@ -384,7 +393,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CSS\Ingenieros\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

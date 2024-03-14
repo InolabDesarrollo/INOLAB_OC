@@ -30,24 +30,28 @@ namespace INOLAB_OC.Responsabilities
             correoElectronico.enviar(mensaje);
         }
 
-        public void sendMailNotification(string[] correoReceptor, string cuerpoCorreo, string asuntoDelCorreo)
+        public void sendMailNotification(string[] correosReceptores, string cuerpoCorreo, string asuntoDelCorreo)
         {
             MailAddress emailSender = new MailAddress("notificaciones@inolab.com");
-            List<string> listaDeCorreos = new List<string>();
-            var correosEnCopia = "";
-            for (int i = 1; i < correoReceptor.Length; i++)
-            {
-                listaDeCorreos.Add(correoReceptor[i].ToString());
-            }
-            correosEnCopia = String.Join(", ", listaDeCorreos);
-            MailAddress correosReceptores = new MailAddress(correoReceptor[0].ToString());
-            MailMessage mensaje = new MailMessage(emailSender, correosReceptores);
+            List<MailAddress> listaDeCorreos = new List<MailAddress>();
 
-            mensaje.To.Add(correosReceptores);
-            mensaje.Bcc.Add(correosEnCopia);
-            mensaje.Subject = asuntoDelCorreo;
-            mensaje.IsBodyHtml = true;
-            mensaje.Body = cuerpoCorreo;
+            foreach (string correo in correosReceptores)
+            {
+                listaDeCorreos.Add(new MailAddress(correo));
+            }
+            MailMessage mensaje = new MailMessage
+            {
+                From = emailSender,
+                Subject = asuntoDelCorreo,
+                IsBodyHtml = true,
+                Body = cuerpoCorreo
+            };
+
+            foreach (MailAddress destinatario in listaDeCorreos)
+            {
+                mensaje.To.Add(destinatario);
+            }
+            mensaje.Bcc.Add("omarflores@inolab.com, carlosflores@inolab.com, ehuazo@inolab.com");
             correoElectronico.enviar(mensaje);
         }
 
