@@ -28,6 +28,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
     <script>
+    
         $(function () {
             $("#datepicker").datepicker();
         });
@@ -49,6 +50,7 @@
             yearSuffix: ''
         };
         $.datepicker.setDefaults($.datepicker.regional['es']);
+
         $(function () {
             $("#fecha").datepicker();
         });
@@ -170,7 +172,7 @@
                             </td>
 
                             <td colspan="2">
-                                <asp:TextBox ID="datepicker" class="mercado" runat="server" ></asp:TextBox>
+                                <asp:TextBox ID="datepicker" class="mercado" runat="server"></asp:TextBox>
                                 <asp:Label ID="lblresistro" Visible="false" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td colspan="2">

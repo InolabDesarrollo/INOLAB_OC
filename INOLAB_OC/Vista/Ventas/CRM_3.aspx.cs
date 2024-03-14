@@ -18,6 +18,7 @@ using System.Drawing;
 using INOLAB_OC.Controlador.Ventas;
 using INOLAB_OC.Entidades.Ventas;
 using DocumentFormat.OpenXml.Presentation;
+using DocumentFormat.OpenXml.Bibliography;
 
 namespace INOLAB_OC
 {
@@ -405,21 +406,24 @@ namespace INOLAB_OC
                 ddlClas_save.Enabled = true;
                 btnactualiza.Visible = true;
             }
-            if(fechagridcierre < DateTime.Now)
+
+            // ya no permite editar informacion por fecha de cierre
+            if (fechagridcierre < DateTime.Now)
             {
                 btnactualiza.Enabled = false;
                 ddlAutorizado.Enabled = true;
                 ddlClas_save.Enabled = false;
             }
             else
-            { 
+            {
                 btnactualiza.Enabled = true;
                 ddlAutorizado.Enabled = false;
                 ddlClas_save.Enabled = true;
             }
+
             btnautorizacion.Visible = false;
 
-            datepicker.Enabled = false;
+            datepicker.Enabled = true;
 
         }
 
@@ -632,6 +636,24 @@ namespace INOLAB_OC
                     return;
                 }
                 GuardaOC();
+            }
+            //DataRow datosFunel = controladorFunnel.consultarDatosFunnelPorNoRegistro(numeroDeRegistro);
+
+            //DateTime fechagridcierre = Convert.ToDateTime(datosFunel["FechaCierre"].ToString());
+
+            //if (fechagridcierre < Convert.ToDateTime(datepicker.Text) )
+            //{
+            //    Response.Write("<script>alert('La Fecha de Cierre debe ser menor a "+fechagridcierre+".');</script>");
+            //    return;
+            //}
+            DateTime fechagrid;
+
+            fechagrid=  Convert.ToDateTime(GridView1.SelectedRow.Cells[10].Text);
+
+            if (fechagrid < Convert.ToDateTime(datepicker.Text))
+            {
+                Response.Write("<script>alert('La Fecha de Cierre debe ser menor a " + fechagrid + ".');</script>");
+                return;
             }
             actualizarNuevosValores();
         }
@@ -1153,10 +1175,9 @@ namespace INOLAB_OC
             btnfiltrar.Visible = true;  
         }
 
+        protected void datepicker_TextChanged(object sender, EventArgs e)
+        {
 
-
-
-
-
+        }
     }
 }
