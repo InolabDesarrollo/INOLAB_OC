@@ -15,6 +15,15 @@ namespace INOLAB_OC.Vista.Ingenieros
     {
 
         /// <summary>
+        /// Control Head1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+
+        /// <summary>
         /// Control form_actualizar_accion.
         /// </summary>
         /// <remarks>

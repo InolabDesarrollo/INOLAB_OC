@@ -51,7 +51,7 @@ namespace INOLAB_OC.Responsabilities
             {
                 mensaje.To.Add(destinatario);
             }
-            mensaje.Bcc.Add("omarflores@inolab.com, carlosflores@inolab.com");
+            mensaje.Bcc.Add("omarflores@inolab.com, carlosflores@inolab.com, ehuazo@inolab.com");
             correoElectronico.enviar(mensaje);
         }
 

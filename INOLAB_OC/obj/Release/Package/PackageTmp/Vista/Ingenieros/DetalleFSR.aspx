@@ -112,8 +112,6 @@
             width: 222px;
         }
         </style>
-         
-
 </head>
 
 <body style="overflow:auto;" onload="window.history.forward();">
@@ -163,7 +161,10 @@
                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" /></asp:BoundField>
 
                         <asp:ButtonField HeaderText="Eliminar"  SortExpression="Eliminar" ButtonType="Link" CommandName="Borrar" Text="Eliminar" >
-                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="10%"/></asp:ButtonField>
+                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5%"/></asp:ButtonField>
+
+                        <asp:ButtonField HeaderText="Editar"  SortExpression="Editar" ButtonType="Link" CommandName="Editar" Text="Editar" >
+                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5%"/></asp:ButtonField>
                     </Columns>
 
                     <EditRowStyle BackColor="#7C6F57" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -180,14 +181,11 @@
                     </asp:GridView>
                 
                 <div id="botonnuevo" class="btnnuevo" >
-                    <asp:Button runat="server" Text="Nueva Accion" BorderStyle="None" style="float:right" ID="Button4" OnClick="Agregar_nuevas_acciones_Click" />
-                    
+                    <asp:Button runat="server" Text="Nueva Accion" BorderStyle="None" style="float:right" ID="Button4" OnClick="Agregar_nuevas_acciones_Click" />                  
                 </div>
                 <div id="botonsa" class="btnnuevo" >
-                    
                 </div>
-              <table style="width: 100%;">
-            
+              <table style="width: 100%;">       
                <tr>
                   <td class="auto-style8">
                        <asp:Label ID="proxs" runat="server" >Próximo Servicio</asp:Label>
@@ -243,7 +241,6 @@
                         </td>    
                     </tr>
                 </table>
-
                 </div>
         </section>
 
@@ -298,8 +295,6 @@
                 </table>
             </div>
         </section>
-
-
 
         <section class="centrar2"  id="FallaEncontrada" runat="server" style="display: none;">
             <div class="drop2" style="background-color: RGBA(255,255,255,1); padding:30px;" id="sectionf4">

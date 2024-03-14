@@ -95,7 +95,6 @@
     <Content Include="CSS\ServiciosAsignados.css" />
     <Content Include="CSS\VistaPrevia.css" />
     <Content Include="HTML\Comentario_Ingeniero.html" />
-    <Content Include="Vista\Ingenieros\ActualizarAccion.aspx" />
     <Content Include="Vista\Ingenieros\Calendario.aspx" />
     <Content Include="Vista\Ingenieros\Calendario_Areas.aspx" />
     <Content Include="Vista\Ingenieros\CalSel.aspx" />
@@ -104,7 +103,7 @@
     <Content Include="Vista\Ingenieros\GerenteReporteRefacciones.aspx" />
     <Content Include="Vista\Ingenieros\MonitorReporteRefacciones.aspx" />
     <Content Include="Vista\Ingenieros\ReporteRefacciones.aspx" />
-    <Content Include="Vista\Ingenieros\WebForm1.aspx" />
+    <Content Include="Vista\Ingenieros\ActualizarAccion.aspx" />
     <Content Include="Vista\Ventas\CRM_1.aspx" />
     <Content Include="Vista\Ventas\CRM_2.aspx" />
     <Content Include="Vista\Ventas\CRM_3.aspx" />
@@ -210,13 +209,6 @@
     <Compile Include="Responsabilities\Notificacion.cs" />
     <Compile Include="Responsabilities\SeguimientoFSR.cs" />
     <Compile Include="Vista\DocumentoPDF.cs" />
-    <Compile Include="Vista\Ingenieros\ActualizarAccion.aspx.cs">
-      <DependentUpon>ActualizarAccion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\Ingenieros\ActualizarAccion.aspx.designer.cs">
-      <DependentUpon>ActualizarAccion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Vista\Ingenieros\Calendario.aspx.cs">
       <DependentUpon>Calendario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -280,12 +272,12 @@
     </Compile>
     <Compile Include="Vista\Ingenieros\Responsabilidades\Refaccion.cs" />
     <Compile Include="Vista\Ingenieros\Responsabilidades\ReporteRefaccion.cs" />
-    <Compile Include="Vista\Ingenieros\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Vista\Ingenieros\ActualizarAccion.aspx.cs">
+      <DependentUpon>ActualizarAccion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\Ingenieros\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="Vista\Ingenieros\ActualizarAccion.aspx.designer.cs">
+      <DependentUpon>ActualizarAccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Reporteador.cs" />
     <Compile Include="Vista\Ventas\CRM_1.aspx.cs">

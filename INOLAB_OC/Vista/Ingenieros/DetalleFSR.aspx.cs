@@ -125,15 +125,12 @@ public partial class DetalleFSR : Page
 
     private void agregarNuevaAccion()
     {
-        entidadAccion = new E_FSRAccion();
+        entidadAccion = new E_FSRAccion(idFolioServicio, idUsuario);
         entidadAccion.FechaAccion = Fecha_nueva_accion_realizada.Text;
         entidadAccion.HorasAccion = txthorasD.Text;
         entidadAccion.AccionR = txtacciones.Text;
-
-        FSR_AccionRepository reposotorio = new FSR_AccionRepository();
-        C_FSR_Accion controller = new C_FSR_Accion(reposotorio);
-        
-        int filasAfectadasPorUpdate = controller.agregarAccionFSR(entidadAccion); ;
+        int filasAfectadasPorUpdate = entidadAccion.agregarAccion();
+ 
         if (filasAfectadasPorUpdate == 1)
         {
             cerrarVentanaAgregarNuevaAccion();
@@ -187,7 +184,7 @@ public partial class DetalleFSR : Page
                 E_FSRAccion entidadFsrAccion;
                 entidadFsrAccion = controller.consultarFSRAccion(Convert.ToInt32(idFolioDeAccion));
                 Session["Entidad_Accion"] = entidadFsrAccion;
-                Response.Redirect("WebForm1.aspx");
+                Response.Redirect("ActualizarAccion.aspx");
             }
         }
         catch (SqlException ex)

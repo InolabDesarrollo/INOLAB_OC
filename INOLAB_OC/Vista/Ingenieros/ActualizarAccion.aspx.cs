@@ -15,7 +15,6 @@ namespace INOLAB_OC.Vista.Ingenieros
         private static E_FSRAccion accion;
         C_FSR_Accion controller;
         private static string idAccion;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             FSR_AccionRepository repository = new FSR_AccionRepository();
@@ -24,8 +23,17 @@ namespace INOLAB_OC.Vista.Ingenieros
             {
                 accion = (E_FSRAccion)Session["Entidad_Accion"];
                 idAccion = accion.idFSRAccion;
+                TxtBox_actualizar_fecha_accion.Text = this.convertirFechaAFormatoDeseado(accion.FechaAccion);
+                TxtBox_Actualizar_Accion.Text = accion.AccionR;
+                TxtBox_actualizar_horas_dedicadas.Text = accion.HorasAccion;
             }
-                                       
+        }
+
+        private string convertirFechaAFormatoDeseado(string fechaOrigen)
+        {
+            DateTime fechaOriginal = DateTime.ParseExact(fechaOrigen, "dd-MM-yyyy", null);
+            string fechaReFormateada = fechaOriginal.ToString("yyyy-MM-dd");
+            return fechaReFormateada;
         }
 
         protected void Cancelar_Click(object sender, EventArgs e)
@@ -33,7 +41,7 @@ namespace INOLAB_OC.Vista.Ingenieros
             Response.Redirect("DetalleFSR.aspx");
         }
 
-        public  void Actualizar_Click(object sender, EventArgs e)
+        public void Actualizar_Click(object sender, EventArgs e)
         {
             accion = new E_FSRAccion();
             accion.idFSRAccion = idAccion;
@@ -44,7 +52,5 @@ namespace INOLAB_OC.Vista.Ingenieros
             controller.actualizarAccion(accion);
             Response.Redirect("DetalleFSR.aspx");
         }
-
-
     }
 }
