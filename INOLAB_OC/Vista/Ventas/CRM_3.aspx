@@ -322,11 +322,10 @@
                                     <asp:ListItem>Perla</asp:ListItem>                                                             
                                     <asp:ListItem>Rodolfo</asp:ListItem>                                                                                                                   
                                     <asp:ListItem>Yuliet</asp:ListItem>                                                             
-                                    <asp:ListItem>Carlos</asp:ListItem>
-                                    <asp:ListItem>Demo</asp:ListItem>
                                     <asp:ListItem>Janatan</asp:ListItem>
                                     <asp:ListItem>Silvia</asp:ListItem>
                                     <asp:ListItem>Gabriel</asp:ListItem>
+                                    <asp:ListItem>Jose Carlos</asp:ListItem>
                                 </asp:DropDownList>
 
                             </td>

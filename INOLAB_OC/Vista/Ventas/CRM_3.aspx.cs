@@ -70,7 +70,7 @@ namespace INOLAB_OC
                 gte = "Rodolfo";
             }
             //Comercial Equipos - Karla Ivette
-            if ((Session["idUsuario"].ToString() == "149"))
+            if ((Session["idUsuario"].ToString() == "149") || (Session["idUsuario"].ToString() == "152"))
             {
                 gte = "Karla";
             }
@@ -645,6 +645,20 @@ namespace INOLAB_OC
             //    Response.Write("<script>alert('La Fecha de Cierre debe ser menor a "+fechagridcierre+".');</script>");
             //    return;
             //}
+            //DateTime fechagrid;
+
+            //fechagrid = Convert.ToDateTime(GridView1.SelectedRow.Cells[10].Text);
+
+            //if (fechagrid < Convert.ToDateTime(datepicker.Text))
+            //{
+            //    Response.Write("<script>alert('La Fecha de Cierre debe ser menor a " + fechagrid + ".');</script>");
+            //    return;
+            //}
+            actualizarNuevosValores();
+        }
+
+        private void ValidaFechaCierre()
+        {
             DateTime fechagrid;
 
             fechagrid = Convert.ToDateTime(GridView1.SelectedRow.Cells[10].Text);
@@ -654,7 +668,7 @@ namespace INOLAB_OC
                 Response.Write("<script>alert('La Fecha de Cierre debe ser menor a " + fechagrid + ".');</script>");
                 return;
             }
-            actualizarNuevosValores();
+
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
@@ -769,6 +783,7 @@ namespace INOLAB_OC
                 ListItem i11 = new ListItem("Silvia", "Silvia");
                 ListItem i12 = new ListItem("Janatan", "Janatan");
                 ListItem i13 = new ListItem("Gabriel", "Gabriel");
+                ListItem i14 = new ListItem("Jose Carlos", "Jose Carlos");
 
                 ddlF_Asesor.Items.Add(i1);
                 ddlF_Asesor.Items.Add(i2);
@@ -783,6 +798,7 @@ namespace INOLAB_OC
                 ddlF_Asesor.Items.Add(i11);
                 ddlF_Asesor.Items.Add(i12);
                 ddlF_Asesor.Items.Add(i13);
+                ddlF_Asesor.Items.Add(i14);
 
                 //    ddlF_Asesor.Items.Add(silvia);
                 //    ddlF_Asesor.Items.Add(janathan);

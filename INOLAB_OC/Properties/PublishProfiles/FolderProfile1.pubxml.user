@@ -4,250 +4,256 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <History>True|2024-03-14T17:32:58.9931818Z;False|2024-03-14T11:32:50.6561592-06:00;True|2024-03-12T09:50:42.2739530-06:00;False|2024-03-12T09:50:34.1239967-06:00;True|2024-03-11T17:31:59.2149492-06:00;True|2024-03-11T17:31:00.7706159-06:00;False|2024-03-11T17:30:45.6917259-06:00;True|2024-03-11T09:06:35.8780253-06:00;False|2024-03-11T09:06:18.6356728-06:00;</History>
+    <History>True|2024-03-20T16:51:42.7454116Z;False|2024-03-20T10:51:36.9606712-06:00;True|2024-03-15T11:11:45.2898123-06:00;False|2024-03-15T11:10:55.7123065-06:00;</History>
     <LastFailureDetails />
-    <_PublishTargetUrl>C:\Users\Omar Sotomayor\Desktop\Produccion public</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Carlos Flores\Desktop\Publicar web 2024</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/DocumentFormat.OpenXml.dll">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.DataSet.dll">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.DataSet.pdb">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.dll">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/ExcelDataReader.pdb">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.dll">
-      <publishTime>03/12/2024 09:50:40</publishTime>
+      <publishTime>03/20/2024 10:51:41</publishTime>
     </File>
     <File Include="bin/INOLAB_OC.pdb">
-      <publishTime>03/12/2024 09:50:40</publishTime>
+      <publishTime>03/20/2024 10:51:41</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.DLL">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebForms.DLL">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="bin/SpreadsheetLight.dll">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="BrowserDataSet.xsc">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="BrowserDataSet.xss">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
+    </File>
+    <File Include="CSS/ActualizarAccion.css">
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="CSS/drop.css">
-      <publishTime>03/11/2024 08:56:49</publishTime>
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="CSS/Encabezado.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoCalendario.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoComun.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoConfirmacion.css">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="CSS/EncabezadoCRM_1.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoCRM_2.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoCRM_3.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoDescargaFolio.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoDetalleFSR.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="CSS/EncabezadoFirmaFolio.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoFSR.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoInformacion.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoInolab.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EncabezadoVistaPrevia.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EstiloVista.css">
-      <publishTime>07/31/2023 11:41:45</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/EstiloVistaConfirmacion.css">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="CSS/GerenteReporteRefacciones.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/main.css">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="CSS/MonitorRefacciones.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/Normalize.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/ReporteRefacciones.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/ServiciosAsignados.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="CSS/stilos.css">
-      <publishTime>07/21/2023 10:35:50</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="CSS/uploadify.css">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="CSS/VistaPrevia.css">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:34</publishTime>
     </File>
     <File Include="Docs/0.pdf">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="Docs/Manual de Usuario SWF v3.pdf">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="FormatoFecha.js">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="HTML/Comentario_Ingeniero.html">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="HTML/index.html">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="HTML/index2.html">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="HTML/index_not_ase.html">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="HTML/index_not_fact.html">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="Imagenes/closeimg.png">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="Imagenes/LOGO_600x350.png">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="Imagenes/LOGO_Blanco_.png">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="Imagenes/LOGO_Blanco_Lineas.png">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="Imagenes/slogan.png">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="images/cancel.png">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:19</publishTime>
     </File>
     <File Include="scripts/jquery-1.3.2.min.js">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="scripts/jquery.uploadify.js">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="scripts/uploader.fla">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="scripts/uploader.swf">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
     </File>
     <File Include="Sesion.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="upload.html">
-      <publishTime>05/25/2023 10:37:19</publishTime>
+      <publishTime>01/05/2024 12:25:20</publishTime>
+    </File>
+    <File Include="Vista/Ingenieros/ActualizarAccion.aspx">
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="Vista/Ingenieros/Calendario.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/Calendario_Areas.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/CalSel.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/CargaFin.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/DescargaFolio.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/DetalleFSR.aspx">
-      <publishTime>03/12/2024 09:08:06</publishTime>
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="Vista/Ingenieros/EdicionReporteRefacciones.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/FirmarFolio.aspx">
-      <publishTime>03/11/2024 08:56:49</publishTime>
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="Vista/Ingenieros/FSR.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>02/12/2024 11:47:22</publishTime>
     </File>
     <File Include="Vista/Ingenieros/GerenteReporteRefacciones.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/Informacion.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/MonitorReporteRefacciones.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/ReporteRefacciones.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/ServiciosAsignados.aspx">
-      <publishTime>03/08/2024 17:37:48</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ingenieros/VistaPrevia.aspx">
-      <publishTime>03/11/2024 09:03:34</publishTime>
+      <publishTime>03/14/2024 12:29:31</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_1.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_2.aspx">
-      <publishTime>07/21/2023 10:35:51</publishTime>
+      <publishTime>01/05/2024 16:50:35</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_3.aspx">
-      <publishTime>03/08/2024 17:42:03</publishTime>
+      <publishTime>03/20/2024 10:51:23</publishTime>
     </File>
     <File Include="Vista/Ventas/CRM_4.aspx">
-      <publishTime>03/08/2024 17:42:03</publishTime>
+      <publishTime>03/05/2024 16:53:25</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/11/2024 09:06:35</publishTime>
+      <publishTime>03/15/2024 11:11:45</publishTime>
     </File>
   </ItemGroup>
 </Project>

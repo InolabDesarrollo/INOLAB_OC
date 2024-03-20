@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CRM_3.aspx.cs" Inherits="INOLAB_OC.CRM_3" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CRM_3.aspx.cs" Inherits="INOLAB_OC.CRM_3" %>
 
 
 <%@ Register assembly="Microsoft.ReportViewer.WebForms" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
@@ -28,6 +28,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
     <script>
+
         $(function () {
             $("#datepicker").datepicker();
         });
@@ -49,6 +50,7 @@
             yearSuffix: ''
         };
         $.datepicker.setDefaults($.datepicker.regional['es']);
+
         $(function () {
             $("#fecha").datepicker();
         });
@@ -170,7 +172,7 @@
                             </td>
 
                             <td colspan="2">
-                                <asp:TextBox ID="datepicker" class="mercado" runat="server" ></asp:TextBox>
+                                <asp:TextBox ID="datepicker" class="mercado" runat="server"></asp:TextBox>
                                 <asp:Label ID="lblresistro" Visible="false" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td colspan="2">
@@ -320,11 +322,10 @@
                                     <asp:ListItem>Perla</asp:ListItem>                                                             
                                     <asp:ListItem>Rodolfo</asp:ListItem>                                                                                                                   
                                     <asp:ListItem>Yuliet</asp:ListItem>                                                             
-                                    <asp:ListItem>Carlos</asp:ListItem>
-                                    <asp:ListItem>Demo</asp:ListItem>
                                     <asp:ListItem>Janatan</asp:ListItem>
                                     <asp:ListItem>Silvia</asp:ListItem>
                                     <asp:ListItem>Gabriel</asp:ListItem>
+                                    <asp:ListItem>Jose Carlos</asp:ListItem>
                                 </asp:DropDownList>
 
                             </td>
